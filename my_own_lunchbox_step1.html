@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <title>나만의도시락 Step1</title>
+    <link rel="stylesheet" href="resources/static/css/font.css">
+    <style>
+        .white {
+            color:#FFFFFF;
+        }
+
+        .gray {
+            color : #b9b9b9;
+        }
+
+        .main_color {
+            background-color:#0FA958;
+        }
+
+        .wrapper {
+            display: grid;
+            min-height: 100vh;
+            place-items: center;
+            font-family: LGPC;
+        }
+
+        .content {
+            width: 1080px;
+            border : 1px solid #b9b9b9;
+            min-height : 100vh;
+        }
+        
+        .step_container {
+            height:100px;
+            width:1080px;
+            text-align: center;
+        }
+
+        .step_link_size{
+            width: 50px; height:100px;
+        }
+
+        .step_circle {
+            border-radius: 50%;
+            width:100px;
+            height:100px;
+            border : 5px solid #0FA958;
+        }
+
+        .next_step_circle_border{
+            border-color:#b9b9b9;
+        }
+
+        .flex_center{
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .center_child {
+            position:absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .center_parent {
+            position: relative;
+        }
+
+        .inlineblock{
+            display: inline-block;
+        }
+
+        .composition_element_box {
+            width:400px;
+            text-align: center;
+            margin:10px;
+            cursor: pointer;
+        }
+
+        .composition_element {
+            width:400px; height:260px;
+            border : 2px solid #b9b9b9;
+        }
+
+        .composition_element_container{
+            text-align: center;
+        }
+
+        .margin_zero{
+            margin:0px;
+        }
+
+        .margin_10px{
+            margin:10px;
+        }
+
+        .margin_5px{
+            margin: 5px;
+        }
+        
+        .margin_top_bottom_10px{
+            margin : 10px 0px 10px;
+        }
+
+        input[type=radio]{
+            display: none;
+        }
+
+        .next_btn{
+            width: 230px;
+            height: 50px;
+            border : 5px solid #484848;
+            border-radius: 15px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .btn_container{
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        window.onload=function(){
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper content_font basic_font_color">
+        <div class="content">
+            <div class="step_container margin_top_bottom_10px">
+                <div class="step_circle main_color inlineblock center_parent">
+                    <div class="center_child">
+                        <h1 class="white">step<br>1</h1>
+                    </div>
+                </div>
+                <div class="center_parent inlineblock step_link_size">
+                    <div class="center_child">
+                        <h1 class="gray">···</h1> 
+                    </div>
+                </div>
+                <div class="step_circle center_parent inlineblock next_step_circle_border">
+                    <div class="center_child">
+                        <h1 class="gray">?</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+            <h1 class="margin_10px">step1. 구성 선택</h1>
+            </div>
+
+            <div class="composition_element_container">
+                <input type="radio" name="my_own_lunchbox_compostion" value="soup" id="soup" checked>
+                <label for="soup">
+                <div class="composition_element_box inlineblock">
+                    <div class="composition_element">
+                    <img src="https://via.placeholder.com/300X200" class="margin_10px" alt="밥/반찬3/국">
+                    <h2 class="margin_zero">밥/반찬3/국</h3>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/checked_icon.png" class="margin_10px">
+                </div>
+                </label>
+
+                <input type="radio" name="my_own_lunchbox_compostion" value="only_sidedish" id="only_sidedish">
+                <label for="only_sidedish">
+                    <div class="composition_element_box inlineblock">
+                        <div class="composition_element">
+                            <img src="https://via.placeholder.com/300X200" class="margin_10px" alt="밥/반찬4">
+                            <h2 class="margin_zero">밥/반찬4</h3>
+                            </div>
+                            <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="margin_10px">
+                        </div>  
+                </label>
+            </div>
+
+            <div class="composition_element_container">
+                <input type="radio" name="my_own_lunchbox_compostion" value="minisalad" id="minisalad">
+                <label for="minisalad">
+                <div class="composition_element_box inlineblock">
+                    <div class="composition_element">
+                    <img src="https://via.placeholder.com/300X200" class="margin_10px" alt="밥/반찬3/미니샐러드">
+                    <h2 class="margin_zero">밥/반찬3/미니샐러드</h3>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="margin_10px">
+                </div>
+                </label>
+                
+                <input type="radio" name="my_own_lunchbox_compostion" value="snack" id="snack">
+                <label for="snack"> 
+                <div class="composition_element_box inlineblock">
+                    <div class="composition_element">
+                    <img src="https://via.placeholder.com/300X200" class="margin_10px" alt="밥/반찬3/저칼로리간식">
+                    <h2 class="margin_zero">밥/반찬3/저칼로리간식</h3>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="margin_10px">
+                </div>
+                </label>
+            </div>
+
+            
+            <div class="btn_container">
+                <div class="inlineblock"> 
+                    <div class="next_btn flex_center">
+                        <img class="icon margin_5px" src="../beonadiet/resources/static/assets/next_icon.png">
+                        <h1 class="inlineblock margin_top_bottom_10px">Next Step</h1>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

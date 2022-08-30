@@ -1,0 +1,8 @@
+@font-face {
+    font-family: LGPC;
+    src: url(../assets/LGPC.ttf);
+}
+
+.basic_font_color {
+    color:#353535;
+}
