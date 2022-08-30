@@ -1,0 +1,143 @@
+/* color */
+.white {
+    color:#FFFFFF;
+}
+
+.gray {
+    color : #b9b9b9;
+}
+
+.main_color {
+    background-color:#0FA958;
+}
+
+/* basic frame */
+.wrapper {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    font-family: LGPC;
+}
+
+.content {
+    width: 1080px;
+    border : 1px solid #b9b9b9;
+    min-height : 100vh;
+}
+
+/* my_own_series element */
+.step_container {
+    height:100px;
+    width:1080px;
+    text-align: center;
+}
+
+.step_circle {
+    border-radius: 50%;
+    width:100px;
+    height:100px;
+    border : 5px solid #0FA958;
+}
+
+.next_step_circle_border{
+    border-color:#b9b9b9;
+}
+
+.step_link_size{
+    width: 50px; height:100px;
+}
+
+.big_composition_element {
+    width:400px; height:260px;
+    border : 2px solid #b9b9b9;
+}
+
+.big_composition_element_box {
+    width:400px;
+    text-align: center;
+    margin:10px;
+    cursor: pointer;
+}
+
+.composition_element{
+    width:250px; height:250px;
+    border : 2px solid #b9b9b9;
+}
+
+.composition_element_box{
+    width:250px;
+    text-align: center;
+    margin: 10px 50px;
+    cursor: pointer;
+}
+
+.composition_element_container{
+    text-align: center;
+}
+
+/* arrangement */
+.flex_center{
+    display: flex; justify-content: center; align-items: center;
+}
+
+.center_child {
+    position:absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+.center_parent {
+    position: relative;
+}
+
+.inlineblock{
+    display: inline-block;
+}
+
+/* margin */
+.margin_zero{
+    margin:0px;
+}
+
+.margin_10px{
+    margin:10px;
+}
+
+.margin_20px{
+    margin:20px;
+}
+
+.margin_5px{
+    margin: 5px;
+}
+
+.margin_top_bottom_10px{
+    margin : 10px 0px 10px;
+}
+
+.margin_left_60px{
+    margin-left: 60px;
+}
+
+/* radio */
+input[type=radio]{
+    display: none;
+}
+
+/* button, icon */
+.next_btn{
+    width: 230px;
+    height: 50px;
+    border : 5px solid #484848;
+    border-radius: 15px;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+}
+
+.btn_container{
+    text-align: center;
+}
