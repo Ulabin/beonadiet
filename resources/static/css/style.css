@@ -11,10 +11,17 @@
     background-color:#0FA958;
 }
 
+.btn_color{
+    background-color: #C7DFAA;
+}
+
 /* basic frame */
+html, body {
+    margin: 0px;
+}
+
 .wrapper {
     display: grid;
-    min-height: 100vh;
     place-items: center;
     font-family: LGPC;
 }
@@ -22,7 +29,6 @@
 .content {
     width: 1080px;
     border : 1px solid #b9b9b9;
-    min-height : 100vh;
 }
 
 /* my_own_series element */
@@ -88,6 +94,10 @@
     display: flex; justify-content: center; align-items: center;
 }
 
+.flex_vertical_center{
+    display: flex;  align-items: center;
+}
+
 .center_child {
     position:absolute;
     left: 50%;
@@ -145,6 +155,10 @@ input[type=radio]{
     border-radius: 15px;
 }
 
+.icon_22px{
+    width:22px; height:22px;
+}
+
 .nutrition_info_check_btn{
     width: 350px; 
     height: 40px; 
@@ -159,4 +173,8 @@ input[type=radio]{
 
 .btn_container{
     text-align: center;
+}
+
+.folding_btn{
+    padding: 6px; border-radius:10px;
 }
