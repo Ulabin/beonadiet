@@ -17,18 +17,17 @@
 
 /* basic frame */
 html, body {
-    margin: 0px;
+    margin:0px;
 }
 
 .wrapper {
-    display: grid;
-    place-items: center;
     font-family: LGPC;
 }
 
 .content {
     width: 1080px;
     border : 1px solid #b9b9b9;
+    margin: auto;
 }
 
 /* my_own_series element */
