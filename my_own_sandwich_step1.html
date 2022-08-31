@@ -200,8 +200,58 @@
                         </div>
                     </div>
                 </div>
-
                 <h2 class="inlineblock">일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3 class="inlineblock">(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
+                
+                <style>
+                    .graph {
+                        height: 40px; border-radius: 15px; border:1px solid #7a7a7a;  background-color: rgb(255, 255, 255);
+                    }
+
+                    .graph span {
+                        display: block; padding:0 10px; height: 40px; line-height: 40px; text-align: right; background-color:#C7DFAA;
+                        border-radius: 15px; box-sizing: border-box;
+                    }
+
+                    .graph.stack1 span {
+                        animation: stack1 2s 1;
+                    }
+
+                    .graph.stack2 span{
+                        animation: stack2 2s 1;
+                    }
+
+                    .graph.stack3 span {
+                        animation: stack3 2s 1;
+                    }
+
+                    @keyframes stack1{
+                        0%{width: 0; color: rgba(255,255,255,0);}
+                        40%{color: rgba(255,255,255,1);}
+                        100%{width: 75%;}
+                    }
+
+                    @keyframes stack2 {
+                        0%{width: 0; color: rgba(255,255,255,0);}
+                        40%{color: rgba(255,255,255,1);}
+                        100%{width: 60%;}
+                    }
+
+                    @keyframes stack3 {
+                        0%{width: 0; color: rgba(255,255,255,0);}
+                        40%{color: rgba(255,255,255,1);}
+                        100%{width: 25%;}
+                    }
+                </style>
+                <div class="graph stack1">
+                    <span style="width:75%"></span>  
+                </div>
+                <div class="graph stack2"> 
+                    <span style="width:60%"></span>  
+                </div>
+                <div class="graph stack3">
+                    <span style="width:25%"></span>  
+                </div>
+
             </div>
 
             <div class="btn_container">
