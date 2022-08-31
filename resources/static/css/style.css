@@ -7,6 +7,10 @@
     color : #b9b9b9;
 }
 
+.important_letter_color{
+    color:#0FA958;
+}
+
 .main_color {
     background-color:#0FA958;
 }
@@ -97,6 +101,18 @@ html, body {
     display: flex;  align-items: center;
 }
 
+/* .flex_vertical_center_horizontal_right {
+    display: flex; align-items: center; justify-content: right; 
+} */
+
+.vertical_middle{
+    vertical-align: middle;
+}
+
+.flex_horizontal_right{
+    display:flex; justify-content:right;
+}
+
 .center_child {
     position:absolute;
     left: 50%;
@@ -127,6 +143,10 @@ html, body {
 
 .margin_5px{
     margin: 5px;
+}
+
+.margin_top_bottom_5px{
+    margin : 5px 0px 5px;
 }
 
 .margin_top_bottom_10px{
@@ -165,6 +185,27 @@ input[type=radio]{
     border-radius: 15px;
 }
 
+.nutrition_info_container {
+    background-color: #cecece;
+    width: 900px;
+    margin : auto;
+    border-radius: 15px;
+    padding:35px;
+}
+
+.target_container{
+    padding:10px;
+    width:750px;
+    margin: auto;
+    border-radius: 10px;
+    border:3px solid #7a7a7a;
+}
+
+.target_container>h2{
+    margin:5px auto;
+    text-align: center;
+}
+
 .icon_40px {
     width: 40px;
     height: 40px;
@@ -176,4 +217,9 @@ input[type=radio]{
 
 .folding_btn{
     padding: 6px; border-radius:10px;
+}
+
+h2>span {
+    font-size:28px;
+    font-weight: 900;
 }
