@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <title>Mypage</title>
+  <style>
+    @font-face {
+      font-family: 'lg';
+      src: url('./LG\ PC.ttf') format('truetype');
+    }
+
+    * {
+      font-family: 'lg';
+      margin: 0;
+      padding: 0;
+      color: #353535
+    }
+
+    body {
+      width: 1080px;
+      margin: 0 auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* 마이페이지 컨테이너 */
+    .mypage-container {
+      margin: 0 auto;
+      width: 100%;
+      padding: 10px;
+      /* background: rgb(218, 218, 218); */
+    }
+
+    /* 마이페이지 카드 컨테이너 */
+    .mypage-card-container {
+      margin: 0 auto;
+      padding: 5px;
+      width: 85%;
+      height: 150px;
+      /* background: rgba(0, 128, 0, 0.323); */
+      text-align: center;
+      display: table;
+      border-collapse: collapse;
+    }
+
+    /* 마이페이지 카드 */
+    .mypage-card {
+      margin: 10px auto;
+      width: 800px;
+      height: 140px;
+      /* background: rgba(255, 0, 0, 0.355); */
+
+      list-style: none;
+      text-align: center;
+      display: table;
+      border-collapse: collapse;
+    }
+
+
+    .mypage-card .profile,
+    .delivery,
+    .coupon {
+      width: 250px;
+      margin: 6px 0;
+      height: 100px;
+      border: 1px solid black;
+      display: table-cell;
+    }
+
+    .profile-modify-button-img {
+      border: none;
+      cursor: pointer;
+      margin-top: 2px;
+      background:white ;
+    }
+
+    .profile-bottom {
+      width: 100px;
+      height: 40px;
+      border: 1px solid black;
+      font-weight: bold;
+    }
+
+    .profile-modify-button {
+      font-size: 16px;
+      color: black;
+      height: 20px;
+      width: 90px;
+      display: inline-block;
+      border-radius: 60px;
+      border: #C7DFAA;
+      background: #c7c7c7;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logout {
+      color: black;
+      height: 20px;
+      width: 90px;
+      border-radius: 60px;
+      background: #C7DFAA;
+      border: #C7DFAA;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .delivery button, .coupon button{
+      background:white;
+      border:none;
+      cursor: pointer;
+    }
+
+
+
+    /* 마이페이지 컨텐츠 */
+    .mypage-content {
+      width: 100%;
+      /* background: rgb(138, 138, 223); */
+    }
+
+    .mypage-list-container {
+      float: left;
+      margin: 10px;
+      width: 250px;
+      height: 800px;
+      /* background: rgba(237, 112, 112, 0.392) */
+    }
+
+    .mypage-list li {
+      margin: 10px 10px 10px 30px;
+    }
+
+    .mypage-list button {
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      color: #353535;
+      background: white;
+    }
+
+    .mypage-detail-container {
+      float: left;
+      margin: 10px;
+      width: 750px;
+      height: 820px;
+      /* background: rgba(232, 239, 130, 0.392) */
+
+    }
+
+    .mypage-detail {
+      margin: 10px;
+      /* background:#4287f5;; */
+      width: 720px;
+      height: 800px;
+
+    }
+  </style>
+  <script>
+
+  </script>
+</head>
+
+<body>
+  <div class="mypage-container">
+    <div class="mypage-card-container">
+      <div class="mypage-card">
+        <div class="profile">
+          <button type="button" class="profile-modify-button-img">
+            <iconify-icon icon="healthicons:ui-user-profile" style="color: #4287f5;" width="60" height="60">
+            </iconify-icon>
+          </button>
+
+          <div clas="profile-bottom">
+            <span>
+              <p style="font-size: 25px; font-weight: bold;">김민재님</p>
+            </span>
+            <h5 style="font-size: 5px;">&nbsp;</h5>
+            <span>
+              <button class="profile-modify-button">정보수정</button>
+              <button type="button" class="logout">로그아웃</button>
+            </span>
+          </div>
+        </div>
+
+
+        <div class="delivery">
+          <p style="font-size: 25px; font-weight: bold;">배송중</p>
+          <h3>&nbsp;</h3>
+          <div
+            style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color: #0FA958; ">
+            1 개</div>
+          <button style="display: inline-block; float:right; margin-right:20px;">
+            <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
+          </button>
+        </div>
+
+
+        <div class="coupon">
+          <p style="font-size: 25px; font-weight: bold;">쿠폰</p>
+          <h3>&nbsp;</h3>
+          <div
+            style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
+            3 개</div>
+          <button style="display: inline-block; float:right; margin-right:20px; ">
+            <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="mypage-content">
+      <div class="mypage-list-container">
+        <div class="mypage-list">
+          <p style="font-size: 30px; text-align:center; margin:10px; font-weight: bold;"> 마이페이지</p>
+          <hr>
+          <ul>
+            <p style="font-size:25px; font-weight:bold; margin:15px;">쇼핑</p>
+
+            <li><button>주문목록 / 배송조회</button></li>
+            <li><button>찜 목록</button></li>
+            <li><button>할인쿠폰</button></li>
+          </ul>
+
+          <ul>
+            <p style="font-size:25px; font-weight:bold; margin:15px;">회원정보</p>
+
+            <li><button>회원정보변경</button></li>
+            <li><button>일일섬취 칼로리 / 탄단지비율 <br> /알러지정보 설정</button></li>
+            <li><button>배송지관리</button></li>
+            <li><button>1:1문의내역</button></li>
+            <li><button>나의상품문의</button></li>
+            <li><button>나의상품후기</button></li>
+            <li><button>나의게시글</button></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="mypage-detail-container">
+        <div class="mypage-detail">
+          <p>What is Lorem Ipsum?
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+
+            Why do we use it?
+            It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
+            letters, as opposed to using 'Content here, content here', making it look like readable English. Many
+            desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a
+            search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved
+            over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+
+            Where does it come from?
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+            Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+            Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem
+            Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable
+            source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
+            of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular
+            during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
+            section 1.10.32.
+
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections
+            1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact
+            original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
