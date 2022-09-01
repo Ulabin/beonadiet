@@ -200,7 +200,6 @@
                         </div>
                     </div>
                 </div>
-                <h2 class="inlineblock">일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3 class="inlineblock">(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
                 
                 <style>
                     .graph {
@@ -208,50 +207,102 @@
                     }
 
                     .graph span {
-                        display: block; padding:0 10px; height: 40px; line-height: 40px; text-align: right; background-color:#C7DFAA;
+                        display: inline-block; height: 40px; line-height: 40px; text-align: right;;
                         border-radius: 15px; box-sizing: border-box;
                     }
 
-                    .graph.stack1 span {
-                        animation: stack1 2s 1;
+                    .graph.calorie_stack span {
+                        animation: calorie_stack 2s 1;
+                        background-color:#C7DFAA
                     }
 
-                    .graph.stack2 span{
-                        animation: stack2 2s 1;
+                    .graph .product_carbs_stack{
+                        animation: product_carbs_stack 2s 1;
+                        background-color: #f5f0bb;
                     }
 
-                    .graph.stack3 span {
-                        animation: stack3 2s 1;
+                    .graph .product_protein_stack{
+                        animation: product_protein_stack 2s 1;
+                        background-color:#C7DFAA
                     }
 
-                    @keyframes stack1{
+                    .graph .product_fat_stack{
+                        animation: product_fat_stack 2s 1;
+                        background-color: #90C8AC;
+                    }
+
+                    .graph.day_carbs_stack span{
+                        animation: day_carbs_stack 2s 1;
+                        background-color: #f5f0bb;
+                    }
+
+                    .graph.day_protein_stack span{
+                        animation: day_protein_stack 2s 1;
+                        background-color:#C7DFAA
+                    }
+
+                    .graph.day_fat_stack span{
+                        animation: day_fat_stack 2s 1;
+                        background-color: #90C8AC;
+                    }
+
+                    
+                    @keyframes calorie_stack {
                         0%{width: 0; color: rgba(255,255,255,0);}
                         40%{color: rgba(255,255,255,1);}
-                        100%{width: 75%;}
+                        100%{width: 11.5%;}
                     }
 
-                    @keyframes stack2 {
+                    @keyframes product_carbs_stack {
                         0%{width: 0; color: rgba(255,255,255,0);}
                         40%{color: rgba(255,255,255,1);}
-                        100%{width: 60%;}
+                        100%{width: 74%;}
                     }
 
-                    @keyframes stack3 {
+                    @keyframes product_protein_stack {
                         0%{width: 0; color: rgba(255,255,255,0);}
                         40%{color: rgba(255,255,255,1);}
-                        100%{width: 25%;}
+                        100%{width: 15.75%;}
+                    }
+
+                    @keyframes product_fat_stack {
+                        0%{width: 0; color: rgba(255,255,255,0);}
+                        40%{color: rgba(255,255,255,1);}
+                        100%{width: 10.25%;}
+                    }
+
+                    @keyframes day_carbs_stack {
+                        0%{width: 0; color: rgba(255,255,255,0);}
+                        40%{color: rgba(255,255,255,1);}
+                        100%{width: 28%;}
+                    }
+
+                    @keyframes day_protein_stack {
+                        0%{width: 0; color: rgba(255,255,255,0);}
+                        40%{color: rgba(255,255,255,1);}
+                        100%{width: 4%;}
+                    }
+
+                    @keyframes day_fat_stack {
+                        0%{width: 0; color: rgba(255,255,255,0);}
+                        40%{color: rgba(255,255,255,1);}
+                        100%{width: 0.04%;}
                     }
                 </style>
-                <div class="graph stack1">
-                    <span style="width:75%"></span>  
+
+                <h2 class="inlineblock">일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3 class="inlineblock">(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
+                <div class="graph calorie_stack">
+                    <span style="width:11.5%"></span>  
                 </div>
 
                 <h2 class="inlineblock">탄</h2><span style="font-weight: bold;">수화물</span> 
                 <h2 class="inlineblock">단</h2><span style="font-weight: bold;">백질</span>
                 <h2 class="inlineblock">지</h2><span style="font-weight: bold;">방</span>
                 <h2 class="inlineblock">비율</h2>
-                <div class="graph stack2"> 
-                    <span style="width:60%"></span>  
+                <div class="graph" style="position:relative"> 
+                    <span class="product_carbs_stack" style="width:74%"></span><!--
+                    --><span class="product_protein_stack" style="width:15.75%; position: absolute; left:74%"></span><!--
+                    --><span class="product_fat_stack" style="width:10.25%; position: absolute; left:89.75%"></span>
                 </div>
 
                 <h2 class="inlineblock">하루섭취 탄</h2><span style="font-weight: bold;">수화물</span> 
@@ -260,18 +311,18 @@
                 <h2 class="inlineblock">비율</h2><br>
 
                 <h2 class="inlineblock" style="margin-top:0px;">탄</h2><span style="font-weight: bold;">수화물(하루 <u>30%</u> 기준)</span>
-                <div class="graph stack3">
-                    <span style="width:25%"></span>  
+                <div class="graph day_carbs_stack">
+                    <span style="width:28%"></span>  
                 </div>
 
                 <h2 class="inlineblock">단</h2><span style="font-weight: bold;">백질(하루 <u>40%</u> 기준)</span>
-                <div class="graph stack3">
-                    <span style="width:25%"></span>  
+                <div class="graph day_protein_stack">
+                    <span style="width:4%"></span>  
                 </div>
 
                 <h2 class="inlineblock">지</h2><span style="font-weight: bold;">방(하루 <u>30%</u> 기준)</span>
-                <div class="graph stack3">
-                    <span style="width:25%"></span>  
+                <div class="graph day_fat_stack">
+                    <span style="width:0.04%"></span>  
                 </div>
             </div>
 
