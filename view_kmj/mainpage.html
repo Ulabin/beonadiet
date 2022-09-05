@@ -8,7 +8,7 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <link rel="stylesheet" type="text/css" href="styleFlickity.css">
   <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
   <title>Main Page</title>
 
@@ -33,7 +33,7 @@
     body{
       width: 1080px;
       margin:0 auto;
-      
+     
     }
     mainpage-container {
       font-weight: bold;
@@ -42,7 +42,7 @@
       margin: 0 auto;
 
     }
-    
+   
 
     a {
       text-decoration: none;
@@ -84,7 +84,7 @@
       top: 15px;
       margin-left: 5px;
     }
-
+/* 검색 창 */
     .search-form {
       position: relative;
       top: 10px;
@@ -108,7 +108,7 @@
     }
 
 
-    /* 검색 */
+    /* 검색 인풋 */
     .search-input {
       float: left;
       position: relative;
@@ -473,7 +473,7 @@
         <img src=".\images\bentto.png" alt="bentto" class="categoryimg">
         <a href="#" class="categorytext">나만의 도시락</a>
 
-        <img src=".\images\sandwitch.png" alt="sandwitch" class="categoryimg">
+        <img src=".\images\sandwich.png" alt="sandwich" class="categoryimg">
         <a href="#" class="categorytext">나만의 샌드위치</a>
 
         <img src=".\images\salad.png" alt="salad" class="categoryimg">
@@ -496,7 +496,7 @@
       </a>
       <ul class="banner-hover">
         <li class="banner-hover-list" id="banner-hover-list1"><a href="#"><img src="./images/bannerlistimg1.png" alt=""
-              class="banner-hover-list-img">></a></li>
+              class="banner-hover-list-img"></a></li>
         <li class="banner-hover-list" id="banner-hover-list2"><a href="#"><img src="./images/bannerlistimg2.png" alt=""
               class="banner-hover-list-img"></a></li>
         <li class="banner-hover-list" id="banner-hover-list3"><a href="#"><img src="./images/bannerlistimg3.png" alt=""
@@ -515,7 +515,7 @@
 
         <!-- :::::::: BEST 상품 :::::::: -->
         <div class="best-item">
-          <p class="best-item-title" style="padding:10px">BEST 상품</p>
+          <p class="best-item-title" style="padding:10px; font-weight:bold">BEST 상품</p>
 
           <div class="main-carousel">
 
@@ -612,7 +612,7 @@
 
           <!-- :::::::: BEST 상품 후기:::::::: -->
           <div class="best-item-review">
-            <p class="best-item-review-title" style="padding:10px">BEST 상품 후기</p>
+            <p class="best-item-review-title" style="padding:10px; font-weight:bold ">BEST 상품 후기</p>
 
 
             <div class="best-item-review-item">
