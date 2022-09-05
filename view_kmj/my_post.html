@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <title>My Post</title>
+  <style>
+    @font-face {
+      font-family: 'lg';
+      src: url('./LG\ PC.ttf') format('truetype');
+    }
+
+    * {
+      font-family: 'lg';
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 720px;
+      margin: 0 auto;
+    }
+
+    a {
+      text-decoration: none;
+      color:#353535;
+    }
+
+
+
+   
+    .my-post-container {
+      width: 720px;
+      height: 1000px;
+      /* background: greenyellow; */
+    }
+
+    /* 나의 게시물 아이템 */
+    .my-post-item {
+      display: inline-block;
+      margin-top: 10px;
+      margin-left: 45px;
+      margin-bottom: 20px;
+      width: 180px;
+      height: 300px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      box-shadow: 0 4px 4px -4px black;
+      /* background: blanchedalmond; */
+      overflow: hidden;
+
+    }
+
+    /* 나만의 레시피 게시물 이미지 */
+    .my-post-item-image {
+      height: 50%;
+      width: 101%;
+      /* background: chartreuse; */
+    }
+
+    /* 나만의 레시피 좋아요 */
+    .myownrecipe-like {
+      margin: 0 auto;
+      width: 50px;
+      font-size: 24px;
+    }
+
+    /* 나만의 레시피 좋아요 수 */
+    .myownrecipe-like span {
+      position: relative;
+      bottom: 4px;
+      font-size: 18px;
+    }
+
+    /* 나만의 레시피 게시물 이름 컨테이너*/
+    .my-post-item-name-container {
+      width: 100%;
+      margin: 5px;
+      /* background: cornflowerblue; */
+    }
+
+    /* 나만의 레시피 게시물 이름 */
+    .my-post-item-name {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      font-weight: bold;
+      font-size: 20px;
+      /* background: darkgreen; */
+    }
+
+    /* 수정,작성날 컨테이너 */
+    .my-post-mod-def-date-container {
+      margin: 1px;
+      text-align: center;
+    }
+
+    /* 수정 삭제 버튼 컨테이너 */
+    .my-post-mod-del-button-container {
+      width: 150px;
+      margin: 5px auto;
+    }
+
+    /* 수정 삭제 버튼 */
+    .my-post-mod-del-button-container button {
+      font-weight: bold;
+      background: #C7DFAA;
+      width: 60px;
+      line-height: 20px;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      box-shadow: 0.5px 0.5px 1px;
+      color: #353535;
+      margin: 5px;
+      cursor: pointer;
+    }
+     /* 검색 창 */
+     .search-form {
+      height: 40px;
+      /* background: crimson; */
+    }
+
+    fieldset {
+      border: none;
+      height: 40px;
+    }
+
+    /* 분류 */
+    .searchCategory {
+      float: left;
+      height: 40px;
+      border: 3px solid rgb(0, 211, 135);
+      border-radius: 25px 0px 0px 25px;
+      outline: none;
+      margin-left:150px;
+
+    }
+
+
+    /* 검색 인풋 */
+    .search-input {
+      float: left;
+      position: relative;
+      right: 4px;
+      outline: none;
+      line-height: 2.56em;
+      width: 300px;
+      border: 3px solid rgb(0, 211, 135);
+      border-right: 0;
+      overflow: hidden;
+
+    }
+
+    /* 돋보기 그림을 위한 공간 */
+    .forsearch {
+      float: left;
+      position: relative;
+      right: 5px;
+      width: 60px;
+      height: 34px;
+      border: 3px solid rgb(0, 211, 135);
+      border-radius: 0px 25px 25px 0px;
+      border-left: none;
+
+    }
+
+    /* 돋보기 그림 */
+    .searchimg {
+      position: relative;
+      top: 8px;
+      left: 18px;
+      width: 20px;
+      height: 20px;
+
+    }
+    .pagination-container{
+        width:100%;
+        /* background:antiquewhite; */
+    }
+    /* 페이징 */
+    .pagination{
+      
+      margin: 5px auto;
+      width:200px;
+      /* background: red; */
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="my-post-container">
+    <div class="my-post-item-container">
+      <!-- 게시물이 들어오는 곳 -->
+    </div>
+
+    <div class="search-form product-search clearFix">
+      <form action="#" class="search-form">
+        <fieldset>
+          <div class="search-container">
+            <select name="category" id="category" class="searchCategory">
+              <option value="">전체</option>
+              <option value="">나만의 도시락</option>
+              <option value="">나만의 샌드위치</option>
+              <option value="">나만의 샐러드</option>
+            </select>
+            <label for="headerSearchKeyword">
+              <div class="inputlimit">
+                <input type="text" id="headerSearchKeyword" class="search-input" name="q" title="" value=""
+                  placeholder="검색어 입력" autocomplete="off">
+                <div class="forsearch">
+                  <a href="">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+                      class="searchimg">
+                  </a>
+                </div>
+              </div>
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="pagination-container">
+      <div class="pagination">PREV|1|2|3|4|5|6|7|8|9|NEXT</div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var list = document.querySelector('.my-post-item-container');
+    for (let i = 0; i < 6; i++) {
+
+      if (i == 3) {
+        list.innerHTML += `<br> <div class="my-post-item" id="my-post-item${i}">
+      <div class="my-post-item-name-container">
+        <div class="my-post-item-name">
+          맛있는 도시락
+        </div>
+      </div>
+
+      <a href="#">
+        <img src="./images/img1.jpg" alt="image" class="my-post-item-image">
+      </a>
+      <div class="my-post-mod-def-date-container">
+        <div class="my-post-mod-date">수정날짜 : 2022.09.04</div>
+        <div class="my-post-def-date">작성날짜 : 2022.09.04</div>
+      </div>
+      <div class="myownrecipe-like">
+        <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="20" height="20">
+        </iconify-icon>
+        <span class="myownrecipe-like-count"> 1</span>
+      </div>
+      <div class="my-post-mod-del-button-container">
+        <button class="my-post-modify-button id="my-post-modify-button">수정</button>
+        <button class="my-post-delete-delete">삭제</button>
+      </div>
+    </div> `;
+      } else {
+        list.innerHTML += ` <div class="my-post-item" id="my-post-item${i}">
+      <div class="my-post-item-name-container">
+        <div class="my-post-item-name">
+          맛있는 도시락
+        </div>
+      </div>
+
+      <a href="#">
+        <img src="./images/img1.jpg" alt="image" class="my-post-item-image">
+      </a>
+      <div class="my-post-mod-def-date-container">
+        <div class="my-post-mod-date">수정날짜 : 2022.09.04</div>
+        <div class="my-post-def-date">작성날짜 : 2022.09.04</div>
+      </div>
+      <div class="myownrecipe-like">
+        <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="20" height="20">
+        </iconify-icon>
+        <span class="myownrecipe-like-count"> 1</span>
+      </div>
+      <div class="my-post-mod-del-button-container">
+        <button class="my-post-modify-button" id="my-post-modify-button">수정</button>
+        <button class="my-post-delete-delete">삭제</button>
+      </div>
+    </div>`;
+      }
+    }
+    window.onload = function(){
+
+      var btnTest = document.querySelector('#my-post-modify-button');
+      btnTest.addEventListener("click", function() {
+    alert("Click!");
+  });
+    }
+    
+    
+  </script>
+</body>
+
+</html>
