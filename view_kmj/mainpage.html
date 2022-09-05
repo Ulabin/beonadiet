@@ -239,49 +239,52 @@
 
     }
 
-    /* :::::::: BANNER :::::::: */
-    .banner {
+     /* :::::::: BANNER :::::::: */
+  .banner {
+    float: left;
+    background: rgb(115, 250, 239);
+    width: 100%;
+    height: 300px;
+    border-top: 2px solid #4e4e4e;
+    border-bottom: 2px solid #4e4e4e;
+    clear: both;
+  }
 
-      float: left;
-      background: rgb(115, 250, 239);
-      width: 100%;
-      height: 300px;
-      border-top: 2px solid #4e4e4e;
-      border-bottom: 2px solid #4e4e4e;
-      clear: both;
-    }
+  .banner-a a{
+    display:inline-block;
+    width:100%;
+    height:300px;
+  }
+  .banner-image {
+    width: 100%;
+    height: 100%;
+  }
 
-    .banner-image {
-      width: 100%;
-      height: 100%;
-    }
+  .banner-hover {
+    position: relative;
+    bottom: 260px;
+    left: 800px;
+    list-style: none;
+  }
 
-    .banner-hover {
-      position: relative;
-      bottom: 270px;
-      left: 800px;
-      list-style: none;
+  .banner-hover>li {
 
-    }
+    width: 200px;
+    height: 40px;
+    margin: 0px;
 
-    .banner-hover>li {
+  }
 
-      width: 200px;
-      height: 40px;
-      margin: 0px;
+  .banner-hover-list-img {
 
-    }
+    width: 100%;
+    height: 100%;
+  }
 
-    .banner-hover-list-img {
-
-      width: 100%;
-      height: 100%;
-    }
-
-    .banner-hover-list:hover {
-      border: rgb(0, 211, 135) 2px solid;
-      box-sizing: border-box;
-    }
+#banner-hover-list1{
+  border:rgb(0, 211, 135) 2px solid;
+  box-sizing:border-box;
+}
 
 
     /* :::::::: CONTENT  :::::::: */
@@ -491,9 +494,23 @@
 
     <!-- ::::::::::  Banner  ::::::::::-->
     <div class="banner">
-      <a href="#" class="banner-a">
-        <img src="./images/그림1.png" alt="그림1" class="banner-image" id="banner-image1" style="display:block">
-      </a>
+      <div class="banner-a">
+        <a href="https://www.naver.com" style="display:inline-block" >
+          <img src="./images/그림1.png" alt="그림1" class="banner-image" id="banner-image1" >
+        </a>
+        <a href="https://www.google.com" style="display:none" >
+          <img src="./images/img2.jpg" alt="그림1" class="banner-image" id="banner-image2" >
+        </a>
+        <a href="https://www.facebook.com"style="display:none">
+          <img src="./images/img3.jpg" alt="그림1" class="banner-image" id="banner-image3" >
+        </a>
+        <a href="https://www.daum.com" style="display:none">
+          <img src="./images/img4.jpg" alt="그림1"  class="banner-image"id="banner-image4" >
+        </a>
+        <a href="https://www.instagram.com" style="display:none" >
+          <img src="./images/img5.jpg" alt="그림1" class="banner-image"  id="banner-image5" >
+        </a>
+      </div>
       <ul class="banner-hover">
         <li class="banner-hover-list" id="banner-hover-list1"><a href="#"><img src="./images/bannerlistimg1.png" alt=""
               class="banner-hover-list-img"></a></li>
@@ -767,464 +784,49 @@
       insta.innerHTML += `<div class="instagram-item" id="instagram-item${i}"></div>`;
     }
 
-    $(document).ready(function () {
-      var bannera = document.querySelector('.banner-a');
-      var bannerimg = document.querySelector('.banner-image');
-      var bannerhoverimg1 = document.querySelector('#banner-hover-list1');
-      var bannerhoverimg2 = document.querySelector('#banner-hover-list2');
-      var bannerhoverimg3 = document.querySelector('#banner-hover-list3');
-      var bannerhoverimg4 = document.querySelector('#banner-hover-list4');
-      var bannerhoverimg5 = document.querySelector('#banner-hover-list5');
-      var bannerarr = $('.banner-a img').toArray();
+    $(document).ready(function(){
       let i = 0;
-
-      let move = 1;
-      $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-      $(bannerhoverimg1).css("box-sizing", "border-box");
-
-      //배녀 이미지 변경  방법 1 src로 직접 불러오기
-      //배열을 만들어 다시 작업해야함
-      //재시작 시킬때 i값을 받아 그때부터 시작하도록하기
-      var interval = setInterval(function go() {
-        // 반복
-        if (i == 0) {
-          $(bannerhoverimg1).css("border", "none");
-          $(bannerhoverimg1).css("box-sizing", "none");
-          $(bannerimg).attr("src", "./images/img2.jpg");
-          $(bannera).attr("href", "https://www.naver.com");
-          $(bannerhoverimg2).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg2).css("box-sizing", "border-box");
-        }
-
-        else if (i == 1) {
-          $(bannerhoverimg2).css("border", "none");
-          $(bannerhoverimg2).css("box-sizing", "none");
-          $(bannerimg).attr("src", "./images/img3.jpg");
-          $(bannera).attr("href", "https://www.youtube.com/");
-          $(bannerhoverimg3).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg3).css("box-sizing", "border-box");
-        }
-
-        else if (i == 2) {
-          $(bannerhoverimg3).css("border", "none");
-          $(bannerhoverimg3).css("box-sizing", "none");
-          $(bannerimg).attr("src", "./images/img4.jpg");
-          $(bannera).attr("href", "https://www.instagram.com/");
-          $(bannerhoverimg4).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg4).css("box-sizing", "border-box");
-        }
-
-        else if (i == 3) {
-          $(bannerhoverimg4).css("border", "none");
-          $(bannerhoverimg4).css("box-sizing", "none");
-          $(bannerimg).attr("src", "./images/img5.jpg");
-          $(bannera).attr("href", "https://www.facebook.com/");
-          $(bannerhoverimg5).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg5).css("box-sizing", "border-box");
-        }
-
+      
+      var bannerChangeInterval = setInterval(function(){
+          $(".banner-a>a").eq(i).css("display","block");
+          $(".banner-a>a").eq(i).siblings().css("display","none");
+          $(".banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
+          $(".banner-hover>li").eq(i).css("box-sizing"," border-box");
+          $(".banner-hover>li").eq(i).siblings().css("border"," none");
+          $(".banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
         i++;
-
-        if (i == 5) {
-          i = 0;
-          $(bannerhoverimg5).css("border", "none");
-          $(bannerhoverimg5).css("box-sizing", "none");
-          $(bannerimg).attr("src", "./images/그림1.png");
-          $(bannera).attr("href", "https://www.google.com");
-          $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg1).css("box-sizing", "border-box");
-
+        if(i ==5){
+          i = 0;  
         }
+       },3000);
 
+      for(let i = 0; i<5; i++){
+        $(".banner-hover>li").eq(i).mouseenter(function(){
+          $(".banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
+          $(".banner-hover>li").eq(i).css("box-sizing"," border-box");
+          $(".banner-a>a").eq(i).css("display","block");
+          $(".banner-a>a").eq(i).siblings().css("display","none");
+          clearInterval(bannerChangeInterval)
+          $(".banner-hover>li").eq(i).siblings().css("border"," none");
+          $(".banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
 
-        //반복  
-      }, 3000);
-
-      $('#banner-hover-list1').mouseenter(function () {
-        clearInterval(interval);
-        $(bannerimg).attr("src", "./images/그림1.png");
-        $(bannera).attr("href", "https://www.google.com");
-        $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-        $(bannerhoverimg1).css("box-sizing", "border-box");
-        $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        // $(bannerhoverimg5,bannerhoverimg4,bannerhoverimg3,bannerhoverimg2).css("box-sizing", "none");
-      });
-      $('#banner-hover-list2').mouseenter(function () {
-        clearInterval(interval);
-        $(bannerimg).attr("src", "./images/img2.jpg");
-        $(bannera).attr("href", "https://www.naver.com");
-        $(bannerhoverimg2).css("border", "rgb(0, 211, 135) 2px solid");
-        $(bannerhoverimg2).css("box-sizing", "border-box");      
-        $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-      });
-      $('#banner-hover-list3').mouseenter(function () {
-        clearInterval(interval);
-        $(bannerimg).attr("src", "./images/img3.jpg");
-        $(bannera).attr("href", "https://www.youtube.com/");
-        $(bannerhoverimg3).css("border", "rgb(0, 211, 135) 2px solid");
-        $(bannerhoverimg3).css("box-sizing", "border-box");
-        $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-       
-      });
-      $('#banner-hover-list4').mouseenter(function () {
-        clearInterval(interval);
-        $(bannerimg).attr("src", "./images/img4.jpg");
-        $(bannera).attr("href", "https://www.instagram.com/");
-        $(bannerhoverimg4).css("border", "rgb(0, 211, 135) 2px solid");
-        $(bannerhoverimg4).css("box-sizing", "border-box");
-        $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-       
-      });
-      $('#banner-hover-list5').mouseenter(function () {
-        clearInterval(interval);
-        $(bannerimg).attr("src", "./images/img5.jpg");
-        $(bannera).attr("href", "https://www.facebook.com/");
-        $(bannerhoverimg5).css("border", "rgb(0, 211, 135) 2px solid");
-        $(bannerhoverimg5).css("box-sizing", "border-box");
-        $(bannerhoverimg1).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");    
-      });
-
-
-      $('#banner-hover-list1').mouseleave(function () {
-        interval = setInterval(function go() {
-          // 반복
-          if (i == 0) {
-            $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img2.jpg");
-          $(bannera).attr("href", "https://www.naver.com");
-          $(bannerhoverimg2).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg2).css("box-sizing", "border-box");
-        }
-
-        else if (i == 1) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img3.jpg");
-          $(bannera).attr("href", "https://www.youtube.com/");
-          $(bannerhoverimg3).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg3).css("box-sizing", "border-box");
-        }
-
-        else if (i == 2) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img4.jpg");
-          $(bannera).attr("href", "https://www.instagram.com/");
-          $(bannerhoverimg4).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg4).css("box-sizing", "border-box");
-        }
-
-        else if (i == 3) {
-          $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img5.jpg");
-          $(bannera).attr("href", "https://www.facebook.com/");
-          $(bannerhoverimg5).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg5).css("box-sizing", "border-box");
-        }
-
+        });
+        $(".banner-hover>li").eq(i).mouseleave(function(){
+          bannerChangeInterval = setInterval(function(){
+          $(".banner-a>a").eq(i).css("display","block");
+          $(".banner-a>a").eq(i).siblings().css("display","none");
+          $(".banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
+          $(".banner-hover>li").eq(i).css("box-sizing"," border-box");
+          $(".banner-hover>li").eq(i).siblings().css("border"," none");
+          $(".banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
         i++;
-
-        if (i == 5) {
-          i = 0;
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-          $(bannerimg).attr("src", "./images/그림1.png");
-          $(bannera).attr("href", "https://www.google.com");
-          $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg1).css("box-sizing", "border-box");
-
+        if(i ==5){
+          i = 0;  
         }
-
-          //반복  
-        }, 3000);
-      })
-      $('#banner-hover-list2').mouseleave(function () {
-        interval = setInterval(function go() {
-          // 반복
-          if (i == 0) {
-            $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img2.jpg");
-          $(bannera).attr("href", "https://www.naver.com");
-          $(bannerhoverimg2).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg2).css("box-sizing", "border-box");
-        }
-
-        else if (i == 1) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img3.jpg");
-          $(bannera).attr("href", "https://www.youtube.com/");
-          $(bannerhoverimg3).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg3).css("box-sizing", "border-box");
-        }
-
-        else if (i == 2) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img4.jpg");
-          $(bannera).attr("href", "https://www.instagram.com/");
-          $(bannerhoverimg4).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg4).css("box-sizing", "border-box");
-        }
-
-        else if (i == 3) {
-          $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img5.jpg");
-          $(bannera).attr("href", "https://www.facebook.com/");
-          $(bannerhoverimg5).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg5).css("box-sizing", "border-box");
-        }
-
-        i++;
-
-        if (i == 5) {
-          i = 0;
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-          $(bannerimg).attr("src", "./images/그림1.png");
-          $(bannera).attr("href", "https://www.google.com");
-          $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg1).css("box-sizing", "border-box");
-
-        }
-
-          //반복  
-        }, 3000);
-      })
-      $('#banner-hover-list3').mouseleave(function () {
-        interval = setInterval(function go() {
-          // 반복
-          if (i == 0) {
-            $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img2.jpg");
-          $(bannera).attr("href", "https://www.naver.com");
-          $(bannerhoverimg2).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg2).css("box-sizing", "border-box");
-        }
-
-        else if (i == 1) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img3.jpg");
-          $(bannera).attr("href", "https://www.youtube.com/");
-          $(bannerhoverimg3).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg3).css("box-sizing", "border-box");
-        }
-
-        else if (i == 2) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img4.jpg");
-          $(bannera).attr("href", "https://www.instagram.com/");
-          $(bannerhoverimg4).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg4).css("box-sizing", "border-box");
-        }
-
-        else if (i == 3) {
-          $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img5.jpg");
-          $(bannera).attr("href", "https://www.facebook.com/");
-          $(bannerhoverimg5).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg5).css("box-sizing", "border-box");
-        }
-
-        i++;
-
-        if (i == 5) {
-          i = 0;
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-          $(bannerimg).attr("src", "./images/그림1.png");
-          $(bannera).attr("href", "https://www.google.com");
-          $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg1).css("box-sizing", "border-box");
-
-        }
-
-          //반복  
-        }, 3000);
-      })
-      $('#banner-hover-list4').mouseleave(function () {
-        interval = setInterval(function go() {
-          // 반복
-          if (i == 0) {
-            $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img2.jpg");
-          $(bannera).attr("href", "https://www.naver.com");
-          $(bannerhoverimg2).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg2).css("box-sizing", "border-box");
-        }
-
-        else if (i == 1) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img3.jpg");
-          $(bannera).attr("href", "https://www.youtube.com/");
-          $(bannerhoverimg3).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg3).css("box-sizing", "border-box");
-        }
-
-        else if (i == 2) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img4.jpg");
-          $(bannera).attr("href", "https://www.instagram.com/");
-          $(bannerhoverimg4).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg4).css("box-sizing", "border-box");
-        }
-
-        else if (i == 3) {
-          $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img5.jpg");
-          $(bannera).attr("href", "https://www.facebook.com/");
-          $(bannerhoverimg5).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg5).css("box-sizing", "border-box");
-        }
-
-        i++;
-
-        if (i == 5) {
-          i = 0;
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-          $(bannerimg).attr("src", "./images/그림1.png");
-          $(bannera).attr("href", "https://www.google.com");
-          $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg1).css("box-sizing", "border-box");
-
-        }
-
-          //반복  
-        }, 3000);
-      })
-      $('#banner-hover-list5').mouseleave(function () {
-        interval = setInterval(function go() {
-          // 반복
-          if (i == 0) {
-            $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img2.jpg");
-          $(bannera).attr("href", "https://www.naver.com");
-          $(bannerhoverimg2).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg2).css("box-sizing", "border-box");
-        }
-
-        else if (i == 1) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img3.jpg");
-          $(bannera).attr("href", "https://www.youtube.com/");
-          $(bannerhoverimg3).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg3).css("box-sizing", "border-box");
-        }
-
-        else if (i == 2) {
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img4.jpg");
-          $(bannera).attr("href", "https://www.instagram.com/");
-          $(bannerhoverimg4).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg4).css("box-sizing", "border-box");
-        }
-
-        else if (i == 3) {
-          $(bannerhoverimg2).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg1).css("border", "none");
-          $(bannerimg).attr("src", "./images/img5.jpg");
-          $(bannera).attr("href", "https://www.facebook.com/");
-          $(bannerhoverimg5).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg5).css("box-sizing", "border-box");
-        }
-
-        i++;
-
-        if (i == 5) {
-          i = 0;
-          $(bannerhoverimg5).css("border", "none");
-        $(bannerhoverimg4).css("border", "none");
-        $(bannerhoverimg3).css("border", "none");
-        $(bannerhoverimg2).css("border", "none");
-          $(bannerimg).attr("src", "./images/그림1.png");
-          $(bannera).attr("href", "https://www.google.com");
-          $(bannerhoverimg1).css("border", "rgb(0, 211, 135) 2px solid");
-          $(bannerhoverimg1).css("box-sizing", "border-box");
-
-        }
-          //반복  
-        }, 3000);
-      })
-
+       },3000);
+        });
+      }
+      // clearInterval(변수)
     });
   </script>
 </body>
