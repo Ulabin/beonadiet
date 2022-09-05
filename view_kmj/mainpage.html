@@ -809,8 +809,10 @@
           clearInterval(bannerChangeInterval)
           $(".banner-hover>li").eq(i).siblings().css("border"," none");
           $(".banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
-
+        
         });
+      }
+        for(let i = 0; i<5; i++){
         $(".banner-hover>li").eq(i).mouseleave(function(){
           bannerChangeInterval = setInterval(function(){
           $(".banner-a>a").eq(i).css("display","block");
