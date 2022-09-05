@@ -3,6 +3,11 @@
   src: url(../font/LG\ PC.ttf);
 }
 
+@font-face {
+  font-family: 'ghana';
+  src: url(../font/Ghanachocolate.ttf);
+}
+
 * {
   font-family: "lg-pc";
   margin: 0;
@@ -19,42 +24,52 @@ body {
 #container {
   width: 100%;
 }
+
 .join-box {
   margin: 90px auto;
   text-align: center;
 }
+
 .title_join {
+  font-family: 'ghana';
   display: inline-block;
   font-style: italic;
   font-size: 28px;
   font-weight: bold;
   color: #353535;
 }
+
 .title {
   margin-bottom: 30px;
 }
+
 .sns_login {
   font-size: 13.2px;
   color: #353535;
   margin-bottom: 20px;
 }
+
 .google {
   width: 224px;
 }
+
 fieldset {
   border: none;
 }
+
 ul {
   list-style-type: none;
   margin-bottom: 30px;
 
 }
+
 #signup {
   width: 700px;
   margin: 30px auto;
   padding: 20px;
 
 }
+
 #signup label {
   width: 130px;
   float: left;
@@ -64,6 +79,7 @@ ul {
   line-height: 45px;
   color: #353535;
 }
+
 input {
   width: 334px;
   height: 45px;
@@ -72,10 +88,12 @@ input {
   border: 1px solid #dddddd;
   border-radius: 3px;
 }
+
 input:focus {
   border-color: #0FA958;
   outline: none;
 }
+
 .btncheck, .btnauth {
   width: 120px;
   height: 45px;
@@ -86,15 +104,18 @@ input:focus {
   font-weight: 500;
   cursor: pointer;
 }
+
 .btn_hidden {
   width: 120px;
   height: 45px;
   margin-left: 10px;
 }
+
 .box{
   display: inline-flex;
   margin-bottom: 10px;
 }
+
 .btnjoin {
   width: 334px;
   height: 45px;
@@ -107,6 +128,7 @@ input:focus {
   margin-top: 10px;
   cursor: pointer;
 }
+
 .line1 hr {
   width: 640px;
   margin: 50px auto;
@@ -114,6 +136,7 @@ input:focus {
   height:1px;
   border:0;
 }
+
 .line2 hr {
   width: 640px;
   margin: 60px auto;
@@ -121,6 +144,7 @@ input:focus {
   height:1px;
   border:0;
 }
+
 .title_join img {
   display:inline-block; 
   vertical-align:middle;
