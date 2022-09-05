@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="styleFlickity.css">
+  <title>My Own Recipe</title>
+  <style>
+    @font-face {
+      font-family: 'lg';
+      src: url('./LG\ PC.ttf') format('truetype');
+    }
+
+    * {
+      font-family: 'lg';
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 1080px;
+      margin: 0 auto;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* 나만의 레시피 컨테이너 */
+    .myownrecipe-container {
+      /* font-weight: bold; */
+      color: #353535;
+      width: 100%;
+      margin: 0 auto;
+      padding-top: 20px;
+      border: 1px solid lightgrey;
+      /* background: sandybrown; */
+    }
+
+    /* 나만의 레시피 헤드 컨테이너 */
+    .myownrecipe-header {
+      width: 100%;
+      height: 80px;
+      /* background: #f8bbbb; */
+      text-align: center;
+    }
+
+    /* 헤더 타이틀 */
+    .myownrecipe-title-container {
+      position: relative;
+      left: 80px;
+      width: 300px;
+      height: 80px;
+      /* background: #d5f8c8; */
+      display: inline-block;
+
+    }
+
+    .myownrecipe-title {
+      line-height: 60px;
+      background: #0FA958;
+      border-radius: 5px;
+      width: 200px;
+      height: 60px;
+      font-size: 30px;
+      font-weight: bold;
+      margin: 10px auto;
+    }
+
+    /* 게시물 등록 */
+    .board-register {
+      position: relative;
+      left: 300px;
+      display: inline-block;
+      font-weight: bold;
+      background: #C7DFAA;
+      width: 150px;
+      line-height: 40px;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      box-shadow: 0.5px 0.5px 1px;
+      color: #353535;
+    }
+
+    .board-register a {
+      color: #353535;
+
+    }
+
+    /* 배너 */
+    .banner-container {
+      width: 100%;
+      height: 200px;
+      /* background:#00D386; */
+      /* background: #84D0B1; */
+      font-weight: bold;
+    }
+
+    .banner p {
+      position: relative;
+      bottom: 150px;
+      left: -10px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* 주간 베스트 레시피 */
+    .best-item {
+      height: 250px;
+
+    }
+
+
+    .comment {
+      position: relative;
+      left: 40px;
+      padding: 5px;
+      width: 60px;
+      height: 50px;
+      float: right;
+    }
+
+    .rate {
+      position: relative;
+      right: 90px;
+      padding: 4px;
+      width: 150px;
+      width: 50px;
+      height: 50px;
+      float: right;
+    }
+
+    .comment-count {
+      float: right;
+      margin-top: 5px;
+
+
+    }
+
+    .rate-count {
+      float: right;
+      margin-top: 8px;
+    }
+
+    /*나만의 레시피 보드  */
+    .myownrecipe-board {
+      /* background: lightcoral; */
+      width: 100%;
+      height: 900px;
+    }
+
+    /* 나만의 레시피 a태그 버튼 */
+    .recipe-button-container {
+      margin: 0 auto;
+      width: 900px;
+      /* height: 80px; */
+      /* background:skyblue; */
+
+
+    }
+
+    .recipe-button-container a {
+      display: inline-block;
+      text-align: center;
+      margin-top: 20px;
+      margin-left: 90px;
+      width: 180px;
+      text-decoration: none;
+      color: #353535;
+      font-size: 22px;
+      border: 1px solid lightgrey;
+      box-shadow: 0.5px 0.5px 1px;
+      border-radius: 5px;
+      background: #C7DFAA;
+      font-weight: bold;
+      height: 35px;
+      line-height: 30px;
+
+    }
+
+
+    /* 검색 창 */
+    .search-form {
+      height: 40px;
+      /* background: crimson; */
+    }
+
+    fieldset {
+      border: none;
+      height: 40px;
+    }
+
+    /* 분류 */
+    .searchCategory {
+      float: left;
+      height: 40px;
+      border: 3px solid rgb(0, 211, 135);
+      border-radius: 25px 0px 0px 25px;
+      outline: none;
+      margin-left: 300px;
+    }
+
+
+    /* 검색 인풋 */
+    .search-input {
+      float: left;
+      position: relative;
+      right: 4px;
+      outline: none;
+      line-height: 2.56em;
+      width: 300px;
+      border: 3px solid rgb(0, 211, 135);
+      border-right: 0;
+      overflow: hidden;
+
+    }
+
+    /* 돋보기 그림을 위한 공간 */
+    .forsearch {
+      float: left;
+      position: relative;
+      right: 5px;
+      width: 60px;
+      height: 34px;
+      border: 3px solid rgb(0, 211, 135);
+      border-radius: 0px 25px 25px 0px;
+      border-left: none;
+
+    }
+
+    /* 돋보기 그림 */
+    .searchimg {
+      position: relative;
+      top: 8px;
+      left: 18px;
+      width: 20px;
+      height: 20px;
+
+    }
+
+    /* 나만의 레시피 게시물 컨테이너 */
+    .myownrecipe-board-list-container {
+      width: 100%;
+      height: 800px;
+      /* background: darkturquoise; */
+    }
+/* 나만의 레시피 게시물 */
+    .myownrecipe-board-item {
+      display: inline-block;
+      margin-top: 10px;
+      margin-left: 70px;
+      margin-bottom: 20px;
+      width: 180px;
+      height: 200px;
+      border:1px solid lightgray;
+      /* background: blanchedalmond; */
+
+    }
+/* 나만의 레시피 게시물 이미지 */
+    .myownrecipe-board-item-image {
+      height: 70%;
+      width: 100%;
+      /* background: chartreuse; */
+    }
+/* 나만의 레시피 좋아요 */
+    .myownrecipe-like {
+      margin: 0 auto;
+      width: 50px;
+      font-size: 24px;
+    }
+/* 나만의 레시피 좋아요 수 */
+    .myownrecipe-like span {
+      position: relative;
+      bottom: 4px;
+    }
+/* 나만의 레시피 게시물 이름 컨테이너*/
+    .myownrecipe-board-item-name-container {
+      width: 100%;
+      /* background: cornflowerblue; */
+    }
+/* 나만의 레시피 게시물 이름 */
+    .myownrecipe-board-item-name {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      font-weight: bold;
+      font-size: 20px;
+      /* background: darkgreen; */
+    }
+     /* 페이징 컨테이너*/
+     .pagination-container{
+        width:100%;
+        /* background:antiquewhite; */
+    }
+    /* 페이징 */
+    .pagination{
+      
+      margin: 5px auto;
+      width:200px;
+      /* background: red; */
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div class="myownrecipe-container">
+    <header>
+      <div class="myownrecipe-header">
+
+        <!-- 타이틀 -->
+        <div class="myownrecipe-title-container">
+          <div class="myownrecipe-title">나만의 레시피</div>
+        </div>
+        <!-- 게시물 등록 -->
+        
+          <a href="#"><div class="board-register">게시물 등록</div></a>
+        
+
+      </div>
+    </header>
+
+    <div class="banner-container">
+      <div class="banner">
+        <img src="./images/배너이미지.jpg" alt="bestrecipeimg"
+          style="width:1080px; height:200px; border-top:1px solid lightgray; border-bottom:1px solid lightgrey;">
+        <p>나만의 레시피 전용 게시판! <br>
+          다른 사람들의 나만의 도시락, 샌드위치, 샐러드를 보고 똑같이 주문할 수 있어요! <br>
+          자신만의 특별한 레시피를 다른 사람들에게 공유할 수 있습니다! <br>
+          지금 바로 시작하세요!
+        </p>
+      </div>
+    </div>
+    <hr>
+    <div class="best-recipe-container">
+      <div class="best-recipe">
+        <p class="best-item-title" style="padding:10px; font-weight:bold;">주간 베스트 레시피</p>
+        <div class="main-carousel">
+
+          <a href="http://www.naver.com">
+            <div class="carousel-cell">
+              <img src="./images/img1.jpg" alt="" class="carousel-cell-img">
+            </div>
+            <div class="rate">
+              <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="rate-count">4</div>
+            </div>
+            <div class="comment">
+              <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="comment-count">19</div>
+            </div>
+          </a>
+
+          <a href="http://www.naver.com">
+            <div class="carousel-cell"><img src="./images/img2.jpg" alt="" class="carousel-cell-img"></div>
+            <div class="rate">
+              <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="rate-count">4</div>
+            </div>
+            <div class="comment">
+              <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="comment-count">19</div>
+            </div>
+          </a>
+
+          <a href="">
+            <div class="carousel-cell"><img src="./images/img3.jpg" alt="" class="carousel-cell-img"></div>
+            <div class="rate">
+              <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="rate-count">4</div>
+            </div>
+            <div class="comment">
+              <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="comment-count">19</div>
+            </div>
+          </a>
+
+          <a href="">
+            <div class="carousel-cell"><img src="./images/img4.jpg" alt="" class="carousel-cell-img"></div>
+            <div class="rate">
+              <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="rate-count">4</div>
+            </div>
+            <div class="comment">
+              <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="comment-count">19</div>
+            </div>
+          </a>
+
+          <a href="">
+            <div class="carousel-cell"><img src="./images/img5.jpg" alt="" class="carousel-cell-img"></div>
+            <div class="rate">
+              <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="rate-count">4</div>
+            </div>
+            <div class="comment">
+              <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="comment-count">19</div>
+            </div>
+          </a>
+          <a href="">
+            <div class="carousel-cell"><img src="./images/img6.jpg" alt="" class="carousel-cell-img"></div>
+            <div class="rate">
+              <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="rate-count">4</div>
+            </div>
+            <div class="comment">
+              <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+              </iconify-icon>
+              <div class="comment-count">19</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="myownrecipe-board">
+
+      <div class="recipe-button-container">
+        <a href="#" class="my-own-bentto">나만의 도시락</a>
+        <a href="#" class="my-own-sandwich">나만의 샌드위치</a>
+        <a href="#" class="my-own-sallad">나만의 샐러드</a>
+      </div>
+
+
+      <div class="myownrecipe-board-list-container">
+        <div class="myownrecipe-board-list" id="myownrecipe-board-list">
+          <!-- 나만의 레피시 게시물  ∨-->
+          <div class="myownrecipe-board-item-container">
+            <!-- <div class="myownrecipe-board-item" id="myownrecipe-board-item${i}">
+              <a href="#">
+                <img src="./images/img1.jpg" alt="image" class="myownrecipe-board-item-image">
+              </a>
+              <div class="myownrecipe-like">
+                <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="25" height="25">
+                </iconify-icon>
+                <span class="myownrecipe-like-count"> 1</span>
+              </div>
+              <div class="myownrecipe-board-item-name-container">
+                <div class="myownrecipe-board-item-name">
+                  맛있는 도시락
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!-- 나만의 레피시 게시물  ∧-->
+
+          <!-- 검색창 ∨-->
+          <div class="search-form product-search clearFix">
+            <form action="#" class="search-form">
+              <fieldset>
+                <div class="search-container">
+                  <select name="category" id="category" class="searchCategory">
+                    <option value="">전체</option>
+                    <option value="">나만의 도시락</option>
+                    <option value="">나만의 샌드위치</option>
+                    <option value="">나만의 샐러드</option>
+                  </select>
+                  <label for="headerSearchKeyword">
+                    <div class="inputlimit">
+                      <input type="text" id="headerSearchKeyword" class="search-input" name="q" title="" value=""
+                        placeholder="검색어 입력" autocomplete="off">
+                      <div class="forsearch">
+                        <a href="">
+                          <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+                            class="searchimg">
+                        </a>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <!-- 검색창 ∧-->
+
+  
+          <div class="pagination-container">
+            <div class="pagination">PREV|1|2|3|4|5|6|7|8|9|NEXT</div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <!-- myownrecipe-container -->
+  </div>
+
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script>
+    // 주간 베스트 레시피 좌우 이동 부트스트랩
+    $('.main-carousel').flickity({
+      // options
+      cellAlign: 'left',
+      wrapAround: true,
+      freeScroll: true
+    });
+
+    // br태그 써보기
+    var list = document.querySelector('.myownrecipe-board-item-container');
+    for (let i = 0; i < 12; i++) {
+
+      if (i % 4 == 0) {
+        list.innerHTML += `<br> <div class="myownrecipe-board-item" id="myownrecipe-board-item${i}">
+              <a href="#">
+                <img src="./images/img1.jpg" alt="image" class="myownrecipe-board-item-image">
+              </a>
+              <div class="myownrecipe-like">
+                <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="25" height="25">
+                </iconify-icon>
+                <span class="myownrecipe-like-count"> 1</span>
+              </div>
+              <div class="myownrecipe-board-item-name-container">
+                <div class="myownrecipe-board-item-name">
+                  맛있는 도시락
+                </div>
+              </div>
+            </div>
+          
+          
+          </div>`;
+      } else {
+        list.innerHTML += `<div class="myownrecipe-board-item" id="myownrecipe-board-item${i}">
+              <a href="#">
+                <img src="./images/img1.jpg" alt="image" class="myownrecipe-board-item-image">
+              </a>
+              <div class="myownrecipe-like">
+                <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="25" height="25">
+                </iconify-icon>
+                <span class="myownrecipe-like-count"> 1</span>
+              </div>
+              <div class="myownrecipe-board-item-name-container">
+                <div class="myownrecipe-board-item-name">
+                  맛있는 도시락
+                </div>
+              </div>
+            </div>`;
+      }
+    }
+
+  </script>
+</body>
+
+</html>
