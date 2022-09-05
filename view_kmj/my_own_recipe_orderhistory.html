@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <title>My Own Recipe OrderHistory</title>
+  <style>
+    @font-face {
+      font-family: 'lg';
+      src: url('./LG\ PC.ttf') format('truetype');
+    }
+
+    * {
+      font-family: 'lg';
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 전체 폰트 lg, 전체 폰트 굵기 bold */
+    body {
+      width: 1080px;
+      margin: 0 auto;
+
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    /* 전체 컨테이너 */
+    .myownrecipe-register-container {
+      width: 100%;
+      height: 1500px;
+      margin-top: 20px;
+      /* background: rgb(240, 231, 179); */
+      border: 1px solid black;
+    }
+
+    /* 타이틀 컨테이너 */
+    .myownrecipe-register-title-container {
+      margin: 0 auto;
+      width: 800px;
+      height: 40px;
+      /* background: darkorange; */
+    }
+
+    /* 타이틀 (상품선택) */
+    .myownrecipe-register-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    /* 라디오 박스 전체 컨테이너 */
+    .myownrecipe-register-radiobox-container {
+      width: 100%;
+      height: 80px;
+      /* background: darkviolet; */
+    }
+
+    /* 라디오박스 부가 컨테이너 */
+    .myownrecipe-register-radiobox {
+      margin: 0 auto;
+      width: 900px;
+      /* background: darkred; */
+    }
+
+    /* 카테고리 선택 라디오박스  */
+    .myownrecipe-register-radiobox input[type=radio] {
+      display: none;
+    }
+
+    .myownrecipe-register-radiobox input[type=radio]+label {
+      display: inline-block;
+      cursor: pointer;
+      height: 40px;
+      width: 200px;
+      border: 1px solid #333;
+      line-height: 24px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-left: 70px;
+      margin-top: 20px;
+      line-height: 40px;
+      font-weight: bold;
+    }
+
+    .myownrecipe-register-radiobox input[type=radio]+label {
+      background-color: #C7DFAA;
+      color: #353535;
+    }
+
+    .myownrecipe-register-radiobox input[type=radio]:checked+label {
+      background-color: #353535;
+      color: #C7DFAA;
+    }
+
+
+
+    /* 구매이력 목록 컨테이너 */
+    .myownrecipe-register-orderhistory-conatiner {
+      margin: 0 auto;
+      width: 90%;
+      height: 1000px;
+      /* background: rgb(0, 112, 211); */
+    }
+
+    /* "주문상품이력" 글씨 설정 */
+    .myownrecipe-register-orderhistory-title {
+      font-size: 20px;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    /*  주문이력 실 리스트 */
+    .myownrecipe-register-orderhistory {
+      width: 100%;
+      /* background: lightcoral; */
+    }
+
+    /* 상품 div태그 설정 */
+    .myownrecipe-register-orderhistory-item div {
+      display: inline-block;
+    }
+
+    /* 상품 이미지  컨테이너*/
+    .myownrecipe-register-orderhistory-item {
+      width: 100%;
+      height: 120px;
+      /* background: ivory; */
+      margin-bottom: 5px;
+    }
+
+    /* 상품이미지 설정 */
+    .myownrecipe-register-orderhistory-item-img img {
+      margin-left: 40px;
+      margin-top: 10px;
+      width: 90px;
+      height: 90px;
+    }
+
+    /* 상품  이름 컨테이너*/
+    .myownrecipe-register-orderhistory-item-name {
+      width: 200px;
+      margin-left: 100px;
+      text-align: center;
+
+    }
+
+    /* 상품명, 조합내용 span태그 설정 */
+    .myownrecipe-register-orderhistory span {
+      display: inline-block;
+      margin-left: 310px;
+      font-size: 15px;
+      font-weight: bold;
+      height: 30px;
+    }
+
+    .myownrecipe-register-orderhistory-item-name {
+      position: relative;
+      bottom: 40px;
+    }
+
+    /* 실 상품명 */
+    .myownrecipe-register-orderhistory-item-detail {
+      width: 300px;
+      margin-left: 110px;
+      text-align: center;
+    }
+
+    .myownrecipe-register-orderhistory-item-detail-list {
+      /* background: purple; */
+      margin: 0 auto;
+      width: 200px;
+      margin-top: 10px;
+    }
+
+    .myownrecipe-register-orderhistory-item-detail-list ul {
+      -webkit-columns: 2;
+      -moz-columns: 2;
+    }
+
+    .myownrecipe-register-orderhistory-item-detail-list li {
+      margin-bottom: 5px;
+      margin-left: 5px;
+    }
+
+    /* 상품 선택 라디오버튼 */
+    .myownrecipe-register-orderhistory-item-check input[type="radio"] {
+      position: relative;
+      bottom: 30px;
+      width: 40px;
+      height: 40px;
+      accent-color: #353535;
+
+    }
+    /* 페이징 컨테이너*/
+    .myownrecipe-register-orderhistory-pagination-container{
+        width:100%;
+        /* background:antiquewhite; */
+    }
+    /* 페이징 */
+    .myownrecipe-register-orderhistory-pagination{
+      
+      margin: 5px auto;
+      width:200px;
+      /* background: red; */
+    }
+
+    .myownrecipe-register-btn {
+      font-weight: bold;
+      background: #C7DFAA;
+      width: 150px;
+      line-height: 40px;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      box-shadow: 0.5px 0.5px 1px;
+      color: #353535;
+      text-align: center;
+      margin: 5px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="myownrecipe-register-container">
+    <div class="myownrecipe-register-title-container">
+      <div class="myownrecipe-register-title">
+        <p>상품선택</p>
+      </div>
+    </div>
+    <div class="myownrecipe-register-radiobox-container">
+
+      <div class="myownrecipe-register-radiobox">
+        <input type="radio" id="bentto" name="myownrecipe-register-radio"><label for="bentto">나만의 도시락</label>
+        <input type="radio" id="sandwich" name="myownrecipe-register-radio"><label for="sandwich">나만의 샌드위치</label>
+        <input type="radio" id="salad" name="myownrecipe-register-radio"><label for="salad">나만의 샐러드</label>
+      </div>
+    </div>
+    
+    <div class="myownrecipe-register-orderhistory-conatiner">
+
+      <p class="myownrecipe-register-orderhistory-title">주문상품 이력</p>
+      <form action="#" method="get">
+        <div class="myownrecipe-register-orderhistory">
+          <!-- 상품 -->
+          <span class="">상품명</span>
+          <span class="">조합내용</span>
+          <hr>
+          <!-- 상품 -->
+
+          <!-- 페이징 -->
+        </div>
+        <div class="myownrecipe-register-orderhistory-pagination-container">
+          <div class="myownrecipe-register-orderhistory-pagination">PREV|1|2|3|4|5|6|7|8|9|NEXT</div>
+        </div>
+
+        <a href="#" name="register-btn">
+        <div class="myownrecipe-register-btn">추가 설정
+        </div>
+        </a>
+      </form>
+
+    </div>
+  </div>
+  <script>
+    var list = document.querySelector('.myownrecipe-register-orderhistory');
+    for (let i = 0; i < 5; i++) {
+
+
+      list.innerHTML += `<div class="myownrecipe-register-orderhistory-item">
+          <div class="myownrecipe-register-orderhistory-item-img">
+            <img src="./images/salad.png" alt="image">
+          </div>
+          <div class="myownrecipe-register-orderhistory-item-name">
+            <p>[나만의 샌드위치] 아삭모닝</p>
+          </div>
+          <div class="myownrecipe-register-orderhistory-item-detail">
+            <div class="myownrecipe-register-orderhistory-item-detail-list">
+              <ul>
+                <li>화이트:15cm</li>
+                <li>계란</li>
+                <li>양상추</li>
+                <li>케첩</li>
+                <li>토마토</li>
+                <li>햄</li>
+                <li>오이</li>
+                <li>치즈</li>
+              </ul>
+            </div> 
+          </div>
+          <div class="myownrecipe-register-orderhistory-item-check">
+            <input type="radio" class="myownrecipe-register-orderhistory-item-check-btn" name="myownrecipe-register-orderhistory-item-check">
+          </div>
+
+        </div> <hr>`;
+
+    }
+  </script>
+</body>
+
+</html>
