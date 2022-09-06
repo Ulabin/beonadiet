@@ -189,29 +189,167 @@ https://flickity.metafizzy.co
   color: rgb(53, 53, 53);
 }
 
-.main-page-container nav {
+/* 네비게이션 카테고리  css*/
+@import url("https://fonts.googleapis.com/css?family=Sen&display=swap");
+
+
+
+.main-page-category-menu {
+  position:relative;
+  bottom:10px;
+  display:inline-block;
+  width: 100px;
+  
+}
+.main-page-category-menu a{
+  text-decoration: none;
+  color:white;
+}
+
+.main-page-dropdown {
+  border-radius: 5px;
+  padding: 5px 0;
+  width:140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: #fff; */
+  background: #0FA958;
+  position: relative;
+  font-size: 18px;
+  perspective: 1000px;
+  z-index: 100;
+}
+
+.main-page-dropdown:hover {
+  /* background: #C7DFAA; */
+  cursor: pointer;
+}
+
+.main-page-dropdown:hover .main-page-dropdown_menu li {
+  display: block;
+}
+
+/* 중요 */
+.main-page-dropdown_menu {
+  position: absolute;
+  top: 100%;
+  /* left: 0px; */
+  width: 100%;
+  perspective: 1000px;
+  z-index: -1;
+}
+
+.main-page-dropdown_menu li {
+  display: none;
+  color: #fff;
+  background-color: #0FA958;
+  padding: 10px 10px;
+  font-size: 16px;
+  opacity: 0;
+}
+
+.main-page-dropdown_menu li:hover {
+  background-color: #C7DFAA;
+}
+
+.main-page-dropdown:hover .main-page-dropdown_menu--animated {
+  display: block;
+}
+
+.main-page-dropdown_menu--animated {
+  display: none;
+}
+
+.main-page-dropdown_menu--animated li {
+  display: block;
+  opacity: 1;
+}
+
+.dropdown_menu-2 .dropdown_item-1 {
+  border-radius: 5px 5px 0 0 ;
+  transform-origin: top center;
+  animation: rotateX 300ms 37.5ms ease-in-out forwards;
+}
+
+.dropdown_menu-2 .dropdown_item-2 {
+  transform-origin: top center;
+  animation: rotateX 300ms 75ms ease-in-out forwards;
+}
+
+.dropdown_menu-2 .dropdown_item-3 {
+  transform-origin: top center;
+  animation: rotateX 300ms 112.5ms ease-in-out forwards;
+}
+
+.dropdown_menu-2 .dropdown_item-4 {
+  transform-origin: top center;
+  animation: rotateX 300ms 150ms ease-in-out forwards;
+}
+
+.dropdown_menu-2 .dropdown_item-5 {
+  transform-origin: top center;
+  animation: rotateX 300ms 187.5ms ease-in-out forwards;
+}
+
+.dropdown_menu-2 .dropdown_item-6 {
+  transform-origin: top center;
+  animation: rotateX 300ms 225ms ease-in-out forwards;
+}
+
+.dropdown_menu-2 .dropdown_item-7 {
+  transform-origin: top center;
+  animation: rotateX 300ms 262.5ms ease-in-out forwards;
+}
+
+.dropdown_menu-2 .dropdown_item-8 {
+  border-radius: 0 0 5px 5px ;
+  transform-origin: top center;
+  animation: rotateX 300ms 300ms ease-in-out forwards;
+}
+
+@-webkit-keyframes rotateX {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+
+  50% {
+    transform: rotateX(-20deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+@keyframes rotateX {
+0% {
+opacity: 0;
+transform: rotateX(-90deg);
+}
+50% {
+transform: rotateX(-20deg);
+}
+100% {
+opacity: 1;
+transform: rotateX(0deg);
+}
+}
+.main-page-container .main-page-nav {
   width: 100%;
   height: 40px;
   float: left;
-
   clear: both;
-
 }
 
-.main-page-container nav a {
+.main-page-container .main-page-nav a {
   color: rgb(53, 53, 53);
 }
 
-.main-page-category-name {
-  float: left;
-  margin: 10px;
-  width: 100px;
-  height: 30px;
-  border-radius: 5px;
-  background: rgb(164, 255, 222);
-  text-align: center;
-  line-height: 30px;
-  font-weight: bold;
+
+.main-page-nav img:nth-of-type(1){
+  margin-left:50px;
 }
 
 .main-page-category-img {
@@ -220,7 +358,7 @@ https://flickity.metafizzy.co
 }
 
 .main-page-category-text {
-  margin-right: 30px;
+  margin-right: 25px;
   position: relative;
   bottom: 10px;
 
