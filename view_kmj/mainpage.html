@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylekmj.css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+  <title>Main Page</title>
+
+ 
+</head>
+
+<body style="overflow: scroll;">
+  <div class="mainpage-container">
+    <header>
+      <div class="account">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+        <a href="#">고객센터</a>
+      </div>
+
+      <div class="header">
+        <div class="logo">
+          <a href="#">
+            <iconify-icon icon="noto:avocado" width="50" height="50" class="logoimg"></iconify-icon>
+            <p style="display:inline;  font-family: 'Ghanachocolate';
+             font-size: 35px;" class="logofont"> Be on a diet</p>
+            </label>
+        </div>
+        <div class="search-form product-search clearFix">
+          <form action="#" class="search-form">
+            <fieldset>
+              <div class="search-container">
+                <select name="category" id="category" class="searchCategory">
+                  <option value="">전체</option>
+                  <option value="">나만의 도시락</option>
+                  <option value="">나만의 샌드위치</option>
+                  <option value="">나만의 샐러드</option>
+                  <option value="">완제품</option>
+                  <option value="">쉐이크·선식</option>
+                  <option value="">닭가슴살</option>
+                  <option value="">과일·견과류</option>
+                  <option value="">나만의 레시피</option>
+                </select>
+                <label for="headerSearchKeyword">
+                  <div class="inputlimit">
+                    <input type="text" id="headerSearchKeyword" class="search-input" name="q" title="" value=""
+                      placeholder="검색어 입력" autocomplete="off">
+                    <div class="forsearch">
+                      <a href="">
+                        <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+                          class="searchimg">
+                      </a>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+
+        <a href="#"> <img src=".\images\notice.png" alt="notice" id="noticeimg"></a>
+        <a href="#"> <img src=".\images\orderdelivery.png" alt="orderdelivery" id="orderdeliveryimg"></a>
+        <a href="#"> <img src=".\images\mybucket.png" alt="mybucket" id="mybucketimg"></a>
+        <a href="#"> <img src=".\images\mypage.png" alt="mypage" id="mypageimg"></a>
+        <div class="buttonText">
+          <a href="#">마이페이지</a>
+          <a href="#">장바구니</a>
+          <a href="#">주문배송</a>
+          <a href="#">알림</a>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- :::::::: Navigation :::::::: -->
+    <nav>
+      <div class="nav">
+        <div class="categoryname">
+          카테고리
+        </div>
+        <img src=".\images\bentto.png" alt="bentto" class="categoryimg">
+        <a href="#" class="categorytext">나만의 도시락</a>
+
+        <img src=".\images\sandwich.png" alt="sandwich" class="categoryimg">
+        <a href="#" class="categorytext">나만의 샌드위치</a>
+
+        <img src=".\images\salad.png" alt="salad" class="categoryimg">
+        <a href="#" class="categorytext">나만의 샐러드</a>
+
+        <a href="#" class="categorytext">완제품</a>
+        <a href="#" class="categorytext">쉐이크·선식</a>
+        <a href="#" class="categorytext">닭가슴살</a>
+        <a href="#" class="categorytext">과일·견과류</a>
+        <a href="#" class="categorytext">나만의 레시피</a>
+
+      </div>
+    </nav>
+
+
+    <!-- ::::::::::  Banner  ::::::::::-->
+    <div class="banner">
+      <div class="banner-a">
+        <a href="https://www.naver.com" style="display:inline-block" >
+          <img src="./images/그림1.png" alt="그림1" class="banner-image" id="banner-image1" >
+        </a>
+        <a href="https://www.google.com" style="display:none" >
+          <img src="./images/img2.jpg" alt="그림1" class="banner-image" id="banner-image2" >
+        </a>
+        <a href="https://www.facebook.com"style="display:none">
+          <img src="./images/img3.jpg" alt="그림1" class="banner-image" id="banner-image3" >
+        </a>
+        <a href="https://www.daum.com" style="display:none">
+          <img src="./images/img4.jpg" alt="그림1"  class="banner-image"id="banner-image4" >
+        </a>
+        <a href="https://www.instagram.com" style="display:none" >
+          <img src="./images/img5.jpg" alt="그림1" class="banner-image"  id="banner-image5" >
+        </a>
+      </div>
+      <ul class="banner-hover">
+        <li class="banner-hover-list" id="banner-hover-list1"><a href="#"><img src="./images/bannerlistimg1.png" alt=""
+              class="banner-hover-list-img"></a></li>
+        <li class="banner-hover-list" id="banner-hover-list2"><a href="#"><img src="./images/bannerlistimg2.png" alt=""
+              class="banner-hover-list-img"></a></li>
+        <li class="banner-hover-list" id="banner-hover-list3"><a href="#"><img src="./images/bannerlistimg3.png" alt=""
+              class="banner-hover-list-img"></a></li>
+        <li class="banner-hover-list" id="banner-hover-list4" <a href="#"><img src="./images/bannerlistimg1.png" alt=""
+            class="banner-hover-list-img"></a></li>
+        <li class="banner-hover-list" id="banner-hover-list5"><a href="#"><img src="./images/bannerlistimg1.png" alt=""
+              class="banner-hover-list-img"></a></li>
+      </ul>
+    </div>
+    <!-- Clear Both -->
+    <div style="clear: both;"></div>
+
+    <content>
+      <div class="content">
+
+        <!-- :::::::: BEST 상품 :::::::: -->
+        <div class="best-item">
+          <p class="best-item-title" style="padding:10px; font-weight:bold">BEST 상품</p>
+
+          <div class="main-carousel">
+
+            <a href="http://www.naver.com">
+              <div class="carousel-cell">
+                <img src="./images/img1.jpg" alt="" class="carousel-cell-img">
+              </div>
+              <div class="rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="rate-count">4</div>
+              </div>
+              <div class="comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="http://www.naver.com">
+              <div class="carousel-cell"><img src="./images/img2.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="rate-count">4</div>
+              </div>
+              <div class="comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img3.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="rate-count">4</div>
+              </div>
+              <div class="comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img4.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="rate-count">4</div>
+              </div>
+              <div class="comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img5.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="rate-count">4</div>
+              </div>
+              <div class="comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="comment-count">19</div>
+              </div>
+            </a>
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img6.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="rate-count">4</div>
+              </div>
+              <div class="comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="comment-count">19</div>
+              </div>
+            </a>
+          </div>
+
+          <!--Clear Both    hr 태그-->
+          <div style="clear:both"></div>
+          <hr>
+
+
+          <!-- :::::::: BEST 상품 후기:::::::: -->
+          <div class="best-item-review">
+            <p class="best-item-review-title" style="padding:10px; font-weight:bold ">BEST 상품 후기</p>
+
+
+            <div class="best-item-review-item">
+              <img src="./images/img2.jpg" alt="img" class="best-item-review-item-img">
+              <iconify-icon icon="icon-park-outline:quote" style="color: #0fa958;" width="30" height="30">
+              </iconify-icon>
+              <div class="best-item-review-text">rorem Ipsum is simply dummy text of the
+                printing and typesetting industry.Lorem Ipsum has been the industry's standard
+                dummy text ever since Ipsum is simply dummy text of the
+                printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text e</div>
+              <hr style="width:270px; margin-left:3px;">
+              <div class="best-item-name"> [완제품] 비건도시락 4종
+                <a href="#" class="go-to-best-item">
+                  <iconify-icon icon="akar-icons:circle-chevron-right" style="color: #0fa958;" width="30" height="30">
+                  </iconify-icon>
+                </a>
+              </div>
+            </div>
+            <div class="best-item-review-item">
+              <img src="./images/img2.jpg" alt="img" class="best-item-review-item-img">
+              <iconify-icon icon="icon-park-outline:quote" style="color: #0fa958;" width="30" height="30">
+              </iconify-icon>
+              <div class="best-item-review-text">rorem Ipsum is simply dummy text of the
+                printing and typesetting industry.Lorem Ipsum has been the industry's standard
+                dummy text ever since Ipsum is simply dummy text of the
+                printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text e</div>
+              <hr style="width:270px; margin-left:3px;">
+              <div class="best-item-name"> [완제품] 비건도시락 4종
+                <a href="#" class="go-to-best-item">
+                  <iconify-icon icon="akar-icons:circle-chevron-right" style="color: #0fa958;" width="30" height="30">
+                  </iconify-icon>
+                </a>
+              </div>
+            </div>
+            <div class="best-item-review-item">
+              <img src="./images/img2.jpg" alt="img" class="best-item-review-item-img">
+              <iconify-icon icon="icon-park-outline:quote" style="color: #0fa958;" width="30" height="30">
+              </iconify-icon>
+              <div class="best-item-review-text">rorem Ipsum is simply dummy text of the
+                printing and typesetting industry.Lorem Ipsum has been the industry's standard
+                dummy text ever since Ipsum is simply dummy text of the
+                printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text e</div>
+              <hr style="width:270px; margin-left:3px;">
+              <div class="best-item-name"> [완제품] 비건도시락 4종
+                <a href="#" class="go-to-best-item">
+                  <iconify-icon icon="akar-icons:circle-chevron-right" style="color: #0fa958;" width="30" height="30">
+                  </iconify-icon>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!--  hr태그 -->
+          <hr>
+
+          <!--:::::::: INSTAGRAM 게시글 ::::::: -->
+          <div class="insta">
+            <div class="title">
+              <span style="font-family: 'Ghanachocolate'; padding:10px">@ Be on a diet</span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span> 비온어 인스타그램에서 최신소식과 이벤트 확인 해보세요</span>
+              <span style="vertical-align: middle;">
+                <iconify-icon icon="uil:instagram-alt" style="color: #0fa958;" width="40" height="40"></iconify-icon>
+              </span>
+              <div class="intagram-item-wrapper" style="margin-left:50px;">
+                <div class="instagram-item" id="instagram-item1">
+                  <!-- JAVASCRIPT를 이용하여 총 4개를 만듬 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </content>
+    <hr>
+
+    <!--:::::::: FOOTER :::::::: -->
+    <footer>
+      <div class="footer" style="width:100%;">
+
+
+        <div class="company-title" style="float:left; width:270px;height:100px;  ">
+          <iconify-icon icon="noto:avocado" width="25" height="25" class="logoimg"></iconify-icon>
+          <span style="font-family: 'Ghanachocolate'; margin-top:10px; padding-left:10px;
+                font-size: 20px; position:relative; top:10px;">Be on a diet</span>
+        </div>
+
+        <div class="introduce-company" style="float:left; width:240px; height:100px;">
+          <div style=" margin-top:15px; padding-left:10px;
+                font-size: 15px;">고객센터</div>
+          <a href="#" class="service-center-go-btn">바로가기</a>
+          <hr>
+          <div style="margin:5px; font-size: 13px;">
+            <p>운영방식 | 홈페이지 1: 1문의</p>
+            <p>운영시간 | 평일 09:00 - 18:00</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              (주말·공휴일 휴무)</p>
+          </div>
+
+        </div>
+        <div style="width:20px; height:100px; float:left; border-right: 1px solid grey;"></div>
+
+        <div class="corporation"
+          style="float:left; width:480px; height:100px; margin-left: 60px;  margin-top:10px;font-size: 14px;">
+          <span>대표</span>
+          <div style="display: inline-block; width:56.5px;"></div><span>| 홍길동</span><br>
+          <span>주소</span>
+          <div style="display: inline-block; width:56.5px;"></div><span>| 부산진구 중잉대로 668(A1프라자6층)</span><br>
+          <span>사업자등록번호</span>
+          <div style="display: inline-block; width:2px;"></div><span>| 607-90-80387</span><br>
+          <span>통신판매업신고</span>
+          <div style="display: inline-block; width:2px;"></div><span>| 제 2022-부산-00725</span><br>
+          <span>제휴문의</span>
+          <div style="display: inline-block; width:34.5px;"></div><span>| biz@beonadiet.me</span><br>
+          <span>단체주문문의</span>
+          <div style="display: inline-block; width:13px;"></div><span>| order@beonadiet.me</span><br>
+
+        </div>
+
+      </div>
+      <span style="margin-left:5px; margin-top: 5px; font-size: 4px;">2022. Be on a Diet, Inc. All Rights
+        Reserved</span>
+
+
+    </footer>
+
+    <!--container div태그-->
+  </div>
+
+  <!-- 메모 -->
+  <!-- 상자들을 다 만들어두고 배열을 이용해 뒤로 보내고 앞으로 보내고 하는 기능을 만들? 고 하나씩 앞 당기게 javascript -->
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script>
+
+
+    // 베스트상품 좌우 이동 부트스트랩
+    $('.main-carousel').flickity({
+      // options
+      cellAlign: 'left',
+      wrapAround: true,
+      freeScroll: true
+    });
+
+    // 인스타그램 태그 생성 반복문
+    var insta = document.querySelector('.intagram-item-wrapper');
+    for (let i = 2; i < 5; i++) {
+      insta.innerHTML += `<div class="instagram-item" id="instagram-item${i}"></div>`;
+    }
+
+    $(document).ready(function(){
+      let i = 0;
+      
+      var bannerChangeInterval = setInterval(function(){
+          $(".banner-a>a").eq(i).css("display","block");
+          $(".banner-a>a").eq(i).siblings().css("display","none");
+          $(".banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
+          $(".banner-hover>li").eq(i).css("box-sizing"," border-box");
+          $(".banner-hover>li").eq(i).siblings().css("border"," none");
+          $(".banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
+        i++;
+        if(i ==5){
+          i = 0;  
+        }
+       },3000);
+
+      for(let i = 0; i<5; i++){
+        $(".banner-hover>li").eq(i).mouseenter(function(){
+          $(".banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
+          $(".banner-hover>li").eq(i).css("box-sizing"," border-box");
+          $(".banner-a>a").eq(i).css("display","block");
+          $(".banner-a>a").eq(i).siblings().css("display","none");
+          clearInterval(bannerChangeInterval)
+          $(".banner-hover>li").eq(i).siblings().css("border"," none");
+          $(".banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
+        
+        });
+      }
+        for(let i = 0; i<5; i++){
+        $(".banner-hover>li").eq(i).mouseleave(function(){
+          bannerChangeInterval = setInterval(function(){
+          $(".banner-a>a").eq(i).css("display","block");
+          $(".banner-a>a").eq(i).siblings().css("display","none");
+          $(".banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
+          $(".banner-hover>li").eq(i).css("box-sizing"," border-box");
+          $(".banner-hover>li").eq(i).siblings().css("border"," none");
+          $(".banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
+        i++;
+        if(i ==5){
+          i = 0;  
+        }
+       },3000);
+        });
+      }
+      // clearInterval(변수)
+    });
+  </script>
+</body>
+
+
+</html>
