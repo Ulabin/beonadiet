@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="stylekmj.css">
+  <title>My Post</title>
+  
+</head>
+
+<body>
+  <div class="my-post-container">
+    <div class="my-post-item-container">
+      <div class="my-post-radiobox">       
+        <input type="radio" id="bentto" name="user-post-radio"><label for="bentto">나만의 도시락</label>
+        <input type="radio" id="sandwich" name="user-post-radio"><label for="sandwich">나만의 샌드위치</label>
+        <input type="radio" id="salad" name="user-post-radio"><label for="salad">나만의 샐러드</label>
+      </div>
+    </div>
+      <!-- 게시물이 들어오는 곳 -->
+    
+    <div class="search-form product-search clearFix">
+      <form action="#" class="my-post-search-form">
+        <fieldset class="my-post-fieldset">
+          <div class="search-container">
+            <select name="category" id="category" class="my-post-search-category">
+              <option value="">전체</option>
+              <option value="">나만의 도시락</option>
+              <option value="">나만의 샌드위치</option>
+              <option value="">나만의 샐러드</option>
+            </select>
+            <label for="headerSearchKeyword">
+              <div class="inputlimit">
+                <input type="text" id="headerSearchKeyword" class="my-post-search-input" name="q" title="" value=""
+                  placeholder="검색어 입력" autocomplete="off">
+                <div class="my-post-search-for-search">
+                  <a href="">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+                      class="my-post-search-img">
+                  </a>
+                </div>
+              </div>
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+      <div class="my-post-pagination-container">
+        <div class="my-post-pagination">PREV|1|2|3|4|5|6|7|8|9|NEXT</div>
+      </div>
+  </div>
+
+
+
+  <script>
+    var list = document.querySelector('.my-post-item-container');
+    for (let i = 0; i < 6; i++) {
+
+      if (i == 3) {
+        list.innerHTML += `<br> <div class="my-post-item" id="my-post-item${i}">
+      <div class="my-post-item-name-container">
+        <div class="my-post-item-name">
+          맛있는 도시락
+        </div>
+      </div>
+
+      <a href="#">
+        <img src="./images/img1.jpg" alt="image" class="my-post-item-image">
+      </a>
+      <div class="my-post-mod-def-date-container">
+        <div class="my-post-mod-date">수정날짜 : 2022.09.04</div>
+        <div class="my-post-def-date">작성날짜 : 2022.09.04</div>
+      </div>
+      <div class="my-post-like">
+        <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="20" height="20">
+        </iconify-icon>
+        <span class="my-post-like-count"> 1</span>
+      </div>
+      <div class="my-post-mod-del-button-container">
+        <button class="my-post-modify-button id="my-post-modify-button">수정</button>
+        <button class="my-post-delete-delete">삭제</button>
+      </div>
+    </div> `;
+      } else {
+        list.innerHTML += ` <div class="my-post-item" id="my-post-item${i}">
+      <div class="my-post-item-name-container">
+        <div class="my-post-item-name">
+          맛있는 도시락
+        </div>
+      </div>
+
+      <a href="#">
+        <img src="./images/img1.jpg" alt="image" class="my-post-item-image">
+      </a>
+      <div class="my-post-mod-def-date-container">
+        <div class="my-post-mod-date">수정날짜 : 2022.09.04</div>
+        <div class="my-post-def-date">작성날짜 : 2022.09.04</div>
+      </div>
+      <div class="my-post-like">
+        <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="20" height="20">
+        </iconify-icon>
+        <span class="my-post-like-count"> 1</span>
+      </div>
+      <div class="my-post-mod-del-button-container">
+        <button class="my-post-modify-button" id="my-post-modify-button">수정</button>
+        <button class="my-post-delete-delete">삭제</button>
+      </div>
+    </div>`;
+      }
+    }
+    window.onload = function(){
+
+      var btnTest = document.querySelector('#my-post-modify-button');
+      btnTest.addEventListener("click", function() {
+    alert("Click!");
+  });
+    }
+    
+    
+  </script>
+</body>
+
+</html>

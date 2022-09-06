@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="stylekmj.css">
+  <title>User Post</title>
+
+</head>
+
+<body>
+  <div class="user-post-container">
+    <div class="user-post-user-name">
+      김민재님의 레시피
+       </div>
+    <div class="user-post-item-container">
+      <div class="my-own-recipe-register-radiobox-container">
+
+        <div class="user-post-radiobox">
+          <input type="radio" id="bentto" name="user-post-radio"><label for="bentto">나만의 도시락</label>
+          <input type="radio" id="sandwich" name="user-post-radio"><label for="sandwich">나만의 샌드위치</label>
+          <input type="radio" id="salad" name="user-post-radio"><label for="salad">나만의 샐러드</label>
+        </div>
+      </div>
+      <!-- 게시물이 들어오는 곳 -->
+    </div>
+
+    <div class="user-search-form product-search clearFix">
+      <form action="#" class="user-search-form">
+        <fieldset class="user-post-fieldset">
+          <div class="search-container">
+            <select name="category" id="category" class="user-post-search-catrgory">
+              <option value="">전체</option>
+              <option value="">나만의 도시락</option>
+              <option value="">나만의 샌드위치</option>
+              <option value="">나만의 샐러드</option>
+            </select>
+            <label for="headerSearchKeyword">
+              <div class="inputlimit">
+                <input type="text" id="headerSearchKeyword" class="user-post-search-input" name="q" title="" value=""
+                  placeholder="검색어 입력" autocomplete="off">
+                <div class="user-post-forsearch">
+                  <a href="">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+                      class="user-post-search-img">
+                  </a>
+                </div>
+              </div>
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="user-post-pagination-container">
+      <div class="user-post-pagination">PREV|1|2|3|4|5|6|7|8|9|NEXT</div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var list = document.querySelector('.user-post-item-container');
+    for (let i = 0; i < 6; i++) {
+
+      if (i % 3 == 0) {
+        list.innerHTML += `<br> <a href="#"><div class="user-post-item" id="user-post-item${i}">
+      <div class="user-post-item-name-container">
+        <div class="user-post-item-name">
+          맛있는 도시락
+        </div>
+      </div>
+
+      
+        <img src="./images/img1.jpg" alt="image" class="user-post-item-image">
+      
+      <div class="user-post-mod-def-date-container">
+        <div class="user-post-mod-date">수정날짜 : 2022.09.04</div>
+        <div class="user-post-def-date">작성날짜 : 2022.09.04</div>
+      </div>
+      <div class="user-post-my-own-recipe-like">
+        <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="20" height="20">
+        </iconify-icon>
+        <span class="user-post-my-own-recipe-like-count"> 1</span>
+      </div>
+    </div> </a>`;
+      } else {
+        list.innerHTML += `<a href="#"><div class="user-post-item" id="user-post-item${i}">
+      <div class="user-post-item-name-container">
+        <div class="user-post-item-name">
+          맛있는 도시락
+        </div>
+      </div>
+
+      
+        <img src="./images/img1.jpg" alt="image" class="user-post-item-image">
+      
+      <div class="user-post-mod-def-date-container">
+        <div class="user-post-mod-date">수정날짜 : 2022.09.04</div>
+        <div class="user-post-def-date">작성날짜 : 2022.09.04</div>
+      </div>
+      <div class="user-post-my-own-recipe-like">
+        <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="20" height="20">
+        </iconify-icon>
+        <span class="user-post-my-own-recipe-like-count"> 1</span>
+      </div>
+    </div></a>`;
+      }
+    }
+  </script>
+</body>
+
+</html>
