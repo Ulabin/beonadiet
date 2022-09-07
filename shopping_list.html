@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주문목록/배송조회페이지</title>
+  <link rel="stylesheet" href="css/shopping_list.css">
+  <style>
+  </style>
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script>
+          
+    // $(window).on('load', function() {
+    //   $btn = $('.search-time');
+    //   $btn.click(function() {
+    //     $btn.removeClass('active');
+    //     $(this).addClass('active');
+    //   });
+    // });
+
+    $(document).ready(function() {
+      $btn = $('.search-time');
+      $btn.click(function() {
+        $btn.removeClass('active');
+        $(this).addClass('active');
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="shopping-list-wrap">
+      <div class="shopping-list-box">
+        <div class="titleBox">
+          <span class="titleText">주문목록 / 배송조회
+          </span>
+        </div>
+        <div class="search-box">
+          <input type="text" class="search-bar" placeholder="주문한 상품을 검색할 수 있어요!">
+          <button class="search-btn"></button>
+        </div>
+        <div class="search-time-wrap">
+          <div class="search-time-box">
+            <div class="search-time">최근 6개월</div>
+            <div class="search-time">2022</div>
+            <div class="search-time">2021</div>
+            <div class="search-time">2020</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
