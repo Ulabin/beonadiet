@@ -845,6 +845,27 @@ transform: rotateX(0deg);
 }
 
 /* 나만의 레시피 my_own_recipe.html css 끝 */
+/* 나만의 레시피 설명 추가 my_own_recipe_add_detail.html css */
+.my-own-recipe-add-detail-container{
+  margin: 0 auto;
+  width:1080px;
+  height: 1000px;
+  background: #C7DFAA;
+  border:1px solid #353535;
+}
+.my-own-recipe-add-detail-title-container{
+  width:100%;
+  height:50px;
+  padding:10px 0;
+  background:#19F;
+}
+.my-own-recipe-add-detail-title{
+  margin:0 auto;
+  background: coral;
+  width:400px;
+  height:50px;
+}
+/* 나만의 레시피 설명 추가 my_own_recipe_add_detail.html css 끝 */
 
 
 /* 나의 게시글 my_post.html css  */
