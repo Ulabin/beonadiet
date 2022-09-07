@@ -849,21 +849,162 @@ transform: rotateX(0deg);
 .my-own-recipe-add-detail-container{
   margin: 0 auto;
   width:1080px;
-  height: 1000px;
+  /* height: 650px; */
   background: #C7DFAA;
   border:1px solid #353535;
 }
+/* 나만의 레시피 상품 이름 */
 .my-own-recipe-add-detail-title-container{
   width:100%;
   height:50px;
   padding:10px 0;
   background:#19F;
 }
+/* 나만의 레시피 상품 이름  */
 .my-own-recipe-add-detail-title{
   margin:0 auto;
   background: coral;
   width:400px;
   height:50px;
+  text-align: center;
+  border: 1px solid lightgray;
+  color:#353535;
+  font-weight: bold;
+  line-height: 50px;
+  font-size: 20px;
+}
+
+.my-own-recipe-add-detail-flex-container{
+  display: flex;
+}
+/* 사진선택과 조합내용 양분화를 위한 사진선택 컨테이너의 컨테이너 */
+.my-own-recipe-add-detail-put-img-container{
+  display: inline-block;
+  width:540px;
+  padding:10px;
+  height:500px;
+  background: crimson;
+  text-align: center;
+}
+/* 사진선택 컨테이너 */
+.my-own-recipe-search-img{
+  width: 100%;
+  height:50px;
+  background: aqua;
+  line-height: 30px;
+}
+/* 사진선택 상자 */
+.my-own-recipe-search-img label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #353535;
+  text-align: center;
+  background-color: #C7DFAA;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: 5px;
+  width: 100px;
+  font-weight: bold;
+}
+/* 파일 필드 숨기기 */
+.my-own-recipe-search-img input[type="file"] {  
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+/* 썸네일 사진 */
+.my-own-recipe-thumbnail-img img{
+  margin:5px;
+  width:500px;
+  height:250px;
+}
+/* 부가사진 컨테이너  */
+.my-own-recipe-addition-img{
+  display: inline-block;
+}
+/* 부가 사진 */
+.my-own-recipe-addition-img img{
+  display: inline-block;
+  width:150px;
+  height:80px;
+}
+/* 사진선택 주의사항 */
+.my-own-recipe-add-detail-precautions{
+  color: #353535;
+}
+/* 조합내용과 설명란이 들어있는 컨테이너의 컨테이너 사진넣는 곳와 양분화를 위함*/
+.my-own-recipe-add-detail-put-detail-container{
+  display: inline-block;
+  width:540px;
+  height:500px;
+  background: rgb(136, 221, 208);
+  margin-left:-4px;
+  padding:10px
+}
+/* 조합내용과 설명란이 들어있는 컨테이너 */
+.my-own-recipe-add-detail-put-detail{
+  background: chocolate;
+  width:100%;
+  height:240px;
+}
+/* 조합내용 전체 컨테이너 */
+.my-own-recipe-add-detail-combination-container{
+  width: 100%;
+  height:100%;
+  background: #983daa;
+  border:1px solid lightgray;
+}
+/* 조합내용 타이틀 */
+.my-own-recipe-add-detail-combination-title{
+  text-align: center;
+  width:100px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #0FA958;
+  margin:0 auto;
+  color: #353535;
+}
+/* 조합내용 목록 */
+.my-own-recipe-add-detail-combination-details{
+  width:530px;
+  height:200px;
+  background: lawngreen;
+}
+/* 조합 설명 전체 컨테이너 */
+.my-own-recipe-add-detail-explanation-container{
+  width:100%;
+  height:200px;
+  background: deepskyblue;
+  margin-top: 10px;
+  border: 1px solid lightgray;
+}
+/* 설명 */
+.my-own-recipe-add-detail-explanation-title{
+  text-align: center;
+  width:100px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #0FA958;
+  margin:0 auto;
+  color: #353535;
+}
+/* 조합 설명란 */
+.my-own-recipe-add-detail-explanation{
+  width:530px;
+  height:170px;
+  background: lawngreen;
+}
+/* 등록 버튼 */
+.my-own-recipe-add-detail-register-button-container{
+  width:1080px;
+  height:60px;
+  background: blueviolet;
 }
 /* 나만의 레시피 설명 추가 my_own_recipe_add_detail.html css 끝 */
 
@@ -894,6 +1035,7 @@ transform: rotateX(0deg);
   width: 720px;
   /* background: darkred; */
 }
+
 
 /* 카테고리 선택 라디오박스  */
 .my-post-radiobox input[type=radio] {

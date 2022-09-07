@@ -1,19 +1,115 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="stylekmj.css">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <title>My Own Recipe Add Detail</title>
+
 </head>
+
 <body>
   <div class="my-own-recipe-add-detail-container">
     <div class="my-own-recipe-add-detail-title-container">
       <div class="my-own-recipe-add-detail-title">
-        
+        [나만의 샌드위치] 아삭 모닝 샌드위치
       </div>
     </div>
+    <div class="my-own-recipe-add-detail-flex-container">
+
+      <div class="my-own-recipe-add-detail-put-img-container">
+        <div class="my-own-recipe-search-img">
+          <label for="ex_file">사진 찾기</label>
+          <input type="file" id="ex_file" name="ex_file" class="my-own-recipe-input-tag"  multiple>
+        </div>
+
+        <div class="my-own-recipe-thumbnail-img">
+          <img src="./images/img3.jpg" alt="img">
+        </div>
+        <div class="my-own-recipe-addition-img">
+          <img src="./images/img1.jpg" alt="img">
+        </div>
+        <div class="my-own-recipe-addition-img">
+          <img src="./images/img1.jpg" alt="img">
+        </div>
+        <div class="my-own-recipe-addition-img">
+          <img src="./images/img1.jpg" alt="img">
+        </div>
+      <p class="my-own-recipe-add-detail-precautions"> ※여러사진 선택시 썸네일용을 먼저 선택해 주세요</p>
+      </div>
+      <div class="my-own-recipe-add-detail-put-detail-container">
+        <div class="my-own-recipe-add-detail-put-detail"> 
+          
+          <div class="my-own-recipe-add-detail-combination-container">
+            <div class="my-own-recipe-add-detail-combination-title">
+              조합내용
+            </div>
+            <div class="my-own-recipe-add-detail-combination-details">
+                          <!-- 내용 넣는 곳 -->
+            </div>
+          </div>
+                          <!-- 내일 참고 -->
+                <!-- .my-own-recipe-register-orderhistory-item-detail-list ul {
+                  -webkit-columns: 2;
+                  -moz-columns: 2;
+                } -->
+          <div class="my-own-recipe-add-detail-explanation-container">
+            <div class="my-own-recipe-add-detail-explanation-title">설명</div>
+            <div class="my-own-recipe-add-detail-explanation">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-own-recipe-add-detail-register-button-container">
+
+    </div>
   </div>
+  <script>
+  //   $(document).ready(function(){
+
+  //     function uploadFile() {
+  //     var fileVal = $("#ex_file").val();
+  //     if( fileVal != "" ){
+  //         var ext = fileVal.split('.').pop().toLowerCase(); //확장자분리
+  //         //아래 확장자가 있는지 체크
+  //         if($.inArray(ext, ['jpg','jpeg','gif','png']) == -1) {
+  //           alert('jpg,gif,jpeg,png 파일만 업로드 할수 있습니다.');
+  //           return;
+  //         }
+  //     }
+  //  }
+  //    })
+
+  $("input[id=ex_file]").change(function(){
+    if($(this).val() != ""){
+      //확장자체크
+      var ext = $(this).val().split(".").pop().toLowerCase();
+      if($.inArray(ext, ["gif","jpg","jpeg","png"]) == -1){
+        alert("gif, jpg, jpeg, png 파일만 업로드 가능합니다.");
+        $(this).val("");
+        return;
+      }
+
+      //용량체크
+      for(var i=0; i<this.files.length; i++){
+        var fileSize = this.files[i].size;
+        var fsMB = (fileSize / (1024 * 1024)).toFixed(2);
+        var maxSize = 1024 * 1024 * 5;
+        var mSMB = (maxSize / (1024 * 1024));
+        if(fileSize > maxSize){
+          alert(this.files[i].name + "(이)가 용량 5MB를 초과했습니다.\n\n<font color='red'>" + fsMB + "MB</font> / " + mSMB + "MB");
+          $(this).val("");
+        }
+      }
+    }
+  })
+  </script>
 </body>
+
 </html>
