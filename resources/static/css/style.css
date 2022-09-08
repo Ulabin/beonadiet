@@ -92,6 +92,27 @@ html, body {
     cursor: pointer;
 }
 
+.nutrition_info_container {
+    background-color: #cecece;
+    width: 900px;
+    margin : auto;
+    border-radius: 15px;
+    padding:35px;
+}
+
+.target_container{
+    padding:10px;
+    width:750px;
+    margin: auto;
+    border-radius: 10px;
+    border:3px solid #7a7a7a;
+}
+
+.target_container>h2{
+    margin:5px auto;
+    text-align: center;
+}
+
 /* arrangement */
 .flex_center{
     display: flex; justify-content: center; align-items: center;
@@ -185,26 +206,6 @@ input[type=radio]{
     border-radius: 15px;
 }
 
-.nutrition_info_container {
-    background-color: #cecece;
-    width: 900px;
-    margin : auto;
-    border-radius: 15px;
-    padding:35px;
-}
-
-.target_container{
-    padding:10px;
-    width:750px;
-    margin: auto;
-    border-radius: 10px;
-    border:3px solid #7a7a7a;
-}
-
-.target_container>h2{
-    margin:5px auto;
-    text-align: center;
-}
 
 .icon_40px {
     width: 40px;
