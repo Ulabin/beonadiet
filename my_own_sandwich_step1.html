@@ -292,7 +292,7 @@
 
                     <div style="position: relative; height:36px">
                         <div style="font-weight: bold; display: inline-block; position:absolute; left: -30px; text-align: center; width:66px">0%<br>(0kcal)</div>
-                        <div style="font-weight: bold; display: inline-block; position:absolute; left: calc(11.5% - 30px) ; text-align: center; width:66px">11.5%<br>(230kcal)</div>
+                        <div style="font-weight: bold; color:#006c04; display: inline-block; position:absolute; left: calc(11.5% - 30px) ; text-align: center; width:66px">11.5%<br>(230kcal)</div>
                         <div style="font-weight: bold; display: inline-block; position:absolute; left: calc(100% - 30px) ; text-align: center; width:66px">100%<br>(2000kcal)</div>
                     </div>
                 </div>
@@ -314,37 +314,64 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="graph" style="position:relative"> 
                         <span class="product_carbs_stack" style="width:74%"></span>
                         <span class="product_protein_stack" style="width:15.75%; position: absolute; left:74%"></span>
                         <span class="product_fat_stack" style="width:10.25%; position: absolute; left:89.75%"></span>
                     </div>
+                    <div style="position: relative; height:36px">
+                        <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center; width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
+                        <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center; width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
+                        <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center; width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
+                    </div>
                 </div>
 
-                <h2 class="inlineblock" style="margin-bottom:0;">하루섭취 탄</h2><span style="font-weight: bold;">수화물</span> 
-                <h2 class="inlineblock"  style="margin-bottom:0;">단</h2><span style="font-weight: bold;">백질</span>
-                <h2 class="inlineblock"  style="margin-bottom:0;">지</h2><span style="font-weight: bold;">방</span>
-                <h2 class="inlineblock"  style="margin-bottom:0;">비율</h2><br><!--
-                --><span style="font-weight: bold;">(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
+                <div>
+                    <h2 class="inlineblock" style="margin-bottom:0;">하루섭취 탄</h2><span style="font-weight: bold;">수화물</span> 
+                    <h2 class="inlineblock" style="margin-bottom:0;">단</h2><span style="font-weight: bold;">백질</span>
+                    <h2 class="inlineblock" style="margin-bottom:0;">지</h2><span style="font-weight: bold;">방</span>
+                    <h2 class="inlineblock" style="margin-bottom:0;">비율</h2><br><!--
+                    --><span style="font-weight: bold;">(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
 
-                <h2 class="inlineblock" style="margin-top: 10px; margin-bottom: 5px;">탄</h2><span style="font-weight: bold;">수화물(하루 <u>30%</u> 기준)</span>
-                <div class="graph day_carbs_stack">
-                    <span style="width:28%"></span>  
-                </div>
+                    <h2 class="inlineblock" style="margin-top: 10px; margin-bottom: 5px;">탄</h2><span style="font-weight: bold;">수화물(하루 <u>30%</u> 기준)</span>
+                    <div>
+                        <div class="graph day_carbs_stack">
+                            <span style="width:28%"></span>
+                        </div>
+                        <div style="position: relative; height:36px">
+                            <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center;">0%<br>(0g)</div>
+                            <div style="display:inline-block; font-weight: bold; color:#006c04; position:absolute; text-align: center; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
+                            <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center; width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
+                        </div>
+                    </div>
 
-                <h2 class="inlineblock "   style="margin-bottom: 5px;">단</h2><span style="font-weight: bold;">백질(하루 <u>40%</u> 기준)</span>
-                <div class="graph day_protein_stack">
-                    <span style="width:4%"></span>  
-                </div>
+                    <h2 class="inlineblock " style="margin-bottom: 5px; margin-top:5px">단</h2><span style="font-weight: bold;">백질(하루 <u>40%</u> 기준)</span>
+                    <div>
+                        <div class="graph day_protein_stack">
+                            <span style="width:4%"></span>
+                        </div>
+                        <div style="position: relative; height:36px">
+                            <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center;">0%<br>(0g)</div>
+                            <div style="display:inline-block; font-weight: bold; color:#006c04; position:absolute; text-align: center; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
+                            <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center; width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
+                        </div>
+                    </div>
 
-                <h2 class="inlineblock"  style="margin-bottom: 5px;">지</h2><span style="font-weight: bold;">방(하루 <u>30%</u> 기준)</span>
-                <div class="graph day_fat_stack">
-                    <span style="width:0.04%"></span>  
+                    <div>
+                        <h2 class="inlineblock"  style="margin-bottom: 5px;">지</h2><span style="font-weight: bold;">방(하루 <u>30%</u> 기준)</span>
+                        <div class="graph day_fat_stack">
+                            <span style="width:0.04%"></span>  
+                        </div>
+                        <div style="position: relative; height:36px">
+                            <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center;">0%<br>(0g)</div>
+                            <div style="display:inline-block; font-weight: bold; color:#006c04; position:absolute; text-align: center; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
+                            <div style="display:inline-block; font-weight: bold; position:absolute; text-align: center; width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="btn_container">
+            <div class="btn_container" style="margin-top:10px;">
                 <div class="inlineblock"> 
                     <div class="next_btn flex_center">
                         <img class="icon_40px margin_5px" src="../beonadiet/resources/static/assets/next_icon.png">
