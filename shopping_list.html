@@ -32,14 +32,17 @@
   <div id="container">
     <div class="shopping-list-wrap">
       <div class="shopping-list-box">
+        <!-- 타이틀 -->
         <div class="titleBox">
           <span class="titleText">주문목록 / 배송조회
           </span>
         </div>
+        <!-- 검색창 -->
         <div class="search-box">
           <input type="text" class="search-bar" placeholder="주문한 상품을 검색할 수 있어요!">
           <button class="search-btn"></button>
         </div>
+        <!-- 시간별 조회버튼 -->
         <div class="search-time-wrap">
           <div class="search-time-box">
             <div class="search-time">최근 6개월</div>
@@ -48,6 +51,233 @@
             <div class="search-time">2020</div>
           </div>
         </div>
+        <div class="order-step">
+          <p class="txt-right">(최근 12개월)</p>
+          <ul>
+            <li>
+              <div>
+                <strong class="num">0</strong>
+                <span class="txt">결제완료</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong class="num">0</strong>
+                <span class="txt">상품준비중</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong class="num">0</strong>
+                <span class="txt">상품발송</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- 주문 목록 -->
+        <div class="list-content-area">
+          <!-- 2022.10.13일자 주문목록 -->
+          <div class="tit-month">
+            <h4 class="">2022.10.13</h4>
+          </div>
+          <main class="cart-main">
+            <ul class="table-list">
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/790_20220607123105.jpg" alt="주문목록 이미지" class="table-item-img"></a>
+                  </div>
+                  <div class="table-item-title">
+                    <a href="#">홀그레인 로스트비프 바게트 샌드</a> 
+                    <div class="item-price-quantity">
+                      <span class="item-price">7,500원</span>
+                      <span class="item-quantity">1개</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="item-delivery-wrap">
+                    <div class="delivery-state">배송중</div>
+                    <div class="delivery-way">새벽배송</div>
+                  </div>
+                  <div class="item-btn-wrap">
+                    <div class="item-btn">
+                      <button type="button" class="item-btn-1">배송조회</button>
+                    </div>
+                    <div>
+                      <button type="button"  class="item-btn-2">주문/배송 취소</button>
+                    </div>
+                  </div>
+                </section>
+              </li>
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/495_20211214115950" alt="주문목록 이미지" class="table-item-img"></a>
+                  </div>
+                  <div class="table-item-title">
+                    <a href="#">케이준 치킨 샐러드랩 / [샐랩 쿠키세트] 샐랩+오렌지 블랙티 쿠키+슈가로로</a> 
+                    <div class="item-price-quantity">
+                      <span class="item-price">10,200원</span>
+                      <span class="item-quantity">1개</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="item-delivery-wrap">
+                    <div class="delivery-state">배송중</div>
+                    <div class="delivery-way">일반배송</div>
+                  </div>
+                  <div class="item-btn-wrap">
+                    <div class="item-btn">
+                      <button type="button" class="item-btn-1">배송조회</button>
+                    </div>
+                    <div>
+                      <button type="button"  class="item-btn-2">주문/배송 취소</button>
+                    </div>
+                  </div>
+                </section>
+              </li>
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/17_20220530180436.jpg" alt="주문목록 이미지" class="table-item-img"></a>
+                  </div>
+                  <div class="table-item-title">
+                    <a href="#">치킨 타코 샐러드</a>
+                    <div class="item-price-quantity">
+                      <span class="item-price">8,900원</span>
+                      <span class="item-quantity">1개</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="item-delivery-wrap">
+                    <div class="delivery-state">결제완료</div>
+                    <div class="delivery-way">새벽배송</div>
+                  </div>
+                  <div class="item-btn-wrap">
+                    <div class="item-btn">
+                      <button type="button" class="item-btn-1">배송조회</button>
+                    </div>
+                    <div>
+                      <button type="button"  class="item-btn-2">주문 취소</button>
+                    </div>
+                  </div>
+                </section>
+              </li>
+            </ul>
+          </main>
+          <!-- 2022.09.04일자 주문목록 -->
+          <div class="tit-month">
+            <h4 class="">2022.09.04</h4>
+          </div>
+          <main class="cart-main">
+            <ul class="table-list">
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/790_20220607123105.jpg" alt="주문목록 이미지" class="table-item-img"></a>
+                  </div>
+                  <div class="table-item-title">
+                    <a href="#">홀그레인 로스트비프 바게트 샌드</a> 
+                    <div class="item-price-quantity">
+                      <span class="item-price">7,500원</span>
+                      <span class="item-quantity">1개</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="item-delivery-wrap">
+                    <div class="delivery-state">배송완료</div>
+                    <div class="delivery-way">일반배송</div>
+                  </div>
+                  <div class="item-btn-wrap">
+                    <div class="item-btn">
+                      <button type="button" class="item-btn-1">교환/반품 신청</button>
+                    </div>
+                    <div>
+                      <button type="button"  class="item-btn-2">후기쓰기</button>
+                    </div>
+                  </div>
+                </section>
+              </li>
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/495_20211214115950" alt="주문목록 이미지" class="table-item-img"></a>
+                  </div>
+                  <div class="table-item-title">
+                    <a href="#">케이준 치킨 샐러드랩 / [샐랩 쿠키세트] 샐랩+오렌지 블랙티 쿠키+슈가로로</a> 
+                    <div class="item-price-quantity">
+                      <span class="item-price">10,200원</span>
+                      <span class="item-quantity">1개</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="item-delivery-wrap">
+                    <div class="delivery-state">배송완료</div>
+                    <div class="delivery-way">새벽배송</div>
+                  </div>
+                  <div class="item-btn-wrap">
+                    <div class="item-btn">
+                      <button type="button" class="item-btn-1">교환/반품 신청</button>
+                    </div>
+                    <div>
+                      <button type="button"  class="item-btn-2">후기쓰기</button>
+                    </div>
+                  </div>
+                </section>
+              </li>
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/17_20220530180436.jpg" alt="주문목록 이미지" class="table-item-img"></a>
+                  </div>
+                  <div class="table-item-title">
+                    <a href="#">치킨 타코 샐러드</a> 
+                    <div class="item-price-quantity">
+                      <span class="item-price">8,900원</span>
+                      <span class="item-quantity">1개</span>
+                    </div>
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="item-delivery-wrap">
+                    <div class="delivery-state">배송완료</div>
+                    <div class="delivery-way">새벽배송</div>
+                  </div>
+                  <div class="item-btn-wrap">
+                    <div class="item-btn">
+                      <button type="button" class="item-btn-1">교환/반품 신청</button>
+                    </div>
+                    <div>
+                      <button type="button"  class="item-btn-2">후기쓰기</button>
+                    </div>
+                  </div>
+                </section>
+              </li>
+            </ul>
+          </main>
+        </div>
+        <!-- 다음 버튼 -->
+
+        <!-- <div class="left-right-btn">
+          <button type="button" class="left-btn">
+            <span>이전</span>
+          </button>
+          <button type="button" class="right-btn">
+            <span>다음</span>
+          </button>
+        </div> -->
+
+        <div class="viewmore-btn-section">
+          <button type="button" class="viewmore-btn">
+            <span>더보기</span>
+          </button>
+        </div>
+
       </div>
     </div>
   </div>
