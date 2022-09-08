@@ -21,7 +21,9 @@ body {
 }
 
 .join-box {
+  width: 750px;
   margin: 90px auto;
+  padding: 20px 0;
   text-align: center;
 }
 
@@ -46,7 +48,6 @@ ul {
 }
 
 #signup {
-  width: 750px;
   margin: 0 auto;
   padding: 10px;
 
