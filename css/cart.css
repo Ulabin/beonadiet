@@ -128,6 +128,15 @@ input[type=checkbox] {
   text-overflow: ellipsis;
 }
 
+.table-item-title a {
+  text-decoration: none;
+  color: #353535;
+}
+
+.table-item-title a:hover {
+  color: #0FA958;
+}
+
 .table-item-right {
   width: 418px;
 }
