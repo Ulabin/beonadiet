@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배송지추가페이지</title>
+  <link rel="stylesheet" href="css/adr_popup.css">
+  <script src="js/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+  <div class="input-form-wrap">
+    <div class="input-form-Box">
+      <div class="titleBox">
+        <h1>배송지 추가</h1>
+      </div>
+      <input type="hidden" name="addrNo" value="">
+      <input type="hidden" name="road_zonecode" value="">
+      <input type="hidden" name="zipcode" value="">
+      <div class="field">
+        <div class="adr-search">
+          <input type="text" name="adrMain" id="adrMain" value="" readonly>
+          <button type="button" class="btn-search">검색</button>
+        </div>
+        <input type="text" name="adrSub" id="adrSub" placeholder="나머지 주소를 입력해주세요." value="" maxlength="79">
+      </div>
+      <label class="label-default">
+        <input type="checkbox" name="isDefault" id="isDefault">
+        기본 배송지로 저장
+      </label>
+      <div class="send-box">
+        <button type="button" class="btn-send active">저장</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

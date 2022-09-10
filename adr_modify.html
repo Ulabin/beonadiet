@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배송지추가페이지</title>
+  <link rel="stylesheet" href="css/adr_modify.css">
+  <script src="js/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+  <div class="input-form-wrap">
+    <div class="input-form-box">
+      <div class="title-wrap">
+        <h2>배송지 수정</h2>
+      </div>
+      <div class="main-wrap">
+        <input type="hidden" name="addrNo" value="">
+        <input type="hidden" name="road_zonecode" value="">
+        <input type="hidden" name="zipcode" value="">
+        <div class="field">
+          <div class="adrMain" id="adrMain">
+            부산광역시 부산진구 중앙대로 668
+          </div>
+          <input type="text" name="adrSub" id="adrSub" placeholder="나머지 주소를 입력해주세요" value="(A1프라자6층)" maxlength="79">
+        </div>
+        <div class="field">
+          <label class="label-block" for="receiverName">받는 분</label>
+          <input type="text" id="receiverName" name="receiverName" placeholder="이름을 입력해주세요" value="김곰돌" maxlength="20">
+        </div>
+        <div class="field">
+          <label class="label-block" for="receiverPhone">연락처</label>
+          <input type="text" id="receiverPhone" name="receiverPhone" placeholder="번호를 입력해주세요 (' - '제외)" value="01012345678" maxlength="11">
+        </div>
+        <label class="label-default">
+          <input type="checkbox" name="isDefault" id="isDefault">
+          기본 배송지로 저장
+        </label>
+        <div class="send-box">
+          <button type="button" class="btn-send active">저장</button>
+        </div>
+        <div class="remove-box">
+          <button type="button" class="btn-remove">삭제</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

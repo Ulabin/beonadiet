@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "lg-pc";
+  src: url(../font/LG\ PC.ttf);
+}
+
+* {
+  font-family: "lg-pc";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.input-form-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-form-box {
+  padding: 0 30px;
+  min-height: 530px;
+  position: static;
+}
+
+.titleBox {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.titleBox h1 {
+  color: #353535;
+}
+
+.field {
+  padding-top: 22px;
+}
+
+#adrMain {
+  float: left;
+  width: 320px;
+  height: 44px;
+  padding: 12px 12px 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background-color: #fafafa;
+  font-weight: 400;
+  font-size: 15px;
+  color: #999;
+  line-height: 20px;
+  letter-spacing: -.5px;
+}
+
+.btn-search {
+  float: right;
+  right: 0;
+  top: 0;
+  width: 100px;
+  border: 2px solid #0FA958;
+  background-color: #fff;
+  font-weight: 700;
+  color: #353535;
+  height: 44px;
+  border-radius: 3px;
+  font-size: 16px;
+  line-height: 42px;
+  margin-left: 10px;
+}
+
+#adrSub {
+  width: 430px;
+  height: 44px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  color: #353535;
+  margin-top: 10px;
+  padding: 12px 12px 12px 15px;
+  font-size: 15px;
+
+}
+
+.field input:focus {
+  outline-color: #ccc;
+}
+
+label, .btn-send {
+  display: block;
+}
+
+.label-default {
+  margin: 15px 0 30px 0;
+}
+
+input[type=checkbox] {
+  accent-color: #0FA958;
+}
+
+.send-box {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-send {
+  width: 430px;
+  height: 35px;
+  color: #353535;
+  font-size: 16px;
+  font-weight: 600;
+  border: 0px;
+  background-color: #C7DFAA;
+}
+
+button {
+  cursor: pointer;
+}
