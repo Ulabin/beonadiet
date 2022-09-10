@@ -719,6 +719,7 @@ transform: rotateX(0deg);
 .my-own-recipe-search-form {
   height: 40px;
   /* background: crimson; */
+  border: none;
 }
 
 .my-own-recipe-fieldset {
@@ -843,6 +844,9 @@ transform: rotateX(0deg);
   width: 200px;
   /* background: red; */
 }
+.my-own-recipe-filedset{
+border:none;
+}
 
 /* 나만의 레시피 my_own_recipe.html css 끝 */
 
@@ -938,7 +942,7 @@ transform: rotateX(0deg);
 /* 부가 사진 */
 .my-own-recipe-addition-img img{
   display: inline-block;
-  width:150px;
+  width:120px;
   height:80px;
   box-shadow: 0 4px 4px -4px black;
 }
@@ -1866,6 +1870,249 @@ transform: rotateX(0deg);
 }
 
 /* 나만의 레시피 유저게시글 my_own_recipe_user_post css 끝 */
+
+
+/* 나만의 레시피 제품 상세페이지 my_own_recipe_product_detail_page css*/
+.my-own-recipe-detail-container{
+  margin: 0 auto;
+  width:1080px;
+  /* height: 1000px; */
+  /* background: #C7DFAA; */
+  border:1px solid #353535;
+  box-shadow: 0 4px 4px -4px black;
+}
+.my-own-recipe-detail-container a{
+text-decoration: none;
+color: #353535;
+font-size: 20px;
+font-weight: bold;
+}
+/* 나만의 레시피 상품 이름 */
+.my-own-recipe-detail-title-container{
+  width:100%;
+  height:50px;
+  padding:10px 0;
+  /* background:#19F; */
+}
+/* 나만의 레시피 상품 이름  */
+.my-own-recipe-detail-title{
+  margin:0 auto;
+  /* background: coral; */
+  width:400px;
+  height:50px;
+  text-align: center;
+  border: 1px solid lightgray;
+  color:#353535;
+  font-weight: bold;
+  line-height: 50px;
+  font-size: 20px;
+  box-shadow: 0 4px 4px -4px black;
+}
+.my-own-recipe-product-detailpage-like{
+  text-align: center;
+  display: block;
+  width:100%;
+  height:50px;
+  margin-top: 10px;
+  /* background: hotpink; */
+}
+.my-own-recipe-product-detailpage-like-count{
+  position: relative;
+  bottom: 6px;
+  font-size: 24px;
+}
+.my-own-recipe-detail-flex-container{
+  display: flex;
+}
+/* 사진선택과 조합내용 양분화를 위한 사진선택 컨테이너의 컨테이너 */
+.my-own-recipe-detail-img-container{
+  display: inline-block;
+  width:540px;
+  padding:5px;
+  height: 600px;
+  /* background: crimson; */
+  text-align: center;
+}
+/* 나만의 레시피 설명 */
+.my-own-recipe-detail{
+margin:20px 5px;
+width:490px;
+height:200px;
+/* background: rgb(224, 190, 249); */
+text-align: left;
+overflow-y: scroll;
+padding: 5px;
+border: 1px solid lightgray;
+box-shadow: 0 4px 4px -4px black;
+}
+.my-own-recipe-detail::-webkit-scrollbar {
+  width: 20px;
+  /* background-color: black; */
+}
+.my-own-recipe-detail::-webkit-scrollbar-thumb {
+  background-color: #0FA958;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px -4px black;
+}
+.my-own-recipe-detail::-webkit-scrollbar-track {
+  background-color: #00D386;
+  border-radius: 5px;
+}
+
+/* 썸네일 사진 */
+.my-own-recipe-thumbnail-img img{
+  margin:5px;
+  width:500px;
+  height:250px;
+  box-shadow: 0 4px 4px -4px black;
+}
+/* 부가사진 컨테이너  */
+.my-own-recipe-addition-img{
+  display: inline-block;
+
+}
+/* 부가 사진 */
+.my-own-recipe-addition-img img{
+  display: inline-block;
+  width:120px;
+  height:80px;
+  box-shadow: 0 4px 4px -4px black;
+}
+
+
+/* 조합내용과 설명란이 들어있는 컨테이너의 컨테이너 사진넣는 곳와 양분화를 위함*/
+.my-own-recipe-detail-detail-container{
+  display: inline-block;
+  width:530px;
+  height:600px;
+  /* background: rgb(136, 221, 208); */
+  margin-left:-4px;
+  padding:10px
+}
+/* 조합내용과 설명란이 들어있는 컨테이너 */
+.my-own-recipe-detail-detail{
+  /* background: chocolate; */
+  width:530px;
+  height:240px;
+  box-shadow: 0 4px 4px -4px black;
+}
+/* 조합내용 전체 컨테이너 */
+.my-own-recipe-detail-combination-container{
+  width: 530px;
+  height:100%;
+  /* background: #983daa; */
+  border:1px solid lightgray;
+}
+/* 조합내용 타이틀 */
+.my-own-recipe-detail-combination-title{
+  text-align: center;
+  width:100px;
+  font-size: 20px;
+  font-weight: bold;
+  /* background: #0FA958; */
+  margin:0 auto;
+  color: #353535;
+}
+/* 조합내용 목록 */
+.my-own-recipe-detail-combination-details{
+  width:530px;
+  height:200px;
+  /* background: lawngreen; */
+  text-align: center;
+  overflow-y: scroll;
+  
+}
+/*  스크롤바 css */
+.my-own-recipe-detail-combination-details::-webkit-scrollbar {
+  width: 20px;
+  /* background-color: black; */
+}
+.my-own-recipe-detail-combination-details::-webkit-scrollbar-thumb {
+  background-color: #0FA958;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px -4px black;
+}
+.my-own-recipe-detail-combination-details::-webkit-scrollbar-track {
+  background-color: #00D386;
+  border-radius: 5px;
+}
+/* ul태그 css */
+.my-own-recipe-detail-combination-details ul{
+  padding:0; margin:0;
+  -webkit-columns: 2;
+  list-style-position:outside;
+  /* background: cadetblue; */
+  padding-left:70px;
+  padding-top: 10px;
+  
+
+}
+.my-own-recipe-detail-combination-details li{
+  font-size: 20px;
+  margin-bottom: 20px;
+  width:150px;
+  /* background: #353535; */
+}
+
+/* 조합 설명 전체 컨테이너 */
+.my-own-recipe-detail-caution-container{
+  width:530px;
+  height:120px;
+  /* background: deepskyblue; */
+  margin-top: 10px;
+  border: 1px solid lightgray;
+  display: flex;
+  color:#353535;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 4px 4px -4px black;
+}
+
+.my-own-recipe-detail-caution-left{
+margin:30px;
+margin-left:100px;
+}
+
+.my-own-recipe-detail-caution-right{
+  margin:30px;
+}
+.main-page-footer-line-a{
+  width:20px; height:70px; border-right: 1px solid grey;
+  margin-top:10px;
+}
+
+
+
+
+
+.for-center{
+  /* background: #0FA958; */
+  text-align: center;
+  padding: 50px;
+}
+.go-to-other-recipe{
+  margin: 0 auto;
+  width: 250px;
+display: block;
+margin-bottom: 50px;
+background: lightgray;
+box-shadow: 0 4px 4px -4px black;
+border-radius: 5px;
+
+}
+.order-this-recipe{
+  margin: 0 auto;
+  width: 200px;
+  display: block;
+  background: #C7DFAA;
+  box-shadow: 0 4px 4px -4px black;
+  border-radius: 5px;
+}
+/* 나만의 레시피 제품 상세페이지 my_own_recipe_product_detail_page css 끝*/
+
+
+
+
 .flickity-enabled {
   position: relative;
 }
