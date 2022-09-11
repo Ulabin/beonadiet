@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="stylekmj.css">
   <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <title>Main Page</title>
  
 </head>
@@ -386,74 +386,7 @@
 
     <!--container div태그-->
   </div>
-
-  <!-- 메모 -->
-  <!-- 상자들을 다 만들어두고 배열을 이용해 뒤로 보내고 앞으로 보내고 하는 기능을 만들? 고 하나씩 앞 당기게 javascript -->
-  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-  <script>
-
-
-    // 베스트상품 좌우 이동 부트스트랩
-    $('.main-carousel').flickity({
-      // options
-      cellAlign: 'left',
-      wrapAround: true,
-      freeScroll: true
-    });
-
-    // 인스타그램 태그 생성 반복문
-    var insta = document.querySelector('.intagram-item-wrapper');
-    for (let i = 2; i < 5; i++) {
-      insta.innerHTML += `<div class="main-page-instagram-item" id="main-page-instainstagram-item${i}"></div>`;
-    }
-
-    $(document).ready(function(){
-      let i = 0;
-      
-      var bannerChangeInterval = setInterval(function(){
-          $(".main-page-banner-a>a").eq(i).css("display","block");
-          $(".main-page-banner-a>a").eq(i).siblings().css("display","none");
-          $(".main-page-banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
-          $(".main-page-banner-hover>li").eq(i).css("box-sizing"," border-box");
-          $(".main-page-banner-hover>li").eq(i).siblings().css("border"," none");
-          $(".main-page-banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
-        i++;
-        if(i ==5){
-          i = 0;  
-        }
-       },3000);
-
-      for(let i = 0; i<5; i++){
-        $(".main-page-banner-hover>li").eq(i).mouseenter(function(){
-          $(".main-page-banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
-          $(".main-page-banner-hover>li").eq(i).css("box-sizing"," border-box");
-          $(".main-page-banner-a>a").eq(i).css("display","block");
-          $(".main-page-banner-a>a").eq(i).siblings().css("display","none");
-          clearInterval(bannerChangeInterval)
-          $(".main-page-banner-hover>li").eq(i).siblings().css("border"," none");
-          $(".main-page-banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
-        
-        });
-      }
-        for(let i = 0; i<5; i++){
-        $(".main-page-banner-hover>li").eq(i).mouseleave(function(){
-          bannerChangeInterval = setInterval(function(){
-          $(".main-page-banner-a>a").eq(i).css("display","block");
-          $(".main-page-banner-a>a").eq(i).siblings().css("display","none");
-          $(".main-page-banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
-          $(".main-page-banner-hover>li").eq(i).css("box-sizing"," border-box");
-          $(".main-page-banner-hover>li").eq(i).siblings().css("border"," none");
-          $(".main-page-banner-hover>li").eq(i).siblings().css("box-sizing"," border-box");
-        i++;
-        if(i ==5){
-          i = 0;  
-        }
-       },3000);
-        });
-      }
-      // clearInterval(변수)
-    });
-  </script>
+  <script src="./javascript/mainpage.js"></script>
 </body>
 
 

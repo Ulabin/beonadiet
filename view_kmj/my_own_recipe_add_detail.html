@@ -28,16 +28,19 @@
           <input type="file" id="ex_file" name="ex_file" class="my-own-recipe-input-tag" multiple>
         </div>
 
-        <div class="my-own-recipe-thumbnail-img">
+        <div class="my-own-recipe-add-detail-thumbnail-img">
           <img src="./images/img3.jpg" alt="img">
         </div>
-        <div class="my-own-recipe-addition-img">
+        <div class="my-own-recipe-add-detail-addition-img">
           <img src="./images/img1.jpg" alt="img">
         </div>
-        <div class="my-own-recipe-addition-img">
+        <div class="my-own-recipe-add-detail-addition-img">
           <img src="./images/img1.jpg" alt="img">
         </div>
-        <div class="my-own-recipe-addition-img">
+        <div class="my-own-recipe-add-detail-addition-img">
+          <img src="./images/img1.jpg" alt="img">
+        </div>
+        <div class="my-own-recipe-add-detail-addition-img">
           <img src="./images/img1.jpg" alt="img">
         </div>
         <p class="my-own-recipe-add-detail-precautions"> ※여러사진 선택시 썸네일용을 먼저 선택해 주세요</p>
@@ -90,31 +93,7 @@
 <button type="submit" class="my-own-recipe-add-detail-register-button" form="my-own-recipe-add-detail-register-form">등록</button>
     </div>
   </div>
-  <script>
-    $("input[id=ex_file]").change(function () {
-      if ($(this).val() != "") {
-        //확장자체크
-        var ext = $(this).val().split(".").pop().toLowerCase();
-        if ($.inArray(ext, ["gif", "jpg", "jpeg", "png"]) == -1) {
-          alert("gif, jpg, jpeg, png 파일만 업로드 가능합니다.");
-          $(this).val("");
-          return;
-        }
-
-        //용량체크
-        for (var i = 0; i < this.files.length; i++) {
-          var fileSize = this.files[i].size;
-          var fsMB = (fileSize / (1024 * 1024)).toFixed(2);
-          var maxSize = 1024 * 1024 * 5;
-          var mSMB = (maxSize / (1024 * 1024));
-          if (fileSize > maxSize) {
-            alert(this.files[i].name + "(이)가 용량 5MB를 초과했습니다.\n\n<font color='red'>" + fsMB + "MB</font> / " + mSMB + "MB");
-            $(this).val("");
-          }
-        }
-      }
-    })
-  </script>
+<script src="./javascript/my_own_recipe_add_detail.js"></script>
 </body>
 
 </html>

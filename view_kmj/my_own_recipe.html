@@ -9,6 +9,7 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="stylekmj.css">
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <title>My Own Recipe</title>
   
 
@@ -209,60 +210,7 @@
 
     <!-- my-own-recipe-container -->
   </div>
-
-  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-  <script>
-    // 주간 베스트 레시피 좌우 이동 부트스트랩
-    $('.main-carousel').flickity({
-      // options
-      cellAlign: 'left',
-      wrapAround: true,
-      freeScroll: true
-    });
-
-    // br태그 써보기
-    var list = document.querySelector('.my-own-recipe-board-item-container');
-    for (let i = 0; i < 12; i++) {
-
-      if (i % 4 == 0) {
-        list.innerHTML += `<br> <div class="my-own-recipe-board-item" id="my-own-recipe-board-item${i}">
-              <a href="#">
-                <img src="./images/img1.jpg" alt="image" class="my-own-recipe-board-item-image">
-              </a>
-              <div class="my-own-recipe-like">
-                <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="25" height="25">
-                </iconify-icon>
-                <span class="my-own-recipe-like-count"> 1</span>
-              </div>
-              <div class="my-own-recipe-board-item-name-container">
-                <div class="my-own-recipe-board-item-name">
-                  맛있는 도시락
-                </div>
-              </div>
-            </div>
-          
-          
-          </div>`;
-      } else {
-        list.innerHTML += `<div class="my-own-recipe-board-item" id="my-own-recipe-board-item${i}">
-              <a href="#">
-                <img src="./images/img1.jpg" alt="image" class="my-own-recipe-board-item-image">
-              </a>
-              <div class="my-own-recipe-like">
-                <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="25" height="25">
-                </iconify-icon>
-                <span class="my-own-recipe-like-count"> 1</span>
-              </div>
-              <div class="my-own-recipe-board-item-name-container">
-                <div class="my-own-recipe-board-item-name">
-                  맛있는 도시락
-                </div>
-              </div>
-            </div>`;
-      }
-    }
-
-  </script>
+<script src="./javascript/my_own_recipe.js"></script>
 </body>
 
 </html>
