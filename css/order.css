@@ -84,6 +84,7 @@ ul {
 }
 
 .bar-info-title {
+  font-size: 16px;
   flex-basis: 160px;
   color: #757575;
 }
@@ -234,6 +235,7 @@ ul {
   width: 110px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  padding-left: 5px;
 }
 
 .rightText {
@@ -411,7 +413,7 @@ strong {
 }
 
 input:focus {
-  border-color: #0FA958;
+  border: 1.7px solid #0FA958;
   outline: none;
 }
 

@@ -36,7 +36,7 @@ body {
 
 .titleText {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
   color: #353535;
 }
 
@@ -93,7 +93,7 @@ body {
   background-color: rgb(255, 255, 255);
   color: rgb(69, 79, 91);
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
   margin-right: 5px;
@@ -325,9 +325,6 @@ ul, li {
 .viewmore-btn-section {
   display: block;
   width: 100%;
-  border: 1px solid #dadddf;
-  background-color: #fff;
-  box-sizing: border-box;
 }
 
 .viewmore-btn-section .viewmore-btn {
@@ -336,7 +333,7 @@ ul, li {
   padding: 18px 0;
   color: #353535;
   font-size: 13px;
-  border: 1px solid #C7DFAA;
+  border: 2px solid #C7DFAA;
   background-color: #C7DFAA;
   text-align: center;
   cursor: pointer;
@@ -377,4 +374,15 @@ ul, li {
 
 .left-right-btn button span{
   font-size: 16px;
+}
+
+/* 탭 메뉴 */
+
+.tab-content{
+	display: none;
+	padding: 15px;
+}
+
+.tab-content.current{
+	display: inherit;
 }

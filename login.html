@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인페이지</title>
   <link rel="stylesheet" href="css/login.css">
-  <style>
-  </style>
 </head>
 <body>
   <div id="container">
@@ -16,12 +14,12 @@
         <div>
           <h1 class="title_login">로그인</h1>
         </div>
-        <form>
+        <form id="signin" method="post">
           <div>
-            <input type="text" name="id" class="id_box" placeholder="아이디 입력" required>
+            <input type="text" name="username" id="username" class="id_box" placeholder="아이디 입력" required>
           </div>
           <div>
-            <input type="password" name="password" class="pw_box" placeholder="비밀번호 입력" required>
+            <input type="password" name="password" id="password" class="pw_box" placeholder="비밀번호 입력" required>
           </div>
           <div class="find_info">
             <a href="#" class="find_id">아이디찾기</a>
@@ -43,5 +41,7 @@
       </div>
     </div>
   </div>
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>

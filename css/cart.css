@@ -2,6 +2,7 @@
   font-family: 'lg-pc';
   src: url(../font/LG\ PC.ttf);
 }
+
 * {
   font-family: "lg-pc";
   margin: 0;
@@ -25,6 +26,12 @@ body {
 }
 
 .title-text {
+  color: #353535;
+}
+
+.txt {
+  font-size: 16px;
+  font-weight: 600;
   color: #353535;
 }
 
@@ -55,6 +62,8 @@ body {
 }
 
 input[type=checkbox] {
+  width: 17px;
+  height: 17px;
   margin-left: 20px;
   margin-right: 30px;
   accent-color: #0FA958;
@@ -231,12 +240,13 @@ input[type=checkbox] {
   height: 48px;
   border-radius: 2px;
   color: #353535;
-  border: 1px solid #cccccc;
+  border: 2px solid #C7DFAA;
   background-color: #C7DFAA;
 }
 
 .button-wrap {
   font-size: 16px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,6 +274,7 @@ input[type=checkbox] {
 
 .price-top {
   font-size: 16px;
+  font-weight: 600;
   color: #666;
   text-align: center;
   letter-spacing: normal;
@@ -310,7 +321,7 @@ input[type=checkbox] {
 
 .btn-order {
   color: #353535;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
 }
 

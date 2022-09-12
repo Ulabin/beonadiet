@@ -7,8 +7,6 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <title>회원정보수정페이지</title>
   <link rel="stylesheet" href="css/userinfo.css">
-  <style>
-  </style>
 </head>
 <body>
   <div id="container">
@@ -19,10 +17,10 @@
       <div class="line1">
         <hr>
       </div>
-      <form id="signup">
+      <form id="signup" method="post">
         <fieldset>
           <ul>
-            <li>
+            <!-- <li>
               <div>
                 <button class="avatar">
                   <iconify-icon icon="carbon:user-avatar-filled-alt" style="color: #0fa958;" width="96" height="96"></iconify-icon>
@@ -34,11 +32,11 @@
                 <button type="button" class="btnchange">변경</button>
                 <button type="button" class="btndelete">삭제</button>    
               </div>
-            </li>
+            </li> -->
             <li>
               <div class="box">
                 <label for="userid">아이디</label>
-                <input type="text" id="userid" name="userid" value="userid" readonly>
+                <input type="text" id="userid" name="userid" value="userid123" readonly>
                 <div class="btn_hidden"></div>
               </div>
             </li>
@@ -60,7 +58,7 @@
               <div class="box">
                 <label></label>
                 <div>
-                  <div class="pw_info">ㆍ현재 비밀번호와 다르게 입력<br>ㆍ비밀번호 8자 이상 입력<br>ㆍ영문 대/소문자,숫자포함</div>
+                  <div class="pw_info">ㆍ현재 비밀번호와 다르게 입력<br>ㆍ비밀번호 8자 이상 입력<br>ㆍ영문 대/소문자,숫자,특수문자 포함</div>
                 </div>
                 <div class="btn_hidden"></div>
               </div>
@@ -90,20 +88,20 @@
               <div class="box">
                 <label for="email">이메일</label>
                 <input type="email" name="email" id="email" value="beonadiet@naver.com" required>
-                <input type="button" class="btncheck" value="중복 확인">
+                <input type="button" class="btnauth" value="인증번호 받기">
               </div>
             </li>
             <li>
               <div class="box">
                 <label for="mobile">휴대폰</label>
                 <input type="tel" name="mobile" id="mobile" value="01012345678" required>
-                <input type="button" class="btnauth" value="인증번호 받기">
+                <input type="button" class="btncheck" value="중복 확인">
               </div>
             </li>
             <li>
               <div class="box">
                 <label for="birth">생년월일</label>
-                <input type="text" name="birth" id="birth" value="1995-10-13" required>
+                <input type="text" name="birth" id="birth" value="1995-10-14" required>
                 <div class="btn_hidden"></div>
               </div>
             </li>
@@ -112,12 +110,14 @@
             <hr>
           </div>
           <div>
-            <button type="submit" class="btnjoin">회원정보수정</button>
+            <button type="submit" class="btnmodify">회원정보수정</button>
             <button type="button" class="btnleave">탈퇴하기</button>
           </div>
         </fieldset>
       </form>
     </div>
   </div>
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script src="js/userinfo.js"></script>
 </body>
 </html>

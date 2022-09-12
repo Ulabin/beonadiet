@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아이디찾기페이지</title>
+  <link rel="stylesheet" href="css/find_id.css">
+</head>
+<body>
+  <div class="input-form-wrap">
+    <div class="input-form-Box">
+      <div class="titleBox">
+        <h1>아이디 찾기</h1>
+      </div>
+      <form id="findId">
+        <div class="field">
+          <div class="adr-search">
+            <input type="text" name="username" id="username" value="" placeholder="이름을 입력해주세요" required>
+            <button type="submit" class="btn-send">전송</button>
+          </div>
+          <input type="email" name="email" id="email" placeholder="이메일을 입력해주세요" value="" required>
+          <p class="pwd-txt">비밀번호를 잊으셨나요? <a href="#" class="find-pwd">비밀번호 찾기</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script src="js/find_id.js"></script>
+</body>
+</html>

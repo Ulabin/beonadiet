@@ -45,6 +45,7 @@ body {
 
 .sns_login {
   font-size: 13.2px;
+  font-weight: 600;
   color: #353535;
   margin-bottom: 20px;
 }
@@ -74,8 +75,8 @@ ul {
   width: 130px;
   float: left;
   text-align: left;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 45px;
   color: #353535;
 }
@@ -90,7 +91,7 @@ input {
 }
 
 input:focus {
-  border-color: #0FA958;
+  border: 1.7px solid #0FA958;
   outline: none;
 }
 
@@ -98,10 +99,11 @@ input:focus {
   width: 120px;
   height: 45px;
   margin-left: 10px;
-  border: 1px solid #0FA958;
-  background-color: white;
-  color: #0FA958;
-  font-weight: 500;
+  border: 1.7px solid #C7DFAA;
+  background-color: #fff;
+  color: #353535;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -119,10 +121,10 @@ input:focus {
 .btnjoin {
   width: 334px;
   height: 45px;
-  border: 1px solid #0FA958;
-  background-color: #0FA958;
-  color: white;
-  font-size: 16px;
+  border: 2px solid #C7DFAA;
+  background-color: #C7DFAA;
+  color: #353535;
+  font-size: 17px;
   font-weight: 600;
   border-radius: 3px;
   margin-top: 10px;

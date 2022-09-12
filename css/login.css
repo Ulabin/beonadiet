@@ -21,11 +21,12 @@ body {
 }
 
 .login-box {
-   margin: 90px auto; text-align: center;
+   margin: 90px auto; 
+   text-align: center;
 }
 
 .title_login {
-  font-size: 20px;
+  font-size: 26px;
   color: #353535;
   margin-bottom: 20px;
 }
@@ -35,7 +36,7 @@ form {
 }
 
 input:focus {
-  border-color: #0FA958;
+  border: 1.7px solid #0FA958;
   outline: none;
 }
 
@@ -77,6 +78,7 @@ button:last-of-type {
 .find_id, .find_pw {
   color: #353535;
   font-size: 13px;
+  font-weight: 600;
 }
 
 .find_info a:hover {
@@ -88,18 +90,18 @@ button:last-of-type {
 }
 
 .btn_login {
-  border: 1px solid #0FA958;
-  background-color: #0FA958;
-  color: white;
-  font-size: 16px;
+  border: 2px solid #C7DFAA;
+  background-color: #C7DFAA;
+  color: #353535;
+  font-size: 17px;
   font-weight: 600;
 }
 
 .btn_join {
-  border: 1px solid #0FA958;
-  background-color: white;
-  color: #0FA958;
-  font-size: 16px;
+  border: 2px solid #C7DFAA;
+  background-color: #fff;
+  color: #353535;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -109,6 +111,7 @@ img {
 
 .sns_login{
   font-size: 13.2px;
+  font-weight: 600;
   color: #353535;
   margin-top: 50px;
   margin-bottom: 10px;

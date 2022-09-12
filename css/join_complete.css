@@ -100,11 +100,11 @@ img {
   height: 50px;
   font-size: 20px;
   margin-right: 20px;
-  border: 1px solid #0FA958;
+  border: 2px solid #C7DFAA;
+  background-color: #fff;
+  color: #353535;
   border-radius: 3px;
-  background-color: white;
-  color: #0FA958;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -112,11 +112,11 @@ img {
   width: 150px;
   height: 50px;
   font-size: 20px;
-  border: 1px solid #0FA958;
+  border: 2px solid #C7DFAA;
+  background-color: #C7DFAA;
+  color: #353535;
   border-radius: 3px;
-  background-color: #0FA958;
-  color: white;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -139,4 +139,5 @@ img {
 
 .color {
   color: #D67659;
+  font-weight: 600;
 }

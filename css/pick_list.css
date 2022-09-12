@@ -38,7 +38,7 @@ body {
 
 .titleText {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
   color: #353535;
 }
 
@@ -131,7 +131,8 @@ ul, li {
 .my-list-wrap button {
   width: 75px;
   height: 30px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 600;
   border: 2px solid #00D386;
   border-radius: 4px;
   cursor: pointer;
@@ -150,7 +151,8 @@ ul, li {
 .item-btn-wrap button {
   width: 82px;
   height: 30px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 600;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -162,7 +164,7 @@ ul, li {
 .item-btn-remove {
   color: #353535;
   background-color: #C7DFAA;
-  border: 1px solid #C7DFAA;
+  border: 2px solid #C7DFAA;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -172,7 +174,7 @@ ul, li {
 .item-btn-add {
   color: #353535;
   background-color: #fff;
-  border: 1px solid #C7DFAA;
+  border: 2px solid #C7DFAA;
   display: flex;
   flex-direction: row;
   justify-content: center;
