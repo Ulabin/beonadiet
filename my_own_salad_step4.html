@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <title>나만의샌드위치 Step1</title>
+    <title>나만의샐러드 Step4</title>
     <link rel="stylesheet" href="resources/static/css/font.css">
     <link rel="stylesheet" href="resources/static/css/style.css">
     <script>
@@ -17,7 +17,7 @@
     <div class="wrapper">
         <div class="content">
             <div class="step_container">
-                <div class="step_circle">
+                <div class="next_step_circle">
                     <div>
                         <h1>step<br>1</h1>
                     </div>
@@ -47,7 +47,7 @@
                         <h1>···</h1> 
                     </div>
                 </div>
-                <div class="next_step_circle">
+                <div class="step_circle">
                     <div>
                         <h1>step<br>4</h1>
                     </div>
@@ -62,57 +62,48 @@
                         <h1>step<br>5</h1>
                     </div>
                 </div>
-                <div class="step_connection">
-                    <div>
-                        <h1>···</h1> 
-                    </div>
-                </div>
-                <div class="next_step_circle">
-                    <div>
-                        <h1>step<br>6</h1>
-                    </div>
-                </div>
             </div>
             
             <div class="step_name_container">
-                <h1 class="step">step1. 빵 선택</h1>
+                <h1 class="step">step4. 탄수화물 선택</h1>
                 <img src="../beonadiet/resources/static/assets/warning_icon.png">
-                <h3>이미지 클릭 시 상세정보(영양정보)를 확인할 수 있습니다.</h3>    
-            </div>   
+                <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
+            </div>
 
             <div>
                 <div class="composition_type">
-                    <h2>[종류]&nbsp;</h2> 
+                    <h2>[종류]&nbsp;</h2>
+                    <span>한 가지만 선택가능 (선택 없이 다음 단계로 넘어갈 수 있음)</span> 
                 </div>
             </div>
 
             <div class="composition_element_container">
-                <input type="radio" name="my_own_sandwich_bread" value="honey_oat" id="honey_oat">
-                <label for="honey_oat">
+                <input type="radio" name="my_own_salad_carbs" value="tortilla" id="tortilla">
+                <label for="tortilla">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="허니오트">
-                    <h2>허니오트</h2>
+                    <img src="https://placehold.co/180x180" alt="또띠아">
+                    <h2>또띠아</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png" >
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="hearty_italian" id="hearty_italian">
-                <label for="hearty_italian">
+                <input type="radio" name="my_own_salad_carbs" value="macaroni" id="macaroni">
+                <label for="macaroni">
                 <div class="composition_element_box even">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="하티">
-                    <h2>하티</h2>
+                    <img src="https://placehold.co/180x180" alt="마카로니">
+                    <h2>마카로니</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="wheat" id="wheat">
-                <label for="wheat">
+                <input type="radio" name="my_own_salad_carbs" value="baguette" id="baguette">
+                <label for="baguette">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="위트">
-                    <h2>위트</h2>
+                    <img src="https://placehold.co/180x180" alt="바게트">
+                    <h2>바게트</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
                 </div>
@@ -120,62 +111,42 @@
             </div>
 
             <div class="composition_element_container">
-                <input type="radio" name="my_own_sandwich_bread" value="parmesan_oregano" id="parmesan_oregano">
-                <label for="parmesan_oregano">
+                <input type="radio" name="my_own_salad_carbs" value="cracker" id="cracker">
+                <label for="cracker">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="파마산 오레가노">
-                    <h2>파마산 오레가노</h2>
+                    <img src="https://placehold.co/180x180" alt="크래커">
+                    <h2>크래커</h2>
                     </div>
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" >
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="white" id="white">
-                <label for="white">
+                <input type="radio" name="my_own_salad_carbs" value="pasta" id="pasta">
+                <label for="pasta">
                 <div class="composition_element_box even">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="화이트">
-                    <h2>화이트</h2>
+                    <img src="https://placehold.co/180x180" alt="파스타면">
+                    <h2>파스타면</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="flat_bread" id="flat_bread">
-                <label for="flat_bread">
+                <input type="radio" name="my_own_salad_carbs" value="rye_bread" id="rye_bread">
+                <label for="rye_bread">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="플랫브레드">
-                    <h2>플랫브레드</h2>
+                    <img src="https://placehold.co/180x180" alt="호밀빵">
+                    <h2>호밀빵</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
-                </div>
-                </label>
-            </div>
-
-            <div class="composition_type">
-                <h2>[길이]</h2>
-            </div>
-
-            <div class="length_element_container">
-                <input type="radio" name="my_own_sandwich_bread_length" value="15cm" id="15cm">
-                <label for="15cm">
-                <div class="length_element main_color">
-                    <h2>15cm</h2>
-                </div>
-                </label>
-
-                <input type="radio" name="my_own_sandwich_bread_length" value="30cm" id="30cm">
-                <label for="30cm">
-                <div class="length_element">
-                    <h2>30cm</h2>
                 </div>
                 </label>
             </div>
 
             <div class="nutrition_info_check_btn_container">
                 <div> 
-                    <div class="nutrition_info_check_btn">
-                        <h2>빵 선택 후 맞춤형 영양정보 확인</h2>
+                    <div class="nutrition_info_check_btn" style="width:380px">
+                        <h2>탄수화물 선택 후 맞춤형 영양정보 확인</h2>
                     </div>
                 </div>
             </div> 
@@ -183,7 +154,7 @@
             <div class="nutrition_info">
                 <h2>[맞춤형 영양정보]&nbsp;</h2>
                 <img src="../beonadiet/resources/static/assets/warning_icon.png">
-                <h3>&nbsp;step1 기준</h3>
+                <h3>&nbsp;step4 기준</h3>
                 <h3 class="folding_btn">접기▼</h3>
             </div>
 

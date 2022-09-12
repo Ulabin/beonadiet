@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <title>나만의샐러드 Step3</title>
+    <link rel="stylesheet" href="resources/static/css/font.css">
+    <link rel="stylesheet" href="resources/static/css/style.css">
+    <script>
+        window.onload=function(){
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="step_container">
+                <div class="next_step_circle">
+                    <div>
+                        <h1>step<br>1</h1>
+                    </div>
+                </div>
+                <div class="step_connection">
+                    <div>
+                        <h1>···</h1> 
+                    </div>
+                </div>
+                <div class="next_step_circle">
+                    <div>
+                        <h1>step<br>2</h1>
+                    </div>
+                </div>
+                <div class="step_connection">
+                    <div>
+                        <h1>···</h1> 
+                    </div>
+                </div>
+                <div class="step_circle">
+                    <div>
+                        <h1>step<br>3</h1>
+                    </div>
+                </div>
+                <div class="step_connection">
+                    <div>
+                        <h1>···</h1> 
+                    </div>
+                </div>
+                <div class="next_step_circle">
+                    <div>
+                        <h1>step<br>4</h1>
+                    </div>
+                </div>
+                <div class="step_connection">
+                    <div>
+                        <h1>···</h1> 
+                    </div>
+                </div>
+                <div class="next_step_circle">
+                    <div>
+                        <h1>step<br>5</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step_name_container">
+                <h1 class="step">step3. 토핑 선택</h1>
+                <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
+            </div>
+
+            <div class="basket">
+                <span>&nbsp;토핑 바구니&nbsp;</span>&nbsp;&nbsp;<span>(최대 4가지, 총량 3)</span>
+                <div class="basket_element_container">
+                    <div class="basket_element_box">
+                        <div class="basket_element">
+                            <img src="https://placehold.co/150x150" alt="방울토마토">
+                            <h2>방울토마토</h2>
+                        </div>
+                        <div class="stepper" style="opacity:1">
+                            <span>+</span>
+                            <span>1.5</span>
+                            <span>-</span>
+                        </div>
+                        <div class="delete_btn">
+                            <span>삭제</span>
+                        </div>
+                    </div>
+                    <div class="basket_element_box">
+                        <div class="basket_element">
+                            <img src="https://placehold.co/150x150" alt="올리브">
+                            <h2>올리브</h2>
+                        </div>
+                        <div class="stepper" style="opacity:1.0">
+                            <span>+</span>
+                            <span>0.5</span>
+                            <span style="opacity:0.3;">-</span>
+                        </div>
+                        <div class="delete_btn">
+                            <span>삭제</span>
+                        </div>
+                    </div>
+                    <div class="basket_element_box">
+                        <div class="basket_element">
+                            <img src="https://placehold.co/150x150" alt="강낭콩">
+                            <h2>강낭콩</h2>
+                        </div>
+                        <div class="stepper" style="opacity:1">
+                            <span>+</span>
+                            <span>0.5</span>
+                            <span style="opacity:0.3;">-</span>
+                        </div>
+                        <div class="delete_btn">
+                            <span>삭제</span>
+                        </div>
+                    </div>
+                    <div class="basket_element_box">
+                        <div class="basket_element">
+                            <img src="https://placehold.co/150x150" alt="아몬드슬라이스">
+                            <h2>아몬드슬라이스</h2>
+                        </div>
+                        <div class="stepper" style="opacity:1">
+                            <span>+</span>
+                            <span>0.5</span>
+                            <span style="opacity:0.3;">-</span>
+                        </div>
+                        <div class="delete_btn">
+                            <span>삭제</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nutrition_info_check_btn_container" style="position:relative; height:40px; margin:0px;">
+                    <div style="height:40px;"> 
+                        <div class="nutrition_info_check_btn" style="position:absolute; vertical-align:top; right:0px; background-color:#FFFFFF; width:230px">
+                            <h2>맞춤형 영양정보 확인</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="topping_menu"> 
+                <li style="color:#0FA958; border-bottom: 5px solid #0FA958;">구황작물</li>
+                <li>과일및채소</li>
+                <li>견과류</li>
+                <li>건조</li>
+                <li>후레이크</li>
+                <li>치즈</li>
+            </ul>
+
+            <div class="composition_element_container">
+                <div class="composition_element_box odd">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="고구마무스">
+                    <h2>고구마무스</h2>
+                    </div>
+                    <div class="stepper" style="opacity:1">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                    <div class="add_btn">
+                        <span>담기</span>
+                    </div>
+                </div>
+                <div class="composition_element_box even">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="고구마큐브">
+                    <h2>고구마큐브</h2>
+                    </div>
+                    <div class="stepper" style="opacity:1">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                    <div class="add_btn">
+                        <span>담기</span>
+                    </div>
+                </div>
+                <div class="composition_element_box odd">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="단호박무스">
+                    <h2>단호박무스</h2>
+                    </div>
+                    <div class="stepper" style="opacity:1">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                    <div class="add_btn">
+                        <span>담기</span>
+                    </div>
+                </div>
+            </div>
+            <div class="composition_element_container">
+                <div class="composition_element_box odd">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="매쉬드포테이토">
+                    <h2>매쉬드포테이토</h2>
+                    </div>
+                    <div class="stepper" style="opacity:1">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                    <div class="add_btn">
+                        <span>담기</span>
+                    </div>
+                </div>
+                <div class="composition_element_box even">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="옥수수콘">
+                    <h2>옥수수콘</h2>
+                    </div>
+                    <div class="stepper" style="opacity:1">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                    <div class="add_btn">
+                        <span>담기</span>
+                    </div>
+                </div>
+                <div class="composition_element_box odd">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="강낭콩">
+                    <h2>강낭콩</h2>
+                    </div>
+                    <div class="stepper" style="opacity:1">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                    <div class="add_btn">
+                        <span>담기</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

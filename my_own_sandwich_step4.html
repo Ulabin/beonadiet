@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <title>나만의샌드위치 Step1</title>
+    <title>나만의샌드위치 Step4</title>
     <link rel="stylesheet" href="resources/static/css/font.css">
     <link rel="stylesheet" href="resources/static/css/style.css">
     <script>
@@ -17,7 +17,7 @@
     <div class="wrapper">
         <div class="content">
             <div class="step_container">
-                <div class="step_circle">
+                <div class="next_step_circle">
                     <div>
                         <h1>step<br>1</h1>
                     </div>
@@ -47,7 +47,7 @@
                         <h1>···</h1> 
                     </div>
                 </div>
-                <div class="next_step_circle">
+                <div class="step_circle">
                     <div>
                         <h1>step<br>4</h1>
                     </div>
@@ -75,107 +75,199 @@
             </div>
             
             <div class="step_name_container">
-                <h1 class="step">step1. 빵 선택</h1>
+                <h1 class="step">step4. 고기 및 해산물 선택</h1>
                 <img src="../beonadiet/resources/static/assets/warning_icon.png">
-                <h3>이미지 클릭 시 상세정보(영양정보)를 확인할 수 있습니다.</h3>    
-            </div>   
+                <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
+            </div>
 
             <div>
                 <div class="composition_type">
-                    <h2>[종류]&nbsp;</h2> 
+                    <h2>[종류]&nbsp;</h2>
+                    <span>(최대 3가지 / 총량 1.5까지 설정 가능)</span> 
                 </div>
             </div>
 
             <div class="composition_element_container">
-                <input type="radio" name="my_own_sandwich_bread" value="honey_oat" id="honey_oat">
-                <label for="honey_oat">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="shrimp" id="shrimp">
+                <label for="shrimp">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="허니오트">
-                    <h2>허니오트</h2>
+                    <img src="https://placehold.co/180x180" alt="새우">
+                    <h2>새우</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png" >
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="hearty_italian" id="hearty_italian">
-                <label for="hearty_italian">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="turkey" id="turkey">
+                <label for="turkey">
                 <div class="composition_element_box even">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="하티">
-                    <h2>하티</h2>
+                    <img src="https://placehold.co/180x180" alt="터키">
+                    <h2>터키</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="wheat" id="wheat">
-                <label for="wheat">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="bacon" id="bacon">
+                <label for="bacon">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="위트">
-                    <h2>위트</h2>
+                    <img src="https://placehold.co/180x180" alt="베이컨">
+                    <h2>베이컨</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
             </div>
 
             <div class="composition_element_container">
-                <input type="radio" name="my_own_sandwich_bread" value="parmesan_oregano" id="parmesan_oregano">
-                <label for="parmesan_oregano">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="rotisserie_chicken " id="rotisserie_chicken">
+                <label for="rotisserie_chicken">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="파마산 오레가노">
-                    <h2>파마산 오레가노</h2>
+                    <img src="https://placehold.co/180x180" alt="로티세리치킨">
+                    <h2>로티세리 치킨</h2>
                     </div>
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" >
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="white" id="white">
-                <label for="white">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="pepperoni" id="pepperoni">
+                <label for="pepperoni">
                 <div class="composition_element_box even">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="화이트">
-                    <h2>화이트</h2>
+                    <img src="https://placehold.co/180x180" alt="페퍼로니">
+                    <h2>페퍼로니</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
-                <input type="radio" name="my_own_sandwich_bread" value="flat_bread" id="flat_bread">
-                <label for="flat_bread">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="salami" id="salami">
+                <label for="salami">
                 <div class="composition_element_box odd">
                     <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="플랫브레드">
-                    <h2>플랫브레드</h2>
+                    <img src="https://placehold.co/180x180" alt="살라미">
+                    <h2>살라미</h2>
                     </div>
                     <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
             </div>
 
-            <div class="composition_type">
-                <h2>[길이]</h2>
-            </div>
-
-            <div class="length_element_container">
-                <input type="radio" name="my_own_sandwich_bread_length" value="15cm" id="15cm">
-                <label for="15cm">
-                <div class="length_element main_color">
-                    <h2>15cm</h2>
+            <div class="composition_element_container">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="ham" id="ham">
+                <label for="ham">
+                <div class="composition_element_box odd">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="햄">
+                    <h2>햄</h2>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" >
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="chicken_breast" id="chicken_breast">
+                <label for="chicken_breast">
+                <div class="composition_element_box even">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="치킨브레스트">
+                    <h2>치킨브레스트</h2>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                </div>
+                </label>
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="tuna" id="tuna">
+                <label for="tuna">
+                <div class="composition_element_box odd">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="참치">
+                    <h2>참치</h2>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                </div>
+                </label>
+            </div>
 
-                <input type="radio" name="my_own_sandwich_bread_length" value="30cm" id="30cm">
-                <label for="30cm">
-                <div class="length_element">
-                    <h2>30cm</h2>
+            <div class="composition_element_container">
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="steak" id="steak">
+                <label for="steak">
+                <div class="composition_element_box odd">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="스테이크">
+                    <h2>스테이크</h2>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" >
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
+                </div>
+                </label>
+                <input type="radio" name="my_own_sandwich_meat_and_seafood" value="chicken_teriyaki" id="chicken_teriyaki">
+                <label for="chicken_teriyaki">
+                <div class="composition_element_box even">
+                    <div class="composition_element">
+                    <img src="https://placehold.co/180x180" alt="치킨데리야끼">
+                    <h2>치킨데리야끼</h2>
+                    </div>
+                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <div class="stepper">
+                        <span>+</span>
+                        <span>1.0</span>
+                        <span>-</span>
+                    </div>
                 </div>
                 </label>
             </div>
 
             <div class="nutrition_info_check_btn_container">
                 <div> 
-                    <div class="nutrition_info_check_btn">
-                        <h2>빵 선택 후 맞춤형 영양정보 확인</h2>
+                    <div class="nutrition_info_check_btn" style="width:450px">
+                        <h2>고기 및 해산물 선택 후 맞춤형 영양정보 확인</h2>
                     </div>
                 </div>
             </div> 
@@ -183,7 +275,7 @@
             <div class="nutrition_info">
                 <h2>[맞춤형 영양정보]&nbsp;</h2>
                 <img src="../beonadiet/resources/static/assets/warning_icon.png">
-                <h3>&nbsp;step1 기준</h3>
+                <h3>&nbsp;step4 기준</h3>
                 <h3 class="folding_btn">접기▼</h3>
             </div>
 
