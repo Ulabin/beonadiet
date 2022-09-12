@@ -1,0 +1,370 @@
+/*초기화*/
+*{
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    text-decoration:none;
+ }
+/*컨테이너*/
+ .container{
+    width: 1080px;
+}
+/*고객센터 1:1문의 리스트*/
+.centerTitle{
+    width: 1080px;
+    height: 100px;
+    background-color: #00b387;
+    margin: 50px 0 50px 0;
+    position: relative;
+}
+.centerTitle p{
+    position: relative;
+    top: 20px;
+    left: 100px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+}
+.centerBtn{
+    position: relative;
+    left: 40px;
+    margin-bottom: 30px;
+}
+.midabBtn{
+    margin: 0;
+    width: 500px;
+    height: 30px;
+    border: 1px solid #00b387;
+    background-color: #00b387;
+    color: #fff;
+    border-radius: 5px 0 0 5px;
+}
+.dabBtn{
+    margin: 0;
+    width: 500px;
+    height: 30px;
+    border: 1px solid #00b387;
+    background-color: #fff;
+    color: #00b387;
+    border-radius: 0 5px 5px 0;
+}
+.centerTable{
+    width: 1000px;
+    text-align: center;
+    border-collapse: collapse;
+}
+.centerTable th{
+    border-bottom: solid 2px #00b387;
+    height: 40px;
+}
+.centerTable td{
+    border-bottom: solid 1px #00b387;
+    height: 40px;
+}
+.centerTable th:nth-child(1){
+    width: 80px;
+}
+.centerTable th:nth-child(2){
+    width: 100px;
+}
+.centerTable th:nth-child(4){
+    width: 150px;
+}
+.centerTable th:nth-child(5){
+    width: 100px;
+}
+.centerTable td:nth-child(3){
+    text-align: left;
+    padding-left: 15px;
+}
+.inquireBtn{
+    float: right;
+    margin: 20px;
+    width: 100px;
+    height: 30px;
+    border: 1px solid #00b387;
+    background-color: #00b387;
+    color: #fff;
+    border-radius: 5px;
+}
+ .centerReadTable{
+        width: 1000px;
+        border-collapse: collapse;
+    }
+    .centerReadTable td{
+        border-bottom: solid 1px #00b387;
+        height: 40px;
+        padding-left: 20px;
+    }
+    .centerReadText{
+        white-space: pre;
+    }
+    .reply{
+        float: right;
+        margin-right: 20px;
+    }
+    .centerReadBtn{
+        position: relative;
+        left: 50%;
+        margin-top: 20px;
+        margin-left: -50px;
+        width: 100px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px;
+    }
+    /*고객센터 문의글 보기*/
+    .centerReadTable{
+        width: 1000px;
+        border-collapse: collapse;
+    }
+    .centerReadTable td{
+        border-bottom: solid 1px #00b387;
+        height: 40px;
+        padding-left: 20px;
+    }
+    .centerReadText{
+        white-space: pre;
+    }
+    .reply{
+        float: right;
+        margin-right: 20px;
+    }
+    .centerReadBtn{
+        position: relative;
+        left: 50%;
+        margin-top: 20px;
+        margin-left: -50px;
+        width: 100px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px;
+    }
+    /*고객센터 문의글작성*/
+    .centerRegistTable{
+        width: 1000px;
+        border-collapse: collapse;
+    }
+    .centerRegistTable td:nth-child(1){
+        width: 100px;
+    }
+    .centerRegistTable td{
+        border-bottom: solid 1px #00b387;
+        height: 40px;
+        padding-left: 20px;
+    }
+    
+    .centerRegistBtn{
+        position: relative;
+        left: 50%;
+        margin-top: 20px;
+        margin-left: -50px;
+        width: 100px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .titleFalse .textareaFalse{
+        color: red;
+    }
+    #centerTextarea{
+        width: 800px;
+        margin: 20px 0;
+    }
+
+    /*매장관리 - 매출관리*/
+    .shopTitle{
+        width: 1080px;
+        height: 100px;
+        background-color: #00b387;
+        margin: 50px 0 50px 0;
+        position: relative;
+    }
+    .shopTitle p{
+        position: relative;
+        top: 20px;
+        left: 100px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .shopBtn{
+        position: relative;
+        left: 40px;
+        margin-bottom: 30px;
+    }
+    .mibasongBtn{
+        margin: 0;
+        width: 500px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px 0 0 5px;
+    }
+    .basongBtn{
+        margin: 0;
+        width: 500px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #fff;
+        color: #00b387;
+        border-radius: 0 5px 5px 0;
+    }
+    .searchBar{
+        width: 1000px;
+        height: 30px;
+        border-radius: 5px;
+        text-align: right;
+        background-color: #ccc;
+        font-size: 13px;
+    }
+    .searchBarBtn{
+        width: 80px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+    .shopTotal{
+        width: 1000px;
+        text-align: right;
+        border: 1px solid #00b387;
+        border-radius: 5px;
+        margin: 20px auto;
+        font-size: 24px;
+        color: #00b387;
+    }
+    .shopTotal span:last-child{
+        color: red;
+        padding-right: 20px;
+    }
+    .shopTable{
+        width: 1000px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    .shopTable th{
+        border-bottom: solid 2px #00b387;
+        height: 40px;
+    }
+    .shopTable td{
+        border-bottom: solid 1px #00b387;
+        height: 40px;
+    }
+    .shopTable th:nth-child(1){
+        width: 100px;
+    }
+    .shopTable th:nth-child(2){
+        width: 150px;
+    }
+    .shopTable th:nth-child(3){
+        width: 400px;
+    }
+    .shopTable th:nth-child(4){
+        width: 150px;
+    }
+    .shopPage{
+        margin: 20px;
+        text-align: center;
+    }
+    .shopPage span{
+        margin-right: 30px;
+    }
+    /*F A Q*/
+    .FaqTitle{
+        width: 1080px;
+        height: 100px;
+        background-color: #00b387;
+        margin: 50px 0 50px 0;
+        position: relative;
+    }
+    .FaqTitle p{
+        position: relative;
+        top: 20px;
+        left: 100px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .faqSearchBar{
+        width: 1000px;
+        height: 30px;
+    }
+    .FaqSearch{
+        border: 2px solid #00b387;
+        float: right;
+        margin-right: 10px;
+        width: 200px;
+        height: 20px;
+        padding: 0 5px;
+        
+    }
+    .FaqContainer{
+        
+        margin: 120px 0 50px 0;
+        border-top: 2px solid #00b387;
+    }
+    
+    .faq{
+        border-bottom:0px solid #ddd;
+        margin:1em 0;
+    }
+    .faq .faqHeader{
+        position:relative;
+        zoom:1
+    }
+    .faq .faqHeader .showAll{
+        position:absolute;
+        bottom:0;
+        right:0;
+        border:0;
+        padding:0;
+        overflow:visible;
+        background:none;
+        cursor:pointer}
+    .faq .faqBody{
+        margin:0;
+        padding:0
+    }
+    .faq .faqBody .article{
+        list-style:none
+    }
+    .faq .q a{
+        display:block;
+        text-align:left; 
+        padding:0 0 0 35px;
+        font-size:18px;
+        color:#5e5e5e;
+        font-weight:bold;
+        line-height: 27px;
+        cursor:pointer;
+        margin: 10px 0;}
+    .faq .a{background:#f8f8f8;
+        padding: 10px 75px 10px 75px;
+        font-size: 16px;
+        color: #444444;
+        line-height: 22px;
+        border-top: 1px solid #bdbdbd;
+        margin:5px 0 0 0;
+    }
+    
+    .FaqBtn{
+        width: 300px;
+        height: 30px;
+        background-color: #00b387;
+        color: #FFF;
+        border: none;
+        border-radius: 5px;
+        position: relative;
+        left: 50%;
+        margin-left: -150px;
+    }
