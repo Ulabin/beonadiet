@@ -48,4 +48,18 @@ window.onload = function(){
             return  
         }
     }
+
+    /*매장관리 - 매출관리*/
+    
+        /*모달창*/
+    function show () {
+        document.querySelector(".background").className = "background show";
+    }
+
+    function close () { 
+        document.querySelector(".background").className = "background";
+    }
+
+    document.querySelector("#show").addEventListener('click', show);
+    document.querySelector("#close").addEventListener('click', close); 
 }
