@@ -2070,7 +2070,7 @@ box-shadow: 0 4px 4px -4px black;
 
 .my-own-recipe-detail-caution-left{
 margin:30px;
-margin-left:100px;
+margin-left:140px;
 }
 
 .my-own-recipe-detail-caution-right{
@@ -2094,11 +2094,26 @@ margin-left:100px;
   margin: 0 auto;
   width: 250px;
 display: block;
-margin-bottom: 50px;
+margin-bottom: 30px;
 background: lightgray;
 box-shadow: 0 4px 4px -4px black;
 border-radius: 5px;
 
+}
+.add-to-basket{
+  margin: 0 auto;
+  width: 250px;
+display: block;
+margin-bottom: 30px;
+background: lightgray;
+box-shadow: 0 4px 4px -4px black;
+border-radius: 5px;
+line-height: 25px;
+border: none;
+font-size: 20px;
+font-weight: bold;
+color: #353535;
+cursor: pointer;
 }
 .order-this-recipe{
   margin: 0 auto;
