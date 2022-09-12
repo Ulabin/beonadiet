@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F A Q</title>
+</head>
+<style>
+    *{
+       margin: 0 auto;
+       padding: 0;
+       list-style: none;
+       text-decoration:none;
+    }
+    .container{
+        width: 1080px;
+    }
+    .shopTitle{
+        width: 1080px;
+        height: 100px;
+        background-color: #00b387;
+        margin: 50px 0 50px 0;
+        position: relative;
+    }
+    .shopTitle p{
+        position: relative;
+        top: 20px;
+        left: 100px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .shopBtn{
+        position: relative;
+        left: 40px;
+        margin-bottom: 30px;
+    }
+    .mibasongBtn{
+        margin: 0;
+        width: 500px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px 0 0 5px;
+    }
+    .basongBtn{
+        margin: 0;
+        width: 500px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #fff;
+        color: #00b387;
+        border-radius: 0 5px 5px 0;
+    }
+    .searchBar{
+        width: 1000px;
+        height: 30px;
+        border-radius: 5px;
+        text-align: right;
+        background-color: #ccc;
+        font-size: 13px;
+    }
+    .searchBarBtn{
+        width: 80px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+    .shopTotal{
+        width: 1000px;
+        text-align: right;
+        border: 1px solid #00b387;
+        border-radius: 5px;
+        margin: 20px auto;
+        font-size: 24px;
+        color: #00b387;
+    }
+    .shopTotal span:last-child{
+        color: red;
+        padding-right: 20px;
+    }
+    .shopTable{
+        width: 1000px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    .shopTable th{
+        border-bottom: solid 2px #00b387;
+        height: 40px;
+    }
+    .shopTable td{
+        border-bottom: solid 1px #00b387;
+        height: 40px;
+    }
+    .shopTable th:nth-child(1){
+        width: 100px;
+    }
+    .shopTable th:nth-child(2){
+        width: 150px;
+    }
+    .shopTable th:nth-child(3){
+        width: 400px;
+    }
+    .shopTable th:nth-child(4){
+        width: 150px;
+    }
+    .shopPage{
+        margin: 20px;
+        text-align: center;
+    }
+    .shopPage span{
+        margin-right: 30px;
+    }
+
+</style>
+<script>
+    window.onload = function(){
+        const searchBarBtn = document.querySelector(".searchBarBtn");
+
+        searchBarBtn.onclick = function(){
+            
+        }
+    }
+    
+</script>
+<body>
+    <div class="container">
+        <div class="shopTitle">
+            <p>매장관리</p>
+        </div>
+        <div class="shopBtn">
+            <button class="mibasongBtn">미배송</button>
+            <button class="basongBtn">배송완료</button>
+        </div>
+        <div class="searchBar">
+            <span>1개월</span>
+            <span>│</span>
+            <span>전체상품</span>
+            <span>│</span>
+            <span>최근거래순</span>
+            <button class="searchBarBtn">조회설정</button>
+        </div>
+        <div class="shopTotal">
+            <span>기간매출합계</span>
+            <span>│</span>
+            <span>40000원</span>
+        </div>
+        <div>
+            <table class="shopTable">
+                <tr>
+                    <th>주문번호</th>
+                    <th>ID</th>
+                    <th>주소</th>
+                    <th>구매상품</th>
+                    <th>구매날짜</th>
+                    <th>금액</th>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>배고픈사람</td>
+                    <td>부산광역시 부산진구 서면</td>
+                    <td>
+                        <p>샌드위치 1개</p>
+                        <p>샐러드 1개</p>
+                        <p>도시락 1개</p>
+                    </td>
+                    <td>2022.9.20</td>
+                    <td>15000원</td>
+                </tr>
+                <tr>
+                    <td>103</td>
+                    <td>다이어트</td>
+                    <td>부산광역시 부산진구 초읍</td>
+                    <td>
+                        <p>샌드위치 5개</p>
+                    </td>
+                    <td>2022.9.15</td>
+                    <td>20000원</td>
+                </tr>
+                <tr>
+                    <td>104</td>
+                    <td>주문해요</td>
+                    <td>부산광역시 부산진구 개금</td>
+                    <td>
+                        <p>샌드위치 1개</p>
+                        <p>도시락 1개</p>
+                    </td>
+                    <td>2022.9.12</td>
+                    <td>10000원</td>
+                </tr>
+                <tr>
+                    <td>201</td>
+                    <td>배고픈사람</td>
+                    <td>부산광역시 부산진구 서면</td>
+                    <td>
+                        <p>도시락 1개</p>
+                    </td>
+                    <td>2022.9.2</td>
+                    <td>5000원</td>
+                </tr>
+            </table>
+            <div class="shopPage">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

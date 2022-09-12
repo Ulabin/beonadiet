@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F A Q</title>
+</head>
+<style>
+    *{
+       margin: 0 auto;
+       padding: 0;
+       list-style: none;
+       text-decoration:none;
+    }
+    .container{
+        width: 1080px;
+    }
+    .centerTitle{
+        width: 1080px;
+        height: 100px;
+        background-color: #00b387;
+        margin: 50px 0 50px 0;
+        position: relative;
+    }
+    .centerTitle p{
+        position: relative;
+        top: 20px;
+        left: 100px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .centerBtn{
+        position: relative;
+        left: 40px;
+        margin-bottom: 30px;
+    }
+    .midabBtn{
+        margin: 0;
+        width: 500px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px 0 0 5px;
+    }
+    .dabBtn{
+        margin: 0;
+        width: 500px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #fff;
+        color: #00b387;
+        border-radius: 0 5px 5px 0;
+    }
+    .centerTable{
+        width: 1000px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    .centerTable th{
+        border-bottom: solid 2px #00b387;
+        height: 40px;
+    }
+    .centerTable td{
+        border-bottom: solid 1px #00b387;
+        height: 40px;
+    }
+    .centerTable th:nth-child(1){
+        width: 80px;
+    }
+    .centerTable th:nth-child(2){
+        width: 100px;
+    }
+    .centerTable th:nth-child(4){
+        width: 150px;
+    }
+    .centerTable th:nth-child(5){
+        width: 100px;
+    }
+    .centerTable td:nth-child(3){
+        text-align: left;
+        padding-left: 15px;
+    }
+    .inquireBtn{
+        float: right;
+        margin: 20px;
+        width: 100px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px;
+    }
+</style>
+<script>
+    window.onload = function(){
+        
+    }
+    
+</script>
+<body>
+    <div class="container">
+        <div class="centerTitle">
+            <p>고객센터</p>
+        </div>
+        <div class="centerBtn">
+            <button class="midabBtn">미답변 글보기</button>
+            <button class="dabBtn">답변완료 글보기</button>
+        </div>
+        <div>
+            <table class="centerTable">
+                <tr>
+                    <th>문의번호</th>
+                    <th>문의종류</th>
+                    <th>문의제목</th>
+                    <th>작성자</th>
+                    <th>문의날짜</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>배송</td>
+                    <td>배송기간 문의해요</td>
+                    <td>배고픈사람</td>
+                    <td>2022.9.1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>배송</td>
+                    <td>배송기간 문의해요</td>
+                    <td>배고픈사람</td>
+                    <td>2022.9.2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>배송</td>
+                    <td>배송기간 문의해요</td>
+                    <td>배고픈사람</td>
+                    <td>2022.9.3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>배송</td>
+                    <td>배송기간 문의해요</td>
+                    <td>배고픈사람</td>
+                    <td>2022.9.4</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>배송</td>
+                    <td>배송기간 문의해요</td>
+                    <td>배고픈사람</td>
+                    <td>2022.9.5</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>배송</td>
+                    <td>배송기간 문의해요</td>
+                    <td>배고픈사람</td>
+                    <td>2022.9.11</td>
+                </tr>
+            </table>
+            <button class="inquireBtn">1:1문의하기</button>
+        </div>
+    </div>
+</body>
+</html>

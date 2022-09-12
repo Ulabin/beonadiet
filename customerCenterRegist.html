@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F A Q</title>
+</head>
+<style>
+    *{
+       margin: 0 auto;
+       padding: 0;
+       list-style: none;
+       text-decoration:none;
+    }
+    .container{
+        width: 1080px;
+    }
+    .centerTitle{
+        width: 1080px;
+        height: 100px;
+        background-color: #00b387;
+        margin: 50px 0 50px 0;
+        position: relative;
+    }
+    .centerTitle p{
+        position: relative;
+        top: 20px;
+        left: 100px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+    }
+   
+    .centerRegistTable{
+        width: 1000px;
+        border-collapse: collapse;
+    }
+    .centerRegistTable td:nth-child(1){
+        width: 100px;
+    }
+    .centerRegistTable td{
+        border-bottom: solid 1px #00b387;
+        height: 40px;
+        padding-left: 20px;
+    }
+    
+    .centerRegistBtn{
+        position: relative;
+        left: 50%;
+        margin-top: 20px;
+        margin-left: -50px;
+        width: 100px;
+        height: 30px;
+        border: 1px solid #00b387;
+        background-color: #00b387;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .titleFalse .textareaFalse{
+        color: red;
+    }
+    #centerTextarea{
+        width: 800px;
+        margin: 20px 0;
+    }
+</style>
+<script>
+    window.onload = function(){
+        const centerRegistBtn = document.querySelector(".centerRegistBtn");
+        const centerRegisTitle = document.querySelector("#centerTitle");
+        const centerRegisTextarea = document.querySelector("#centerTextarea");
+        const titleFalse = document.querySelector(".titleFalse");
+        const textareaFalse = document.querySelector(".textareaFalse");
+
+        centerRegistBtn.onclick = function(){
+            if(centerRegisTitle.value.trim()==""){
+                titleFalse.textContent="제목을 입력해주세요"
+                return
+            }
+            if(centerRegisTextarea.value.trim()==""){
+                textareaFalse.textContent="내용을 입력해주세요"
+                return
+            
+            }
+        }
+    }
+    
+</script>
+<body>
+    <div class="container">
+        <div class="centerTitle">
+            <p>고객센터</p>
+        </div>
+ 
+        <div>
+            <form method="get">
+                <table class="centerRegistTable">
+                    <tr>
+                        <td>문의종류</td>
+                        <td>
+                            <select name="centerSelect" id="centerSelect">
+                                <option value="01">제품문의</option>
+                                <option value="02">구매취소</option>
+                                <option value="03">제품환불</option>
+                                <option value="04">배송</option>
+                                <option value="05">계정수정</option>
+                                <option value="06">계정탈퇴</option>
+                                <option value="07">기타</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>문의제목</td>
+                        <td>
+                            <input type="text" name="centerTitle" id="centerTitle">
+                            <span class="titleFalse"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>사진첨부</td>
+                        <td><input type="file"></td>
+                    </tr>
+                    <tr>
+                        <td>문의내용</td>
+                        <td>
+                            <textarea name="centerTextarea" id="centerTextarea" cols="30" rows="10"></textarea>
+                            <p class="textareaFalse"></p>
+                        </td>
+                    </tr>
+                </table>
+                <button class="centerRegistBtn">작성완료</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
