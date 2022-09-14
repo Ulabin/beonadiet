@@ -998,12 +998,12 @@ border:none;
   /* background-color: black; */
 }
 .my-own-recipe-add-detail-combination-details::-webkit-scrollbar-thumb {
-  background-color: #0FA958;
+  background-color: #C7DFAA;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
 .my-own-recipe-add-detail-combination-details::-webkit-scrollbar-track {
-  background-color: #00D386;
+  background-color: #eeeeee;
   border-radius: 5px;
 }
 /* ul태그 css */
@@ -1950,12 +1950,12 @@ box-shadow: 0 4px 4px -4px black;
   /* background-color: black; */
 }
 .my-own-recipe-detail::-webkit-scrollbar-thumb {
-  background-color: #0FA958;
+  background-color: C7DFAA;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
 .my-own-recipe-detail::-webkit-scrollbar-track {
-  background-color: #00D386;
+  background-color: #eeeeee;
   border-radius: 5px;
 }
 
@@ -2028,12 +2028,12 @@ box-shadow: 0 4px 4px -4px black;
   /* background-color: black; */
 }
 .my-own-recipe-detail-combination-details::-webkit-scrollbar-thumb {
-  background-color: #0FA958;
+  background-color: #C7DFAA;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
 .my-own-recipe-detail-combination-details::-webkit-scrollbar-track {
-  background-color: #00D386;
+  background-color: #eeeeee;
   border-radius: 5px;
 }
 /* ul태그 css */
