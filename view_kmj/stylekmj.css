@@ -1320,8 +1320,8 @@ border:none;
   color: black;
 }
 
-.my-page-ul {
-  list-style: none;
+.my-page-list ul{
+  /* list-style: none; */
 }
 
 /* 마이페이지 컨테이너 */
