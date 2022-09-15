@@ -737,6 +737,7 @@ select {
 .search_view_more_btn_container span{
     font-weight: 900;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .my_own_recipe_result h3, .my_own_recipe_result p{
@@ -815,6 +816,23 @@ hr{
     position: relative;
 }
 
+.warning_icon{
+    width:120px;
+}
+
+.no_result_box{
+    text-align: center;
+    padding:20px;
+}
+
+.no_result_box li {
+    list-style: none;
+}
+
+.no_result_box li>span{
+    font-size: 18px;
+    font-weight: 900;
+}
 
 /* arrangement */
 .flex_center{
