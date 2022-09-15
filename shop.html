@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylekmj.css">
     <title>F A Q</title>
 </head>
 <style>
@@ -14,10 +15,10 @@
        text-decoration:none;
     }
     .container{
-        width: 880px;
+        width: 1080px;
     }
     .shopTitle{
-        width: 880px;
+        width: 1080px;
         height: 100px;
         background-color: #00b387;
         margin: 50px 0 50px 0;
@@ -32,11 +33,12 @@
         font-weight: bold;
     }
     .shopBtn{
+        display: inline-block;
         margin-bottom: 30px;
     }
     .mibasongBtn{
         margin: 0;
-        width: 435px;
+        width: 440px;
         height: 30px;
         border: 1px solid #00b387;
         background-color: #00b387;
@@ -45,7 +47,7 @@
     }
     .basongBtn{
         margin: 0;
-        width: 435px;
+        width: 440px;
         height: 30px;
         border: 1px solid #C7DFAA;
         background-color: #fff;
@@ -53,6 +55,7 @@
         border-radius: 0 5px 5px 0;
     }
     .searchBar{
+        display: inline-block;
         width: 880px;
         height: 30px;
         border-radius: 5px;
@@ -70,6 +73,7 @@
         margin-right: 10px;
     }
     .shopTotal{
+        display: inline-block;
         width: 880px;
         text-align: right;
         border: 1px solid #00b387;
@@ -84,6 +88,7 @@
     }
     .shopTable{
         width: 880px;
+        
         text-align: center;
         border-collapse: collapse;
     }
@@ -180,7 +185,7 @@
     .shopSearchTime p,.shopSearchGoods p, .shopSearchRange p {
         font-size: 18px;
     }
-    .shopSearchTime button {
+    .serchTime {
         width: 80px;
         margin: 10px;
         border: 1px solid #00b387;
@@ -189,6 +194,9 @@
         background-color: #fff;
         font-size: 18px;
         color: #00b387;
+    }
+    .serchTime:hover{
+        cursor: pointer;
     }
     .shopSearchGoods button{
         margin: 10px;
@@ -219,6 +227,11 @@
         background-color: #00b387;
         color: #fff;
     }
+    
+    .clicked {
+        background-color: #00b387;
+        color: #fff;
+    }
 </style>
 <script>
     window.onload = function(){
@@ -232,11 +245,61 @@
 
         document.querySelector("#show").addEventListener('click', show);
         document.querySelector("#close").addEventListener('click', close);
+
+
+        mibasongBtn = document.querySelector(".mibasongBtn");
+        basongBtn = document.querySelector(".basongBtn");
+        basongBtn.onclick = function(){
+            basongBtn.style.color = "#fff";
+            basongBtn.style.backgroundColor = "#00b387";
+            basongBtn.style.borderColor = "#00b387";
+            mibasongBtn.style.color = "#00b387";
+            mibasongBtn.style.backgroundColor = "#fff";
+            mibasongBtn.style.borderColor = "#C7DFAA";
+        }
+        mibasongBtn.onclick = function(){
+            mibasongBtn.style.color = "#fff";
+            mibasongBtn.style.backgroundColor = "#00b387";
+            mibasongBtn.style.borderColor = "#00b387";
+            basongBtn.style.color = "#00b387";
+            basongBtn.style.backgroundColor = "#fff";
+            basongBtn.style.borderColor = "#C7DFAA";
+        }
+
+        /*모달창 클릭 이벤트*/
+        var serchTime = document.getElementsByClassName("serchTime");
+
+        function handleClick(event) {
+        console.log(event.target);
+
+            console.log(event.target.classList);
+
+            if (event.target.classList[1] === "clicked") {
+                event.target.classList.remove("clicked");
+            } else {
+                for (var i = 0; i < serchTime.length; i++) {
+                serchTime[i].classList.remove("clicked");
+                }
+
+                event.target.classList.add("clicked");
+            }
+        }
+
+        function init() {
+            for (var i = 0; i < serchTime.length; i++) {
+                 serchTime[i].addEventListener("click", handleClick);
+            }
+        }
+
+        init();
     }
+    
     
 </script>
 <body>
     <div class="container">
+       
+        
         <div class="shopTitle">
             <p>매장관리</p>
         </div>
@@ -244,6 +307,22 @@
             <button class="mibasongBtn">미배송</button>
             <button class="basongBtn">배송완료</button>
         </div>
+        <!--사이드바-->
+        <div class="my-page-list-container">
+            <div class="my-page-list">
+              <p style="font-size: 30px; text-align:center; margin:10px; font-weight: bold;"> 관리자메뉴</p>
+              <hr>
+              <ul class="my-page-ul">
+                <p style="font-size:25px; font-weight:bold; margin:15px;">매장관리</p>
+    
+                <li><button>주문관리</button></li>
+                <li><button>회원관리</button></li>
+                
+              </ul>
+    
+            </div>
+        </div>  
+        <!--매장관리-매출관리 본문-->
         <div class="searchBar">
             <span>1개월</span>
             <span>│</span>
@@ -257,6 +336,8 @@
             <span>│</span>
             <span>40000원</span>
         </div>
+         
+        
         <div>
             <table class="shopTable">
                 <tr>
@@ -324,6 +405,7 @@
                 <span>10</span>
             </div>
         </div>
+        
         <!--모달창-->
         <div class="background">
             <div class="window">
@@ -335,12 +417,12 @@
                     <div class="shopSearchTime">
                         <p>조회기간</p>
                         <div>
-                            <button>당일</button>
-                            <button>1주일</button>
-                            <button>1개월</button>
-                            <button>3개월</button>
-                            <button>6개월</button>
-                            <button>1년</button>
+                            <button class="serchTime">당일</button>
+                            <button class="serchTime">1주일</button>
+                            <button class="serchTime">1개월</button>
+                            <button class="serchTime">3개월</button>
+                            <button class="serchTime">6개월</button>
+                            <button class="serchTime">1년</button>
                         </div>
                     </div>
                     <div class="shopSearchGoods">
@@ -366,7 +448,10 @@
                     <button class="shopSearchOptionBtn">조 회</button>
                 </div>
             <div>
+                <!---->
+                
         <div>
+        <!---->    
     </div>
 </body>
 </html>
