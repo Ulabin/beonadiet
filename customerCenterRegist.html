@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylekmj.css">
     <title>F A Q</title>
 </head>
 <style>
@@ -33,7 +34,7 @@
     }
    
     .centerRegistTable{
-        width: 1000px;
+        width: 880px;
         border-collapse: collapse;
     }
     .centerRegistTable td:nth-child(1){
@@ -44,10 +45,12 @@
         height: 40px;
         padding-left: 20px;
     }
-    
+    .centerRegistTable td:first-child{
+        width: 100px;
+    }
     .centerRegistBtn{
         position: relative;
-        left: 50%;
+        left: 45%;
         margin-top: 20px;
         margin-left: -50px;
         width: 100px;
@@ -60,16 +63,22 @@
     .titleFalse .textareaFalse{
         color: red;
     }
+   
     #centerTextarea{
-        width: 800px;
+        max-width: 750px;
+        min-width: 750px;
+        min-height: 300px;
         margin: 20px 0;
+        resize: none;
     }
+   
 </style>
 <script>
-    window.onload = function(){
+    window.onload = function(e){
+        e.preventDefault();
         const centerRegistBtn = document.querySelector(".centerRegistBtn");
         const centerRegisTitle = document.querySelector("#centerTitle");
-        const centerRegisTextarea = document.querySelector("#centerTextarea");
+        const centerTextarea = document.querySelector(".centerTextarea");
         const titleFalse = document.querySelector(".titleFalse");
         const textareaFalse = document.querySelector(".textareaFalse");
 
@@ -78,7 +87,7 @@
                 titleFalse.textContent="제목을 입력해주세요"
                 return
             }
-            if(centerRegisTextarea.value.trim()==""){
+            if(centerTextarea.value.trim()==""){
                 textareaFalse.textContent="내용을 입력해주세요"
                 return
             
@@ -92,12 +101,27 @@
         <div class="centerTitle">
             <p>고객센터</p>
         </div>
- 
+         <!--사이드바-->
+         <div class="my-page-list-container">
+            <div class="my-page-list">
+                <p style="font-size: 30px; text-align:center; margin:10px; font-weight: bold;"> 고객센터</p>
+                <hr>
+                <ul class="my-page-ul">
+                <p style="font-size:25px; font-weight:bold; margin:15px;">문의</p>
+
+                <li><button>F.A.Q</button></li>
+                <li><button>1:1문의</button></li>
+                
+                </ul>
+
+            </div>
+        </div>
+        <!--1:1 문의 작성 본문-->
         <div>
             <form method="get">
                 <table class="centerRegistTable">
                     <tr>
-                        <td>문의종류</td>
+                        <td>문의유형</td>
                         <td>
                             <select name="centerSelect" id="centerSelect">
                                 <option value="01">제품문의</option>
@@ -111,18 +135,23 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>문의제목</td>
+                        <td>제목</td>
                         <td>
                             <input type="text" name="centerTitle" id="centerTitle">
                             <span class="titleFalse"></span>
                         </td>
                     </tr>
                     <tr>
-                        <td>사진첨부</td>
-                        <td><input type="file"></td>
+                        <td>파일첨부</td>
+                        <td>
+                            <input type="file">
+                            <p style="font-size: 14px;">※ [1:1문의하기]의 첨부파일을 통해 개인정보 서류를 접수하지 않습니다.
+                                첨부 파일은 상품관련 이미지만 접수 가능합니다.</p>
+                        </td>
+                        
                     </tr>
                     <tr>
-                        <td>문의내용</td>
+                        <td>내용</td>
                         <td>
                             <textarea name="centerTextarea" id="centerTextarea" cols="30" rows="10"></textarea>
                             <p class="textareaFalse"></p>
