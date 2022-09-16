@@ -413,9 +413,9 @@ transform: rotateX(0deg);
 }
 
 .main-page-banner-hover {
-  position: absolute;
-  top: 200px;
-  right: 500px;
+  position: relative;
+  bottom: 250px;
+  left: 800px;
   list-style: none;
 }
 
@@ -1118,6 +1118,7 @@ border:none;
   font-size: 20px;
   font-weight: bold;
   color:#353535;
+  cursor: pointer;
 }
 /* 나만의 레시피 설명 추가 my_own_recipe_add_detail.html css 끝 */
 
@@ -1367,7 +1368,7 @@ border:none;
 .my-page-card-container {
   margin: 0 auto;
   padding: 5px;
-  width: 85%;
+  width: 100%;
   height: 150px;
   /* background: rgba(0, 128, 0, 0.323); */
   text-align: center;
@@ -1378,7 +1379,7 @@ border:none;
 /* 마이페이지 카드 */
 .my-page-card {
   margin: 10px auto;
-  width: 800px;
+  width: 100%;
   height: 140px;
   /* background: rgba(255, 0, 0, 0.355); */
 
@@ -1391,7 +1392,8 @@ border:none;
 
 .my-page-card .my-page-profile,
 .my-page-delivery,
-.my-page-point {
+.my-page-point,
+.my-page-dibs {
   width: 250px;
   margin: 6px 0;
   height: 100px;
@@ -1404,6 +1406,7 @@ border:none;
   cursor: pointer;
   margin-top: 2px;
   background: white;
+  display: inline-block;
 }
 
 .my-page-profile-bottom {
@@ -1436,10 +1439,12 @@ border:none;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
+  display: inline-block;
 }
 
-.my-page-delivery button,
-.my-page-point button {
+.my-page-delivery a,
+.my-page-point a,
+.my-page-dibs a {
   background: white;
   border: none;
   cursor: pointer;
@@ -1682,16 +1687,19 @@ border:none;
 }
 
 .my-own-recipe-register-btn {
-  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left:420px;
+  height: 40px;
+  width:100px;
   background: #C7DFAA;
-  width: 150px;
-  line-height: 40px;
   border-radius: 5px;
-  border: 1px solid lightgrey;
-  box-shadow: 0.5px 0.5px 1px;
-  color: #353535;
-  text-align: center;
-  margin: 5px auto;
+  border: 1px solid lightgray;
+  box-shadow: 0 4px 4px -4px black;
+  font-size: 20px;
+  font-weight: bold;
+  color:#353535;
+  cursor: pointer;
 }
 
 /* 나만의 레시피 게시물 등록  my_own_recipe_orderhistory.html css 끝*/

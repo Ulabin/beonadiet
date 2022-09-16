@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmls:th="http://www.thymeleaf.com">
 
-<head>
+<head th:replace="fragments/common :: head('나만의레시피 상품')">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="stylekmj.css">
+  <!-- <link rel="stylesheet" type="text/css" href="stylekmj.css"> -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
@@ -14,6 +14,9 @@
 </head>
 
 <body>
+  
+  <div class="home-container" th:replace="fragments/common :: nav"></div>
+
   <div class="my-own-recipe-detail-container">
     <div class="my-own-recipe-detail-title-container">
       <div class="my-own-recipe-detail-title">
@@ -35,10 +38,10 @@
             <!-- <img src="./images/img2.jpg" alt="img" class="thumbPic"> -->
           </div>
           <div class="my-own-recipe-addition-img">
-            <img src="./images/img2.jpg" alt="img" class="smallPic">
-            <img src="./images/img1.jpg" alt="img" class="smallPic">
-            <img src="./images/img3.jpg" alt="img" class="smallPic">
-            <img src="./images/img4.jpg" alt="img" class="smallPic">
+            <img src="../images/img2.jpg" alt="img" class="smallPic">
+            <img src="../images/img1.jpg" alt="img" class="smallPic">
+            <img src="../images/img3.jpg" alt="img" class="smallPic">
+            <img src="../images/img4.jpg" alt="img" class="smallPic">
           </div>
 
           <div class="my-own-recipe-detail">
@@ -97,7 +100,7 @@
             </div>
             <div class="for-center">
               <button type="button"  class="add-to-basket" >장바구니에 넣기</button>
-              <a href="#" class="go-to-other-recipe">이 유저의 다른 레시피 보기</a>
+              <a href="#" th:href="@{/myownrecipe/moruserpost}" class="go-to-other-recipe">이 유저의 다른 레시피 보기</a>
               <a href="#" class="order-this-recipe">레시피 주문하기</a>
             </div>
           </div>
@@ -108,7 +111,8 @@
   </div>
 
 
-  <script src="./javascript/my_own_recipe_product_detail_page.js"></script>
+  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+  <script th:src="@{/javascript/my_own_recipe_product_detail_page.js}"></script>
  
 </body>
 

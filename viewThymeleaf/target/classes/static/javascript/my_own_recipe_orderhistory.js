@@ -4,7 +4,7 @@ var list = document.querySelector('.my-own-recipe-register-orderhistory');
 
       list.innerHTML += `<div class="my-own-recipe-register-orderhistory-item">
           <div class="my-own-recipe-register-orderhistory-item-img">
-            <img src="./images/salad.png" alt="image">
+             <img src="../images/salad.png" alt="image">
           </div>
           <div class="my-own-recipe-register-orderhistory-item-name">
             <p>[나만의 샌드위치] 아삭모닝</p>

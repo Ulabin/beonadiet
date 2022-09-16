@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('나만의 레시피 주문내역')">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}"> -->
+  <title>My Own Recipe OrderHistory</title>
+
+</head>
+
+<body>
+  <div class="home-container" th:replace="fragments/common :: nav"></div>
+
+  <div class="my-own-recipe-register-container">
+    <div class="my-own-recipe-register-title-container">
+      <div class="my-own-recipe-register-title">
+        <p>상품선택</p>
+      </div>
+    </div>
+    <div class="my-own-recipe-register-radiobox-container">
+
+      <div class="my-own-recipe-register-radiobox">
+        <input type="radio" id="lunchbox" name="my-own-recipe-register-radio"><label for="lunchbox">나만의 도시락</label>
+        <input type="radio" id="sandwich" name="my-own-recipe-register-radio"><label for="sandwich">나만의 샌드위치</label>
+        <input type="radio" id="salad" name="my-own-recipe-register-radio"><label for="salad">나만의 샐러드</label>
+      </div>
+    </div>
+
+    <div class="my-own-recipe-register-orderhistory-conatiner">
+
+      <p class="my-own-recipe-register-orderhistory-title">주문상품 이력</p>
+      <form th:action="@{/myownrecipe/moradddetail}" method="get">
+        <div class="my-own-recipe-register-orderhistory">
+          <!-- 상품 -->
+          <span class="">상품명</span>
+          <span class="">조합내용</span>
+          <hr>
+          <!-- 상품 -->
+
+          <!-- 페이징 -->
+        </div>
+        <div class="my-own-recipe-register-orderhistory-pagination-container">
+          <div class="my-own-recipe-register-orderhistory-pagination">PREV|1|2|3|4|5|6|7|8|9|NEXT</div>
+        </div>
+        <button type="submit" name="register-btn" class="my-own-recipe-register-btn">
+          추가 설정
+        </button>
+       
+      </form>
+
+    </div>
+  </div>
+  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+  <script th:src="@{/javascript/my_own_recipe_orderhistory.js}"></script>
+
+</body>
+
+</html>

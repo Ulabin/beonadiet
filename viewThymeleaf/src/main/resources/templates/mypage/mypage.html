@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}">
+  <!-- <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}"> -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
   <title>Mypage</title>
@@ -19,10 +19,10 @@
     <div class="my-page-card-container">
       <div class="my-page-card">
         <div class="my-page-profile">
-          <button type="button" class="my-page-profile-modify-button-img">
+          <a href="#" class="my-page-profile-modify-button-img">
             <iconify-icon icon="healthicons:ui-user-profile" style="color: #4287f5;" width="60" height="60">
             </iconify-icon>
-          </button>
+          </a>
 
           <div clas="my-page-profile-bottom">
             <span>
@@ -30,8 +30,8 @@
             </span>
             <h5 style="font-size: 5px;">&nbsp;</h5>
             <span>
-              <button class="my-page-profile-modify-button">정보수정</button>
-              <button type="button" class="my-page-logout">로그아웃</button>
+              <a href="#" class="my-page-profile-modify-button">정보수정</a>
+              <a href="#" class="my-page-logout">로그아웃</a>
             </span>
           </div>
         </div>
@@ -43,9 +43,9 @@
           <div
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color: #0FA958; ">
             1 </div><p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;" >개</p>
-          <button style="display: inline-block; float:right; margin-right:20px;">
+          <a href="#" style="display: inline-block; float:right; margin-right:20px;">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
-          </button>
+          </a>
         </div>
 
 
@@ -55,10 +55,22 @@
           <div
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
             3 </div><p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;" >원</p>
-          <button style="display: inline-block; float:right; margin-right:20px; ">
+          <a href="#" style="display: inline-block; float:right; margin-right:20px; ">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
-          </button>
+          </a>
         </div>
+        <div class="my-page-dibs">
+          <p style="font-size: 25px; font-weight: bold;">찜목록</p>
+          <h3>&nbsp;</h3>
+          <div
+            style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
+            3 </div><p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;" >개</p>
+          <a href="#" style="display: inline-block; float:right; margin-right:20px; ">
+            <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
+          </a>
+        </div>
+        
+        
 
 
       </div>

@@ -10,7 +10,7 @@ var list = document.querySelector('.user-post-item-container');
       </div>
 
       
-        <img src="./images/img1.jpg" alt="image" class="user-post-item-image">
+        <img src="../images/img1.jpg" alt="image" class="user-post-item-image">
       
       <div class="user-post-mod-def-date-container">
         <div class="user-post-mod-date">수정날짜 : 2022.09.04</div>
@@ -31,7 +31,7 @@ var list = document.querySelector('.user-post-item-container');
       </div>
 
       
-        <img src="./images/img1.jpg" alt="image" class="user-post-item-image">
+        <img src="../images/img1.jpg" alt="image" class="user-post-item-image">
       
       <div class="user-post-mod-def-date-container">
         <div class="user-post-mod-date">수정날짜 : 2022.09.04</div>
