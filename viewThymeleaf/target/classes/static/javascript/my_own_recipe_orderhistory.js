@@ -30,3 +30,15 @@ var list = document.querySelector('.my-own-recipe-register-orderhistory');
         </div> <hr>`;
 
     }
+
+$(document).ready(function(){
+  // var listVar = $('input[name=my-own-recipe-register-orderhistory-item-check]:checked').val();
+  $('.my-own-recipe-register-btn').click(function(){
+    var isValid = $("input[name=my-own-recipe-register-orderhistory-item-check]").is(":checked");
+    if(isValid == 0){
+      alert("상품 중 하나를 선택해주십시오");
+      return false;
+    } 
+  })
+  
+});  

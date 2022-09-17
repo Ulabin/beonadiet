@@ -958,9 +958,17 @@ border:none;
   clip:rect(0,0,0,0);
   border: 0;
 }
+
 /* 썸네일 사진 */
-.my-own-recipe-add-detail-thumbnail-img img{
+.my-own-recipe-add-detail-thumbnail-img {
   margin:5px;
+  width:500px;
+  height:250px;
+  box-shadow: 0 4px 4px -4px black;
+  background: #c7c7c7;
+}
+.my-own-recipe-add-detail-thumbnail-img img{
+  /* margin:5px; */
   width:500px;
   height:250px;
   box-shadow: 0 4px 4px -4px black;
@@ -968,7 +976,9 @@ border:none;
 /* 부가사진 컨테이너  */
 .my-own-recipe-add-detail-addition-img{
   display: inline-block;
-
+  width:120px;
+  height:80px;
+  background: #c7c7c7;
 }
 /* 부가 사진 */
 .my-own-recipe-add-detail-addition-img img{

@@ -21,3 +21,75 @@ $("input[id=ex_file]").change(function () {
     }
   }
 })
+
+$("#ex_file").on("change", function (event) {
+  
+  for(var i= 0; i<4; i++){
+    if(i==0){
+      
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img1").attr("src", e.target.result);
+          $(".my-own-recipe-add-detail-thumbnail-img").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    } else if(i==1){
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img2").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }else if(i==2){
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img3").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }else if(i==3){
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img4").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }
+  }
+  // varimg = $(".my-own-recipe-add-detail-addition-img1").attr('src');
+  
+  // $(".my-own-recipe-add-detail-thumbnail-img").attr("src", varimg);
+      
+});
+
+
+$(document).ready(function(){
+  // var listVar = $('input[name=my-own-recipe-register-orderhistory-item-check]:checked').val();
+  $('.my-own-recipe-add-detail-register-button').click(function(){
+
+
+    var textarea = $('.my-own-recipe-add-detail-explanation-textarea');
+    if(textarea.val() == ""){
+      alert("설명을 추가해 주십시오")
+      return false;
+    } else if (textarea.val().length > 200){
+      alert("글자수 최대 200자 입니다.")
+      return false;
+    } 
+    else if (textarea.val().length < 20) {
+       console.log(textarea.val());
+       alert("글자수 최소 20자 입니다.")
+       return false;
+      } else {
+      console.log(textarea.val());
+      return  $trim(textarea.val())
+    }
+  
+  })
+  
+});  
