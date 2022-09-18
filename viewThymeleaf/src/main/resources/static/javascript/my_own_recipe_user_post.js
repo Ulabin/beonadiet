@@ -45,3 +45,12 @@ var list = document.querySelector('.user-post-item-container');
     </div></a>`;
       }
     }
+    $(document).ready(function(){
+      $('.user-post-radiobox > a').click(function(){
+        $(this).css("background-color", "#353535");
+        $(this).css("color", "#C7DFAA");
+        $(this).siblings().css("background-color","#C7DFAA");
+        $(this).siblings().css("color","#353535");
+        
+    })
+    })

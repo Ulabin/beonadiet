@@ -12,4 +12,9 @@ public class MypageController {
   public String mypage(){
     return "mypage/mypage";
   }
+
+  @GetMapping("/mypost")
+  public String mypost(){
+    return "mypage/mypost";
+  }
 }

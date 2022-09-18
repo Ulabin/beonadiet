@@ -10,7 +10,7 @@ var list = document.querySelector('.my-post-item-container');
       </div>
 
       <a href="#">
-        <img src="./images/img1.jpg" alt="image" class="my-post-item-image">
+        <img src="../images/img1.jpg" alt="image" class="my-post-item-image">
       </a>
       <div class="my-post-mod-def-date-container">
         <div class="my-post-mod-date">수정날짜 : 2022.09.04</div>
@@ -35,7 +35,7 @@ var list = document.querySelector('.my-post-item-container');
       </div>
 
       <a href="#">
-        <img src="./images/img1.jpg" alt="image" class="my-post-item-image">
+        <img src="../images/img1.jpg" alt="image" class="my-post-item-image">
       </a>
       <div class="my-post-mod-def-date-container">
         <div class="my-post-mod-date">수정날짜 : 2022.09.04</div>
@@ -60,5 +60,13 @@ var list = document.querySelector('.my-post-item-container');
     alert("Click!");
   });
     }
-    
+    $(document).ready(function(){
+      $('.my-post-radiobox > a').click(function(){
+        $(this).css("background-color", "#353535");
+        $(this).css("color", "#C7DFAA");
+        $(this).siblings().css("background-color","#C7DFAA");
+        $(this).siblings().css("color","#353535");
+        
+    })
+    })
     

@@ -97,7 +97,8 @@
             <li><button>1:1문의내역</button></li>
             <li><button>나의상품문의</button></li>
             <li><button>나의상품후기</button></li>
-            <li><button>나의게시글</button></li>
+            <!-- <li><a href="#" th:href="@{/mypage/mypost}" class="change">나의게시글</a></li> -->
+            <li><button type="button" class="change">나의게시글</button></li>
           </ul>
         </div>
       </div>
@@ -105,6 +106,7 @@
 
       <div class="my-page-detail-container">
         <div class="my-page-detail">
+          
           <p>What is Lorem Ipsum?
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
@@ -140,7 +142,7 @@
     </div>
   </div>
   <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
-<script src="./javascript/mypage.js"></script>
+<script th:src="@{/javascript/mypage.js} "></script>
 
 </body>
 

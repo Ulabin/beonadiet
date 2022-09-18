@@ -1165,35 +1165,18 @@ border:none;
 
 
 /* 카테고리 선택 라디오박스  */
-.my-post-radiobox input[type=radio] {
-  display: none;
-}
-
-
-.my-post-radiobox input[type=radio]+label {
+.my-post-radiobox  a{
   display: inline-block;
-  cursor: pointer;
-  height: 40px;
-  width: 130px;
-  border: 1px solid #333;
-  line-height: 24px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 18px;
-  margin-left: 80px;
-  margin-top: 20px;
-  line-height: 40px;
-  font-weight: bold;
-}
-
-.my-post-radiobox input[type=radio]+label {
   background-color: #C7DFAA;
   color: #353535;
-}
-
-.my-post-radiobox input[type=radio]:checked+label {
-  background-color: #353535;
-  color: #C7DFAA;
+  margin-left:65px;
+  margin-top:10px;  
+  height: 50px;
+  width:150px;
+  line-height: 50px;
+  border: 1px solid #333;
+  text-align: center;
+  font-weight: bold;
 }
 
 /* 나의 게시물 아이템 */
@@ -1552,35 +1535,20 @@ border:none;
   /* background: darkred; */
 }
 
-/* 카테고리 선택 라디오박스  */
-.my-own-recipe-register-radiobox input[type=radio] {
-  display: none;
-}
-
-.my-own-recipe-register-radiobox input[type=radio]+label {
+/* 카테고리 선택 라디오박스같은 기능  */
+.my-own-recipe-register-radiobox  a{
   display: inline-block;
-  cursor: pointer;
-  height: 40px;
-  width: 200px;
-  border: 1px solid #333;
-  line-height: 24px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 18px;
-  margin-left: 70px;
-  margin-top: 20px;
-  line-height: 40px;
-  font-weight: bold;
-}
-
-.my-own-recipe-register-radiobox input[type=radio]+label {
   background-color: #C7DFAA;
   color: #353535;
-}
-
-.my-own-recipe-register-radiobox input[type=radio]:checked+label {
-  background-color: #353535;
-  color: #C7DFAA;
+  margin:0 60px;
+  margin-top:10px;
+  margin-left:80px;
+  height: 50px;
+  width:150px;
+  line-height: 50px;
+  border: 1px solid #333;
+  text-align: center;
+  font-weight: bold;
 }
 
 
@@ -1754,34 +1722,18 @@ border:none;
 }
 
 /* 카테고리 선택 라디오박스  */
-.user-post-radiobox input[type=radio] {
-  display: none;
-}
-
-.user-post-radiobox input[type=radio]+label {
+.user-post-radiobox  a{
   display: inline-block;
-  cursor: pointer;
-  height: 40px;
-  width: 130px;
-  border: 1px solid #333;
-  line-height: 24px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 18px;
-  margin-left: 78px;
-  margin-top: 20px;
-  line-height: 40px;
-  font-weight: bold;
-}
-
-.user-post-radiobox input[type=radio]+label {
   background-color: #C7DFAA;
   color: #353535;
-}
-
-.user-post-radiobox input[type=radio]:checked+label {
-  background-color: #353535;
-  color: #C7DFAA;
+  margin-left:65px;
+  margin-top:10px;  
+  height: 50px;
+  width:150px;
+  line-height: 50px;
+  border: 1px solid #333;
+  text-align: center;
+  font-weight: bold;
 }
 
 /* 나의 게시물 아이템 */
