@@ -16,7 +16,7 @@ $(document).ready(function(){
   let i = 0;
   
   var bannerChangeInterval = setInterval(function(){
-      $(".main-page-banner-a>a").eq(i).css("display","block");
+      $(".main-page-banner-a>a").eq(i).css("display","inline-block");
       $(".main-page-banner-a>a").eq(i).siblings().css("display","none");
       $(".main-page-banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
       $(".main-page-banner-hover>li").eq(i).css("box-sizing"," border-box");
@@ -32,7 +32,7 @@ $(document).ready(function(){
     $(".main-page-banner-hover>li").eq(i).mouseenter(function(){
       $(".main-page-banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
       $(".main-page-banner-hover>li").eq(i).css("box-sizing"," border-box");
-      $(".main-page-banner-a>a").eq(i).css("display","block");
+      $(".main-page-banner-a>a").eq(i).css("display","inline-block");
       $(".main-page-banner-a>a").eq(i).siblings().css("display","none");
       clearInterval(bannerChangeInterval)
       $(".main-page-banner-hover>li").eq(i).siblings().css("border"," none");
@@ -43,7 +43,7 @@ $(document).ready(function(){
     for(let i = 0; i<5; i++){
     $(".main-page-banner-hover>li").eq(i).mouseleave(function(){
       bannerChangeInterval = setInterval(function(){
-      $(".main-page-banner-a>a").eq(i).css("display","block");
+      $(".main-page-banner-a>a").eq(i).css("display","inline-block");
       $(".main-page-banner-a>a").eq(i).siblings().css("display","none");
       $(".main-page-banner-hover>li").eq(i).css("border"," rgb(0, 211, 135) 2px solid");
       $(".main-page-banner-hover>li").eq(i).css("box-sizing"," border-box");

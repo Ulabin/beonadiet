@@ -199,7 +199,7 @@ https://flickity.metafizzy.co
   bottom:10px;
   display:inline-block;
   width: 100px;
-  
+ 
 }
 .main-page-category-menu a{
   text-decoration: none;
@@ -902,7 +902,7 @@ border:none;
 }
 /* 사진선택 상자 */
 .my-own-recipe-search-img label {
-  
+ 
   display: inline-block;
   padding: .5em .75em;
   color: #353535;
@@ -990,7 +990,7 @@ border:none;
   /* background: lawngreen; */
   text-align: center;
   overflow-y: scroll;
-  
+ 
 }
 /*  스크롤바 css */
 .my-own-recipe-add-detail-combination-details::-webkit-scrollbar {
@@ -1014,7 +1014,7 @@ border:none;
   /* background: cadetblue; */
   padding-left:70px;
   padding-top: 10px;
-  
+ 
 
 }
 .my-own-recipe-add-detail-combination-details li{
@@ -1043,12 +1043,12 @@ border:none;
   color: #353535;
 }
 /* 조합 설명란 */
-.my-own-recipe-add-detail-explanation-textarea{ 
+.my-own-recipe-add-detail-explanation-textarea{
   width: 520px;
   height:170px;
   border: none;
   padding: 5px;
-	resize: none;
+  resize: none;
   font-size: 20px;
   outline: none;
   box-shadow: 0 4px 4px -4px black;
@@ -1066,7 +1066,7 @@ border:none;
 .my-own-recipe-add-detail-explanation-textarea::-webkit-scrollbar-track {
   background-color: #00D386;
   border-radius: 5px;
-} 
+}
 
 /* 등록 버튼컨테이너 */
 .my-own-recipe-add-detail-register-button-container{
@@ -2020,7 +2020,7 @@ box-shadow: 0 4px 4px -4px black;
   /* background: lawngreen; */
   text-align: center;
   overflow-y: scroll;
-  
+ 
 }
 /*  스크롤바 css */
 .my-own-recipe-detail-combination-details::-webkit-scrollbar {
@@ -2044,7 +2044,7 @@ box-shadow: 0 4px 4px -4px black;
   /* background: cadetblue; */
   padding-left:70px;
   padding-top: 10px;
-  
+ 
 
 }
 .my-own-recipe-detail-combination-details li{
