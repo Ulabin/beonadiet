@@ -15,7 +15,7 @@
 
 <body>
   <div class="home-container" th:replace="fragments/common :: nav"></div>
-  <div class="my-page-container">
+  <div class="my-page-container" th:fragment="mypage">
     <div class="my-page-card-container">
       <div class="my-page-card">
         <div class="my-page-profile">
@@ -86,6 +86,7 @@
             <li><button>주문목록 / 배송조회</button></li>
             <li><button>찜 목록</button></li>
             <li><button>적립금</button></li>
+            <li><button>장바구니</button></li>
           </ul>
 
           <ul>
@@ -98,14 +99,14 @@
             <li><button>나의상품문의</button></li>
             <li><button>나의상품후기</button></li>
             <!-- <li><a href="#" th:href="@{/mypage/mypost}" class="change">나의게시글</a></li> -->
-            <li><button type="button" class="change">나의게시글</button></li>
+            <li><a th:href="@{/mypage/mypost}">나의게시글</a></li>
           </ul>
         </div>
       </div>
 
 
       <div class="my-page-detail-container">
-        <div class="my-page-detail">
+        <div class="my-page-detail" th:fragmet="mypagedetail">
           
           <p>What is Lorem Ipsum?
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the

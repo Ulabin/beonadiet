@@ -8,12 +8,12 @@ $(document).ready(function () {
     
   });
 
-  $(".change").click(function(){
-    $(".my-page-detail").empty();
+  // $(".change").click(function(){
+  //   $(".my-page-detail").empty();
     
-    $(".my-page-detail").html(` <div class="my-post-container" th:replace="mypage/mypost :: mypost"></div> `);
+  //   $(".my-page-detail").html(` <div class="my-post-container" th:replace="mypage/mypost :: mypost"></div> `);
    
-  });
+  // });
   
 
   
