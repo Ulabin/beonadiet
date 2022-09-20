@@ -24,9 +24,9 @@ public class MyownrecipeController {
   }
 
   @GetMapping("/morhistory")
-  public String morhistory(){
-    // List<MyOwnRecipe> list = mrepository.findAll();
-    // model.addAttribute("list", list);
+  public String morhistory(Model model){
+    List<MyOwnRecipe> list = mrepository.findAll();
+    model.addAttribute("list", list);
     return "myownrecipe/morhistory";
   }
 

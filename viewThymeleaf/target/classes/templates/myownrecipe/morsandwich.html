@@ -1,9 +1,9 @@
-<div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == '1'}">
+<div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == 1}">
   <div class="my-own-recipe-register-orderhistory-item-img">
     <img src="../images/salad.png" alt="image">
   </div>
   <div class="my-own-recipe-register-orderhistory-item-name-category">
-    <div class="my-own-recipe-register-orderhistory-item-category" th:if="${list.category == '1'}">
+    <div class="my-own-recipe-register-orderhistory-item-category" th:if="${list.category == 1}">
       [나만의 샌드위치]
     </div>
     <div class="my-own-recipe-register-orderhistory-item-name" th:text="${list.name}">
