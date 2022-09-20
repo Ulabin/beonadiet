@@ -18,7 +18,7 @@ public class MyOwnRecipeDTO {
   private String explanation;
   private int views;
   private int likeCount;
-  private String category;
+  private int category;
   private String detail;
   private LocalDateTime regDate, modDate;
   

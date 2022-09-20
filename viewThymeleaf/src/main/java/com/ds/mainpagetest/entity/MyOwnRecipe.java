@@ -19,14 +19,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MyOwnRecipe extends BaseEntity{
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
   private String name;
   private String explanation;
   private int views;
   private int likeCount;
-  private String category;
+  private int category;
   private String detail;
 
 }

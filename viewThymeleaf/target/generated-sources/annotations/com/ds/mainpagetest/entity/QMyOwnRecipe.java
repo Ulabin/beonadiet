@@ -21,7 +21,7 @@ public class QMyOwnRecipe extends EntityPathBase<MyOwnRecipe> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final StringPath category = createString("category");
+    public final NumberPath<Integer> category = createNumber("category", Integer.class);
 
     public final StringPath detail = createString("detail");
 
