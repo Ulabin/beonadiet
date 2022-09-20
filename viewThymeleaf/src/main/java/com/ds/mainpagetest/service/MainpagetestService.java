@@ -1,10 +1,12 @@
 package com.ds.mainpagetest.service;
 
 import com.ds.mainpagetest.dto.MyOwnRecipeDTO;
+import com.ds.mainpagetest.dto.PageRequestDTO;
+import com.ds.mainpagetest.dto.PageResultDTO;
 import com.ds.mainpagetest.entity.MyOwnRecipe;
 
 public interface MainpagetestService {
-
+  PageResultDTO<MyOwnRecipeDTO, MyOwnRecipe> getList(PageRequestDTO requestDTO);
   default MyOwnRecipe dtoToEntity(MyOwnRecipeDTO dto) {
     MyOwnRecipe entity = MyOwnRecipe.builder().id(dto.getId())
         .name(dto.getName())

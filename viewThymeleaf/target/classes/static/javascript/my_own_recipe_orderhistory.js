@@ -31,76 +31,91 @@
 
 //     }
 
-$(document).ready(function(){
+$(document).ready(function () {
   // var listVar = $('input[name=my-own-recipe-register-orderhistory-item-check]:checked').val();
-  $('.my-own-recipe-register-btn').click(function(){
+  $('.my-own-recipe-register-btn').click(function () {
     var isValid = $("input[name=my-own-recipe-register-orderhistory-item-check]").is(":checked");
-    if(isValid == 0){
+    if (isValid == 0) {
       alert("상품 중 하나를 선택해주십시오");
       return false;
-    } 
+    }
   })
-  
-$('.my-own-recipe-register-radiobox > a').click(function(){
+
+  $('.my-own-recipe-register-radiobox > button').click(function () {
     $(this).css("background-color", "#353535");
     $(this).css("color", "#C7DFAA");
-    $(this).siblings().css("background-color","#C7DFAA");
-    $(this).siblings().css("color","#353535");
-
-    
+    $(this).siblings().css("background-color", "#C7DFAA");
+    $(this).siblings().css("color", "#353535");
   })
-  
-// $('.my-own-recipe-register-radiobox > a').eq(0).click(function(){
-//   $(".my-own-recipe-register-orderhistory-item").attr("th:if", "${list.category == '1'}");
-// })
-// $('.my-own-recipe-register-radiobox > a').eq(1).click(function(){
-//   $(".my-own-recipe-register-orderhistory-item").attr("th:if", "${list.category == '2'}");
-// })
-// $('.my-own-recipe-register-radiobox > a').eq(2).click(function(){
-//   $(".my-own-recipe-register-orderhistory-item").attr("th:if", "${list.category == '3'}");
-// })
-
-
-});  
-
-window.onload = document(function () {
-  function showUploadedImages(arr){
-    const divArea = document.querySelector(".uploadResult");
-    const url = /*[[@{/display}]]*/'url'
-    let str='';
-    for(let i=0;i<arr.length;i++){
-      // str += `<div>
-      //           <img src="${url}?fileName=${arr[i].thumbnailURL}">
-      //           <button class='removeBtn' 
-      //             data-name='${arr[i].imageURL}'>REMOVE</button>
-      //         </div>
-      //       `
-
-      str += `
-      <div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == '1'}">
-      <div class="my-own-recipe-register-orderhistory-item-img">
-         <img src="../images/salad.png" alt="image">
-      </div>
-      <div th:text="${list.category}"> </div>
-      <div class="my-own-recipe-register-orderhistory-item-name" th:text="${list.name}" >
-        <!-- <p>[나만의 샌드위치] 아삭모닝</p> -->
-      </div>
-      
-      
-      <div class="my-own-recipe-register-orderhistory-item-detail">
-        <div class="my-own-recipe-register-orderhistory-item-detail-list" th:text="${list.explanation}">
-       
-        </div> 
-      </div>
-      <div class="my-own-recipe-register-orderhistory-item-check">
-        <input type="radio" class="my-own-recipe-register-orderhistory-item-check-btn" name="my-own-recipe-register-orderhistory-item-check">
-      </div>
-
-    </div> <hr>
-      `
-     
-    }
-    divArea.innerHTML = str;
-  }
-  showUploadedImages(res.data);
 });
+
+// 나만의 도시락
+function getMemberList1() {
+
+
+  /*<![CDATA[*/
+  $.ajax({
+    type: "GET",
+    url: "morlunchbox",
+
+  })
+    .done(function (result) {
+      console.log(result);
+      $('.uploadResult').empty();
+      $('.uploadResult').html(result)
+    })
+    .fail(function (jqXHR) {
+      console.log(jqXHR);
+      console.log("에러");
+    })
+    .always(function () {
+      console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
+    })
+  /*]]*/
+}
+// 나만의 샌드위치
+function getMemberList2() {
+
+
+  /*<![CDATA[*/
+  $.ajax({
+    type: "GET",
+    url: "morsandwich",
+
+  })
+    .done(function (result) {
+      console.log(result);
+      $('.uploadResult').empty();
+      $('.uploadResult').html(result)
+    })
+    .fail(function (jqXHR) {
+      console.log(jqXHR);
+      console.log("에러");
+    })
+    .always(function () {
+      console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
+    })
+  /*]]*/
+}
+// 나만의 샐러드
+function getMemberList3() {
+  /*<![CDATA[*/
+  $.ajax({
+    type: "GET",
+    url: "morsalad",
+
+  })
+    .done(function (result) {
+      console.log(result);
+      $('.uploadResult').empty();
+      $('.uploadResult').html(result)
+    })
+    .fail(function (jqXHR) {
+      console.log(jqXHR);
+      console.log("에러");
+    })
+    .always(function () {
+      console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
+    })
+  /*]]*/
+}

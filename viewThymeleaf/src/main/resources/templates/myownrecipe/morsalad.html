@@ -1,0 +1,34 @@
+<div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == '2'}">
+  <div class="my-own-recipe-register-orderhistory-item-img">
+    <img src="../images/salad.png" alt="image">
+  </div>
+  <div class="my-own-recipe-register-orderhistory-item-name-category">
+    <div class="my-own-recipe-register-orderhistory-item-category" th:if="${list.category == '2'}">
+      [나만의 샐러드]
+    </div>
+    <div class="my-own-recipe-register-orderhistory-item-name" th:text="${list.name}">
+
+    </div>
+
+  </div>
+  <div class="my-own-recipe-register-orderhistory-item-detail">
+    <div class="my-own-recipe-register-orderhistory-item-detail-list" th:text="${list.explanation}">
+      <!-- <ul>
+          <li>화이트:15cm</li>
+          <li>계란</li>
+          <li>양상추</li>
+          <li>케첩</li>
+          <li>토마토</li>
+          <li>햄</li>
+          <li>오이</li>
+          <li>치즈</li>화이트 계란 양상추 케첩 토마토 햄 오이 치즈
+        </ul> -->
+    </div>
+  </div>
+  <div class="my-own-recipe-register-orderhistory-item-check">
+    <input type="radio" class="my-own-recipe-register-orderhistory-item-check-btn"
+      name="my-own-recipe-register-orderhistory-item-check">
+  </div>
+
+</div>
+<hr>

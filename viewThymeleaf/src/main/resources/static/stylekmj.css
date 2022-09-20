@@ -658,8 +658,7 @@ transform: rotateX(0deg);
 .my-own-recipe-banner-container {
   width: 100%;
   height: 300px;
-  /* background:#00D386; */
-  /* background: #84D0B1; */
+
   font-weight: bold;
 }
 
@@ -1044,7 +1043,7 @@ border:none;
   box-shadow: 0 4px 4px -4px black;
 }
 .my-own-recipe-add-detail-combination-details::-webkit-scrollbar-track {
-  background-color: #00D386;
+  background-color: #C7DFAA;
   border-radius: 5px;
 }
 /* ul태그 css */
@@ -1105,7 +1104,7 @@ border:none;
   box-shadow: 0 4px 4px -4px black;
 }
 .my-own-recipe-add-detail-explanation-textarea::-webkit-scrollbar-track {
-  background-color: #00D386;
+  background-color: #C7DFAA;
   border-radius: 5px;
 } 
 
@@ -1536,7 +1535,7 @@ border:none;
 }
 
 /* 카테고리 선택 라디오박스같은 기능  */
-.my-own-recipe-register-radiobox  a{
+.my-own-recipe-register-radiobox  button{
   display: inline-block;
   background-color: #C7DFAA;
   color: #353535;
@@ -1549,6 +1548,7 @@ border:none;
   border: 1px solid #333;
   text-align: center;
   font-weight: bold;
+  cursor:pointer;
 }
 
 
@@ -1570,7 +1570,14 @@ border:none;
 /*  주문이력 실 리스트 */
 .my-own-recipe-register-orderhistory {
   width: 100%;
-  /* background: lightcoral; */
+}
+.my-own-recipe-register-orderhistory-item-name-category{
+  width:450px;
+}
+.my-own-recipe-register-orderhistory-item{
+  font-family:'lg';
+  font-weight:bold;
+  color:#353535;
 }
 
 /* 상품 div태그 설정 */
@@ -1595,12 +1602,6 @@ border:none;
 }
 
 /* 상품  이름 컨테이너*/
-.my-own-recipe-register-orderhistory-item-name {
-  width: 200px;
-  margin-left: 100px;
-  text-align: center;
-
-}
 
 /* 상품명, 조합내용 span태그 설정 */
 .my-own-recipe-register-orderhistory span {
@@ -1614,20 +1615,47 @@ border:none;
 .my-own-recipe-register-orderhistory-item-name {
   position: relative;
   bottom: 40px;
+  width: 200px;
+  margin-left: 100px;
+  text-align: center;
+  background: #c7c7c7;
+}
+.my-own-recipe-register-orderhistory-item-category{
+  position:relative;
+  bottom:40px;
+  left:100px;
+  
 }
 
 /* 실 상품명 */
 .my-own-recipe-register-orderhistory-item-detail {
   width: 300px;
-  margin-left: 110px;
+  margin-left: 10px;
   text-align: center;
+ 
+}
+.my-own-recipe-register-orderhistory-item-detail-list::-webkit-scrollbar {
+  width: 20px;
+  /* background-color: black; */
+}
+.my-own-recipe-register-orderhistory-item-detail-list::-webkit-scrollbar-thumb {
+  background-color: #0FA958;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px -4px black;
+}
+.my-own-recipe-register-orderhistory-item-detail-list::-webkit-scrollbar-track {
+  background-color: #C7DFAA;
+  border-radius: 5px;
 }
 
+
 .my-own-recipe-register-orderhistory-item-detail-list {
-  /* background: purple; */
   margin: 0 auto;
   width: 200px;
   margin-top: 10px;
+  height:100px;
+  overflow-y: scroll;
+  padding: 5px;
 }
 
 .my-own-recipe-register-orderhistory-item-detail-list ul {
@@ -1956,7 +1984,7 @@ box-shadow: 0 4px 4px -4px black;
   box-shadow: 0 4px 4px -4px black;
 }
 .my-own-recipe-detail::-webkit-scrollbar-track {
-  background-color: #00D386;
+  background-color: #C7DFAA;
   border-radius: 5px;
 }
 
@@ -2034,7 +2062,7 @@ box-shadow: 0 4px 4px -4px black;
   box-shadow: 0 4px 4px -4px black;
 }
 .my-own-recipe-detail-combination-details::-webkit-scrollbar-track {
-  background-color: #00D386;
+  background-color: #C7DFAA;
   border-radius: 5px;
 }
 /* ul태그 css */

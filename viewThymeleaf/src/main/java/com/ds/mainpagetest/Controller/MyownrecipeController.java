@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ds.mainpagetest.entity.MyOwnRecipe;
@@ -29,7 +30,27 @@ public class MyownrecipeController {
     return "myownrecipe/morhistory";
   }
 
-  @GetMapping("/moradddetail")
+  @GetMapping("/morlunchbox")
+  public String morlunchbox(Model model ){
+    List<MyOwnRecipe> list = mrepository.findAll();
+    model.addAttribute("list", list);
+    return "myownrecipe/morlunchbox";
+  }
+  @GetMapping("/morsalad")
+  public String morsalad(Model model ){
+    List<MyOwnRecipe> list = mrepository.findAll();
+    model.addAttribute("list", list);
+    return "myownrecipe/morsalad";
+  }
+  
+  @GetMapping("/morsandwich")
+  public String morsandwich(Model model ){
+    List<MyOwnRecipe> list = mrepository.findAll();
+    model.addAttribute("list", list);
+    return "myownrecipe/morsandwich";
+  }
+
+  @PostMapping("/moradddetail")
   public String moradddetail(){
     return "myownrecipe/moradddetail";
   }
