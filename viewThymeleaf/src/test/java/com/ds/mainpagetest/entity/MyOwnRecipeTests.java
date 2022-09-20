@@ -24,7 +24,7 @@ public class MyOwnRecipeTests {
                       .explanation("Content" + i)
                       .views(1)
                       .likeCount((int)(Math.random()*10)*(int)(Math.random()*10))
-                      .category((int)(Math.random()*10)/3)
+                      .category((int)(Math.random()*10)/4)
                       .detail("detail")
                       .build();
       System.out.println(mRepository.save(mor));
