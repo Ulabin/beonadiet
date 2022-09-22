@@ -17,22 +17,24 @@ https://flickity.metafizzy.co
   margin: 0;
   padding: 0;
 }
-body{
-  width:1080px;
-  margin:0 auto;
+
+body {
+  width: 1080px;
+  margin: 0 auto;
 }
 
-.home-header{
+.home-header {
   font-weight: bold;
   color: rgb(53, 53, 53);
   width: 1080px;
   margin: 0 auto;
-  
+
 
 }
-.home-header a{
-text-decoration: none;
-color: rgb(53, 53, 53);
+
+.home-header a {
+  text-decoration: none;
+  color: rgb(53, 53, 53);
 }
 
 .home-header .main-page-nav {
@@ -40,12 +42,14 @@ color: rgb(53, 53, 53);
   height: 40px;
   float: left;
   clear: both;
-  
+
 }
+
 .home-header .main-page-nav a {
   color: rgb(53, 53, 53);
 }
-.home-head-container{
+
+.home-head-container {
   font-weight: bold;
   color: rgb(53, 53, 53);
   width: 1080px;
@@ -232,21 +236,22 @@ color: rgb(53, 53, 53);
 
 
 .main-page-category-menu {
-  position:relative;
-  bottom:10px;
-  display:inline-block;
+  position: relative;
+  bottom: 10px;
+  display: inline-block;
   width: 100px;
-  
+
 }
-.main-page-category-menu a{
+
+.main-page-category-menu a {
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
 .main-page-dropdown {
   border-radius: 5px;
   padding: 5px 0;
-  width:140px;
+  width: 140px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -304,7 +309,7 @@ color: rgb(53, 53, 53);
 }
 
 .dropdown_menu-2 .dropdown_item-1 {
-  border-radius: 5px 5px 0 0 ;
+  border-radius: 5px 5px 0 0;
   transform-origin: top center;
   animation: rotateX 300ms 37.5ms ease-in-out forwards;
 }
@@ -340,7 +345,7 @@ color: rgb(53, 53, 53);
 }
 
 .dropdown_menu-2 .dropdown_item-8 {
-  border-radius: 0 0 5px 5px ;
+  border-radius: 0 0 5px 5px;
   transform-origin: top center;
   animation: rotateX 300ms 300ms ease-in-out forwards;
 }
@@ -360,22 +365,25 @@ color: rgb(53, 53, 53);
     transform: rotateX(0deg);
   }
 }
+
 @keyframes rotateX {
-0% {
-opacity: 0;
-transform: rotateX(-90deg);
-}
-50% {
-transform: rotateX(-20deg);
-}
-100% {
-opacity: 1;
-transform: rotateX(0deg);
-}
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+
+  50% {
+    transform: rotateX(-20deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
 }
 
-.main-page-nav img:nth-of-type(1){
-  margin-left:50px;
+.main-page-nav img:nth-of-type(1) {
+  margin-left: 50px;
 }
 
 .main-page-category-img {
@@ -538,8 +546,8 @@ transform: rotateX(0deg);
 .home-footer-container {
   font-family: 'lg';
   width: 100%;
-  font-weight:bold;
-  color:#353535;
+  font-weight: bold;
+  color: #353535;
 }
 
 .main-page-company-title {
@@ -556,19 +564,31 @@ transform: rotateX(0deg);
   position: relative;
   top: 10px;
 }
-.main-page-introduce-company{
-  float:left; width:240px; height:100px;
+
+.main-page-introduce-company {
+  float: left;
+  width: 240px;
+  height: 100px;
 }
-.main-page-service-center-text{
-  margin-top:15px; padding-left:10px;
-                font-size: 15px;
+
+.main-page-service-center-text {
+  margin-top: 15px;
+  padding-left: 10px;
+  font-size: 15px;
 }
-.main-page-business-hours{
-  margin:5px; font-size: 13px;
+
+.main-page-business-hours {
+  margin: 5px;
+  font-size: 13px;
 }
-.main-page-footer-line{
-  width:20px; height:100px; float:left; border-right: 1px solid grey;
+
+.main-page-footer-line {
+  width: 20px;
+  height: 100px;
+  float: left;
+  border-right: 1px solid grey;
 }
+
 .main-page-service-center-go-btn {
   float: right;
   position: relative;
@@ -580,7 +600,7 @@ transform: rotateX(0deg);
   background: rgb(164, 255, 222);
   text-align: center;
   font-size: 15px;
-  color:#353535;
+  color: #353535;
   text-decoration: none;
 }
 
@@ -596,12 +616,13 @@ transform: rotateX(0deg);
 /* 나만의 레시피 컨테이너 */
 
 
-.my-own-recipe-container{
+.my-own-recipe-container {
   /* border: 1px solid lightgray; */
 }
+
 /* 나만의 레시피 헤드 컨테이너 */
 .my-own-recipe-header {
-  
+
   width: 1080px;
   height: 80px;
   /* background: #f8bbbb; */
@@ -616,8 +637,8 @@ transform: rotateX(0deg);
   height: 80px;
   /* background: #d5f8c8; */
   display: inline-block;
-  bottom:300px;
-  
+  bottom: 300px;
+
 }
 
 .my-own-recipe-title {
@@ -645,7 +666,7 @@ transform: rotateX(0deg);
   border: 1px solid lightgrey;
   box-shadow: 0.5px 0.5px 1px;
   color: #353535;
-  bottom:320px;
+  bottom: 320px;
   box-shadow: 0 4px 4px -4px black;
 }
 
@@ -874,65 +895,85 @@ transform: rotateX(0deg);
   width: 200px;
   /* background: red; */
 }
-.my-own-recipe-filedset{
-border:none;
+
+.my-own-recipe-filedset {
+  border: none;
 }
 
 /* 나만의 레시피 my_own_recipe.html css 끝 */
 
 /* 나만의 레시피 설명 추가 my_own_recipe_add_detail.html css */
-.my-own-recipe-add-detail-container{
+.my-own-recipe-add-detail-container {
   margin: 0 auto;
-  width:1080px;
+  width: 1080px;
   /* height: 650px; */
   /* background: #C7DFAA; */
-  border:1px solid #353535;
-  box-shadow: 0 4px 4px -4px black;
-}
-/* 나만의 레시피 상품 이름 */
-.my-own-recipe-add-detail-title-container{
-  width:100%;
-  height:50px;
-  padding:10px 0;
-  /* background:#19F; */
-}
-/* 나만의 레시피 상품 이름  */
-.my-own-recipe-add-detail-title{
-  margin:0 auto;
-  /* background: coral; */
-  width:400px;
-  height:50px;
-  text-align: center;
-  border: 1px solid lightgray;
-  color:#353535;
-  font-weight: bold;
-  line-height: 50px;
-  font-size: 20px;
+  border: 1px solid #353535;
   box-shadow: 0 4px 4px -4px black;
 }
 
-.my-own-recipe-add-detail-flex-container{
+/* 나만의 레시피 상품 이름 */
+.my-own-recipe-add-detail-title-container {
+  width: 100%;
+  height: 50px;
+  padding: 10px 0;
+  
+  /* background:#19F; */
+}
+
+.my-own-recipe-register-orderhistory-item-category-add {
+  display: inline-block;
+  position: relative;
+  color: #353535;
+  top: 16.5px;
+  left: 390px;
+  font-family: 'lg';
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* 나만의 레시피 상품 이름  */
+.my-own-recipe-add-detail-title {
+  position: relative;
+  bottom: 20px;
+  left:20px;
+  margin: 0 auto;
+  width: 400px;
+  height: 50px;
+  text-align: center;
+  /* border: 1px solid lightgray; */
+  color: #353535;
+  font-weight: bold;
+  line-height: 50px;
+  font-size: 20px;
+  /* box-shadow: 0 4px 4px -4px black; */
+}
+
+.my-own-recipe-add-detail-flex-container {
   display: flex;
 }
+
 /* 사진선택과 조합내용 양분화를 위한 사진선택 컨테이너의 컨테이너 */
-.my-own-recipe-add-detail-put-img-container{
+.my-own-recipe-add-detail-put-img-container {
   display: inline-block;
-  width:540px;
-  padding:10px;
+  width: 540px;
+  padding: 10px;
   height: 460px;
   /* background: crimson; */
   text-align: center;
 }
+
 /* 사진선택 컨테이너 */
-.my-own-recipe-search-img{
+.my-own-recipe-search-img {
   width: 100%;
-  height:50px;
+  height: 50px;
   /* background: aqua; */
   line-height: 30px;
 }
+
 /* 사진선택 상자 */
 .my-own-recipe-search-img label {
-  
+
   display: inline-block;
   padding: .5em .75em;
   color: #353535;
@@ -946,112 +987,134 @@ border:none;
   font-weight: bold;
   box-shadow: 0 4px 4px -4px black;
 }
+
 /* 파일 필드 숨기기 */
-.my-own-recipe-search-img input[type="file"] {  
+.my-own-recipe-search-img input[type="file"] {
   position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip:rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 
 /* 썸네일 사진 */
 .my-own-recipe-add-detail-thumbnail-img {
-  margin:5px;
-  width:500px;
-  height:250px;
+  margin: 5px;
+  width: 500px;
+  height: 250px;
   box-shadow: 0 4px 4px -4px black;
   background: #c7c7c7;
 }
-.my-own-recipe-add-detail-thumbnail-img img{
+
+.my-own-recipe-add-detail-thumbnail-img img {
   /* margin:5px; */
-  width:500px;
-  height:250px;
+  width: 500px;
+  height: 250px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 /* 부가사진 컨테이너  */
-.my-own-recipe-add-detail-addition-img{
+.my-own-recipe-add-detail-addition-img {
   display: inline-block;
-  width:120px;
-  height:80px;
+  width: 120px;
+  height: 80px;
   background: #c7c7c7;
 }
+
 /* 부가 사진 */
-.my-own-recipe-add-detail-addition-img img{
+.my-own-recipe-add-detail-addition-img img {
   display: inline-block;
-  width:120px;
-  height:80px;
+  width: 120px;
+  height: 80px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 /* 사진선택 주의사항 */
-.my-own-recipe-add-detail-precautions{
+.my-own-recipe-add-detail-precautions {
   color: #353535;
 }
+
 /* 조합내용과 설명란이 들어있는 컨테이너의 컨테이너 사진넣는 곳와 양분화를 위함*/
-.my-own-recipe-add-detail-put-detail-container{
+.my-own-recipe-add-detail-put-detail-container {
   display: inline-block;
-  width:530px;
-  height:460px;
+  width: 530px;
+  height: 460px;
   /* background: rgb(136, 221, 208); */
-  margin-left:-4px;
-  padding:10px
+  margin-left: -4px;
+  padding: 10px
 }
+
 /* 조합내용과 설명란이 들어있는 컨테이너 */
-.my-own-recipe-add-detail-put-detail{
+.my-own-recipe-add-detail-put-detail {
   /* background: chocolate; */
-  width:530px;
-  height:240px;
+  width: 530px;
+  height: 240px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 /* 조합내용 전체 컨테이너 */
-.my-own-recipe-add-detail-combination-container{
+.my-own-recipe-add-detail-combination-container {
   width: 530px;
-  height:100%;
+  height: 100%;
   /* background: #983daa; */
-  border:1px solid lightgray;
+  border: 1px solid lightgray;
 }
+
 /* 조합내용 타이틀 */
-.my-own-recipe-add-detail-combination-title{
+.my-own-recipe-add-detail-combination-title {
   text-align: center;
-  width:100px;
+  width: 100px;
   font-size: 20px;
   font-weight: bold;
   /* background: #0FA958; */
-  margin:0 auto;
+  margin: 0 auto;
   color: #353535;
 }
+
 /* 조합내용 목록 */
-.my-own-recipe-add-detail-combination-details{
-  width:530px;
-  height:200px;
-  /* background: lawngreen; */
+.my-own-recipe-add-detail-combination-details-add {
+  display: inline-block;
+  width: 488px;
+  height: 170px;
   text-align: center;
   overflow-y: scroll;
-  
+  font-family: 'lg';
+  color: #353535;
+  font-size: 20px;
+  font-weight: bold;
+  border: 0px;
+  outline: none;
+  overflow-y: scroll;
+  padding: 20px;
+  word-spacing: 5px;
+
 }
+
 /*  스크롤바 css */
-.my-own-recipe-add-detail-combination-details::-webkit-scrollbar {
+.my-own-recipe-add-detail-combination-details-add::-webkit-scrollbar {
   width: 20px;
   /* background-color: black; */
 }
-.my-own-recipe-add-detail-combination-details::-webkit-scrollbar-thumb {
+
+.my-own-recipe-add-detail-combination-details-add::-webkit-scrollbar-thumb {
   background-color: #0FA958;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
-.my-own-recipe-add-detail-combination-details::-webkit-scrollbar-track {
+
+.my-own-recipe-add-detail-combination-details-add::-webkit-scrollbar-track {
   background-color: #C7DFAA;
   border-radius: 5px;
 }
+
 /* ul태그 css */
-.my-own-recipe-add-detail-combination-details ul{
+/* .my-own-recipe-add-detail-combination-details ul{
   padding:0; margin:0;
   -webkit-columns: 2;
   list-style-position:outside;
-  /* background: cadetblue; */
   padding-left:70px;
   padding-top: 10px;
   
@@ -1061,74 +1124,79 @@ border:none;
   font-size: 20px;
   margin-bottom: 20px;
   width:150px;
-  /* background: #353535; */
-}
+} */
 
 /* 조합 설명 전체 컨테이너 */
-.my-own-recipe-add-detail-explanation-container{
-  width:530px;
-  height:210px;
+.my-own-recipe-add-detail-explanation-container {
+  width: 530px;
+  height: 210px;
   /* background: deepskyblue; */
   margin-top: 10px;
   border: 1px solid lightgray;
 }
+
 /* 설명 */
-.my-own-recipe-add-detail-explanation-title{
+.my-own-recipe-add-detail-explanation-title {
   text-align: center;
-  width:100px;
+  width: 100px;
   font-size: 20px;
   font-weight: bold;
   /* background: #0FA958; */
-  margin:0 auto;
+  margin: 0 auto;
   color: #353535;
 }
+
 /* 조합 설명란 */
-.my-own-recipe-add-detail-explanation-textarea{ 
+.my-own-recipe-add-detail-explanation-textarea {
   width: 520px;
-  height:170px;
+  height: 170px;
   border: none;
   padding: 5px;
-	resize: none;
+  resize: none;
   font-size: 20px;
   outline: none;
   box-shadow: 0 4px 4px -4px black;
 }
 
 /* 설명란 스크롤 css */
- .my-own-recipe-add-detail-explanation-textarea::-webkit-scrollbar {
+.my-own-recipe-add-detail-explanation-textarea::-webkit-scrollbar {
   width: 20px;
 }
+
 .my-own-recipe-add-detail-explanation-textarea::-webkit-scrollbar-thumb {
   background-color: #0FA958;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 .my-own-recipe-add-detail-explanation-textarea::-webkit-scrollbar-track {
   background-color: #C7DFAA;
   border-radius: 5px;
-} 
+}
 
 /* 등록 버튼컨테이너 */
-.my-own-recipe-add-detail-register-button-container{
-  width:1080px;
-  height:60px;
+.my-own-recipe-add-detail-register-button-container {
+  width: 1080px;
+  height: 60px;
   /* background: blueviolet; */
   text-align: center;
 }
+
 /* 등록 버튼 */
-.my-own-recipe-add-detail-register-button{
+.my-own-recipe-add-detail-register-button {
   margin-top: 10px;
   height: 40px;
-  width:100px;
+  width: 100px;
   background: #C7DFAA;
   border-radius: 5px;
   border: 1px solid lightgray;
   box-shadow: 0 4px 4px -4px black;
   font-size: 20px;
   font-weight: bold;
-  color:#353535;
+  color: #353535;
   cursor: pointer;
 }
+
 /* 나만의 레시피 설명 추가 my_own_recipe_add_detail.html css 끝 */
 
 /* 나만의 레시피 상품 상세페이지my_own_recipe_product_detail_page css*/
@@ -1164,14 +1232,14 @@ border:none;
 
 
 /* 카테고리 선택 라디오박스  */
-.my-post-radiobox  a{
+.my-post-radiobox a {
   display: inline-block;
   background-color: #C7DFAA;
   color: #353535;
-  margin-left:65px;
-  margin-top:10px;  
+  margin-left: 65px;
+  margin-top: 10px;
   height: 50px;
-  width:150px;
+  width: 150px;
   line-height: 50px;
   border: 1px solid #333;
   text-align: center;
@@ -1344,7 +1412,7 @@ border:none;
   color: black;
 }
 
-.my-page-list ul{
+.my-page-list ul {
   /* list-style: none; */
 }
 
@@ -1535,20 +1603,20 @@ border:none;
 }
 
 /* 카테고리 선택 라디오박스같은 기능  */
-.my-own-recipe-register-radiobox  button{
+.my-own-recipe-register-radiobox button {
   display: inline-block;
   background-color: #C7DFAA;
   color: #353535;
-  margin:0 60px;
-  margin-top:10px;
-  margin-left:80px;
+  margin: 0 60px;
+  margin-top: 10px;
+  margin-left: 80px;
   height: 50px;
-  width:150px;
+  width: 150px;
   line-height: 50px;
   border: 1px solid #333;
   text-align: center;
   font-weight: bold;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 
@@ -1571,13 +1639,15 @@ border:none;
 .my-own-recipe-register-orderhistory {
   width: 100%;
 }
-.my-own-recipe-register-orderhistory-item-name-category{
-  width:450px;
+
+.my-own-recipe-register-orderhistory-item-name-category {
+  width: 450px;
 }
-.my-own-recipe-register-orderhistory-item{
-  font-family:'lg';
-  font-weight:bold;
-  color:#353535;
+
+.my-own-recipe-register-orderhistory-item {
+  font-family: 'lg';
+  font-weight: bold;
+  color: #353535;
 }
 
 /* 상품 div태그 설정 */
@@ -1620,11 +1690,12 @@ border:none;
   text-align: center;
   background: #c7c7c7;
 }
-.my-own-recipe-register-orderhistory-item-category{
-  position:relative;
-  bottom:40px;
-  left:100px;
-  
+
+.my-own-recipe-register-orderhistory-item-category {
+  position: relative;
+  bottom: 40px;
+  left: 100px;
+
 }
 
 /* 실 상품명 */
@@ -1632,17 +1703,20 @@ border:none;
   width: 300px;
   margin-left: 10px;
   text-align: center;
- 
+
 }
+
 .my-own-recipe-register-orderhistory-item-detail-list::-webkit-scrollbar {
   width: 20px;
   /* background-color: black; */
 }
+
 .my-own-recipe-register-orderhistory-item-detail-list::-webkit-scrollbar-thumb {
   background-color: #0FA958;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 .my-own-recipe-register-orderhistory-item-detail-list::-webkit-scrollbar-track {
   background-color: #C7DFAA;
   border-radius: 5px;
@@ -1653,7 +1727,7 @@ border:none;
   margin: 0 auto;
   width: 200px;
   margin-top: 10px;
-  height:100px;
+  height: 100px;
   overflow-y: scroll;
   padding: 5px;
 }
@@ -1693,18 +1767,21 @@ border:none;
 }
 
 .my-own-recipe-register-btn {
-  margin-top: 10px;
+  /* margin-top: 10px;
   margin-bottom: 10px;
-  margin-left:420px;
+  margin-left:800px; */
+  position: relative;
+  left: 880px;
+  bottom: 80px;
   height: 40px;
-  width:100px;
+  width: 100px;
   background: #C7DFAA;
   border-radius: 5px;
   border: 1px solid lightgray;
   box-shadow: 0 4px 4px -4px black;
   font-size: 20px;
   font-weight: bold;
-  color:#353535;
+  color: #353535;
   cursor: pointer;
 }
 
@@ -1750,14 +1827,14 @@ border:none;
 }
 
 /* 카테고리 선택 라디오박스  */
-.user-post-radiobox  a{
+.user-post-radiobox a {
   display: inline-block;
   background-color: #C7DFAA;
   color: #353535;
-  margin-left:65px;
-  margin-top:10px;  
+  margin-left: 65px;
+  margin-top: 10px;
   height: 50px;
-  width:150px;
+  width: 150px;
   line-height: 50px;
   border: 1px solid #333;
   text-align: center;
@@ -1902,212 +1979,238 @@ border:none;
 
 
 /* 나만의 레시피 제품 상세페이지 my_own_recipe_product_detail_page css*/
-.my-own-recipe-detail-container{
+.my-own-recipe-detail-container {
   margin: 0 auto;
-  width:1080px;
+  width: 1080px;
   /* height: 1000px; */
   /* background: #C7DFAA; */
-  border:1px solid #353535;
+  border: 1px solid #353535;
   box-shadow: 0 4px 4px -4px black;
 }
-.my-own-recipe-detail-container a{
-text-decoration: none;
-color: #353535;
-font-size: 20px;
-font-weight: bold;
+
+.my-own-recipe-detail-container a {
+  text-decoration: none;
+  color: #353535;
+  font-size: 20px;
+  font-weight: bold;
 }
+
 /* 나만의 레시피 상품 이름 */
-.my-own-recipe-detail-title-container{
-  width:100%;
-  height:50px;
-  padding:10px 0;
+.my-own-recipe-detail-title-container {
+  width: 100%;
+  height: 50px;
+  padding: 10px 0;
   /* background:#19F; */
 }
+
 /* 나만의 레시피 상품 이름  */
-.my-own-recipe-detail-title{
-  margin:0 auto;
+.my-own-recipe-detail-title {
+  margin: 0 auto;
   /* background: coral; */
-  width:400px;
-  height:50px;
+  width: 400px;
+  height: 50px;
   text-align: center;
   border: 1px solid lightgray;
-  color:#353535;
+  color: #353535;
   font-weight: bold;
   line-height: 50px;
   font-size: 20px;
   box-shadow: 0 4px 4px -4px black;
 }
-.my-own-recipe-product-detailpage-like{
+
+.my-own-recipe-product-detailpage-like {
   text-align: center;
   display: block;
-  width:100%;
-  height:50px;
+  width: 100%;
+  height: 50px;
   margin-top: 10px;
   /* background: hotpink; */
 }
-.my-own-recipe-product-detailpage-like-count{
+
+.my-own-recipe-product-detailpage-like-count {
   position: relative;
   bottom: 6px;
   font-size: 24px;
 }
-.my-own-recipe-detail-flex-container{
+
+.my-own-recipe-detail-flex-container {
   display: flex;
 }
+
 /* 사진선택과 조합내용 양분화를 위한 사진선택 컨테이너의 컨테이너 */
-.my-own-recipe-detail-img-container{
+.my-own-recipe-detail-img-container {
   display: inline-block;
-  width:540px;
-  padding:5px;
+  width: 540px;
+  padding: 5px;
   height: 600px;
   /* background: crimson; */
   text-align: center;
 }
+
 /* 나만의 레시피 설명 */
-.my-own-recipe-detail{
-margin:20px 5px;
-width:490px;
-height:200px;
-/* background: rgb(224, 190, 249); */
-text-align: left;
-overflow-y: scroll;
-padding: 5px;
-border: 1px solid lightgray;
-box-shadow: 0 4px 4px -4px black;
+.my-own-recipe-detail {
+  margin: 20px 5px;
+  width: 490px;
+  height: 200px;
+  /* background: rgb(224, 190, 249); */
+  text-align: left;
+  overflow-y: scroll;
+  padding: 5px;
+  border: 1px solid lightgray;
+  box-shadow: 0 4px 4px -4px black;
 }
+
 .my-own-recipe-detail::-webkit-scrollbar {
   width: 20px;
   /* background-color: black; */
 }
+
 .my-own-recipe-detail::-webkit-scrollbar-thumb {
   background-color: #0FA958;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 .my-own-recipe-detail::-webkit-scrollbar-track {
   background-color: #C7DFAA;
   border-radius: 5px;
 }
 
 /* 썸네일 사진 */
-.my-own-recipe-thumbnail-img img{
-  margin:5px;
-  width:500px;
-  height:250px;
+.my-own-recipe-thumbnail-img img {
+  margin: 5px;
+  width: 500px;
+  height: 250px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 /* 부가사진 컨테이너  */
-.my-own-recipe-addition-img{
+.my-own-recipe-addition-img {
   display: inline-block;
 
 }
+
 /* 부가 사진 */
-.my-own-recipe-addition-img img{
+.my-own-recipe-addition-img img {
   display: inline-block;
-  width:120px;
-  height:80px;
+  width: 120px;
+  height: 80px;
   box-shadow: 0 4px 4px -4px black;
 }
 
 
 /* 조합내용과 설명란이 들어있는 컨테이너의 컨테이너 사진넣는 곳와 양분화를 위함*/
-.my-own-recipe-detail-detail-container{
+.my-own-recipe-detail-detail-container {
   display: inline-block;
-  width:530px;
-  height:600px;
+  width: 530px;
+  height: 600px;
   /* background: rgb(136, 221, 208); */
-  margin-left:-4px;
-  padding:10px
+  margin-left: -4px;
+  padding: 10px
 }
+
 /* 조합내용과 설명란이 들어있는 컨테이너 */
-.my-own-recipe-detail-detail{
+.my-own-recipe-detail-detail {
   /* background: chocolate; */
-  width:530px;
-  height:240px;
+  width: 530px;
+  height: 240px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 /* 조합내용 전체 컨테이너 */
-.my-own-recipe-detail-combination-container{
+.my-own-recipe-detail-combination-container {
   width: 530px;
-  height:100%;
+  height: 100%;
   /* background: #983daa; */
-  border:1px solid lightgray;
+  border: 1px solid lightgray;
 }
+
 /* 조합내용 타이틀 */
-.my-own-recipe-detail-combination-title{
+.my-own-recipe-detail-combination-title {
   text-align: center;
-  width:100px;
+  width: 100px;
   font-size: 20px;
   font-weight: bold;
   /* background: #0FA958; */
-  margin:0 auto;
+  margin: 0 auto;
   color: #353535;
 }
+
 /* 조합내용 목록 */
-.my-own-recipe-detail-combination-details{
-  width:530px;
-  height:200px;
+.my-own-recipe-detail-combination-details {
+  width: 530px;
+  height: 200px;
   /* background: lawngreen; */
   text-align: center;
   overflow-y: scroll;
-  
+
 }
+
 /*  스크롤바 css */
 .my-own-recipe-detail-combination-details::-webkit-scrollbar {
   width: 20px;
   /* background-color: black; */
 }
+
 .my-own-recipe-detail-combination-details::-webkit-scrollbar-thumb {
   background-color: #0FA958;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
 }
+
 .my-own-recipe-detail-combination-details::-webkit-scrollbar-track {
   background-color: #C7DFAA;
   border-radius: 5px;
 }
+
 /* ul태그 css */
-.my-own-recipe-detail-combination-details ul{
-  padding:0; margin:0;
+.my-own-recipe-detail-combination-details ul {
+  padding: 0;
+  margin: 0;
   -webkit-columns: 2;
-  list-style-position:outside;
+  list-style-position: outside;
   /* background: cadetblue; */
-  padding-left:70px;
+  padding-left: 70px;
   padding-top: 10px;
-  
+
 
 }
-.my-own-recipe-detail-combination-details li{
+
+.my-own-recipe-detail-combination-details li {
   font-size: 20px;
   margin-bottom: 20px;
-  width:150px;
+  width: 150px;
   /* background: #353535; */
 }
 
 /* 조합 설명 전체 컨테이너 */
-.my-own-recipe-detail-caution-container{
-  width:530px;
-  height:120px;
+.my-own-recipe-detail-caution-container {
+  width: 530px;
+  height: 120px;
   /* background: deepskyblue; */
   margin-top: 10px;
   border: 1px solid lightgray;
   display: flex;
-  color:#353535;
+  color: #353535;
   align-items: center;
   font-weight: bold;
   box-shadow: 0 4px 4px -4px black;
 }
 
-.my-own-recipe-detail-caution-left{
-margin:30px;
-margin-left:140px;
+.my-own-recipe-detail-caution-left {
+  margin: 30px;
+  margin-left: 140px;
 }
 
-.my-own-recipe-detail-caution-right{
-  margin:30px;
+.my-own-recipe-detail-caution-right {
+  margin: 30px;
 }
-.main-page-footer-line-vertical{
-  width:20px; height:70px; border-right: 1px solid grey;
-  margin-top:10px;
+
+.main-page-footer-line-vertical {
+  width: 20px;
+  height: 70px;
+  border-right: 1px solid grey;
+  margin-top: 10px;
   text-decoration: none;
 }
 
@@ -2115,37 +2218,40 @@ margin-left:140px;
 
 
 
-.for-center{
+.for-center {
   /* background: #0FA958; */
   text-align: center;
   padding: 50px;
 }
-.go-to-other-recipe{
+
+.go-to-other-recipe {
   margin: 0 auto;
   width: 250px;
-display: block;
-margin-bottom: 30px;
-background: lightgray;
-box-shadow: 0 4px 4px -4px black;
-border-radius: 5px;
+  display: block;
+  margin-bottom: 30px;
+  background: lightgray;
+  box-shadow: 0 4px 4px -4px black;
+  border-radius: 5px;
 
 }
-.add-to-basket{
+
+.add-to-basket {
   margin: 0 auto;
   width: 250px;
-display: block;
-margin-bottom: 30px;
-background: lightgray;
-box-shadow: 0 4px 4px -4px black;
-border-radius: 5px;
-line-height: 25px;
-border: none;
-font-size: 20px;
-font-weight: bold;
-color: #353535;
-cursor: pointer;
+  display: block;
+  margin-bottom: 30px;
+  background: lightgray;
+  box-shadow: 0 4px 4px -4px black;
+  border-radius: 5px;
+  line-height: 25px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #353535;
+  cursor: pointer;
 }
-.order-this-recipe{
+
+.order-this-recipe {
   margin: 0 auto;
   width: 200px;
   display: block;
@@ -2153,6 +2259,7 @@ cursor: pointer;
   box-shadow: 0 4px 4px -4px black;
   border-radius: 5px;
 }
+
 /* 나만의 레시피 제품 상세페이지 my_own_recipe_product_detail_page css 끝*/
 
 

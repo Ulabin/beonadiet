@@ -1,34 +1,31 @@
-<div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == 1}">
-  <div class="my-own-recipe-register-orderhistory-item-img">
-    <img src="../images/salad.png" alt="image">
-  </div>
-  <div class="my-own-recipe-register-orderhistory-item-name-category">
-    <div class="my-own-recipe-register-orderhistory-item-category" th:if="${list.category == 1}">
-      [나만의 샌드위치]
-    </div>
-    <div class="my-own-recipe-register-orderhistory-item-name" th:text="${list.name}">
+<div class="my-own-recipe-register-orderhistory">
+  <span class="">상품명</span>
+  <span class="">조합내용</span>
+  <hr>
+  <div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == 1}"
+    th:field="${name}">
+      <div class="my-own-recipe-register-orderhistory-item-img">
+        <img src="../images/sandwich.png" alt="image">
+      </div>
+      <div class="my-own-recipe-register-orderhistory-item-name-category">
+        <div class="my-own-recipe-register-orderhistory-item-category" th:if="${list.category == 1}">
+          [나만의 샌드위치]
+        </div>
+        <div class="my-own-recipe-register-orderhistory-item-name" th:text="${list.name}">
 
-    </div>
-  </div>
+        </div>
+      </div>
+      <!-- <div th:text="${list}"></div> -->
+      <div class="my-own-recipe-register-orderhistory-item-detail">
+        <div class="my-own-recipe-register-orderhistory-item-detail-list" th:text="${list.detail }">
 
-  <div class="my-own-recipe-register-orderhistory-item-detail">
-    <div class="my-own-recipe-register-orderhistory-item-detail-list" th:text="${list.detail}">
-      <!-- <ul>
-          <li>화이트:15cm</li>
-          <li>계란</li>
-          <li>양상추</li>
-          <li>케첩</li>
-          <li>토마토</li>
-          <li>햄</li>
-          <li>오이</li>
-          <li>치즈</li>화이트 계란 양상추 케첩 토마토 햄 오이 치즈
-        </ul> -->
-    </div>
+        </div>
+      </div>
+      <button type="button" name="register-btn" class="my-own-recipe-register-btn" th:value="${list.id}" 
+      th:onclick="|location.href='@{/myownrecipe/moradddetail(id=${list.id})}'|">
+     
+        추가 설정
+      </button>
   </div>
-  <div class="my-own-recipe-register-orderhistory-item-check">
-    <input type="radio" class="my-own-recipe-register-orderhistory-item-check-btn"
-      name="my-own-recipe-register-orderhistory-item-check">
-  </div>
-
+  <hr>
 </div>
-<hr>

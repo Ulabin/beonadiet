@@ -17,13 +17,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MyOwnRecipe extends BaseEntity{
+public class MyOwnRecipePost extends BaseEntity{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
   private String name;
+  private String explanation;
+  private int views;
+  private int likeCount;
   private int category;
   private String detail;
   private int calorie;
-
+  private String image;
 }

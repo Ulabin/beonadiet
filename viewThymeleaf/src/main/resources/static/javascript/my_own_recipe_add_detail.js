@@ -61,10 +61,7 @@ $("#ex_file").on("change", function (event) {
         reader.readAsDataURL(file);
     }
   }
-  // varimg = $(".my-own-recipe-add-detail-addition-img1").attr('src');
-  
-  // $(".my-own-recipe-add-detail-thumbnail-img").attr("src", varimg);
-      
+
 });
 
 

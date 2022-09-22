@@ -47,6 +47,11 @@ $(document).ready(function () {
     $(this).siblings().css("background-color", "#C7DFAA");
     $(this).siblings().css("color", "#353535");
   })
+
+
+
+  // var listVar = $('.my-own-recipe-register-orderhistory-item-check-btn').val();
+
 });
 
 // 나만의 도시락
@@ -57,10 +62,9 @@ function getMemberList1() {
   $.ajax({
     type: "GET",
     url: "morlunchbox",
-
   })
     .done(function (result) {
-      console.log(result);
+      // console.log(result);
       $('.uploadResult').empty();
       $('.uploadResult').html(result)
     })
