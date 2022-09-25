@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>비밀번호찾기페이지</title>
-  <link rel="stylesheet" href="css/find_pwd.css">
+  <link rel="stylesheet" th:href="@{css/find_pwd.css}">
 </head>
 <body>
   <div class="input-form-wrap">
@@ -20,12 +20,12 @@
             <button type="submit" class="btn-send">전송</button>
           </div>
           <input type="email" name="email" id="email" placeholder="이메일을 입력해주세요" value="" required>
-          <p class="id-txt">아이디를 잊으셨나요? <a href="#" class="find-id">아이디 찾기</a></p>
+          <p class="id-txt">아이디를 잊으셨나요? <a href="javascript:;" class="find-id">아이디 찾기</a></p>
         </div>
       </form>
     </div>
   </div>
-  <script src="js/jquery-3.6.1.min.js"></script>
-  <script src="js/find_pwd.js"></script>
+  <script th:src="@{js/jquery-3.6.1.min.js}"></script>
+  <script th:src="@{js/find_pwd.js}"></script>
 </body>
 </html>
