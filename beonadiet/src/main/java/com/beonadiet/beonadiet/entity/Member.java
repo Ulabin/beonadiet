@@ -13,16 +13,19 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ColumnDefault;
+// import org.springframework.security.crypto.password.PasswordEncoder;
+
+
 @Entity
-@Table(name = "user")
+// @Table(name = "USER")
 @Getter 
-// @Setter
 @ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UserEntity extends BaseEntity {
+public class Member extends BaseEntity {
 
     @Id
     @Column
@@ -50,37 +53,54 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private Long birthday;
     
-    @Column(length = 500, nullable = false)
+    @Column(length = 500)
     private String allergy;
     
-    @Column(nullable = false)
+    @Column
     private Long daily_calorie_intake;
     
     @Column(nullable = false)
     private boolean social_login_flag;
     
-    @Column(nullable = false)
+    @ColumnDefault("0")
+    @Column(nullable=false)
     private Long point;
     
-    @Column(nullable = false)
+    @Column
     private Long carb_protein_fat_rate;
     
-    @Column(length = 10, nullable = false)
-    private String role;
+    @ColumnDefault("0")
+    @Column(nullable=false)
+    private Character role;
 
+    // public UserEntity(String password, String user_name, String nickname, String email, Long mobile_num, 
+    //                     Long birthday, String allergy, Long daily_calorie_intake, Long point, Long carb_protein_fat_rate) {
+	// 	this.password   = password;
+	// 	this.user_name = user_name;
+    //     this.nickname = nickname;
+    //     this.email = email;
+    //     this.mobile_num = mobile_num;
+    //     this.birthday = birthday;
+    //     this.allergy = allergy;
+    //     this.daily_calorie_intake = daily_calorie_intake;
+    //     this.point = point;
+    //     this.carb_protein_fat_rate = carb_protein_fat_rate;
+        
+	// }
 
-    /* @Enumerated(EnumType.STRING) private Role role; */
+    // public static UserEntity createUser(UserDto userDto, PasswordEncoder passwordEncoder) {
 
-    // public static User createMember(UserDto userDto,
-    //                                   PasswordEncoder passwordEncoder) {
-    //     User user = new User();
+    //     UserEntity user = new UserEntity();
+    //     user.setUser_id(user.getUser_id());
     //     user.setName(user.getName());
     //     user.setEmail(user.getEmail());
     //     user.setAddress(user.getAddress());
     //     String password = passwordEncoder.encode(userDto.getPassword());
     //     user.setPassword(password);
-    //     member.setRole(Role.USER);
+    //     user.setRole(Role.USER);
     //     return user;
+
     // }
+
 
 }

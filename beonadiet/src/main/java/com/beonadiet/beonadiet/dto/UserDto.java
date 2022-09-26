@@ -1,5 +1,7 @@
 package com.beonadiet.beonadiet.dto;
 
+import com.beonadiet.beonadiet.entity.Member;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +33,25 @@ public class UserDto {
 
   private Long carb_protein_fat_rate;
 
-  private String role;
+  private Character role;
 
+
+  /* DTO -> Entity */    
+  // public User toEntity() {        
+  //   User user = User.builder()                
+  //             .user_id(user_id)                
+  //             .password(password)                
+  //             .user_name(user_name)                
+  //             .nickname(nickname)                
+  //             .email(email)                
+  //             .mobile_num(mobile_num)                
+  //             .birthday(birthday)                
+  //             .allergy(allergy)                
+  //             .daily_calorie_intake(daily_calorie_intake)                
+  //             .social_login_flag(social_login_flag)                
+  //             .point(point)                
+  //             .carb_protein_fat_rate(carb_protein_fat_rate)                
+  //             .role(role)                
+  //             .build();        
+  //   return user;    }
 }
