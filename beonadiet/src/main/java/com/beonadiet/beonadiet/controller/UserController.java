@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.beonadiet.beonadiet.entity.Member;
 import com.beonadiet.beonadiet.repository.UserRepository;
+import com.beonadiet.beonadiet.service.UserService;
 
 @Controller
 public class UserController {
 
   @Autowired
-  private UserRepository userRepository;
+  UserRepository userRepository;
+  // private UserRepository userRepository;
 
   @Autowired
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
+  UserService userService;
+
+  // @Autowired
+  // private BCryptPasswordEncoder bCryptPasswordEncoder;
 
   @GetMapping("/login")
   public String login(){
@@ -37,14 +42,20 @@ public class UserController {
   }
 
   //PostMapping -> 데이터를 추가하기 위한 Post 요청
-  @PostMapping("/join") 
-  public String join(Member member){
-    System.out.println("회원가입 진행 : " + member);
-    String rawPassword = member.getPassword();
-    String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-    member.setPassword(encPassword);
-    member.setRole("ROLE_USER");
-    userRepository.save(member);
-    return "redirect:/";
+  // @PostMapping("/joinProc") 
+  // public String joinProc(Member member){
+  //   System.out.println("회원가입 진행 : " + member);
+  //   String rawPassword = member.getPassword();
+  //   String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+  //   member.setPassword(encPassword);
+  //   member.setRole("ROLE_USER");
+  //   userRepository.save(member);
+  //   return "redirect:/";
+  // }
+
+  @PostMapping("/joinProc")
+  public String joinProc(Member member){
+    userService.Join(member);
+    return "redirect:/login";
   }
 }

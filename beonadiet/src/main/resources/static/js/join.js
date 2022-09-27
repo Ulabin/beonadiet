@@ -1,4 +1,5 @@
 $('#signup').on('submit',()=>{
+// $('#btnjoin').on('click',()=>{
   let idVal = $('#userid').val();
   let idCheck = /^(?=.*[a-z])(?=.*[0-9])/;
   let pwdVal = $('#pwd1').val();
@@ -42,5 +43,5 @@ $('#signup').on('submit',()=>{
   //   $('#birth').focus();
   //   return false;
   // }
-
+  // $("#signup").submit();
 })

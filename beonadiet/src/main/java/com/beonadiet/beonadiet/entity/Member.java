@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Setter
 @ToString
 @NoArgsConstructor //기본 생성자 만들어준다
+@Table(name = "member")
 public class Member extends BaseEntity {
 
     @Id
@@ -31,7 +32,7 @@ public class Member extends BaseEntity {
     private String email;
     
     @Column(nullable = false)
-    private Long mobile_num;
+    private String mobile_num;
     
     @Column(nullable = false)
     private Long birthday;
@@ -46,7 +47,7 @@ public class Member extends BaseEntity {
     private boolean social_login_flag;
     
     @ColumnDefault("0")
-    @Column(nullable=false)
+    // @Column(nullable=false)
     private Long point;
     
     @Column
@@ -64,7 +65,7 @@ public class Member extends BaseEntity {
 
     @Builder
     public Member(Long id, String user_id, String password, String user_name, 
-                String nickname, String email, Long mobile_num, Long birthday,
+                String nickname, String email, String mobile_num, Long birthday,
                 String allergy, Long daily_calorie_intake, boolean social_login_flag, 
                 Long point, Long carb_protein_fat_rate, String role){
                     

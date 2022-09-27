@@ -30,7 +30,7 @@ public class UserDto {
 
   private String email;
 
-  private Long mobile_num;
+  private String mobile_num;
 
   private Long birthday;
 
@@ -75,7 +75,7 @@ public class UserDto {
   @Builder
 
   public UserDto(Long id, String user_id, String password, String user_name, 
-              String nickname, String email, Long mobile_num, Long birthday,
+              String nickname, String email, String mobile_num, Long birthday,
               String allergy, Long daily_calorie_intake, boolean social_login_flag, 
               Long point, Long carb_protein_fat_rate, String role,
               LocalDateTime regDate, LocalDateTime modDate){

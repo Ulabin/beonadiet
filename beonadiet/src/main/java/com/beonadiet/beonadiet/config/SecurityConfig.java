@@ -39,8 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     .and()
       .formLogin() //로그인에 대한 설정
         .loginPage("/login") //로그인 페이지 링크
-        .failureUrl("/login?error").permitAll() 
+        .usernameParameter("user_id")
         .defaultSuccessUrl("/") //로그인 성공시 연결되는 주소
+        .failureUrl("/login?error").permitAll() 
     .and()
       .logout() //로그아웃 관련 설정
         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -55,18 +56,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
   }
   
-  @Override
-  //로그인시 필요한 정보를 가져옴
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication() //인메모리 방식
-    .withUser("admin").password(passwordEncoder().encode("1234")).roles("ADMIN")
-    .and()
-    .withUser("user").password(passwordEncoder().encode("1234")).roles("USER");
+  // @Override
+  // //로그인시 필요한 정보를 가져옴
+  // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+  //   //인메모리 방식
+  //   // auth.inMemoryAuthentication() 
+  //   // .withUser("admin").password(passwordEncoder().encode("1234")).roles("ADMIN")
+  //   // .and()
+  //   // .withUser("user").password(passwordEncoder().encode("1234")).roles("USER");
 
-    // auth.userDetailsService(userService) //유저 정보는 userService에서 가져온다
-    //       .passwordEncoder(new BCryptPasswordEncoder()); //패스워드 인코더는 passwordEncoder(BCrypt 사용)
+  //   // auth.userDetailsService(userService) //유저 정보는 userService에서 가져온다
+  //   //       .passwordEncoder(new BCryptPasswordEncoder()); //패스워드 인코더는 passwordEncoder(BCrypt 사용)
 
-  }
+  // }
   
   // passwordEncoder() 추가
   @Bean
