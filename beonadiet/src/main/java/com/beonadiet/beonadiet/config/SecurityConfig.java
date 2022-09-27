@@ -1,9 +1,9 @@
 package com.beonadiet.beonadiet.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,25 +12,30 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.beonadiet.beonadiet.handler.TaskImplementingLogoutHandler;
 // import com.beonadiet.beonadiet.service.UserService;
 
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   //유저 정보를 가져올 클래스
   // private final UserService userService; 
   
-  @Override
   //인증을 무시할 경로 설정
-  public void configure(WebSecurity web) {
-    web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
-  }
+  // @Override
+  // public void configure(WebSecurity web) {
+  //   web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
+  // }
 
   @Override
   //http 관련 인증 설정 가능
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
       .antMatchers("/adminOnly").hasAuthority("ROLE_ADMIN")
+      // .antMatchers("/images/**").permitAll()
+      // .antMatchers("/css/**").permitAll()
+      // .antMatchers("/js/**").permitAll()
+      // .antMatchers("/font/**").permitAll()
       .antMatchers("/**").permitAll()  // 넓은 범위의 URL을 아래에 배치한다.
-      .anyRequest().authenticated()
+      .anyRequest().authenticated() //어떤 요청이든 '인증' -> 스프링서버로 요청이 오는 모든 request에 대해서 인증을 거치겠다.
     .and()
       .formLogin() //로그인에 대한 설정
         .loginPage("/login") //로그인 페이지 링크

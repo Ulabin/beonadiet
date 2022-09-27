@@ -1,14 +1,25 @@
 package com.beonadiet.beonadiet.dto;
 
-import com.beonadiet.beonadiet.entity.Member;
 
+import com.beonadiet.beonadiet.entity.Member;
+// import com.beonadiet.beonadiet.entity.Role;
+
+import java.time.LocalDateTime;
+
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
 public class UserDto {
   
+  private Long id;
+
   private String user_id;
 
   private String password;
@@ -33,25 +44,48 @@ public class UserDto {
 
   private Long carb_protein_fat_rate;
 
-  private Character role;
+  private String role;
+
+  private LocalDateTime regDate;
+
+  private LocalDateTime modDate;
 
 
   /* DTO -> Entity */    
-  // public User toEntity() {        
-  //   User user = User.builder()                
-  //             .user_id(user_id)                
-  //             .password(password)                
-  //             .user_name(user_name)                
-  //             .nickname(nickname)                
-  //             .email(email)                
-  //             .mobile_num(mobile_num)                
-  //             .birthday(birthday)                
-  //             .allergy(allergy)                
-  //             .daily_calorie_intake(daily_calorie_intake)                
-  //             .social_login_flag(social_login_flag)                
-  //             .point(point)                
-  //             .carb_protein_fat_rate(carb_protein_fat_rate)                
-  //             .role(role)                
-  //             .build();        
-  //   return user;    }
+  public Member toEntity() {        
+    Member member = Member.builder() 
+              .id(id)               
+              .user_id(user_id)                
+              .password(password)                
+              .user_name(user_name)                
+              .nickname(nickname)                
+              .email(email)                
+              .mobile_num(mobile_num)                
+              .birthday(birthday)                
+              .allergy(allergy)                
+              .daily_calorie_intake(daily_calorie_intake)                
+              .social_login_flag(social_login_flag)                
+              .point(point)                
+              .carb_protein_fat_rate(carb_protein_fat_rate)                
+              .role(role)                
+              .build();        
+    return member;    
+  }
+
+  @Builder
+
+  public UserDto(Long id, String user_id, String password, String user_name, 
+              String nickname, String email, Long mobile_num, Long birthday,
+              String allergy, Long daily_calorie_intake, boolean social_login_flag, 
+              Long point, Long carb_protein_fat_rate, String role,
+              LocalDateTime regDate, LocalDateTime modDate){
+
+    this.id = id; this.user_id = user_id; this.password = password;
+    this.user_name = user_name; this.nickname = nickname; this.email = email;
+    this.mobile_num = mobile_num; this.birthday = birthday; this.allergy = allergy;
+    this.daily_calorie_intake = daily_calorie_intake; this.social_login_flag = social_login_flag;
+    this.point = point; this.carb_protein_fat_rate = carb_protein_fat_rate; this.role = role;
+    this.regDate = regDate; this.modDate = modDate;
+
+  }
 }

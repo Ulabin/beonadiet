@@ -35,3 +35,16 @@ $('.find_pw').click(function() {
 $('.btn_join').click(function() {
   location.href = 'join';
 })
+
+
+const href = location.href;
+
+const queryString = href.substring(href.indexOf("?")+1)
+
+if (queryString === 'error') {
+
+const errorDiv = document.getElementById('login-failed');
+
+errorDiv.style.display = 'block';
+
+}
