@@ -23,15 +23,15 @@
         <div class="line1">
           <hr>
         </div>
-        <form id="signup" action="joinProc" method="post">
+        <form id="signup" th:action="@{/joinProc}" method="post">
           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
           <fieldset>
             <ul>
               <li>
                 <div class="box">
                   <label for="userid">아이디</label>
-                  <input type="text" id="userid" name="user_id" placeholder="아이디 입력(영문소문자,숫자포함)" autofocus required>
-                  <!-- <input type="text" id="userid" name="userid" placeholder="아이디 입력(영문소문자,숫자포함)" autofocus required> -->
+                  <input type="text" id="userid" name="username" placeholder="아이디 입력(영문소문자,숫자포함)" autofocus required>
+                  <!-- <input type="text" id="userid" name="user_id" placeholder="아이디 입력(영문소문자,숫자포함)" autofocus required> -->
                   <input type="button" class="btncheck" value="중복 확인">
                 </div>
               </li>

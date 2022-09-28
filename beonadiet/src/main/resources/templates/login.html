@@ -15,7 +15,9 @@
         <div>
           <h1 class="title_login">로그인</h1>
         </div>
-        <form id="signin" action="/login" method="post">
+        <form id="signin" th:action="@{/login}" method="post">
+          <div id="login-failed" style="display: none; margin-bottom: 10px; color: #00D386;" class="alert alert-danger" role="alert">
+            로그인에 실패하였습니다. 다시 입력해주세요.</div>
           <!-- <div th:if="${param.error}" class="alert alert-error">    
             Invalid username and password.
           </div>
@@ -23,8 +25,8 @@
               You have been logged out.
           </div> -->
           <div>
-            <input type="text" name="user_id" id="username" class="id_box" placeholder="아이디 입력" required>
-            <!-- <input type="text" name="username" id="username" class="id_box" placeholder="아이디 입력" required> -->
+            <!-- <input type="text" name="user_id" id="username" class="id_box" placeholder="아이디 입력" required> -->
+            <input type="text" name="username" id="username" class="id_box" placeholder="아이디 입력" required>
           </div>
           <div>
             <input type="password" name="password" id="password" class="pw_box" placeholder="비밀번호 입력" required>
@@ -39,10 +41,6 @@
           <div>
             <button class="btn btn_join" type="button">회원가입</button>
           </div>
-
-          <div id="login-failed" style="display: none;" class="alert alert-danger" role="alert">
-            로그인에 실패하였습니다.</div>
-
           <div>
             <p class="sns_login">간편 로그인</p>
             <div>

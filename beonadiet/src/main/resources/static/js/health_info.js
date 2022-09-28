@@ -23,7 +23,7 @@
   var popupY= (window.screen.height / 2) - (popupHeight / 2);
 
   $('.detail-info').click(function() {
-    window.open('active_page.html', '활동지수 참고사항', 
+    window.open('active_page', '활동지수 참고사항', 
     'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
   });
   

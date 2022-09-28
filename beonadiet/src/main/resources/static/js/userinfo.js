@@ -43,4 +43,8 @@ $('#signup').on('submit',()=>{
     return false;
   }
 
+}) 
+
+$('.btnleave').click(function() {
+  location.href = 'delete_account';
 })

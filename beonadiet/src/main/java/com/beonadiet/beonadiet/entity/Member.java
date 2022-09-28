@@ -16,8 +16,9 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(length = 20, nullable = false, unique = true)
-    private String user_id;
+    @Column(length = 20, nullable = false, unique = true, name = "user_id")
+    private String username;
+    // private String user_id;
     
     @Column(length = 100, nullable = false)
     private String password;
@@ -46,8 +47,9 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private boolean social_login_flag;
     
-    @ColumnDefault("0")
+    // @ColumnDefault("0")
     // @Column(nullable=false)
+    @Column
     private Long point;
     
     @Column
@@ -64,12 +66,12 @@ public class Member extends BaseEntity {
     private String role; //ROLE_USER, ROLE_ADMIN
 
     @Builder
-    public Member(Long id, String user_id, String password, String user_name, 
+    public Member(Long id, String username, String password, String user_name, 
                 String nickname, String email, String mobile_num, Long birthday,
                 String allergy, Long daily_calorie_intake, boolean social_login_flag, 
                 Long point, Long carb_protein_fat_rate, String role){
                     
-                    this.id = id; this.user_id = user_id; this.password = password;
+                    this.id = id; this.username = username; this.password = password;
                     this.user_name = user_name; this.nickname = nickname; this.email = email;
                     this.mobile_num = mobile_num; this.birthday = birthday; this.allergy = allergy;
                     this.daily_calorie_intake = daily_calorie_intake; this.social_login_flag = social_login_flag;
@@ -77,6 +79,10 @@ public class Member extends BaseEntity {
                     
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.point = this.point == null ? 0 : this.point;
+    }
 
 
 

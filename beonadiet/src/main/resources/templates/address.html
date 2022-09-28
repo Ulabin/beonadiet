@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
   <title>배송지관리페이지</title>
-  <link rel="stylesheet" href="css/address.css">
+  <link rel="stylesheet" th:href="@{css/address.css}">
 </head>
 <body>
   <div id="container">
@@ -99,7 +99,7 @@
       </div>
     </div>
   </div>
-  <script src="js/jquery-3.6.1.min.js"></script>
-  <script src="js/address.js"></script>
+  <script th:src="@{js/jquery-3.6.1.min.js}"></script>
+  <script th:src="@{js/address.js}"></script>
 </body>
 </html>

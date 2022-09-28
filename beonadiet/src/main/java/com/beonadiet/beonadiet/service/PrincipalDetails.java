@@ -41,7 +41,8 @@ public class PrincipalDetails implements UserDetails {
     // 아이디 (이메일)
     @Override
     public String getUsername() {
-        return member.getUser_id();
+        return member.getUsername();
+        // return member.getUser_id();
         // return member.getEmail();
     }
 

@@ -20,7 +20,8 @@ public class UserDto {
   
   private Long id;
 
-  private String user_id;
+  private String username;
+  // private String user_id;
 
   private String password;
 
@@ -55,7 +56,7 @@ public class UserDto {
   public Member toEntity() {        
     Member member = Member.builder() 
               .id(id)               
-              .user_id(user_id)                
+              .username(username)                
               .password(password)                
               .user_name(user_name)                
               .nickname(nickname)                
@@ -74,13 +75,13 @@ public class UserDto {
 
   @Builder
 
-  public UserDto(Long id, String user_id, String password, String user_name, 
+  public UserDto(Long id, String username, String password, String user_name, 
               String nickname, String email, String mobile_num, Long birthday,
               String allergy, Long daily_calorie_intake, boolean social_login_flag, 
               Long point, Long carb_protein_fat_rate, String role,
               LocalDateTime regDate, LocalDateTime modDate){
 
-    this.id = id; this.user_id = user_id; this.password = password;
+    this.id = id; this.username = username; this.password = password;
     this.user_name = user_name; this.nickname = nickname; this.email = email;
     this.mobile_num = mobile_num; this.birthday = birthday; this.allergy = allergy;
     this.daily_calorie_intake = daily_calorie_intake; this.social_login_flag = social_login_flag;

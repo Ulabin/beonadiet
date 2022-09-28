@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class TestController {
   
-  @RequestMapping("/")
+  @RequestMapping("/home")
   public String home(ModelAndView mav) {
     return "home";  
   }
@@ -24,7 +24,7 @@ public class TestController {
   }
   
   @ResponseBody
-  @RequestMapping("/adminOnly")
+  @RequestMapping("admin/adminOnly")
   public String adminOnly() {
     return "Secret Page";
   }

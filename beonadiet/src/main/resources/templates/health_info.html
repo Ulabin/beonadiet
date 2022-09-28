@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <title>칼로리,탄단지,알러지설정</title>
-  <link rel="stylesheet" href="css/health_info.css">
+  <link rel="stylesheet" th:href="@{css/health_info.css}">
 </head>
 <body>
   <div id="container">
@@ -547,7 +547,7 @@
       </div>
     </div>
   </div>
-  <script src="js/jquery-3.6.1.min.js"></script>
-  <script src="js/health_info.js"></script>
+  <script th:src="@{js/jquery-3.6.1.min.js}"></script>
+  <script th:src="@{js/health_info.js}"></script>
 </body>
 </html>
