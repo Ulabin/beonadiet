@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>배송지추가페이지</title>
   <link rel="stylesheet" th:href="@{css/adr_popup.css}">
-  <script th:src="@{js/jquery-3.6.1.min.js}"></script>
+  <!-- <script th:src="@{js/jquery-3.6.1.min.js}"></script> -->
 </head>
 <body>
   <div class="input-form-wrap">
@@ -17,12 +17,15 @@
       <input type="hidden" name="addrNo" value="">
       <input type="hidden" name="road_zonecode" value="">
       <input type="hidden" name="zipcode" value="">
+      <input type="hidden" name="adr_all" id="adr_all" value=""/>
       <div class="field">
         <div class="adr-search">
-          <input type="text" name="adrMain" id="adrMain" value="" readonly>
+          <input type="text" name="address" id="adrMain" value="" readonly>
+          <!-- <input type="text" name="adrMain" id="adrMain" value="" readonly> -->
           <button type="button" class="btn-search">검색</button>
         </div>
-        <input type="text" name="adrSub" id="adrSub" placeholder="나머지 주소를 입력해주세요." value="" maxlength="79">
+        <input type="text" name="address" id="adrSub" placeholder="나머지 주소를 입력해주세요." value="" maxlength="79">
+        <!-- <input type="text" name="adrSub" id="adrSub" placeholder="나머지 주소를 입력해주세요." value="" maxlength="79"> -->
       </div>
       <label class="label-default">
         <input type="checkbox" name="isDefault" id="isDefault">
@@ -33,5 +36,8 @@
       </div>
     </div>
   </div>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script th:src="@{js/jquery-3.6.1.min.js}"></script>
+  <script th:src="@{js/adr_popup.js}"></script>
 </body>
 </html>

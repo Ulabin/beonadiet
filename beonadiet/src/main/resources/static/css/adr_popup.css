@@ -46,7 +46,8 @@
   background-color: #fafafa;
   font-weight: 400;
   font-size: 15px;
-  color: #999;
+  /* color: #999; */
+  color: #353535;
   line-height: 20px;
   letter-spacing: -.5px;
 }
