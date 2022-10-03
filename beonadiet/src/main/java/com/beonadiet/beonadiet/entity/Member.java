@@ -1,6 +1,12 @@
 package com.beonadiet.beonadiet.entity;
 
 import lombok.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -10,11 +16,16 @@ import org.hibernate.annotations.ColumnDefault;
 @ToString
 @NoArgsConstructor //기본 생성자 만들어준다
 @Table(name = "member")
-public class Member extends BaseEntity {
+public class Member extends BaseEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @OneToMany(mappedBy="member", cascade=CascadeType.ALL)
+    List<Address> address;
+
+    @OneToMany(mappedBy = "member")
+    private Set<Address> addressSet = new HashSet<>();
 
     @Column(length = 20, nullable = false, unique = true, name = "user_id")
     private String username;

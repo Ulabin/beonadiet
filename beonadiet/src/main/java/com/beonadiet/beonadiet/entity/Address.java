@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,8 +48,30 @@ public class Address extends BaseEntity {
   @Column
   private Character default_address;
 
-  @JoinColumn(name = "member_id") // 외래키(포린키)의 이름을 바꿀 수 있다.
-  @ManyToOne 
+  // @ManyToOne(optional = false)
   // @ManyToOne(fetch = FetchType.EAGER) 
-  private Member member; // user_id 만들어준다. 포린키 만들어준다. 
+  // @ManyToOne
+  // @JsonBackReference 
+  // @JoinColumn(name = "id") // 외래키(포린키)의 이름을 바꿀 수 있다.
+  // @ManyToOne(fetch = FetchType.LAZY) 
+  // private Member member; // user_id 만들어준다. 포린키 만들어준다. 
+
+  // @ManyToOne
+  // @JoinColumn(name = "member_id")
+  // // @JoinColumn(name = "id", referencedColumnName = "id")
+  // private Member member;
+
+  @ManyToOne(fetch = FetchType.LAZY)    
+  @JoinColumn(name = "member_id")    
+  private Member member;
+
+  @Builder
+  public Address(Long num, String address_name, Long zip_code, String address, String receiver_name,
+                  String mobile_num, Character default_address, Member member){
+                  
+         this.num = num; this.address_name = address_name; this.zip_code = zip_code; this.address = address;
+         this.receiver_name = receiver_name; this.mobile_num = mobile_num; this.default_address = default_address;
+         this.member = member;           
+  }
+
 }

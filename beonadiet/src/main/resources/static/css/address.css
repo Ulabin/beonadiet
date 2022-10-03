@@ -208,7 +208,9 @@ ul, li {
   line-height: 0;
 }
 
-
+.remove-btn {
+  display: none;
+}
 
 
 

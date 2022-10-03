@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <title>칼로리,탄단지,알러지설정</title>
-  <link rel="stylesheet" th:href="@{css/health_info.css}">
+  <link rel="stylesheet" th:href="@{../css/health_info.css}">
 </head>
 <body>
   <div id="container">
@@ -43,7 +43,8 @@
             </span>
             <span class="txt space10">활동지수란?</span>
             <!-- <a href="active_page.html" class="detail-info" onclick="window.open(this.href, '_blank', 'width=800, height=500'); return false;"> -->
-            <a href="#" class="detail-info">
+            <a href="javascript:;" class="detail-info">
+              <!-- <a sec:authorize="isAuthenticated()" href="javascript:;" class="detail-info"> -->
               <span class="space10">자세히 알아보기</span>
             </a>
             <span class="txt-sub">키, 활동지수, 성별을 입력하고 계산을 누르세요!</span>  
@@ -547,7 +548,7 @@
       </div>
     </div>
   </div>
-  <script th:src="@{js/jquery-3.6.1.min.js}"></script>
-  <script th:src="@{js/health_info.js}"></script>
+  <script th:src="@{../js/jquery-3.6.1.min.js}"></script>
+  <script th:src="@{../js/health_info.js}"></script>
 </body>
 </html>

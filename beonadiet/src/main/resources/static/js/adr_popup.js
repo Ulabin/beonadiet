@@ -12,6 +12,17 @@ $('.btn-search').click(function() {
 
 $('.btn-send').click(function() {
   
+  if($('#adrMain').val()==""){
+    alert("검색 버튼을 눌러 주소를 입력해주세요.")
+    return false;
+  }
+  
+  if($('#adrSub').val()==""){
+    alert("나머지 주소를 입력해주세요.")
+    $('#adrSub').focus();
+    return false;
+  }
+
   var result='';
   $('input[name=address]').map(function(){
     result +=($(this).val()+" ");

@@ -44,38 +44,38 @@ public class UserController {
   public String joinComplete(){
     return "join_complete";
   }
-  @GetMapping("/userinfo")
-  public String userInfo(){
-    return "userinfo";
-  }
-  @GetMapping("/delete_account")
-  public String deleteAccount(){
-    return "delete_account";
-  }
-  @GetMapping("/health_info")
-  public String healthInfo(){
-    return "health_info";
-  }
-  @GetMapping("active_page")
-  public String activePage(){
-    return "active_page";
-  }
-  @GetMapping("/address")
-  public String address(){
-    return "address";
-  }
-  @GetMapping("/adr_modify")
-  public String adrModify(){
-    return "adr_modify";
-  }
-  @GetMapping("/adr_popup")
-  public String adrPopup(){
-    return "adr_popup";
-  }
-  @GetMapping("/pointPage")
-  public String pointPage(){
-    return "pointPage";
-  }
+  // @GetMapping("/userinfo")
+  // public String userInfo(){
+  //   return "userinfo";
+  // }
+  // @GetMapping("/delete_account")
+  // public String deleteAccount(){
+  //   return "delete_account";
+  // }
+  // @GetMapping("/health_info")
+  // public String healthInfo(){
+  //   return "health_info";
+  // }
+  // @GetMapping("/active_page")
+  // public String activePage(){
+  //   return "active_page";
+  // }
+  // @GetMapping("/address")
+  // public String address(){
+  //   return "address";
+  // }
+  // @GetMapping("/adr_modify")
+  // public String adrModify(){
+  //   return "adr_modify";
+  // }
+  // @GetMapping("/adr_popup")
+  // public String adrPopup(){
+  //   return "adr_popup";
+  // }
+  // @GetMapping("/pointPage")
+  // public String pointPage(){
+  //   return "pointPage";
+  // }
   @GetMapping("/cart")
   public String cart(){
     return "cart";
@@ -84,14 +84,14 @@ public class UserController {
   public String order(){
     return "order";
   }
-  @GetMapping("/shopping_list")
-  public String shoppingList(){
-    return "shopping_list";
-  }
-  @GetMapping("/pick_list")
-  public String pickList(){
-    return "pick_list";
-  }
+  // @GetMapping("/shopping_list")
+  // public String shoppingList(){
+  //   return "shopping_list";
+  // }
+  // @GetMapping("/pick_list")
+  // public String pickList(){
+  //   return "pick_list";
+  // }
 
   //PostMapping -> 데이터를 추가하기 위한 Post 요청
   // @PostMapping("/joinProc") 
