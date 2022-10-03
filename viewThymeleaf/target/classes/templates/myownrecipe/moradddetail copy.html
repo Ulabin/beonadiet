@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko" xmls:th="http://www.thymeleaf.com">
+
+<head th:replace="fragments/common :: head('나만의레시피 추가설정')">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" type="text/css" href="stylekmj.css"> --> 
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <title>My Own Recipe Add Detail</title>
+</head>
+
+<body>
+
+  <div class="home-container" th:replace="fragments/common :: nav"></div>
+  
+  <div class="my-own-recipe-add-detail-container">
+    <form th:action="@{/myownrecipe/moradddetail}"  id="my-own-recipe-add-detail-register-form" method="post">
+      
+      <div class="my-own-recipe-add-detail-title-container">
+        <div class="my-own-recipe-register-orderhistory-item-category-add" th:if="${dto.category == 0}">
+          [나만의 도시락]
+        </div>
+        <div class="my-own-recipe-register-orderhistory-item-category-add" th:if="${dto.category == 1}">
+          [나만의 샌드위치]
+        </div>
+        <div class="my-own-recipe-register-orderhistory-item-category-add" th:if="${dto.category == 2}">
+          [나만의 샐러드]
+        </div>
+        
+        <!-- 타이틀 -->
+        
+      </div>
+      
+    </div>
+    <div class="my-own-recipe-add-detail-flex-container">
+    <input type="text" class="my-own-recipe-add-detail-title" maxlength="20"  name="title">
+
+    <div class="my-own-recipe-add-detail-put-img-container">
+      <div class="my-own-recipe-search-img">
+        <label for="ex_file">사진 찾기</label>
+        <input type="file" id="ex_file" class="my-own-recipe-input-tag" multiple>
+      </div>
+
+      <div class="">
+        <img src="../images/altimage.jpg" alt="썸네일 이미지" class="my-own-recipe-add-detail-thumbnail-img">
+      </div>
+      <div class="my-own-recipe-add-detail-addition-img">
+        <img src="../images/altimage.jpg" alt="img" class="my-own-recipe-add-detail-addition-img1">
+      </div>
+      <div class="my-own-recipe-add-detail-addition-img">
+        <img src="../images/altimage.jpg" alt="img" class="my-own-recipe-add-detail-addition-img2">
+      </div>
+      <div class="my-own-recipe-add-detail-addition-img">
+        <img src="../images/altimage.jpg" alt="img" class="my-own-recipe-add-detail-addition-img3">
+      </div>
+      <div class="my-own-recipe-add-detail-addition-img">
+        <img src="../images/altimage.jpg" alt="img" class="my-own-recipe-add-detail-addition-img4">
+      </div>
+      <p class="my-own-recipe-add-detail-precautions"> ※ 파일명을 썸네일 이미지 일경우 : img1thumbnail
+        <br> 부가 이미지일 경우: img2,3,4 로 해주십시오.
+<input type="hidden" th:value="${dto.category}" name="category">
+      </p>
+    </div>
+    <div class="my-own-recipe-add-detail-put-detail-container">
+      <div class="my-own-recipe-add-detail-put-detail">
+
+        <div class="my-own-recipe-add-detail-combination-container">
+          <div class="my-own-recipe-add-detail-combination-title">
+            조합내용
+          </div>
+          <!-- 조합내용 -->
+          <!-- input시 사이즈변경이 안되어 hidden으로 두고 div에서 글을 내보냄 -->
+          <input type="hidden" class="my-own-recipe-add-detail-combination-details-add" th:value="${dto.detail}" name="detail">
+          <div class="my-own-recipe-add-detail-combination-details-add" th:text="${dto.detail}"> </div>
+          
+        </div>
+      </div>
+      <div class="my-own-recipe-add-detail-explanation-container">
+        <div class="custom-file-label"></div>
+        <div class="my-own-recipe-add-detail-explanation-title">설명</div>
+        <textarea placeholder="내용을 입력해 주세요." class="my-own-recipe-add-detail-explanation-textarea"
+          name="explanation"  cols="30" rows="10" ></textarea>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="box">
+
+  </div>
+  <style>
+    .uploadResult-adddetail {width:100%;background:gray;margin-top:10px;}
+    .uploadResult-adddetail ul {
+        display:flex;flex-flow:row;justify-content:center;
+        align-items:center;vertical-align:top;overflow:auto;
+    }
+    .uploadResult-adddetail ul li{list-style:none;padding:10px;margin-left:2em;}
+    .uploadResult-adddetail ul li img{width:100px;}
+  </style>
+  <div class="uploadResult-adddetail" >
+    <ul></ul>
+  </div>
+  <div class="my-own-recipe-add-detail-register-button-container">
+    <button type="submit" class="my-own-recipe-add-detail-register-button" >등록</button>
+    <!-- th:onclick="|location.href='@{/myownrecipe/morproductpage(id=${morpost.id})}'|"-->
+    <!-- 데이터가 잘 받아지면 사용할 버튼 -->
+    <!-- <button type="submit" class="my-own-recipe-add-detail-register-button" th:onclick="|location.href='@{/myownrecipe/morproductpage(
+  name=${dto.name},img=${dto.img},detail=${dto.detail}'|">등록</button> -->
+  </div>
+  </form>
+  </div>
+
+
+
+  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script th:inline="javascript">
+    $("input[id=ex_file]").change(function () {
+  if ($(this).val() != "") {
+    //확장자체크
+    var ext = $(this).val().split(".").pop().toLowerCase();
+    if ($.inArray(ext, ["gif", "jpg", "jpeg", "png"]) == -1) {
+      alert("gif, jpg, jpeg, png 파일만 업로드 가능합니다.");
+      $(this).val("");
+      return;
+    }
+
+    //용량체크
+    for (var i = 0; i < this.files.length; i++) {
+      var fileSize = this.files[i].size;
+      var fsMB = (fileSize / (1024 * 1024)).toFixed(2);
+      var maxSize = 1024 * 1024 * 5;
+      var mSMB = (maxSize / (1024 * 1024));
+      if (fileSize > maxSize) {
+        alert(this.files[i].name + "(이)가 용량 5MB를 초과했습니다.\n\n<font color='red'>" + fsMB + "MB</font> / " + mSMB + "MB");
+        $(this).val("");
+      }
+    }
+  }
+})
+
+$("#ex_file").on("change", function (event) {
+  
+  for(var i= 0; i<4; i++){
+    if(i==0){
+      
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img1").attr("src", e.target.result);
+          $(".my-own-recipe-add-detail-thumbnail-img").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    } else if(i==1){
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img2").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }else if(i==2){
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img3").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }else if(i==3){
+      var file = event.target.files[i];
+      
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $(".my-own-recipe-add-detail-addition-img4").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }
+  }
+
+});
+
+
+// $(document).ready(function(){
+//   // var listVar = $('input[name=my-own-recipe-register-orderhistory-item-check]:checked').val();
+//   $('.my-own-recipe-add-detail-register-button').click(function(){
+
+
+//     var textarea = $('.my-own-recipe-add-detail-explanation-textarea');
+//     if(textarea.val() == ""){
+//       alert("설명을 추가해 주십시오")
+//       return false;
+//     } else if (textarea.val().length > 200){
+//       alert("글자수 최대 200자 입니다.")
+//       return false;
+//     } 
+//     else if (textarea.val().length < 20) {
+//        console.log(textarea.val());
+//        alert("글자수 최소 20자 입니다.")
+//        return false;
+//       } else {
+//       console.log(textarea.val());
+//       return  $trim(textarea.val())
+//     }
+  
+//   })
+  
+// });  
+
+window.onload = function(){
+  
+  const regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+  const maxSize = 1024*1024*10; //10MB
+  function checkExtension(fileName, fileSize){
+    if(fileSize > maxSize){
+      alert('파일사이즈초과')
+      return false;
+    }
+    if(regex.test(fileName)){
+      alert('해당파일은 업로드 될 수 없습니다.')
+      return false;
+    }
+    return true;
+  }
+  const fileInput = document.querySelector("#ex_file")
+  fileInput.onchange = function(){
+    const fileName = fileInput.value.split("\\").pop() //맨끝만 나옴.
+    // let temp = siblings(document.querySelector(fileInput))
+    // let temp = document.querySelector(".custom-file-label")
+    // // temp.classList.add("selected")
+    // temp.innerHTML = (fileInput.files.length-1)==0?"":
+    //             fileName+" 외 "+(fileInput.files.length-1)+"개";
+
+    var formData = new FormData();
+    var files = this.files;
+    var appended = false;
+    
+    for(let i=0;i<files.length;i++){
+      if(!checkExtension(files[i].name, files[i].size)) {
+        // temp.innerHTML = ""
+        this.value = ''
+        return false;
+      }
+      formData.append("uploadFiles", files[i]);
+      appended = true;
+    }
+
+    //전송할 파일이 없으면 여기서 끝.If there are no files to transfer, end here.
+    if(!appended) return;
+    
+    //전송할 파일이 있으면 목록 보기.It there are files to transfer,show list.
+    for(let value of formData.values()) console.log(value)
+    
+    const url = /*[[@{/uploadAjax/}]]*/'url'
+    axios.post(url, formData, {
+      headers: {
+        "Content-Type" : "multipart/form-data",
+        "process-data" : false,
+      }
+    }).then(function(res){
+      showResult(res.data);
+      console.log("then........")
+    }).catch(function(err){
+      
+    })
+  }
+  function showResult(arr){
+    const uploadUL = document.querySelector(".uploadResult-adddetail ul");
+    const url = /*[[@{/display}]]*/'url'
+    let str = ""
+    for(let i=0;i<arr.length;i++){
+      str += `
+      <li data-name='${arr[i].fileName}' data-path='${arr[i].folderPath}' 
+          data-uuid='${arr[i].uuid}' data-file='${arr[i].imageURL}'>
+          <div>
+                <button type='button' class='removeBtn'>X</button>
+                <br><img src='${url}?fileName=${arr[i].thumbnailURL}'>
+              </div>
+      </li>`
+    }
+    uploadUL.innerHTML = str;
+   
+          const removeBtns = document.querySelectorAll(".removeBtn");
+          for (let i = 0; i < removeBtns.length; i++) {
+            removeBtns[i].onclick = function(){
+              const removeUrl = /*[[@{/removeFile}]]*/'url'
+              const targetLI = this.parentElement.closest('li')
+              const fileName = targetLI.dataset.file
+              axios({
+                method: "POST",
+                url: `http://localhost:8081${removeUrl}?fileName=${fileName}`,
+              }).then( function(res){
+                if(res.data === true) targetLI.remove();
+              }).catch(function(err){console.log(err)});
+            }
+          }
+  }
+
+  
+  document.querySelector(".my-own-recipe-add-detail-register-button").onclick = function(e){
+    e.preventDefault();
+    let str = "";
+    const liArr = document.querySelectorAll(".uploadResult-adddetail ul li")
+    for(let i=0;i<liArr.length;i++){
+      const target = liArr[i];
+      str += `
+        <input type="hidden" name="imageDTOList[${i}].imgName" 
+        value="${target.dataset.name}">
+        <input type="hidden" name="imageDTOList[${i}].path" 
+        value="${target.dataset.path}">
+        <input type="hidden" name="imageDTOList[${i}].uuid" 
+        value="${target.dataset.uuid}"> 
+      `
+    }
+    document.querySelector("#my-own-recipe-add-detail-register-form").innerHTML = str
+    document.querySelector("#my-own-recipe-add-detail-register-form").submit()
+  }
+}
+  </script>
+</body>
+
+</html>

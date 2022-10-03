@@ -1,11 +1,14 @@
 package com.ds.mainpagetest.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Builder
 @NoArgsConstructor
@@ -13,13 +16,14 @@ import lombok.NoArgsConstructor;
 @Data
 public class MyOwnRecipePostDTO {
   private Long id;
-  private String name;
+  private String title;
   private String explanation;
-  private int views;
-  private int likeCount;
-  private int category;
   private String detail;
-  private int calorie;
-  private String image;
+  private int category;
   private LocalDateTime regDate, modDate;
+
+  @Builder.Default
+  private List<MorImageDTO> imageDTOList = new ArrayList<>();
+
+
 }

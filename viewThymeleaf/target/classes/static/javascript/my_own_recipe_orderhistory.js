@@ -65,8 +65,8 @@ function getMemberList1() {
   })
     .done(function (result) {
       // console.log(result);
-      $('.uploadResult').empty();
-      $('.uploadResult').html(result)
+      $('.uploadResultHistory').empty();
+      $('.uploadResultHistory').html(result)
     })
     .fail(function (jqXHR) {
       console.log(jqXHR);
@@ -89,8 +89,8 @@ function getMemberList2() {
   })
     .done(function (result) {
       console.log(result);
-      $('.uploadResult').empty();
-      $('.uploadResult').html(result)
+      $('.uploadResultHistory').empty();
+      $('.uploadResultHistory').html(result)
     })
     .fail(function (jqXHR) {
       console.log(jqXHR);
@@ -111,8 +111,8 @@ function getMemberList3() {
   })
     .done(function (result) {
       console.log(result);
-      $('.uploadResult').empty();
-      $('.uploadResult').html(result)
+      $('.uploadResultHistory').empty();
+      $('.uploadResultHistory').html(result)
     })
     .fail(function (jqXHR) {
       console.log(jqXHR);

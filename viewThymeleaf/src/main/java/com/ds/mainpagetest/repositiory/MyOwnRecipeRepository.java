@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.ds.mainpagetest.entity.MyOwnRecipe;
 
-public interface MainpagetestRepository extends JpaRepository<MyOwnRecipe, Long>{
+public interface MyOwnRecipeRepository extends JpaRepository<MyOwnRecipe, Long>{
   
-  @Query("select m from MyOwnRecipe m where id=:id ")
-  List<Object[]> getRecipeId(Long id);
+  @Query("select m from MyOwnRecipe m where id=:idm ")
+  List<Object[]> getRecipeId(Long idm);
 }

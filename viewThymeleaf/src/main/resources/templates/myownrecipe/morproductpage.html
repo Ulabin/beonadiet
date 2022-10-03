@@ -14,13 +14,24 @@
 </head>
 
 <body>
-  
+
   <div class="home-container" th:replace="fragments/common :: nav"></div>
 
   <div class="my-own-recipe-detail-container">
     <div class="my-own-recipe-detail-title-container">
-      <div class="my-own-recipe-detail-title">
-        [나만의 샌드위치] 아삭 모닝 샌드위치
+
+      <div class="my-own-recipe-register-orderhistory-item-category-product" th:if="${dto.category == 0}">
+        [나만의 도시락]
+      </div>
+      <div class="my-own-recipe-register-orderhistory-item-category-product" th:if="${dto.category == 1}">
+        [나만의 샌드위치]
+      </div>
+      <div class="my-own-recipe-register-orderhistory-item-category-product" th:if="${dto.category == 2}">
+        [나만의 샐러드]
+      </div>
+      <div class="my-own-recipe-detail-title" th:text="${dto.title}">
+        아삭 모닝 샌드위치
+
       </div>
     </div>
     <div class="my-own-recipe-product-detailpage-like">
@@ -28,30 +39,26 @@
       </iconify-icon>
       <span class="my-own-recipe-product-detailpage-like-count">1</span>
     </div>
-    <form action="#" id="my-own-recipe-detail-register-form" name="" method="">
+    <form action="#" id="my-own-recipe-detail-register-form" name="my-own-recipe-detail-register-form" method="">
       <div class="my-own-recipe-detail-flex-container">
 
         <div class="my-own-recipe-detail-img-container">
 
 
           <div class="my-own-recipe-thumbnail-img">
-            <!-- <img src="./images/img2.jpg" alt="img" class="thumbPic"> -->
           </div>
           <div class="my-own-recipe-addition-img">
-            <img src="../images/img2.jpg" alt="img" class="smallPic">
-            <img src="../images/img1.jpg" alt="img" class="smallPic">
-            <img src="../images/img3.jpg" alt="img" class="smallPic">
-            <img src="../images/img4.jpg" alt="img" class="smallPic">
+
+
+            <div th:each="morImage: ${dto.imageDTOList}" th:data-file="${morImage.getThumbnailURL}"
+              class="smallPicContainer">
+              <img th:if="${morImage.path != null}" th:src="|@{/display}?fileName=${morImage.getThumbnailURL}|"
+                class="smallPic">
+            </div>
           </div>
 
-          <div class="my-own-recipe-detail">
-            What is Lorem Ipsum?
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
+          <div class="my-own-recipe-detail" th:text="${dto.explanation}">
+
           </div>
         </div>
         <div class="my-own-recipe-detail-detail-container">
@@ -61,30 +68,8 @@
               <div class="my-own-recipe-detail-combination-title">
                 조합내용
               </div>
-              <div class="my-own-recipe-detail-combination-details">
-                <!-- li innerHtml js사용하기 -->
-                <ul>
-                  <li>햄 1.5</li>
-                  <li>소시지 1</li>
-                  <li>빵 15cm</li>
-                  <li>치즈 1</li>
-                  <li>오이 1</li>
-                  <li>토마토 1.5</li>
-                  <li>양상추 1</li>
-                  <li>양배추 1</li>
-                  <li>케첩 1.5</li>
-                  <li>마요네즈 1.5</li>
-                  <li>토마토 1.5</li>
-                  <li>양상추 1</li>
-                  <li>양배추 1</li>
-                  <li>케첩 1.5</li>
-                  <li>마요네즈 1.5</li>
-                  <li>토마토 1.5</li>
-                  <li>양상추 1</li>
-                  <li>양배추 1</li>
-                  <li>케첩 1.5</li>
-                  <li>마요네즈 1.5</li>
-                </ul>
+              <div class="my-own-recipe-detail-combination-details" th:text="${dto.detail}">
+
               </div>
             </div>
             <div class="my-own-recipe-detail-caution-container">
@@ -99,12 +84,12 @@
 
             </div>
             <div class="for-center">
-              <button type="button"  class="add-to-basket" >장바구니에 넣기</button>
+              <button type="button" class="add-to-basket">장바구니에 넣기</button>
               <a href="#" th:href="@{/myownrecipe/moruserpost}" class="go-to-other-recipe">이 유저의 다른 레시피 보기</a>
               <a href="#" class="order-this-recipe">레시피 주문하기</a>
             </div>
           </div>
-        
+
         </div>
       </div>
     </form>
@@ -113,7 +98,7 @@
 
   <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
   <script th:src="@{/javascript/my_own_recipe_product_detail_page.js}"></script>
- 
+
 </body>
 
 </html>

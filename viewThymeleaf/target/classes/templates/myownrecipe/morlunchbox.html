@@ -2,8 +2,7 @@
   <span class="">상품명</span>
   <span class="">조합내용</span>
   <hr>
-  <div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == 0}"
-    th:field="${name}">
+  <div class="my-own-recipe-register-orderhistory-item" th:each="list : ${list}" th:if="${list.category == 0}">
       <div class="my-own-recipe-register-orderhistory-item-img">
         <img src="../images/lunchbox.png" alt="image">
       </div>
@@ -21,7 +20,7 @@
 
         </div>
       </div>
-      <button type="button" name="register-btn" class="my-own-recipe-register-btn" th:value="${list.id}" 
+      <button type="button" name="register-btn" class="my-own-recipe-register-btn"  
       th:onclick="|location.href='@{/myownrecipe/moradddetail(id=${list.id})}'|">
      
         추가 설정

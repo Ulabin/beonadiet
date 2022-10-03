@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ds.mainpagetest.repositiory.MainpagetestRepository;
+import com.ds.mainpagetest.repositiory.MyOwnRecipeRepository;
 
 @SpringBootTest
 public class MyOwnRecipeTests {
   @Autowired
-  MainpagetestRepository mRepository;
+  MyOwnRecipeRepository mRepository;
   
   @Test
   public void insertDummies(){

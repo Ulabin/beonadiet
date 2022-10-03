@@ -21,8 +21,6 @@ public class QMyOwnRecipePost extends EntityPathBase<MyOwnRecipePost> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final NumberPath<Integer> calorie = createNumber("calorie", Integer.class);
-
     public final NumberPath<Integer> category = createNumber("category", Integer.class);
 
     public final StringPath detail = createString("detail");
@@ -31,19 +29,13 @@ public class QMyOwnRecipePost extends EntityPathBase<MyOwnRecipePost> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath image = createString("image");
-
-    public final NumberPath<Integer> likeCount = createNumber("likeCount", Integer.class);
-
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modDate = _super.modDate;
-
-    public final StringPath name = createString("name");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> regDate = _super.regDate;
 
-    public final NumberPath<Integer> views = createNumber("views", Integer.class);
+    public final StringPath title = createString("title");
 
     public QMyOwnRecipePost(String variable) {
         super(MyOwnRecipePost.class, forVariable(variable));
