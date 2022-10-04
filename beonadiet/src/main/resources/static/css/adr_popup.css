@@ -99,6 +99,12 @@ input[type=checkbox] {
 .send-box {
   display: flex;
   justify-content: center;
+  margin-bottom: 12px;
+}
+
+.exit-box {
+  display: flex;
+  justify-content: center;
 }
 
 .btn-send {
@@ -109,6 +115,17 @@ input[type=checkbox] {
   font-weight: 600;
   border: 0px;
   background-color: #C7DFAA;
+}
+
+.btn-exit {
+  width: 430px;
+  height: 35px;
+  color: #353535;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #C7DFAA;
+  background-color: #fff;
+
 }
 
 button {
