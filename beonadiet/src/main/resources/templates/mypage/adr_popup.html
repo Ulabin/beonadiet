@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- <html lang="ko" xmlns:th="http://www.thymeleaf.org"> -->
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,10 +17,17 @@
         <h1>배송지 추가</h1>
       </div>
       <form th:action="@{/address/create}" method="post">
-        <input type="hidden" name="addrNo" value="">
+        <!-- <input type="hidden" name="addrNo" value="">
         <input type="hidden" name="road_zonecode" value="">
         <input type="hidden" name="zipcode" value="">
-        <input type="hidden" name="adr_all" id="adr_all" value=""/>
+        <input type="hidden" name="adr_all" id="adr_all" value=""/> -->
+
+        
+        <input type="hidden" name="member_id" th:value="${#authentication}">
+        <!-- <p th:text="${#authentication}"></p> -->
+        <!-- <p sec:authentication="Principal.username"></p> -->
+        <!-- <p th:text="${#authentication.name}"></p> -->
+        <!-- <p th:text="${#authentication.authorities}"></p> -->
         <div class="field">
           <div class="adr-search">
             <input type="text" name="address" id="adrMain" value="" readonly>

@@ -25,12 +25,11 @@ public class AddressController {
   }
   
   @PostMapping("/address/create")
-  // @PostMapping("/address/create")
-  public String createAddress(AdrDto form) {
+  public String createAddress(AdrDto adrDto) {
       // System.out.println(form.toString());
       
       // 1. Dto를 Entity 변환
-      Address address = form.toEntity();
+      Address address = adrDto.toEntity();
       // System.out.println(address.toString());
       
       // 2. Repository에게 Entity를 DB로 저장하게 함
@@ -41,9 +40,4 @@ public class AddressController {
       return "";
   }
 
-  // @PostMapping("/address/create")
-  // public String addressPro(Address address){
-  //   adrService.saveAddress(address);
-  //   return "";
-  // }
 }

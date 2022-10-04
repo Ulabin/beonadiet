@@ -3,6 +3,7 @@ package com.beonadiet.beonadiet.entity;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,12 +22,17 @@ public class Member extends BaseEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @OneToMany(mappedBy="member", cascade=CascadeType.ALL)
-    List<Address> address;
-
-    @OneToMany(mappedBy = "member")
-    private Set<Address> addressSet = new HashSet<>();
-
+    
+    
+    // @OneToMany(mappedBy="member", cascade=CascadeType.ALL)
+    // List<Address> address;
+    
+    // @OneToMany(mappedBy = "member")
+    // private Set<Address> addressSet = new HashSet<>();
+    
+    // @OneToMany(mappedBy = "member")
+    // private List<Address> address = new ArrayList<>();
+    
     @Column(length = 20, nullable = false, unique = true, name = "user_id")
     private String username;
     // private String user_id;

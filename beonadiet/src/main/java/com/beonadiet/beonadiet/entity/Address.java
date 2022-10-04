@@ -48,20 +48,7 @@ public class Address extends BaseEntity {
   @Column
   private Character default_address;
 
-  // @ManyToOne(optional = false)
-  // @ManyToOne(fetch = FetchType.EAGER) 
-  // @ManyToOne
-  // @JsonBackReference 
-  // @JoinColumn(name = "id") // 외래키(포린키)의 이름을 바꿀 수 있다.
-  // @ManyToOne(fetch = FetchType.LAZY) 
-  // private Member member; // user_id 만들어준다. 포린키 만들어준다. 
-
-  // @ManyToOne
-  // @JoinColumn(name = "member_id")
-  // // @JoinColumn(name = "id", referencedColumnName = "id")
-  // private Member member;
-
-  @ManyToOne(fetch = FetchType.LAZY)    
+  @ManyToOne(fetch = FetchType.EAGER)    
   @JoinColumn(name = "member_id")    
   private Member member;
 

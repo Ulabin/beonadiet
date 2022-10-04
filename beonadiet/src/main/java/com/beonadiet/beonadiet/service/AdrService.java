@@ -1,5 +1,7 @@
 package com.beonadiet.beonadiet.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ public class AdrService {
 
   @Autowired
   private AddressRepository addressRepository;
+
   public void saveAddress(Address address) {
     addressRepository.save(address);
   }
