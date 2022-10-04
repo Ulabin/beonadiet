@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <title>완제품</title>
+    <link rel="stylesheet" href="resources/static/css/font.css">
+    <link rel="stylesheet" href="resources/static/css/style.css">
+    <script>
+        window.onload=function(){
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <ul class="product_detail_menu"> 
+                <li>상품설명</li><!--
+                --><li>식품관련정보</li><!--
+                --><li>제품문의</li><!--
+                --><li style="background-color: #FFFFFF">후기 ( 104 )</li>
+            </ul>
+
+            <style>
+                .review_info_summary_box{
+                    width: 910px;
+                    padding-top:40px;
+                    padding-bottom:15px;
+                    padding-left:30px;
+                    padding-right: 30px;
+                    background-color: rgb(229, 229, 229);
+                }
+
+                body{
+                    background-color: #f0f0f0;
+                }
+
+                .rating-wrap{
+                    padding: 10px;
+                    width: 158px;
+                    display: inline-block;
+                    margin: 45px 0px;
+                }
+                .rating {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                }
+
+                .userReview-rating-wrap{
+                    padding: 5px 5px 5px 0px;
+                    width: 108px;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+
+                .userReview-rating {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                }
+
+                .starcolor{
+                    fill: #ff8844;
+                }
+
+                .overlay {
+                    background-color: #000;
+                    opacity: 0.5;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+                    transition: all 0.3s ease-in-out;
+                }
+                @supports (mix-blend-mode: color) {
+                    .overlay{
+                        mix-blend-mode: color;
+                        opacity: unset;
+                    }
+                }
+
+                .review_info_summary_box span{
+                    font-weight:bold;
+                }
+
+                .review_score_avg{
+                    width:300px;
+                    text-align: center;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+
+                .review_num{
+                    width:300px;
+                    text-align: center;
+                    display: inline-block;
+                    height: 163px;
+                }
+
+                .grade_distribution{
+                    width:300px;
+                    text-align: center;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            </style>
+
+            <div class="review_container">
+                <div class="review_info_summary_box">
+                    <div class="review_score_avg">
+                        <span style="font-size:22px;">사용자 총 평점</span><br>
+                        <div class="rating-wrap">
+                            <div class="rating">
+                                <div class="overlay"></div>
+                            </div>
+                        </div><br>
+                        <span id="star_value" style="font-size:40px; display: inline-block;">4.8</span><span style="font-size:40px;"> /</span><span style="font-size:40px;"> 5</span>
+                    </div>
+
+                    <div class="review_num">
+                        <span style="font-size:22px;">전체 리뷰 수</span><br>
+                        <img src="../beonadiet/resources/static/assets/review_big_icon.png" alt="" height="50" style="margin:43px 0px;">
+                        <br><span style="font-size:40px;">1,549</span>
+                    </div>
+
+
+                    <style>
+                        .vertical_graph {
+                            /* position: absolute;
+                            left:50%; top:50%; transform: translate(-50%,-50%); */
+                            padding-inline-start: 0px;
+                            margin-top:30px;
+                        }
+
+                        .vertical_graph li{
+                            margin-right: 10px;
+                            list-style: none;
+                            display: inline-block;
+                            text-align: center;
+                            position:relative;
+                        }
+
+                        .vertical_graph li div{
+                            display: inline-block;
+                            height:100px; position: relative; border-radius: 10px; background-color: rgb(223, 223, 223); border: 1px solid #949494;
+                            width:12px;
+                        }
+
+                        .vertical_graph li div span{
+                            position: absolute; left:0; right:0; bottom:0; background-color: #0FA958; border-radius: 10px;
+                            outline: 1px solid #0FA958;
+                        }
+
+                        .vertical_graph p {
+                            font-size: 12px;
+                            text-align: center;
+                            width: 28px;
+                            font-weight: bold;
+                        }
+
+                        .percentage_box{
+                            margin: 0 auto;
+                            position: relative;
+                            text-align: center;
+                            background-color: #fff;
+                            border: 2px solid #666;
+                            border-radius: 5px;
+                            margin-bottom: 8px;
+                        }
+                        
+                        .percentage_box:before {
+                            border: 6px solid;
+                            border-color: #666 transparent transparent transparent;
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+
+                        .percentage_box:after {
+                            content: "";
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            top: 100%;
+                            right: 50%;
+                            transform: translateX(50%);
+                            border: 3px solid;
+                            border-color: #fff transparent transparent transparent;
+                        }
+                    </style>
+
+                    <div class="grade_distribution">
+                        <span style="font-size:22px;">평점 비율</span><br>
+                        <ul class="vertical_graph">
+                            <li>
+                                <p class="percentage_box">50%</p>
+                                <div>
+                                    <span style="height:50%"></span>
+                                </div>
+                                <p>5점</p>
+                            </li>
+                            <li>
+                                <p class="percentage_box">30%</p>
+                                <div>
+                                    <span style="height:30%"></span>
+                                </div>
+                                <p>4점</p>
+                            </li>
+                            <li>
+                                <p class="percentage_box">15%</p>
+                                <div>
+                                    <span style="height:15%"></span>
+                                </div>
+                                <p>3점</p>
+                            </li>
+                            <li>
+                                <p class="percentage_box">2%</p>
+                                <div>
+                                    <span style="height:2.5%"></span>
+                                </div>
+                                <p>2점</p>
+                            </li>
+                            <li style="margin-right: 0px">
+                                <p class="percentage_box">2%</p>
+                                <div>
+                                    <span style="height:2.5%"></span>
+                                </div>
+                                <p>1점</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <script>
+                    let curPos=0; let position=0; const transWidth=162;
+
+                    window.onload=function(){
+                        let max_curPos=$('.img_frame img').length-6;
+
+                        console.log(max_curPos);
+
+                        $('#left_btn').click(function(){
+                            if(curPos>0){
+                                position+= transWidth;
+                                document.querySelector(".img_frame").style.transform = `translateX(${position}px)`
+                                curPos-=1;
+                            }
+                        })
+
+                        $('#right_btn').click(function(){
+                            if(curPos<max_curPos){
+                                position -= transWidth;
+                                document.querySelector(".img_frame").style.transform = `translateX(${position}px)`
+                                curPos+=1;
+                            }
+                        })
+                    }
+                </script>
+
+                <div class="img_collection_container">
+                    <h2>리뷰 사진 ( 20 )</h2>
+                    <img src="../beonadiet/resources/static/assets/left_btn.png" id="left_btn" class="img_collection_btn" style="left:-40px; top:110px;"alt="">
+                    <img src="../beonadiet/resources/static/assets/right_btn.png" id="right_btn" class="img_collection_btn" style="right:-40px; top:110px" alt="">
+                    <div class="img_collection">
+                        <div class="img_frame">
+                            <div>
+                                 <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                            <div>
+                                <img src="https://placehold.co/138x138" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    .img_collection_container {
+                        width: 970px;
+                        position: relative;
+                    }
+
+                    .img_frame{
+                        display: flex;
+                        transition-property: transform; 
+                        transition-duration: 1s;
+                    }
+
+                    .img_collection{
+                        overflow: hidden;
+                        width:970px;
+                    }
+
+                    .img_collection_btn {
+                        width:35px;
+                        position: absolute;
+                        cursor: pointer;
+                    }
+
+                    .img_collection img{
+                        margin: 12px;
+                    }
+
+                    .sortOrder_and_reviewNum h2{
+                        display: inline-block;
+                        margin:20px 0px;
+                    }
+
+                    .sortOrder_and_reviewNum ul{
+                        display: inline-block;
+                        margin: 20px 0px;
+                        vertical-align: middle;
+                        line-height: 28px;   
+                    }
+
+                    .sortOrder_and_reviewNum ul li{
+                        list-style: none;
+                        display: inline-block;
+                    }
+
+                    .sortOrder_and_reviewNum li, .sortOrder_and_reviewNum span{
+                        color: #b9b9b9;
+                        cursor:pointer;
+                    }
+
+                    .sortOrder_and_reviewNum > div{
+                        display: inline-block;
+                        position: absolute;
+                        right:0;
+                    }
+
+                    .sortOrder_and_reviewNum ul li:last-of-type{
+                        color: #353535;
+                        font-weight: 900;
+                        background-color: #C7DFAA;
+                        border-radius: 10px;
+                        padding:3px 10px;
+                        margin-left:5px;
+                    }
+                </style>
+
+                <div class="sortOrder_and_reviewNum">
+                    <h2>리뷰 1,549건</h2>
+                    <div>
+                        <ul>
+                            <img src="../beonadiet/resources/static/assets/check_icon.png" width="13" alt="">
+                            <li style="color:#353535">좋아요순</li>
+                            <span> | </span>
+                            <li>최신순</li>
+                            <span> | </span>
+                            <li>평점 높은순</li>
+                            <span> | </span>
+                            <li>평점 낮은순</li>
+                            <li>리뷰 작성하기</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <style>
+                    .userReview_box span{
+                        vertical-align: middle;
+                        display: inline-block;
+                        line-height: 30px;
+                        font-weight: bold;
+                    }
+
+                    .review_content p{
+                        margin:0px;
+                        margin:5px 0px;
+                        display: inline-block;
+                        width:730px;
+                        height:95px;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 5;
+                        overflow: hidden;
+                    }
+
+                    .userReview, .review_img_box, .review_like_box{
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    .review_img_box {
+                        padding:18px;
+
+                    }
+                </style>
+
+                <div class="review_collection">
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="2.5">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>2.5</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>한 회계연도를 넘어 계속하여 지출할 필요가 있을 때에는 정부는 연한을 정하여 계속비로서 국회의 의결을 얻어야 한다. 탄핵결정은 공직으로부터 파면함에 그친다. 그러나, 이에 의하여 민사상이나 형사상의 책임이 면제되지는 아니한다. 모든 국민은 근로의 의무를 진다. 국가는 근로의 의무의 내용과 조건을 민주주의원칙에 따라 법률로 정한다.
+                                    공무원인 근로자는 법률이 정하는 자에 한하여 단결권·단체교섭권 및 단체행동권을 가진다. 여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 국민경제의 발전을 위한 중요정책의 수립에 관하여 대통령의 자문에 응하기 위하여 국민경제자문회의를 둘 수 있다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="4">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>4</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>한 회계연도를 넘어 계속하여 지출할 필요가 있을 때에는 정부는 연한을 정하여 계속비로서 국회의 의결을 얻어야 한다. 탄핵결정은 공직으로부터 파면함에 그친다. 그러나, 이에 의하여 민사상이나 형사상의 책임이 면제되지는 아니한다. 모든 국민은 근로의 의무를 진다. 국가는 근로의 의무의 내용과 조건을 민주주의원칙에 따라 법률로 정한다.
+                                    공무원인 근로자는 법률이 정하는 자에 한하여 단결권·단체교섭권 및 단체행동권을 가진다. 여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 국민경제의 발전을 위한 중요정책의 수립에 관하여 대통령의 자문에 응하기 위하여 국민경제자문회의를 둘 수 있다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="3.5">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>3.5</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다. 외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다. 대한민국의 국민이 되는 요건은 법률로 정한다. 국가의 세입·세출의 결산, 국가 및 법률이 정한 단체의 회계검사와 행정기관 및 공무원의 직무에 관한 감찰을 하기 위하여 대통령 소속하에 감사원을 둔다. 모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로 근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이 정하는 바에 의하여 최저임금제를 시행하여야 한다.
+
+                                    국군의 조직과 편성은 법률로 정한다. 제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여 국회재적의원 과반수의 찬성이 있어야 한다. 대법관의 임기는 6년으로 하며, 법률이 정하는 바에 의하여 연임할 수 있다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="3.5">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>3.5</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다. 외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다. 대한민국의 국민이 되는 요건은 법률로 정한다. 국가의 세입·세출의 결산, 국가 및 법률이 정한 단체의 회계검사와 행정기관 및 공무원의 직무에 관한 감찰을 하기 위하여 대통령 소속하에 감사원을 둔다. 모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로 근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이 정하는 바에 의하여 최저임금제를 시행하여야 한다.
+
+                                    국군의 조직과 편성은 법률로 정한다. 제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여 국회재적의원 과반수의 찬성이 있어야 한다. 대법관의 임기는 6년으로 하며, 법률이 정하는 바에 의하여 연임할 수 있다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="3.5">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>3.5</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다. 외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다. 대한민국의 국민이 되는 요건은 법률로 정한다. 국가의 세입·세출의 결산, 국가 및 법률이 정한 단체의 회계검사와 행정기관 및 공무원의 직무에 관한 감찰을 하기 위하여 대통령 소속하에 감사원을 둔다. 모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로 근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이 정하는 바에 의하여 최저임금제를 시행하여야 한다.
+
+                                    국군의 조직과 편성은 법률로 정한다. 제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여 국회재적의원 과반수의 찬성이 있어야 한다. 대법관의 임기는 6년으로 하며, 법률이 정하는 바에 의하여 연임할 수 있다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="3.5">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>3.5</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다. 외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다. 대한민국의 국민이 되는 요건은 법률로 정한다. 국가의 세입·세출의 결산, 국가 및 법률이 정한 단체의 회계검사와 행정기관 및 공무원의 직무에 관한 감찰을 하기 위하여 대통령 소속하에 감사원을 둔다. 모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로 근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이 정하는 바에 의하여 최저임금제를 시행하여야 한다.
+
+                                    국군의 조직과 편성은 법률로 정한다. 제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여 국회재적의원 과반수의 찬성이 있어야 한다. 대법관의 임기는 6년으로 하며, 법률이 정하는 바에 의하여 연임할 수 있다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="3.5">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>3.5</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다. 외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다. 대한민국의 국민이 되는 요건은 법률로 정한다. 국가의 세입·세출의 결산, 국가 및 법률이 정한 단체의 회계검사와 행정기관 및 공무원의 직무에 관한 감찰을 하기 위하여 대통령 소속하에 감사원을 둔다. 모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로 근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이 정하는 바에 의하여 최저임금제를 시행하여야 한다.
+
+                                    국군의 조직과 편성은 법률로 정한다. 제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여 국회재적의원 과반수의 찬성이 있어야 한다. 대법관의 임기는 6년으로 하며, 법률이 정하는 바에 의하여 연임할 수 있다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="userReview_box">
+                        <div class="userReview">
+                            <div>
+                                <div class="userReview-rating-wrap">
+                                    <div class="userReview-rating" data-rate="3.5">
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                                <span>3.5</span>
+                            </div>
+                            <div class="review_content">
+                                <span>피곤피곤</span><span>&nbsp;|&nbsp;</span><span>22.09.21.</span><br>
+                                <p>누구든지 체포 또는 구속의 이유와 변호인의 조력을 받을 권리가 있음을 고지받지 아니하고는 체포 또는 구속을 당하지 아니한다. 체포 또는 구속을 당한 자의 가족등 법률이 정하는 자에게는 그 이유와 일시·장소가 지체없이 통지되어야 한다. 외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다. 대한민국의 국민이 되는 요건은 법률로 정한다. 국가의 세입·세출의 결산, 국가 및 법률이 정한 단체의 회계검사와 행정기관 및 공무원의 직무에 관한 감찰을 하기 위하여 대통령 소속하에 감사원을 둔다. 모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로 근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이 정하는 바에 의하여 최저임금제를 시행하여야 한다.
+
+                                    국군의 조직과 편성은 법률로 정한다. 제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여 국회재적의원 과반수의 찬성이 있어야 한다. 대법관의 임기는 6년으로 하며, 법률이 정하는 바에 의하여 연임할 수 있다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 국가는 재해를 예방하고 그 위험으로부터 국민을 보호하기 위하여 노력하여야 한다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다.</p>
+                            </div>
+                        </div>
+                        <div class="review_img_box">
+                            <img src="https://placehold.co/140x140" alt="">
+                        </div>
+                        <div class="review_like_box">
+                            <div style="height: 170px; display: flex;  justify-content: center; align-items: center;">
+                                <div style="display:inline-block">
+                                <img class="heart_icon" src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png" alt="하트아이콘">
+                                <br><span style="display:inline-block; width:40px; text-align: center;">102</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    .pagination {
+                        --bs-pagination-padding-x: 0.75rem;
+                        --bs-pagination-padding-y: 0.375rem;
+                        --bs-pagination-font-size: 1rem;
+                        --bs-pagination-color: var(--bs-link-color);
+                        --bs-pagination-bg: #fff;
+                        --bs-pagination-border-width: 1px;
+                        --bs-pagination-border-color: #dee2e6;
+                        --bs-pagination-border-radius: 0.375rem;
+                        --bs-pagination-hover-color: var(--bs-link-hover-color);
+                        --bs-pagination-hover-bg: #e9ecef;
+                        --bs-pagination-hover-border-color: #dee2e6;
+                        --bs-pagination-focus-color: var(--bs-link-hover-color);
+                        --bs-pagination-focus-bg: #e9ecef;
+                        --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(15, 169, 88, 0.25);
+                        --bs-pagination-active-color: #fff;
+                        --bs-pagination-active-bg: #0FA958;
+                        --bs-pagination-active-border-color: #0FA958;
+                        --bs-pagination-disabled-color: #6c757d;
+                        --bs-pagination-disabled-bg: #fff;
+                        --bs-pagination-disabled-border-color: #dee2e6;
+                        display: flex;
+                        padding-left: 0;
+                        list-style: none;
+                        justify-content: center; 
+                    }
+
+                    .page-link {
+                        position: relative;
+                        display: block;
+                        padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+                        font-size: var(--bs-pagination-font-size);
+                        color: var(--bs-pagination-color);
+                        text-decoration: none;
+                        background-color: var(--bs-pagination-bg);
+                        border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+                        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                    }
+                    @media (prefers-reduced-motion: reduce) {
+                    .page-link {
+                        transition: none;
+                        
+                    }
+                    }
+                    .page-link:hover {
+                        z-index: 2;
+                        color: var(--bs-pagination-hover-color);
+                        background-color: var(--bs-pagination-hover-bg);
+                        border-color: var(--bs-pagination-hover-border-color);
+                    }
+                    .page-link:focus {
+                        z-index: 3;
+                        color: var(--bs-pagination-focus-color);
+                        background-color: var(--bs-pagination-focus-bg);
+                        outline: 0;
+                        box-shadow: var(--bs-pagination-focus-box-shadow);
+                    }
+                    .page-link.active, .active > .page-link {
+                        z-index: 3;
+                        color: var(--bs-pagination-active-color);
+                        background-color: var(--bs-pagination-active-bg);
+                        border-color: var(--bs-pagination-active-border-color);
+                    }
+                    .page-link.disabled, .disabled > .page-link {
+                        color: var(--bs-pagination-disabled-color);
+                        pointer-events: none;
+                        background-color: var(--bs-pagination-disabled-bg);
+                        border-color: var(--bs-pagination-disabled-border-color);
+                    }
+
+                    .page-item:not(:first-child) .page-link {
+                         margin-left: -1px;
+                    }
+
+                    .page-item{
+                        display: inline-block;
+                    }
+
+                    .page-item:first-child .page-link {
+                        border-top-left-radius: var(--bs-pagination-border-radius);
+                        border-bottom-left-radius: var(--bs-pagination-border-radius);
+                    }
+                    .page-item:last-child .page-link {
+                        border-top-right-radius: var(--bs-pagination-border-radius);
+                        border-bottom-right-radius: var(--bs-pagination-border-radius);
+                    }
+                </style>
+
+                <nav aria-label="...">
+                    <ul class="pagination">
+                      <li class="page-item disabled">
+                        <span class="page-link">이전</span>
+                      </li>
+                      <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#">5</a></li>
+                      <li class="page-item"><a class="page-link" href="#">6</a></li>
+                      <li class="page-item"><a class="page-link" href="#">7</a></li>
+                      <li class="page-item"><a class="page-link" href="#">8</a></li>
+                      <li class="page-item"><a class="page-link" href="#">9</a></li>
+                      <li class="page-item"><a class="page-link" href="#">10</a></li>
+
+                      <li class="page-item">
+                        <a class="page-link" href="#">다음</a>
+                      </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <script>
+                const maxStar = 5, gutter = 2;//별 크기, 별 개수
+                let maskMax = 0; //오버레이 마스크 최대 너비
+
+                window.addEventListener('DOMContentLoaded',()=>{
+                    //별 이미지 SVG 개수만큼 생성
+                    function makeStar(val,starSize,selector){
+                        for(let i = 0;i < 5;i++){
+                            let el = document.createElement('div');
+                            //인라인 SVG 이미지 부착
+                            el.style.width = starSize + 'px';
+                            el.style.height = starSize + 'px';
+                            if(i==4){
+                                el.style.marginRight = 0 + 'px';
+                                el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="none" class="starcolor" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/></svg>';
+                            }
+                            else{
+                                el.style.marginRight = gutter + 'px';
+                                el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="none" class="starcolor" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/></svg>'; 
+                            }
+                            selector.appendChild(el);
+                        }
+                        maskMax = parseInt(starSize * maxStar + gutter * (maxStar-1));//최대 마스크 너비 계산
+                        selector.children[0].style.width = parseInt(maskMax - val * starSize - Math.floor(val) * gutter) + 'px';
+                    }
+
+                    makeStar($("#star_value").text(), 30, document.querySelector('.rating'));
+                    let userReviewRatingColletion = $("[data-rate]").get();
+                    for (let i = 0; i< userReviewRatingColletion.length; i++) {
+                        let star = userReviewRatingColletion[i]
+                        makeStar(star.getAttribute('data-rate'),20,star)
+                    }
+                })
+            </script>
+        </div>
+    </div>
+</body>
+</html>

@@ -10,6 +10,45 @@
     <link rel="stylesheet" href="resources/static/css/style.css">
     <script>
         window.onload=function(){
+            function compositionCheck() {
+                $('input[name=my_own_lunchbox_composition]').each(function() {
+                    var val=$(this).val();
+                    var checked=$(this).prop('checked');
+    
+                    if(checked){
+                        $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/checked_icon.png')
+                    }
+                    else{
+                        $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/unchecked_icon.png')
+                    }
+                })    
+            }
+
+            $(window).bind("pageshow",function(event){
+                if(event.originalEvent.preventDefault){
+                    compositionCheck()
+                }
+            })
+            
+            $('input[name=my_own_lunchbox_composition]').change(function(){
+                compositionCheck()
+            })
+
+            function checkSelectComposition() {
+                if(!$('input[name=my_own_lunchbox_composition]').is(':checked')){
+                    alert("구성을 선택해주세요.")
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+
+            $('.next_btn').click(function() {
+                if(checkSelectComposition()){
+                    $('form').submit();
+                }
+            })
         }
     </script>
 </head>
@@ -36,53 +75,55 @@
             
             <h1 class="step" style="margin-bottom:10px;">step1. 구성 선택</h1>
 
+            <form action="my_own_lunchbox_step2(sidedish3).html">
             <div class="composition_element_container" style="text-align:center">
-                <input type="radio" name="my_own_lunchbox_composition" value="soup" id="soup" checked>
-                <label for="soup">
-                <div class="big_composition_element_box">
+                <input type="radio" name="my_own_lunchbox_composition" value="soup" id="soup">
+                <div class="big_composition_element_box" data-value="soup">
                     <div class="big_composition_element">
                         <img src="https://placehold.co/300x200" alt="밥/반찬3/국">
                         <h2>밥/반찬3/국</h2>
                     </div>
-                    <img src="../beonadiet/resources/static/assets/checked_icon.png">
+                    <label for="soup">
+                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
+                    </label>
                 </div>
-                </label>
 
                 <input type="radio" name="my_own_lunchbox_composition" value="only_sidedish" id="only_sidedish">
-                <label for="only_sidedish">
-                    <div class="big_composition_element_box">
-                        <div class="big_composition_element">
-                            <img src="https://placehold.co/300x200" alt="밥/반찬4">
-                            <h2>밥/반찬4</h2>
-                        </div>
-                            <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
-                    </div>  
-                </label>
+                <div class="big_composition_element_box" data-value="only_sidedish">
+                    <div class="big_composition_element">
+                        <img src="https://placehold.co/300x200" alt="밥/반찬4">
+                        <h2>밥/반찬4</h2>
+                    </div>
+                    <label for="only_sidedish">
+                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
+                    </label>
+                </div>  
             </div>
 
             <div class="composition_element_container" style="text-align:center">
                 <input type="radio" name="my_own_lunchbox_composition" value="minisalad" id="minisalad">
-                <label for="minisalad">
-                <div class="big_composition_element_box">
+                <div class="big_composition_element_box" data-value="minisalad">
                     <div class="big_composition_element">
                         <img src="https://placehold.co/300x200" alt="밥/반찬3/미니샐러드">
                         <h2>밥/반찬3/미니샐러드</h2>
                     </div>
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <label for="minisalad">
+                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
+                    </label>
                 </div>
-                </label>
                 
                 <input type="radio" name="my_own_lunchbox_composition" value="snack" id="snack">
-                <label for="snack"> 
-                <div class="big_composition_element_box">
+                <div class="big_composition_element_box" data-value="snack">
                     <div class="big_composition_element">
                         <img src="https://placehold.co/300x200" alt="밥/반찬3/저칼로리간식">
                         <h2>밥/반찬3/저칼로리간식</h2>
                     </div>
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png">
+                    <label for="snack"> 
+                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
+                    </label>
                 </div>
-                </label>
             </div>
+            </form>
 
             
             <div class="btn_container">

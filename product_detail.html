@@ -5,19 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <title>나만의샌드위치 final</title>
+    <title>완제품</title>
     <link rel="stylesheet" href="resources/static/css/font.css">
     <link rel="stylesheet" href="resources/static/css/style.css">
     <script>
         window.onload=function(){
             $('.content').on('click','.folding_btn',function() {
-                            if($('.nutrition_info_container').is(":visible")){
-                                $('.nutrition_info_container').slideUp("slow");
+                            if($('.nutrition_info_fold_container').is(":visible")){
+                                $('.nutrition_info_fold_container').slideUp("slow");
                                 $('.folding_btn').text('펼치기▼');
+                                $('.nutrition_info_container').css('paddingBottom','5px');
                             }
                             else{
-                                $('.nutrition_info_container').slideDown("slow");
+                                $('.nutrition_info_fold_container').slideDown("slow");
                                 $('.folding_btn').text('접기▲');
+                                $('.nutrition_info_container').css('paddingBottom','35px');
                             }
             })
 
@@ -28,93 +30,112 @@
                 else{
                     $('.dibs_frame img').attr('src','../beonadiet/resources/static/assets/uncoloring_heart_icon.png')
                 }
-            })      
+            })
+
+            $('.content').on('click','.stepper span:first-child',function(e) {
+            var eleValAmount=Number($('.stepper span:nth-child(2)').text());
+            if(eleValAmount!=1){
+                eleValAmount = eleValAmount-1;
+                $('.stepper span:nth-child(2)').text(eleValAmount);
+                if(eleValAmount==1){
+                    $('.stepper span').get()[0].style.opacity=0.3;
+                    $('.stepper span').get()[0].style.pointerEvents='none'; 
+                }
+            }
+            })
+
+
+            $('.content').on('click','.stepper span:last-child',function(e) {
+                        var eleValAmount=Number($('.stepper span:nth-child(2)').text());
+                        
+                        if(eleValAmount==1){
+                            $('.stepper span').get()[0].style.opacity=1.0;
+                            $('.stepper span').get()[0].style.pointerEvents='auto';
+                        }
+
+                        else{
+                            eleValAmount = eleValAmount+1;
+                            $('.stepper span:nth-child(2)').text(eleValAmount);
+                        }
+            })
         }
     </script>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="content">
-            <div class="step_name_container" style="margin-bottom:15px">
-                <h1 class="step">Final. 최종확인</h1>
-            </div>
+            <div class="prouct_basic_info_container">
+                <div class="img_container">
+                   <img src="https://placehold.co/300x300" width="300" height="300" alt="">
+                    <div class="small_img_container">
+                        <img width="45" height="45" src="https://placehold.co/45x45" alt="">
+                        <img width="45" height="45" src="https://placehold.co/45x45" alt="">
+                        <img width="45" height="45" src="https://placehold.co/45x45" alt="">
+                        <img width="45" height="45" src="https://placehold.co/45x45" alt="">
+                        <img width="45" height="45" src="https://placehold.co/45x45" alt="">
+                        <img width="45" height="45" src="https://placehold.co/45x45" alt="">
+                    </div>
+                </div>
 
-            <div>
-                <div class="composition_type">
-                    <h2>[조건]&nbsp;</h2>
-                </div>
-            </div>
+                <div class="info_container">
+                    <div class="product_name_and_price">
+                        <h2>[완제품/샌드위치]</h2>
+                        <h2>크랜베리 오렌지 치킨 바게트 샌드</h2>
+                        <span class="review_and_star">
+                            <span>( </span>
+                            <img class="icon" src="../beonadiet/resources/static/assets/star_icon.png" alt="">
+                            <span>4.7</span>
+                            <img class="icon" src="../beonadiet/resources/static/assets/review_icon.png" alt="">
+                            <span>137 )</span>
+                        </span>
+                        <div class="dibs_frame">
+                            <div>
+                                <img src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png">
+                            </div>
+                        </div>
+                        <h1>6,900원</h1>
+                    </div>
+                    <hr>
 
-            <div class="condition_checkbox">
-                <div>
-                    <div class="step_circle">
-                        <div>
-                            <span>step<br>1</span>
+                    <div class="product_info_table_container">
+                        <div class="product_info_type_col">
+                            <span>판매단위</span>
+                            <span>보관방법</span>
+                            <span>알레르기 정보</span>
+                            <span>배송</span>
+                            <span>수량</span>
+                        </div>
+                        <div class="product_info_value_col">
+                            <span>1(개)</span>
+                            <span>냉장</span>
+                            <span>오렌지</span>
+                            <span>새벽 / 일반</span>
+                            <div class="stepper" style="opacity: 1;">
+                                <span style="opacity: 0.3;">-</span>
+                                <span>1</span>
+                                <span>+</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="condition_specification_box">
-                        <span>[빵] 허니오트 15cm</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="step_circle">
-                        <div>
-                            <span>step<br>2</span>
+
+                    <div class="btn_container" style="margin-top:25px">
+                        <div class="puchase_btn gray_btn_color" style="display:inline-block">
+                            <h2>구매하기</h2>
                         </div>
-                    </div>
-                    <div class="condition_specification_box">
-                        <span>[야채] 양상추 1.5 / 토마토 0.5 / 오이 2.0 / 피망 1 / 양파 1 / 피클 1 / 올리브 1</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="step_circle">
-                        <div>
-                            <span>step<br>3</span>
+                        <div class="go_shopping_basket_btn btn_color" style="display:inline-block">
+                            <h2>장바구니 담기</h2>
                         </div>
-                    </div>
-                    <div class="condition_specification_box">
-                        <span>[치즈] 아메리칸 치즈 0.5 / 슈레드 치즈 0.5</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="step_circle">
-                        <div>
-                            <span>step<br>4</span>
-                        </div>
-                    </div>
-                    <div class="condition_specification_box">
-                        <span>[고기및해산물] 터키 0.5 / 베이컨 0.5 / 치킨브레스트 0.5</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="step_circle">
-                        <div>
-                            <span>step<br>5</span>
-                        </div>
-                    </div>
-                    <div class="condition_specification_box">
-                        <span>[소스] 마요네즈 / 스위트 어니언 / 머스타드</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="step_circle" style="margin-bottom:20px;">
-                        <div>
-                            <span>step<br>6</span>
-                        </div>
-                    </div>
-                    <div class="condition_specification_box">
-                        <span>[추가토핑] 생략</span>
                     </div>
                 </div>
             </div>
 
-
-            <div class="nutrition_info">
-                <h2>[맞춤형 영양정보]&nbsp;</h2>
-                <h3 class="folding_btn">접기▼</h3>
-            </div>
-
-            <div class="nutrition_info_container">
+            <div class="nutrition_info_container" style="padding-top:5px; margin-bottom:35px">
+                <div style="margin:10px; position: relative; width: 900px; height:35px">
+                    <h3 class="folding_btn" style="position:absolute; margin:0px; right:0px; width:190px; text-align: center;">맞춤형 영양정보 접기▼</h3>
+                </div>
+                
+                <div class="nutrition_info_fold_container">
                 <div class="target_container">
                     <h2><u>개인설정목표</u></h2>
                     <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
@@ -259,20 +280,19 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
 
-            <div class="btn_container" style="margin-top:25px">
-                <div style="display: inline-block;" class="puchase_btn gray_btn_color">
-                    <h2>구매하기</h2>
-                </div>
-                <div style="display: inline-block;" class="go_shopping_basket_btn btn_color">
-                    <h2>장바구니 담기</h2>
-                </div>
-                <div style="display: inline-block;" class="dibs_frame">
-                    <div>
-                        <img src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png">
-                    </div>
-                </div>
+            <ul class="product_detail_menu"> 
+                <li style="background-color: #FFFFFF">상품설명</li><!--
+                --><li>식품관련정보</li><!--
+                --><li>제품문의</li><!--
+                --><li>후기 ( 104 )</li>
+            </ul>
+
+            <div class="product_detail_img_container">
+            <img src="../beonadiet/resources/static/assets/detail1.png" alt=""><br>
+            <img src="../beonadiet/resources/static/assets/detail2.png" alt=""><br>
             </div>
         </div>
     </div>
