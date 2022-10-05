@@ -1,4 +1,4 @@
-package com.ds.mainpagetest.controller;
+package com.ds.mainpagetest.Controller;
 
 import java.util.List;
 
@@ -44,6 +44,32 @@ public class MyownrecipeController {
     return "myownrecipe/mor";
   }
 
+  @GetMapping("/morlunchboxpost")
+  public String morlunchboxpost(Model model){
+    List<MyOwnRecipePost> list = mPostRepository.findAll();
+    model.addAttribute("list", list);
+    // MyOwnRecipePostDTO list = mpService.getMyOwnRecipePost(0);
+    // log.info("PostMapping /morproductpage morlunchboxpost>>>>>>>>>>>>"+list);
+    // model.addAttribute("list", list);
+    return "/myownrecipe/morlunchboxpost";
+  }
+
+  @GetMapping("/morsandwichpost")
+  public String morsandwichpost(Model model){
+    List<MyOwnRecipePost> list = mPostRepository.findAll();
+    model.addAttribute("list", list);
+    log.info(list);
+    return "/myownrecipe/morsandwichpost";
+  }
+
+  @GetMapping("/morsaladpost")
+  public String morsaladpost(Model model){
+    List<MyOwnRecipePost> list = mPostRepository.findAll();
+    model.addAttribute("list", list);
+    log.info(list);
+    return "/myownrecipe/morsaladpost";
+  }
+
   @GetMapping("/morhistory")
   public String morhistory(Model model) {
     List<MyOwnRecipe> list = mrepository.findAll();
@@ -78,18 +104,8 @@ public class MyownrecipeController {
     log.info("GetMapping /moradddetail id.........."+id);
     model.addAttribute("dto", dto);
     log.info("GetMapping /moradddetail dto.........."+dto);
-    // return "myownrecipe/moradddetail";
+    
   }
-// 이미지 없는 post
-  // @PostMapping("/morproductpage")
-  // public void registerPost(@ModelAttribute MyOwnRecipePost morpost, Model model, RedirectAttributes ra) {
-  //  MyOwnRecipePost morP = mpService.createMyOwnRecipePost(morpost);
-  //  Long id = morP.getId();
-  //   model.addAttribute("morP", morP);
-  //   model.addAttribute("id" , id);
-  //   log.info("MyOwnRecipePost.........생성"+ morP);
-  //   log.info("MyOwnRecipePost :::::id::::::"+id);
-  // }
 
   @Value("${com.ds.upload.path}")
   private String uploadPath;
@@ -101,19 +117,19 @@ public class MyownrecipeController {
     log.info("register post... " + morpost);
     log.info("PostMapping /morproductpage morpost's id..........."+id);
     log.info("PostMapping /morproductpage morpost's 받은 값들..........."+morpost);
-    // ra.addFlashAttribute("msg", id+ " 등록");
-    // id를 다시 getMovie에다가 넣어 객체를 재차 반환을 받아 그것을 product로 넘기자
     
-    MyOwnRecipePostDTO dto = mpService.getMovie(id);
-    log.info("PostMapping /morproductpage getMovie가 되고 받은 객체"+dto);
+    MyOwnRecipePostDTO dto = mpService.getMyOwnRecipePost(id);
+    log.info("PostMapping /morproductpage getMyOwnRecipePost가 되고 받은 객체"+dto);
     model.addAttribute("dto", dto);
     return "myownrecipe/morproductpage";
   }
-
-  // @GetMapping("/morproductpage")
-  // public String morproductpage(){
-  //   return "myownrecipe/morproductpage";
-  // }
+  @GetMapping("/morproductpage")
+  public String goMorproductpage(Long id, Model model){
+    MyOwnRecipePostDTO dto = mpService.getMyOwnRecipePost(id);
+    log.info("PostMapping /morproductpage getMyOwnRecipePost가 되고 받은 객체"+dto);
+    model.addAttribute("dto", dto);
+    return "myownrecipe/morproductpage";
+  }
 
 
   @GetMapping("/moruserpost")

@@ -14,7 +14,7 @@ public interface MyOwnRecipePostRepository extends JpaRepository<MyOwnRecipePost
   // @Query("select m, mi from MyOwnRecipePost m "
   // + "left outer join MorImage mi on mi.morPost = m "
   // + "where m.id=:id group by mi ")
-  // List<Object[]> getMovieWithAll(Long id);
+  // List<Object[]> getMyOwnRecipePostWithAll(Long id);
 
   // @Query("select m, mi, avg(coalesce(r.grade,0)), count(distinct r) from
   // MyOwnRecipePost m "
@@ -33,21 +33,29 @@ public interface MyOwnRecipePostRepository extends JpaRepository<MyOwnRecipePost
   // @Query("select m, mi from MyOwnRecipePost m "
   //     + "left outer join MorImage mi on mi.morPost = m "
   //     + "where m.id=:id group by m.morPost ")
-  // List<Object[]> getMovieWithAll(Long id);
+  // List<Object[]> getMyOwnRecipePostWithAll(Long id);
 
   @Query("select m, mi from MyOwnRecipePost m "
       + "left outer join MorImage mi "
       + "on m.id = mi.morPost "  
       + "where m.id=:id " )
-  List<Object[]> getMovieWithAll(Long id);
+  List<Object[]> getMyOwnRecipePostWithAll(Long id);
 
+  @Query("select m, mi from MyOwnRecipePost m "
+      + "left outer join MorImage mi "
+      + "on m.id = mi.morPost "  
+      + "where m.category=:category " )
+  List<Object[]> getMyOwnRecipePostWithAllForPage(int category);
+  
+  // select * from my_own_recipe_post m left outer join mor_image mi on m.id= mi.mor_post_id where m.category=0;
+  
   // select * from my_own_recipe_post m left outer join mor_image mi on m.id=:id =
   // mi.mor_post_id;
 
   // @Query("select m, mi from MyOwnRecipePost m "
   //     + "left outer join MorImage mi "
   //     + "on m.id=:id = mi.morPost ")
-  // List<Object[]> getMovieWithAll(Long id);
+  // List<Object[]> getMyOwnRecipePostWithAll(Long id);
 
 
 }

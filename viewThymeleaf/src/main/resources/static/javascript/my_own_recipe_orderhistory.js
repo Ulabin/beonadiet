@@ -55,7 +55,7 @@ $(document).ready(function () {
 });
 
 // 나만의 도시락
-function getMemberList1() {
+function getMyOwnRecipeLunchBox() {
 
 
   /*<![CDATA[*/
@@ -78,7 +78,7 @@ function getMemberList1() {
   /*]]*/
 }
 // 나만의 샌드위치
-function getMemberList2() {
+function getMyOwnRecipeSnadwich() {
 
 
   /*<![CDATA[*/
@@ -102,7 +102,7 @@ function getMemberList2() {
   /*]]*/
 }
 // 나만의 샐러드
-function getMemberList3() {
+function getMyOwnRecipeSalad() {
   /*<![CDATA[*/
   $.ajax({
     type: "GET",

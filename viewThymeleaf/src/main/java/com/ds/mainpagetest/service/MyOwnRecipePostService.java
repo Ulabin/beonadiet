@@ -20,7 +20,8 @@ public interface MyOwnRecipePostService {
   // PageResultDTO<MyOwnRecipePostDTO, Object[]> getList(PageRequestDTO req);
   // void modify(MyOwnRecipePostDTO dto);
   void removeUuid(String uuid);
-  MyOwnRecipePostDTO getMovie(Long id);
+  MyOwnRecipePostDTO getMyOwnRecipePost(Long id);
+  MyOwnRecipePostDTO getMyOwnRecipePost(int category);
  
   default MyOwnRecipePostDTO entityToDTO(MyOwnRecipePost morPost, List<MorImage> mi){
     MyOwnRecipePostDTO morPostDTO = MyOwnRecipePostDTO.builder()
@@ -45,8 +46,39 @@ public interface MyOwnRecipePostService {
 
       return morPostDTO;
   }
+  default MyOwnRecipePostDTO entityToDTO2(List<MyOwnRecipePost> morPost, List<MorImage> mi){
+    List<MyOwnRecipePostDTO> morPostDTO = morPost.stream().map(
+      new Function<MyOwnRecipePost, MyOwnRecipePostDTO>(){
+        public MyOwnRecipePostDTO apply(MyOwnRecipePost t) {
+          return MyOwnRecipePostDTO.builder()
+          .id(((MyOwnRecipePostDTO) morPost).getId())
+          .title(((MyOwnRecipePostDTO) morPost).getTitle())
+          .category(((MyOwnRecipePostDTO) morPost).getCategory())
+          .regDate(((MyOwnRecipePostDTO) morPost).getRegDate())
+          .modDate(((MyOwnRecipePostDTO) morPost).getModDate())
+          .explanation(((MyOwnRecipePostDTO) morPost).getExplanation())
+          .detail(((MyOwnRecipePostDTO) morPost).getDetail())
+          .build();
+        };
+      }).collect(Collectors.toList());
+    
+    
+    
+    List<MorImageDTO> morImageDTOs = mi.stream().map(
+      new Function<MorImage, MorImageDTO>() {
+        public MorImageDTO apply(MorImage t) {
+          return MorImageDTO.builder()
+          .imgName(t.getImgName()).path(t.getPath()).uuid(t.getUuid())
+          .build();
+        };
+      }).collect(Collectors.toList());
+      ((MyOwnRecipePostDTO) morPostDTO).setImageDTOList(morImageDTOs);
+
+      return (MyOwnRecipePostDTO) morPostDTO;
+  }
+
   default Map<String, Object> dtoToEntity(MyOwnRecipePostDTO dto){
-    //MovieDTO로 부터 Movie, MovieImage 두개를 나눠서 담기 위한 map 선언
+    //MovieDTO로 부터 Movie, morImage 두개를 나눠서 담기 위한 map 선언
     Map<String, Object> entityMap = new HashMap<>();
 
     //First Element of Map
@@ -62,7 +94,7 @@ public interface MyOwnRecipePostService {
     
     List<MorImageDTO> imageDTOList = dto.getImageDTOList();
     System.out.println("이미지 리스트");
-    //poster있을때만 MovieImageDTO를 MovieImage 변환
+    //poster있을때만 morImageDTO를 morImage 변환
     if(imageDTOList != null && imageDTOList.size() > 0) {
       List<MorImage> morImageList = imageDTOList.stream().map(
         new Function<MorImageDTO,MorImage>() {
