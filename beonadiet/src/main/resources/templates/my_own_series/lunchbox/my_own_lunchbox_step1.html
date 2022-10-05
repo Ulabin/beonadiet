@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <title>나만의도시락 Step1</title>
+    <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
+    <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
+    <script th:inline="javascript">
+        window.onload=function(){
+            function compositionCheck() {
+                $('input[name=my_own_lunchbox_composition]').each(function() {
+                    var val=$(this).val();
+                    var checked=$(this).prop('checked');
+    
+                    if(checked){
+                        $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/checked_icon.png')
+                    }
+                    else{
+                        $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/unchecked_icon.png')
+                    }
+                })    
+            }
+            
+            $('input[name=my_own_lunchbox_composition]').change(function(){
+                compositionCheck()
+            })
+
+            function checkSelectComposition() {
+                if(!$('input[name=my_own_lunchbox_composition]').is(':checked')){
+                    alert("구성을 선택해주세요.")
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+
+            $('.next_btn').click(function() {
+                if(checkSelectComposition()){
+                    $('form').submit();
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="step_container">
+                <div class="step_circle">
+                    <div>
+                        <h1>step<br>1</h1>
+                    </div>
+                </div>
+                <div class="step_connection">
+                    <div>
+                        <h1>···</h1> 
+                    </div>
+                </div>
+                <div class="next_step_circle">
+                    <div>
+                        <h1>?</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="step" style="margin-bottom:10px;">step1. 구성 선택</h1>
+
+            <form th:action="@{/my_own_series/lunchbox/step2}" method="post">
+            <div class="composition_element_container" style="text-align:center">
+                <input type="radio" name="my_own_lunchbox_composition" value="soup" id="soup">
+                <div class="big_composition_element_box" data-value="soup">
+                    <div class="big_composition_element">
+                        <img th:src="@{/assets/soup.png}" width="300" height="200" alt="밥/반찬3/국">
+                        <h2>밥/반찬3/국</h2>
+                    </div>
+                    <label for="soup">
+                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                    </label>
+                </div>
+
+                <input type="radio" name="my_own_lunchbox_composition" value="only_sidedish" id="only_sidedish">
+                <div class="big_composition_element_box" data-value="only_sidedish">
+                    <div class="big_composition_element">
+                        <img th:src="@{/assets/only_sidedish.png}" width="300" height="200" alt="밥/반찬4">
+                        <h2>밥/반찬4</h2>
+                    </div>
+                    <label for="only_sidedish">
+                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                    </label>
+                </div>  
+            </div>
+
+            <div class="composition_element_container" style="text-align:center">
+                <input type="radio" name="my_own_lunchbox_composition" value="minisalad" id="minisalad">
+                <div class="big_composition_element_box" data-value="minisalad">
+                    <div class="big_composition_element">
+                        <img th:src="@{/assets/salad.png}" width="300" height="200" alt="밥/반찬3/미니샐러드">
+                        <h2>밥/반찬3/미니샐러드</h2>
+                    </div>
+                    <label for="minisalad">
+                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                    </label>
+                </div>
+                
+                <input type="radio" name="my_own_lunchbox_composition" value="snack" id="snack">
+                <div class="big_composition_element_box" data-value="snack">
+                    <div class="big_composition_element">
+                        <img th:src="@{/assets/snack.png}" width="300" height="200" alt="밥/반찬3/저칼로리간식">
+                        <h2>밥/반찬3/저칼로리간식</h2>
+                    </div>
+                    <label for="snack"> 
+                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                    </label>
+                </div>
+            </div>
+            </form>
+
+            
+            <div class="btn_container">
+                <div> 
+                    <div class="next_btn">
+                        <img th:src="@{/assets/next_icon.png}">
+                        <h1>Next Step</h1>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <title>나만의샌드위치 final</title>
+    <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
+    <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
+    <script>
+        window.onload=function(){
+            $('.content').on('click','.folding_btn',function() {
+                            if($('.nutrition_info_container').is(":visible")){
+                                $('.nutrition_info_container').slideUp("slow");
+                                $('.folding_btn').text('펼치기▼');
+                            }
+                            else{
+                                $('.nutrition_info_container').slideDown("slow");
+                                $('.folding_btn').text('접기▲');
+                            }
+            })
+
+            $('.dibs_frame').click(function() {
+                if($('.dibs_frame img').attr('src')=='../beonadiet/resources/static/assets/uncoloring_heart_icon.png'){
+                    $('.dibs_frame img').attr('src','../beonadiet/resources/static/assets/coloring_heart_icon.png')
+                }
+                else{
+                    $('.dibs_frame img').attr('src','../beonadiet/resources/static/assets/uncoloring_heart_icon.png')
+                }
+            })      
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="step_name_container" style="margin-bottom:15px">
+                <h1 class="step">Final. 최종확인</h1>
+            </div>
+
+            <div>
+                <div class="composition_type">
+                    <h2>[조건]&nbsp;</h2>
+                </div>
+            </div>
+
+            <div class="condition_checkbox">
+                <div>
+                    <div class="step_circle">
+                        <div>
+                            <span>step<br>1</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[빵] 허니오트 15cm</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="step_circle">
+                        <div>
+                            <span>step<br>2</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[야채] 양상추 1.5 / 토마토 0.5 / 오이 2.0 / 피망 1 / 양파 1 / 피클 1 / 올리브 1</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="step_circle">
+                        <div>
+                            <span>step<br>3</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[치즈] 아메리칸 치즈 0.5 / 슈레드 치즈 0.5</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="step_circle">
+                        <div>
+                            <span>step<br>4</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[고기및해산물] 터키 0.5 / 베이컨 0.5 / 치킨브레스트 0.5</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="step_circle">
+                        <div>
+                            <span>step<br>5</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[소스] 마요네즈 / 스위트 어니언 / 머스타드</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="step_circle" style="margin-bottom:20px;">
+                        <div>
+                            <span>step<br>6</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[추가토핑] 생략</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nutrition_info">
+                <h2>[맞춤형 영양정보]&nbsp;</h2>
+                <h3 class="folding_btn">접기▼</h3>
+            </div>
+
+            <div class="nutrition_info_container">
+                <div class="target_container">
+                    <h2><u>개인설정목표</u></h2>
+                    <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
+                    <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
+                    <div class="setting_btn_container">
+                        <div>
+                            <img src="../beonadiet/resources/static/assets/next_icon.png">
+                            <h2>설정</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <style>                    
+                    @keyframes calorie_stack {
+                        0%{width: 0;}
+                        100%{width: 11.5%;}
+                    }
+
+                    @keyframes product_carbs_stack {
+                        0%{width: 0;}
+                        100%{width: 74%;}
+                    }
+
+                    @keyframes product_protein_stack {
+                        0%{width: 0;}
+                        100%{width: 15.75%;}
+                    }
+
+                    @keyframes product_fat_stack {
+                        0%{width: 0;}
+                        100%{width: 10.25%;}
+                    }
+
+                    @keyframes day_carbs_stack {
+                        0%{width: 0;}
+                        100%{width: 28%;}
+                    }
+
+                    @keyframes day_protein_stack {
+                        0%{width: 0;}
+                        100%{width: 4%;}
+                    }
+
+                    @keyframes day_fat_stack {
+                        0%{width: 0;}
+                        100%{width: 0.04%;}
+                    }
+                </style>
+
+                <div class="calorie_graph_container">
+                    <div class="graph_title_container">
+                        <h2>일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3>(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
+                    </div>
+
+                    <div class="graph calorie_stack">
+                        <span style="width:11.5%"></span>
+                    </div>
+
+                    <div class="rate_container">
+                        <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
+                        <div style="color:#006c04; left: calc(11.5% - 30px); width:66px;">11.5%<br>(230kcal)</div>
+                        <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
+                    </div>
+                </div>
+
+                <div class="product_graph_container">
+                    <div class="graph_title_container">
+                        <h2>탄</h2><span>수화물</span>
+                        <h2>단</h2><span>백질</span>
+                        <h2>지</h2><span>방</span>
+                        <h2>비율</h2>
+                        <div class="nutrition_mark_container">
+                            <div>
+                                <div class="mark carbs"></div>
+                                &nbsp;<span>탄수화물</span>&nbsp;&nbsp;&nbsp;
+                                <div class="mark protein"></div>
+                                &nbsp;<span>단백질</span>&nbsp;&nbsp;&nbsp;
+                                <div class="mark fat"></div>
+                                &nbsp;<span>지방</span>&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph" style="position:relative"> 
+                        <span class="product_carbs_stack" style="width:74%"></span>
+                        <span class="product_protein_stack" style="width:15.75%;left:74%"></span>
+                        <span class="product_fat_stack" style="width:10.25%; left:89.75%"></span>
+                    </div>
+
+                    <div class="rate_container">
+                        <div style="width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
+                        <div style="width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
+                        <div style="width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
+                    </div>
+                </div>
+
+                <div class="day_nutrition_graph_container">
+                    <div class="wild_graph_title">
+                        <h2>하루섭취 탄</h2><span>수화물</span> 
+                        <h2>단</h2><span>백질</span>
+                        <h2>지</h2><span>방</span>
+                        <h2>비율</h2><br><!--
+                        --><span>(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
+                    </div>
+
+                    <div class="day_carbs_graph_container">
+                        <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
+                        <div>
+                            <div class="graph day_carbs_stack">
+                                <span style="width:28%"></span>
+                            </div>
+                            <div class="rate_container">
+                                <div>0%<br>(0g)</div>
+                                <div style="color:#006c04; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
+                                <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="day_protein_graph_container">
+                        <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
+                        <div>
+                            <div class="graph day_protein_stack">
+                                <span style="width:4%"></span>
+                            </div>
+                            <div class="rate_container">
+                                <div>0%<br>(0g)</div>
+                                <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
+                                <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="day_fat_graph_container">
+                        <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
+                        <div class="graph day_fat_stack">
+                            <span style="width:0.04%"></span>  
+                        </div>
+                        <div class="rate_container">
+                            <div>0%<br>(0g)</div>
+                            <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
+                            <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn_container" style="margin-top:25px">
+                <div style="display: inline-block;" class="puchase_btn gray_btn_color">
+                    <h2>구매하기</h2>
+                </div>
+                <div style="display: inline-block;" class="go_shopping_basket_btn btn_color">
+                    <h2>장바구니 담기</h2>
+                </div>
+                <div style="display: inline-block;" class="dibs_frame">
+                    <div>
+                        <img src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
