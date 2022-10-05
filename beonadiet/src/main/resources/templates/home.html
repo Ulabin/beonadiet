@@ -14,7 +14,7 @@
   <a sec:authorize="isAuthenticated()" href="mypage/userinfo">회원정보수정</a>
   <a sec:authorize="isAuthenticated()" href="logout">Logout</a>
   <a sec:authorize="isAuthenticated()" href="mypage/health_info">칼로리/알러지설정</a>
-  <a sec:authorize="isAuthenticated()" href="mypage/address">배송지</a>
+  <a sec:authorize="isAuthenticated()" th:href="@{/mypage/address(mid=${#authentication.name})}">배송지</a>
   <a sec:authorize="isAuthenticated()" href="mypage/pointPage">적립금</a>
   <a sec:authorize="isAuthenticated()" href="cart">장바구니</a>
   <a sec:authorize="isAuthenticated()" href="order">주문결제</a>

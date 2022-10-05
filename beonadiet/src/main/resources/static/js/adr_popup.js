@@ -12,6 +12,17 @@ $('.btn-search').click(function() {
 
 $('.btn-send').click(function() {
   
+  if($('#receiverName').val()==""){
+    alert("받는 분 이름을 입력해주세요.")
+    $('#receiverName').focus();
+    return false;
+  }
+  if($('#receiverPhone').val()==""){
+    alert("연락처를 입력해주세요.")
+    $('#receiverPhone').focus();
+    return false;
+  }
+
   if($('#adrMain').val()==""){
     alert("검색 버튼을 눌러 주소를 입력해주세요.")
     return false;

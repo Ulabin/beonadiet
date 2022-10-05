@@ -28,7 +28,18 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <!-- <p sec:authentication="Principal.username"></p> -->
         <p th:text="${#authentication.name}"></p>
         <!-- <p th:text="${#authentication.authorities}"></p> -->
+
+        <div class="fields receiver">
+          <label class="label-block" for="receiverName">받는 분</label>
+          <input type="text" id="receiverName" name="receiver_name" placeholder="이름을 입력해주세요" value="" maxlength="20">
+        </div>
+        <div class="fields">
+          <label class="label-block" for="receiverPhone">연락처</label>
+          <input type="text" id="receiverPhone" name="mobile_num" placeholder="번호를 입력해주세요 (' - '제외)" value="" maxlength="11">
+        </div>  
+
         <div class="field">
+          <label class="adr-label" for="adrSub">주소</label>
           <div class="adr-search">
             <input type="text" name="address" id="adrMain" value="" readonly>
             <!-- <input type="text" name="adrMain" id="adrMain" value="" readonly> -->

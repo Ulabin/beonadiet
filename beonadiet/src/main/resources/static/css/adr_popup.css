@@ -24,7 +24,7 @@
 
 .titleBox {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
@@ -130,4 +130,29 @@ input[type=checkbox] {
 
 button {
   cursor: pointer;
+}
+
+.fields input[type=text] {
+  width: 430px;
+  height: 35px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  color: #353535;
+  padding: 12px 12px 12px 15px;
+  font-size: 15px;
+}
+
+.fields label, .adr-label {
+  font-weight: 600;
+  font-size: 15px;
+  color: #353535;
+  margin-bottom: 3px;
+}
+
+.fields input:focus {
+  outline-color: #ccc;
+}
+
+.receiver {
+  margin-bottom: 22px;
 }

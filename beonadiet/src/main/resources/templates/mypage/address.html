@@ -32,24 +32,24 @@
             <div class="tit-adr">주소</div>
             <div class="tit-name">받는 분</div>
             <div class="tit-mobile">연락처</div>
-            <div class="tit-modify">수정</div>
+            <div class="tit-modify">삭제</div>
           </div>
           <main class="adr-main">
             <ul class="adr-list">
-              <li class="adr-items">
+              <li class="adr-items" th:each = "address:${list}">
                 <div class="adr-cont">
                   <span class="badge-default">
                     기본 배송지
                   </span>
-                  <p>
+                  <p th:text="${address.address}">
                     부산광역시 부산진구 중앙대로 668 (A1프라자6층)
                   </p>
                 </div>
                 <div class="name-cont">
-                  <span>김곰돌</span>
+                  <span th:text="${address.receiver_name}">김곰돌</span>
                 </div>
                 <div class="mobile-cont">
-                  <span>010-1234-5678</span>
+                  <span th:text="${address.mobile_num}">010-1234-5678</span>
                 </div>
                 <div class="modify-cont">
                   <button type="button" class="btn-modify" onclick="showPopupMod();">수정하기</button>

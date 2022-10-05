@@ -54,6 +54,7 @@ public class Address extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.EAGER)    
   @JoinColumn(name = "member_id")
+  // @JoinColumn(name = "member_id", unique = true)
   private Member member;
 
   @PrePersist

@@ -1,5 +1,9 @@
 package com.beonadiet.beonadiet.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.apache.catalina.User;
@@ -34,4 +38,22 @@ public class AdrService {
     .member(Member.builder().id(dto.getMid()).build()).build();
     return address;
   }
+
+  public AdrDto entityToDTO(Address adr){
+    AdrDto dto = AdrDto.builder()
+    .num(adr.getNum())
+    .address(adr.getAddress())
+    .receiver_name(adr.getReceiver_name())
+    .mobile_num(adr.getMobile_num())
+    .default_address(adr.getDefault_address())
+    .mid(adr.getMember().getId())
+    .build();
+    return dto;
+  }
+
+  //게시글 처리
+  public List<Address> addressList(){
+    
+    return  addressRepository.findAll();
+}
 }
