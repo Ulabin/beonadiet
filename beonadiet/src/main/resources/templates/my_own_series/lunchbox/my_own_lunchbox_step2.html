@@ -10,11 +10,17 @@
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
     <script th:inline="javascript">
         window.onload=function(){
+                var dtoList = [];
+
+                /*[# th:each="dto : ${list}"]*/
+                dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
+                /*[/]*/
+
             function riceCheck() {
                     $('input[name=my_own_lunchbox_rice]').each(function() {
                         var eleVal=$(this).val();
                         var checked=$(this).prop('checked');
-        
+
                         if(checked){
                             $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/checked_icon.png')
                             $('.composition_element_box[data-value='+eleVal+'] .stepper').css('opacity',1); 
@@ -37,9 +43,9 @@
                     })
             }
 
-            $('input[name=my_own_lunchbox_rice]').change(function(){
-                riceCheck();
-            })
+            $('.content').on('change','input[name=my_own_lunchbox_rice]', function() {
+               riceCheck();
+            });
 
             $('.content').on('click','.stepper span:first-child',function(e) {
             var parentEle = e.target.parentElement.parentElement;
@@ -280,8 +286,35 @@
                     location.assign(link)
                 })
 
-                $('.composition_element img').click(function() {
-                    var thisEle = event.target;
+                $('.composition_element img').click(function(e) {
+                    var thisEle = $(e.target);
+                    var eleId = $(thisEle).attr('data-listid');
+                    $('.modal-header h2').text(dtoList[eleId-1].name);
+                    $('.elem_comment').text(dtoList[eleId-1].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId-1].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId-1].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
                     $('.modal').show();
                 })
 
@@ -348,132 +381,23 @@
 
             <form th:action="@{/my_own_series/lunchbox/step3}" method="post">
             <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_rice" value="white_rice" id="white_rice">
-                <div class="composition_element_box odd" data-value="white_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="흰쌀밥">
-                        <h2>흰쌀밥</h2>
-                    </div>
-                    <label for="white_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon" >
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="radio" name="my_own_lunchbox_rice" value="multigrain_rice" id="multigrain_rice">
-                <div class="composition_element_box even" data-value="multigrain_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="잡곡밥">
-                        <h2>잡곡밥</h2>
-                    </div>
-                    <label for="multigrain_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="radio" name="my_own_lunchbox_rice" value="brown_rice" id="brown_rice">
-                <div class="composition_element_box odd" data-value="brown_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="현미밥">
-                        <h2>현미밥</h2>
-                    </div>
-                    <label for="brown_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_rice" value="black_rice" id="black_rice">
-                <div class="composition_element_box odd" data-value="black_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="흑미밥">
-                        <h2>흑미밥</h2>
-                    </div>
-                    <label for="black_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="radio" name="my_own_lunchbox_rice" value="barley_rice" id="barley_rice">
-                <div class="composition_element_box even" data-value="barley_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="보리밥">
-                        <h2>보리밥</h2>
-                    </div>
-                    <label for="barley_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="radio" name="my_own_lunchbox_rice" value="black_bean_rice" id="black_bean_rice">
-                <div class="composition_element_box odd" data-value="black_bean_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="검정콩밥">
-                        <h2>검정콩밥</h2>
-                    </div>
-                    <label for="black_bean_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_rice" value="pea_rice" id="pea_rice">
-                <div class="composition_element_box odd" data-value="pea_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="완두콩밥">
-                        <h2>완두콩밥</h2>
-                    </div>
-                    <label for="pea_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="radio" name="my_own_lunchbox_rice" value="millet_rice" id="millet_rice">
-                <div class="composition_element_box even" data-value="millet_rice">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" width="180" height="180" alt="기장밥">
-                        <h2>기장밥</h2>
-                    </div>
-                    <label for="millet_rice">
-                        <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
-                    </label>
-                    <div class="stepper">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
+                <th:block th:each="dto, i:${list}">
+                        <input type="radio" name="my_own_lunchbox_rice" th:value="${dto.name}" th:id="${dto.name}">
+                        <div class="composition_element_box" th:data-value="${dto.name}" th:classappend="(${i.count}-2)%3==0 ? 'even' : 'odd' ">
+                            <div class="composition_element">
+                                <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${dto.id}" width="180" height="180" th:alt="${dto.name}">
+                                <h2 th:text="${dto.name}"></h2>
+                            </div>
+                            <label th:for="${dto.name}">
+                                <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                            </label>
+                            <div class="stepper">
+                                <span>-</span>
+                                <span>1.0</span>
+                                <span>+</span>
+                            </div>
+                        </div>
+                </th:block>
             </div>
             </form>
 
@@ -508,7 +432,7 @@
                         <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
                             <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
                             <br>
-                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span>*15cm 기준</span>
+                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span class="one_serving"></span>
                             <table>
                                 <tr>
                                     <th>중량</th>

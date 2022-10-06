@@ -17,7 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.beonadiet.beonadiet.dto.MyOwnLunchboxRiceDTO;
 import com.beonadiet.beonadiet.dto.MyOwnLunchboxRiceImgDTO;
+import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishDTO;
+import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishImgDTO;
 import com.beonadiet.beonadiet.service.MyOwnLunchboxRiceService;
+import com.beonadiet.beonadiet.service.MyOwnLunchboxSidedishService;
 import com.beonadiet.beonadiet.vo.NutritionInfoVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ElementRegistController {
     private final MyOwnLunchboxRiceService service;
+    private final MyOwnLunchboxSidedishService sideDishService;
 
     @Value("${com.beonadiet.upload.path}")
     private String uploadPath;
@@ -37,8 +41,13 @@ public class ElementRegistController {
         return "/element_regist/my_own_lunchbox_rice";
     }
 
+    @GetMapping("/my_own_lunchbox/sidedish")
+    public String sidedishRegister(){
+        return "/element_regist/my_own_lunchbox_sidedish";
+    }
+
     @PostMapping("/my_own_lunchbox/rice")
-    public String uploadFileAndRegister(@RequestParam("image") MultipartFile img, MyOwnLunchboxRiceDTO riceDTO, @ModelAttribute NutritionInfoVo niVo){
+    public String uploadFileAndRegister_rice(@RequestParam("image") MultipartFile img, MyOwnLunchboxRiceDTO riceDTO, @ModelAttribute NutritionInfoVo niVo){
         String fileName = img.getOriginalFilename();
         String uuid = UUID.randomUUID().toString();
         String saveName = uploadPath+File.separator+uuid+"_"+fileName;
@@ -66,5 +75,36 @@ public class ElementRegistController {
         service.register(riceDTO);
 
         return "redirect:/element_regist/my_own_lunchbox/rice";
+    }
+
+    @PostMapping("/my_own_lunchbox/sidedish")
+    public String uploadFileAndRegister_sidedish(@RequestParam("image") MultipartFile img, MyOwnLunchboxSidedishDTO sidedishDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnLunchboxSidedishImgDTO sidedishImgDTO = MyOwnLunchboxSidedishImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        sidedishDTO.setImageDTO(sidedishImgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            sidedishDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        sideDishService.register(sidedishDTO);
+
+        return "redirect:/element_regist/my_own_lunchbox/sidedish";
     }
 }
