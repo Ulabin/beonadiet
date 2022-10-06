@@ -1,4 +1,4 @@
-package com.ds.mainpagetest.Controller;
+package com.ds.mainpagetest.controller;
 
 import java.io.File;
 import java.net.URLDecoder;

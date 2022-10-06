@@ -1,4 +1,4 @@
-package com.ds.mainpagetest.Controller;
+package com.ds.mainpagetest.controller;
 
 import java.util.List;
 
