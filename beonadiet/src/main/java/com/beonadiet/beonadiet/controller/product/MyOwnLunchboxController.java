@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.controller;
+package com.beonadiet.beonadiet.controller.product;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxRiceDTO;
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishDTO;
-import com.beonadiet.beonadiet.service.MyOwnLunchboxRiceService;
-import com.beonadiet.beonadiet.service.MyOwnLunchboxSidedishService;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishDTO;
+import com.beonadiet.beonadiet.service.product.MyOwnLunchboxRiceService;
+import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSidedishService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

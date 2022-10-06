@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.entity.my_own_series;
+package com.beonadiet.beonadiet.entity.product;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

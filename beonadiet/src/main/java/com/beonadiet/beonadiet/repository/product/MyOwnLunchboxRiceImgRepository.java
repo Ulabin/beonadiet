@@ -1,10 +1,10 @@
-package com.beonadiet.beonadiet.repository;
+package com.beonadiet.beonadiet.repository.product;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.beonadiet.beonadiet.entity.my_own_series.MyOwnLunchboxRice;
-import com.beonadiet.beonadiet.entity.my_own_series.MyOwnLunchboxRiceImage;
+import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxRice;
+import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxRiceImage;
 
 public interface MyOwnLunchboxRiceImgRepository extends JpaRepository<MyOwnLunchboxRiceImage, String>{
     @EntityGraph(attributePaths = {"myOwnLunchboxRice"}, type = EntityGraph.EntityGraphType.FETCH)

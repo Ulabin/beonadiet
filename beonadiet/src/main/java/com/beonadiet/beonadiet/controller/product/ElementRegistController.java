@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.controller;
+package com.beonadiet.beonadiet.controller.product;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxRiceDTO;
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxRiceImgDTO;
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishDTO;
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishImgDTO;
-import com.beonadiet.beonadiet.service.MyOwnLunchboxRiceService;
-import com.beonadiet.beonadiet.service.MyOwnLunchboxSidedishService;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceImgDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishImgDTO;
+import com.beonadiet.beonadiet.service.product.MyOwnLunchboxRiceService;
+import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSidedishService;
 import com.beonadiet.beonadiet.vo.NutritionInfoVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

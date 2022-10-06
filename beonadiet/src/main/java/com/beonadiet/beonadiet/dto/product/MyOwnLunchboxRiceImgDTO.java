@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.dto;
+package com.beonadiet.beonadiet.dto.product;
 
 import java.net.URLEncoder;
 
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MyOwnLunchboxSidedishImgDTO {
+public class MyOwnLunchboxRiceImgDTO {
     private String uuid;
     private String imgName;
     private String path;

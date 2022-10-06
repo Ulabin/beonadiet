@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.entity.my_own_series;
+package com.beonadiet.beonadiet.entity.product;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,14 +19,14 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "myOwnLunchboxRice")
+@ToString(exclude = "myOwnLunchboxSidedish")
 @Getter
-public class MyOwnLunchboxRiceImage {
+public class MyOwnLunchboxSidedishImage {
     @Id
     private String uuid;
     private String imgName;
     private String path;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private MyOwnLunchboxRice myOwnLunchboxRice;
+    private MyOwnLunchboxSidedish myOwnLunchboxSidedish;
 }

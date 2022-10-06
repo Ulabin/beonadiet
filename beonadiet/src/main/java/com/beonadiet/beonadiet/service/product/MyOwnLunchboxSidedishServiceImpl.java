@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.service;
+package com.beonadiet.beonadiet.service.product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.function.Consumer;
 
 import org.springframework.stereotype.Service;
 
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishDTO;
-import com.beonadiet.beonadiet.entity.my_own_series.MyOwnLunchboxSidedish;
-import com.beonadiet.beonadiet.entity.my_own_series.MyOwnLunchboxSidedishImage;
-import com.beonadiet.beonadiet.repository.MyOwnLunchboxSidedishImgRepository;
-import com.beonadiet.beonadiet.repository.MyOwnLunchboxSidedishRepository;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishDTO;
+import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSidedish;
+import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSidedishImage;
+import com.beonadiet.beonadiet.repository.product.MyOwnLunchboxSidedishImgRepository;
+import com.beonadiet.beonadiet.repository.product.MyOwnLunchboxSidedishRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

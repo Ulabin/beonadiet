@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.controller;
+package com.beonadiet.beonadiet.controller.product;
 
 import java.io.File;
 import java.io.FileInputStream;

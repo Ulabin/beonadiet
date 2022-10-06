@@ -1,4 +1,4 @@
-package com.beonadiet.beonadiet.dto;
+package com.beonadiet.beonadiet.dto.product;
 
 import java.time.LocalDateTime;
 
@@ -11,13 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MyOwnLunchboxRiceDTO {
+public class MyOwnLunchboxSidedishDTO {
     private Long id;
     private String name;
     private String explanation;
     private String nutrition_info;
     private String one_serving;
-    private MyOwnLunchboxRiceImgDTO imageDTO;
+    private String category;
+    private Long sales_count ;
+    private MyOwnLunchboxSidedishImgDTO imageDTO;
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 }

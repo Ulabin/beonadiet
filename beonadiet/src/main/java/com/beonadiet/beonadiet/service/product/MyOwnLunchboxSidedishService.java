@@ -1,13 +1,13 @@
-package com.beonadiet.beonadiet.service;
+package com.beonadiet.beonadiet.service.product;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishDTO;
-import com.beonadiet.beonadiet.dto.MyOwnLunchboxSidedishImgDTO;
-import com.beonadiet.beonadiet.entity.my_own_series.MyOwnLunchboxSidedish;
-import com.beonadiet.beonadiet.entity.my_own_series.MyOwnLunchboxSidedishImage;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishImgDTO;
+import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSidedish;
+import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSidedishImage;
 
 public interface MyOwnLunchboxSidedishService {
     public void register(MyOwnLunchboxSidedishDTO sidedishDTO); 
