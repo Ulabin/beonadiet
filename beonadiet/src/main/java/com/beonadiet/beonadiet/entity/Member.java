@@ -63,8 +63,8 @@ public class Member extends BaseEntity implements Serializable{
     @Column
     private Long daily_calorie_intake;
     
-    @Column(nullable = false)
-    private boolean social_login_flag;
+    // @Column(nullable = false)
+    // private boolean social_login_flag;
     
     // @ColumnDefault("0")
     // @Column(nullable=false)
@@ -72,7 +72,13 @@ public class Member extends BaseEntity implements Serializable{
     private Long point;
     
     @Column
-    private Long carb_protein_fat_rate;
+    private Long carb_rate;
+
+    @Column
+    private Long protein_rate;
+
+    @Column
+    private Long fat_rate;
     
     // @ColumnDefault("0")
     // @Column(nullable=false)

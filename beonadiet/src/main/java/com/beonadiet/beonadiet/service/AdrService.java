@@ -34,7 +34,7 @@ public class AdrService {
     .address(dto.getAddress())
     .receiver_name(dto.getReceiver_name())
     .mobile_num(dto.getMobile_num())
-    .default_address(dto.getDefault_address())
+    // .default_address(dto.getDefault_address())
     .member(Member.builder().id(dto.getMid()).build()).build();
     return address;
   }
@@ -45,7 +45,7 @@ public class AdrService {
     .address(adr.getAddress())
     .receiver_name(adr.getReceiver_name())
     .mobile_num(adr.getMobile_num())
-    .default_address(adr.getDefault_address())
+    // .default_address(adr.getDefault_address())
     .mid(adr.getMember().getId())
     .build();
     return dto;

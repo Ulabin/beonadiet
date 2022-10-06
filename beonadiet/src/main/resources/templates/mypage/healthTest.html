@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>일일섭취칼로리 : <span th:text = "${daily_calorie_intake}">dd</span> kcal</div>
+  <div>탄단지비율 : 탄수화물<span th:text = "${carb_rate}">dd</span>%, 단백질<span th:text = "${protein_rate}">dd</span>%, 지방<span th:text = "${fat_rate}">dd</span>%</div>
+  <div>알러지내역 : <span th:text = "${allergy}">dd</span></div>
+</body>
+</html>

@@ -60,7 +60,7 @@
       var checkedList = "";
       var checkedConsole = "";
 
-      $("input[name='allergy-item']:checkbox:checked").each(function() {
+      $("input[name='allergy']:checkbox:checked").each(function() {
           checkedList += $(this).val() + "\t";
           checkedConsole += $(this).val() + "\t";
       });

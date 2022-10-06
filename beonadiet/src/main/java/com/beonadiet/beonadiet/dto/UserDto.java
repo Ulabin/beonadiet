@@ -39,11 +39,15 @@ public class UserDto {
 
   private Long daily_calorie_intake;
 
-  private boolean social_login_flag;
+  // private boolean social_login_flag;
 
   private Long point;
 
-  private Long carb_protein_fat_rate;
+  private Long carb_rate;
+
+  private Long protein_rate;
+
+  private Long fat_rate;
 
   private String role;
 
@@ -65,9 +69,11 @@ public class UserDto {
               .birthday(birthday)                
               .allergy(allergy)                
               .daily_calorie_intake(daily_calorie_intake)                
-              .social_login_flag(social_login_flag)                
+              // .social_login_flag(social_login_flag)                
               .point(point)                
-              .carb_protein_fat_rate(carb_protein_fat_rate)                
+              .carb_rate(carb_rate)                
+              .protein_rate(protein_rate)                
+              .fat_rate(fat_rate)                
               .role(role)                
               .build();        
     return member;    
@@ -77,15 +83,16 @@ public class UserDto {
 
   public UserDto(Long id, String username, String password, String user_name, 
               String nickname, String email, String mobile_num, Long birthday,
-              String allergy, Long daily_calorie_intake, boolean social_login_flag, 
-              Long point, Long carb_protein_fat_rate, String role,
+              String allergy, Long daily_calorie_intake, 
+              Long point, Long carb_rate, Long protein_rate, Long fat_rate, String role,
               LocalDateTime regDate, LocalDateTime modDate){
 
     this.id = id; this.username = username; this.password = password;
     this.user_name = user_name; this.nickname = nickname; this.email = email;
     this.mobile_num = mobile_num; this.birthday = birthday; this.allergy = allergy;
-    this.daily_calorie_intake = daily_calorie_intake; this.social_login_flag = social_login_flag;
-    this.point = point; this.carb_protein_fat_rate = carb_protein_fat_rate; this.role = role;
+    this.daily_calorie_intake = daily_calorie_intake;
+    this.point = point; this.carb_rate = carb_rate; 
+    this.protein_rate = protein_rate; this.fat_rate = fat_rate; this.role = role;
     this.regDate = regDate; this.modDate = modDate;
 
   }

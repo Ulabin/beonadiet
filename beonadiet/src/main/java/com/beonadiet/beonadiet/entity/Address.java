@@ -49,17 +49,17 @@ public class Address extends BaseEntity {
   @Column
   private String mobile_num;
 
-  @Column
-  private Character default_address;
+  // @Column
+  // private Character default_address;
 
   @ManyToOne(fetch = FetchType.EAGER)    
   @JoinColumn(name = "member_id")
   // @JoinColumn(name = "member_id", unique = true)
   private Member member;
 
-  @PrePersist
-  public void prePersist() {
-      this.default_address = this.default_address == null ? 0 : this.default_address;
-  }
+  // @PrePersist
+  // public void prePersist() {
+  //     this.default_address = this.default_address == null ? 0 : this.default_address;
+  // }
 
 }

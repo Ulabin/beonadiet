@@ -12,10 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.beonadiet.beonadiet.dto.UserDto;
 import com.beonadiet.beonadiet.entity.Address;
 import com.beonadiet.beonadiet.entity.Member;
 import com.beonadiet.beonadiet.repository.AddressRepository;
@@ -36,9 +39,10 @@ public class MypageController {
   @Autowired
   UserService userService;
 
-  @GetMapping("/health_info")
-  public String healthInfo(){
-    return "mypage/health_info";
+  
+  @GetMapping("/healthTest")
+  public String healthTest(){
+    return "mypage/healthTest";
   }
 
   @GetMapping("/active_page")
@@ -65,49 +69,109 @@ public class MypageController {
 
   @Autowired
   AddressRepository addressRepository;
-
+  
+  // @Autowired
+  // UserDto userDto;
+  
   @GetMapping("/address")
-  public String addressList(@RequestParam("mid") String mid,Model model){
-      //서비스에서 생성한 리스트를 list라는 이름으로 반환하겠다.
-      Member memberTmp = userRepository.findByUsername(mid);
-
-      // model.addAttribute("list", addressRepository.findById(id));
-      // List<Address> addressList = addressRepository.findById(id);
+  public String addressList(@RequestParam("mid") String mid, Model model){
+    //서비스에서 생성한 리스트를 list라는 이름으로 반환하겠다.
+    Member memberTmp = userRepository.findByUsername(mid);
+    
+    // model.addAttribute("list", addressRepository.findById(id));
+    // List<Address> addressList = addressRepository.findById(id);
       model.addAttribute("list", addressRepository.findByMember(memberTmp));
       log.info(".................."+memberTmp);
       log.info(".................");
       return "mypage/address";
-  }
-
-  // @GetMapping("/address")
-  // public String addressList(Model model){
-  //     //서비스에서 생성한 리스트를 list라는 이름으로 반환하겠다.
-  //     model.addAttribute("list", adrService.addressList());
-  //     return "mypage/address";
-  // }
-
-  @GetMapping("/adr_modify")
-  public String adrModify(){
-    return "mypage/adr_modify";
-  }
-
-  @GetMapping("/adr_popup")
+    }
+    
+    @GetMapping("/health_info")
+    public String healthInfo(@RequestParam("mid") String mid, Model model){
+      Member memberTmp =userRepository.findByUsername(mid);
+      model.addAttribute("calorie", memberTmp.getDaily_calorie_intake());
+      model.addAttribute("carb", memberTmp.getCarb_rate());
+      model.addAttribute("protein", memberTmp.getProtein_rate());
+      model.addAttribute("fat", memberTmp.getFat_rate());
+      model.addAttribute("allergy", memberTmp.getAllergy());
+      return "mypage/health_info";
+    }
+    // @GetMapping("/health_info")
+    // public String healthInfo(){
+    //   return "mypage/health_info";
+    // }
+    // @GetMapping("/address")
+    // public String addressList(Model model){
+    //     //서비스에서 생성한 리스트를 list라는 이름으로 반환하겠다.
+    //     model.addAttribute("list", adrService.addressList());
+    //     return "mypage/address";
+    // }
+    
+    @GetMapping("/adr_modify")
+    public String adrModify(){
+      return "mypage/adr_modify";
+    }
+    
+    @GetMapping("/adr_popup")
   public String adrPopup(){
     return "mypage/adr_popup";
   }
-
+  
   @GetMapping("/pointPage")
   public String pointPage(){
     return "mypage/pointPage";
   }
-
+  
   @GetMapping("/shopping_list")
   public String shoppingList(){
     return "mypage/shopping_list";
   }
-
+  
   @GetMapping("/pick_list")
   public String pickList(){
     return "mypage/pick_list";
   }
-}
+  
+
+  @PostMapping("/health_info/calorie")
+  public String updateCalorie(@RequestParam(value="daily-calorie-intake") Long dailyCalorieIntake, @RequestParam(value="user_id") String user_id) {
+    Member memberTmp =userRepository.findByUsername(user_id);
+    memberTmp.setDaily_calorie_intake(dailyCalorieIntake);
+        log.info("................................"+memberTmp);
+        userRepository.save(memberTmp);
+        // return "mypage/health_info";
+        return "redirect:/mypage/health_info";
+    }
+
+  @PostMapping("/health_info/rate")
+  public String updateRate(@RequestParam(value="carb_rate") Long carb_rate, @RequestParam(value="protein_rate") Long protein_rate, 
+                          @RequestParam(value="fat_rate") Long fat_rate, @RequestParam(value="user_id") String user_id) {
+                            Member memberTmp =userRepository.findByUsername(user_id);
+                            memberTmp.setCarb_rate(carb_rate);
+        memberTmp.setProtein_rate(protein_rate);
+        memberTmp.setFat_rate(fat_rate);
+        log.info("................................"+memberTmp);
+        userRepository.save(memberTmp);
+        // return "mypage/health_info";
+        return "redirect:/mypage/health_info";
+    }
+
+  @PostMapping("/health_info/allergy")
+  public String createAddress(@RequestParam(value="allergy") String allergy,@RequestParam(value="user_id") String user_id) {
+        Member memberTmp =userRepository.findByUsername(user_id);
+        memberTmp.setAllergy(allergy);
+        log.info("................................"+memberTmp);
+        userRepository.save(memberTmp);
+        // return "mypage/health_info";
+        return "redirect:/mypage/health_info";
+    }
+    
+    // @PostMapping("/health_info/create")
+    // public String createHealthInfo(Member member,@RequestParam(value="daily-calorie-intake") Long dailyCalorieIntake,@RequestParam(value="user_id") String user_id){
+    //   userService.UpdateHealthInfo(dailyCalorieIntake, user_id);
+    //   return "redirect:/mypage/health_info";
+    //   // return "redirect:/login";
+    // }
+
+    
+  }

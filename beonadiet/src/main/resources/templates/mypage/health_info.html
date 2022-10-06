@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,13 +14,16 @@
       <div class="health-info-box">
         <!-- 일일섭취칼로리 -->
         <div class="calorie-info-wrap">
-          <div class="calorie">
-            <span class="title">일일섭취칼로리 ></span>
-            <input type="number" name="daily-calorie-intake" id="daily-calorie-intake">
-            <span class="txt">kcal</span>
-            <button type="submit" class="btn-save" id="btnCalorie">저장</button>
-            <span class="txt-sub">본인의 하루 목표 칼로리를 입력하세요!</span>
-          </div>
+          <form th:action="@{/mypage/health_info/calorie}" method="post">
+            <input type="hidden" name="user_id" th:value="${#authentication.name}">
+            <div class="calorie">
+              <span class="title">일일섭취칼로리 ></span>
+              <input type="number" th:value = "${calorie}" name="daily-calorie-intake" id="daily-calorie-intake">
+              <span class="txt">kcal</span>
+              <button type="submit" class="btn-save" id="btnCalorie">저장</button>
+              <span class="txt-sub">본인의 하루 목표 칼로리를 입력하세요!</span>
+            </div>
+          </form>
           <div class="calorie">
             <span class="txt">참고사항 | 성인 하루 권장 칼로리</span>
           </div>
@@ -64,19 +67,22 @@
         </div>
         <!-- 탄단지 비율 -->
         <div class="nutrient-info-wrap">
-          <div class="nutrient">
-            <span class="title">탄단지 비율 ></span>
-            <span class="txt space10">탄수화물</span>
-            <input type="number" name="carb" id="carb" class="carb">
-            <span class="txt-small">%</span>
-            <span class="txt space10">단백질</span>
-            <input type="number" name="protein" id="protein" class="protein">
-            <span class="txt-small">%</span>
-            <span class="txt space10">지방</span>
-            <input type="number" name="fat" id="fat" class="fat">
-            <span class="txt-small">%</span>
-            <button type="submit" class="btn-save" id="btnNutrient">저장</button>
-          </div>
+          <form th:action="@{/mypage/health_info/rate}" method="post">
+            <input type="hidden" name="user_id" th:value="${#authentication.name}">
+            <div class="nutrient">
+              <span class="title">탄단지 비율 ></span>
+              <span class="txt space10">탄수화물</span>
+              <input type="number" th:value = "${carb}" name="carb_rate" id="carb" class="carb">
+              <span class="txt-small">%</span>
+              <span class="txt space10">단백질</span>
+              <input type="number" name="protein_rate" th:value = "${protein}" id="protein" class="protein">
+              <span class="txt-small">%</span>
+              <span class="txt space10">지방</span>
+              <input type="number" name="fat_rate" th:value = "${fat}" id="fat" class="fat">
+              <span class="txt-small">%</span>
+              <button type="submit" class="btn-save" id="btnNutrient">저장</button>
+            </div>
+          </form>
           <div class="nutrient">
             <span class="txt">참고사항 | 체지방률별 추천 탄단지 비율</span>
             <span class="txt-sub">본인의 체지방률을 입력하고 계산을 누르세요!</span>
@@ -99,450 +105,454 @@
             <span class="title">알러지정보 ></span>
           </div>
           <div class="allergy-check-boxes">
-            <div class="box-tit">
-              <div class="tit-top left-line radius1">
-                <span class="item-name">유제품,육류,가금류</span>
+            <form th:action="@{/mypage/health_info/allergy}" method="post">
+              <input type="hidden" name="user_id" th:value="${#authentication.name}">
+              <div class="box-tit">
+                <div class="tit-top left-line radius1">
+                  <span class="item-name">유제품,육류,가금류</span>
+                </div>
+                <div class="tit-top">
+                  <span class="item-name">과일</span>
+                </div>
+                <div class="tit-top">
+                  <span class="item-name">생선,조개</span>
+                </div>
+                <div class="tit-top radius2">
+                  <span class="item-name">곡물</span>
+                </div>
               </div>
-              <div class="tit-top">
-                <span class="item-name">과일</span>
-              </div>
-              <div class="tit-top">
-                <span class="item-name">생선,조개</span>
-              </div>
-              <div class="tit-top radius2">
-                <span class="item-name">곡물</span>
-              </div>
-            </div>
-            <div class="box-content">
-              <div class="content-top left-line">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item1" value="우유">
-                    <label for="item1">우유</label>
+              <div class="box-content">
+                <div class="content-top left-line">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item1" value="우유">
+                      <label for="item1">우유</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item2" value="우유단백질">
+                      <label for="item2">우유단백질</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item3" value="닭고기">
+                      <label for="item3">닭고기</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item4" value="계란흰자">
+                      <label for="item4">계란흰자</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item5" value="계란노른자">
+                      <label for="item5">계란노른자</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item6" value="양고기">
+                      <label for="item6">양고기</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item7" value="돼지고기">
+                      <label for="item7">돼지고기</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item8" value="쇠고기">
+                      <label for="item8">쇠고기</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item9" value="요구르트">
+                      <label for="item9">요구르트</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item10" value="오리고기">
+                      <label for="item10">오리고기</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item11" value="치즈">
+                      <label for="item12">치즈</label>
+                    </div>
                   </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item2" value="우유단백질">
-                    <label for="item2">우유단백질</label>
+                </div>
+                <div class="content-top">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item12" value="사과">
+                      <label for="item12">사과</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item13" value="바나나">
+                      <label for="item13">바나나</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item14" value="포도">
+                      <label for="item14">포도</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item15" value="자몽">
+                      <label for="item15">자몽</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item16" value="레몬">
+                      <label for="item16">레몬</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item17" value="오렌지">
+                      <label for="item17">오렌지</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item18" value="복숭아">
+                      <label for="item18">복숭아</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item19" value="배">
+                      <label for="item19">배</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item20" value="파인애플">
+                      <label for="item20">파인애플</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item21" value="딸기">
+                      <label for="item21">딸기</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item22" value="블루베리">
+                      <label for="item22">블루베리</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item23" value="수박">
+                      <label for="item23">수박</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item24" value="자두">
+                      <label for="item24">자두</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item25" value="키위">
+                      <label for="item25">키위</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item26" value="망고">
+                      <label for="item26">망고</label>
+                    </div>
                   </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item3" value="닭고기">
-                    <label for="item3">닭고기</label>
+                </div>
+                <div class="content-top">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item27" value="대구">
+                      <label for="item27">대구</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item28" value="연어">
+                      <label for="item28">연어</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item29" value="새우">
+                      <label for="item29">새우</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item30" value="참치">
+                      <label for="item30">참치</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item31" value="대합조개">
+                      <label for="item31">대합조개</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item32" value="게살">
+                      <label for="item32">게살</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item33" value="바닷가재">
+                      <label for="item33">바닷가재</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item34" value="고등어">
+                      <label for="item34">고등어</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item35" value="굴">
+                      <label for="item35">굴</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item36" value="전복">
+                      <label for="item36">전복</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item37" value="가리비">
+                      <label for="item37">가리비</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item38" value="오징어">
+                      <label for="item38">오징어</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item39" value="장어">
+                      <label for="item39">장어</label>
+                    </div>
                   </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item4" value="계란흰자">
-                    <label for="item4">계란흰자</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item5" value="계란노른자">
-                    <label for="item5">계란노른자</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item6" value="양고기">
-                    <label for="item6">양고기</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item7" value="돼지고기">
-                    <label for="item7">돼지고기</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item8" value="쇠고기">
-                    <label for="item8">쇠고기</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item9" value="요구르트">
-                    <label for="item9">요구르트</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item10" value="오리고기">
-                    <label for="item10">오리고기</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item11" value="치즈">
-                    <label for="item12">치즈</label>
+                </div>
+                <div class="content-top">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item40" value="쌀">
+                      <label for="item40">쌀</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item41" value="밀">
+                      <label for="item41">밀</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item42" value="옥수수">
+                      <label for="item42">옥수수</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item43" value="귀리">
+                      <label for="item43">귀리</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item44" value="수수/기장">
+                      <label for="item44">수수/기장</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item45" value="보리">
+                      <label for="item45">보리</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item46" value="메밀">
+                      <label for="item46">메밀</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item47" value="글루텐">
+                      <label for="item47">글루텐</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item48" value="글리아딘">
+                      <label for="item48">글리아딘</label>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="content-top">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item12" value="사과">
-                    <label for="item12">사과</label>
+              <div class="box-tit">
+                <div class="tit-bottom left-line">
+                  <span class="item-name">콩류</span>
+                </div>
+                <div class="tit-bottom">
+                  <span class="item-name">너트,씨앗</span>
+                </div>
+                <div class="tit-bottom">
+                  <span class="item-name">야채</span>
+                </div>
+                <div class="tit-bottom">
+                  <span class="item-name">기타</span>
+                </div>
+              </div>
+              <div class="box-content">
+                <div class="content-bottom left-line">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item49" value="완두콩">
+                      <label for="item49">완두콩</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item50" value="대두콩">
+                      <label for="item50">대두콩</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item51" value="땅콩">
+                      <label for="item51">땅콩</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item52" value="강낭콩">
+                      <label for="item52">강낭콩</label>
+                    </div>
                   </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item13" value="바나나">
-                    <label for="item13">바나나</label>
+                </div>
+                <div class="content-bottom">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item53" value="아몬드">
+                      <label for="item53">아몬드</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item54" value="코코넛">
+                      <label for="item54">코코넛</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item55" value="참깨">
+                      <label for="item55">참깨</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item56" value="호두">
+                      <label for="item56">호두</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item57" value="캐슈넛">
+                      <label for="item57">캐슈넛</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item58" value="해바라기씨">
+                      <label for="item58">해바라기씨</label>
+                    </div>
                   </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item14" value="포도">
-                    <label for="item14">포도</label>
+                </div>
+                <div class="content-bottom">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item59" value="무">
+                      <label for="item59">무</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item60" value="양배추">
+                      <label for="item60">양배추</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item61" value="당근">
+                      <label for="item61">당근</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item62" value="샐러리">
+                      <label for="item62">샐러리</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item63" value="오이">
+                      <label for="item63">오이</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item64" value="마늘">
+                      <label for="item64">마늘</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item65" value="버섯">
+                      <label for="item65">버섯</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item66" value="겨자">
+                      <label for="item66">겨자</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item67" value="올리브">
+                      <label for="item67">올리브</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item68" value="양파">
+                      <label for="item68">양파</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item69" value="피망">
+                      <label for="item69">피망</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item70" value="감자">
+                      <label for="item70">감자</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item71" value="시금치">
+                      <label for="item71">시금치</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item72" value="토마토">
+                      <label for="item72">토마토</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item73" value="브로콜리">
+                      <label for="item73">브로콜리</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item74" value="상추">
+                      <label for="item74">상추</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item75" value="고구마">
+                      <label for="item75">고구마</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item76" value="부추">
+                      <label for="item76">부추</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item77" value="토란">
+                      <label for="item77">토란</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item78" value="죽순">
+                      <label for="item78">죽순</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item79" value="가지">
+                      <label for="item79">가지</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item80" value="쑥">
+                      <label for="item80">쑥</label>
+                    </div>
                   </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item15" value="자몽">
-                    <label for="item15">자몽</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item16" value="레몬">
-                    <label for="item16">레몬</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item17" value="오렌지">
-                    <label for="item17">오렌지</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item18" value="복숭아">
-                    <label for="item18">복숭아</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item19" value="배">
-                    <label for="item19">배</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item20" value="파인애플">
-                    <label for="item20">파인애플</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item21" value="딸기">
-                    <label for="item21">딸기</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item22" value="블루베리">
-                    <label for="item22">블루베리</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item23" value="수박">
-                    <label for="item23">수박</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item24" value="자두">
-                    <label for="item24">자두</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item25" value="키위">
-                    <label for="item25">키위</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item26" value="망고">
-                    <label for="item26">망고</label>
+                </div>
+                <div class="content-bottom">
+                  <div class="checkbox-wrap">
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item81" value="후추">
+                      <label for="item81">후추</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item82" value="커피">
+                      <label for="item82">커피</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item83" value="홍차">
+                      <label for="item83">홍차</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item84" value="빵효모">
+                      <label for="item84">빵효모</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item85" value="생강">
+                      <label for="item85">생강</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item86" value="맥주효모">
+                      <label for="item86">맥주효모</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item87" value="코코아">
+                      <label for="item87">코코아</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item88" value="꿀">
+                      <label for="item88">꿀</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item89" value="누룩곰팡이">
+                      <label for="item89">누룩곰팡이</label>
+                    </div>
+                    <div class="item-list">
+                      <input type="checkbox" name="allergy" id="item90" value="미역/다시마">
+                      <label for="item90">미역/다시마</label>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="content-top">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item27" value="대구">
-                    <label for="item27">대구</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item28" value="연어">
-                    <label for="item28">연어</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item29" value="새우">
-                    <label for="item29">새우</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item30" value="참치">
-                    <label for="item30">참치</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item31" value="대합조개">
-                    <label for="item31">대합조개</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item32" value="게살">
-                    <label for="item32">게살</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item33" value="바닷가재">
-                    <label for="item33">바닷가재</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item34" value="고등어">
-                    <label for="item34">고등어</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item35" value="굴">
-                    <label for="item35">굴</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item36" value="전복">
-                    <label for="item36">전복</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item37" value="가리비">
-                    <label for="item37">가리비</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item38" value="오징어">
-                    <label for="item38">오징어</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item39" value="장어">
-                    <label for="item39">장어</label>
+              <div class="user-add-item left-line">
+                <div class="">
+                  <span class="txt space10">사용자 추가</span>
+                </div>
+                <div class="space20 add-input-wrap">
+                  <input type="text" name="allergy" id="add-item-input">
+                  <!-- <input type="text" name="add-item-input" id="add-item-input"> -->
+                  <button type="button" class="btn-add space10">추가</button>
+                </div>
+              </div>
+              <input type="hidden" name="allergyList" id="allergyList">
+              <div class="selected-item left-line radius3">
+                <div class="result-item-box">
+                  <div class="result" id="result" name="allergy" th:text = "${allergy}"></div>
+                </div>
+                <div class="btn-setting-wrap">
+                  <div>
+                    <button type="submit" class="btn-setting">저장</button>
                   </div>
                 </div>
               </div>
-              <div class="content-top">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item40" value="쌀">
-                    <label for="item40">쌀</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item41" value="밀">
-                    <label for="item41">밀</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item42" value="옥수수">
-                    <label for="item42">옥수수</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item43" value="귀리">
-                    <label for="item43">귀리</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item44" value="수수/기장">
-                    <label for="item44">수수/기장</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item45" value="보리">
-                    <label for="item45">보리</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item46" value="메밀">
-                    <label for="item46">메밀</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item47" value="글루텐">
-                    <label for="item47">글루텐</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item48" value="글리아딘">
-                    <label for="item48">글리아딘</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="box-tit">
-              <div class="tit-bottom left-line">
-                <span class="item-name">콩류</span>
-              </div>
-              <div class="tit-bottom">
-                <span class="item-name">너트,씨앗</span>
-              </div>
-              <div class="tit-bottom">
-                <span class="item-name">야채</span>
-              </div>
-              <div class="tit-bottom">
-                <span class="item-name">기타</span>
-              </div>
-            </div>
-            <div class="box-content">
-              <div class="content-bottom left-line">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item49" value="완두콩">
-                    <label for="item49">완두콩</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item50" value="대두콩">
-                    <label for="item50">대두콩</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item51" value="땅콩">
-                    <label for="item51">땅콩</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item52" value="강낭콩">
-                    <label for="item52">강낭콩</label>
-                  </div>
-                </div>
-              </div>
-              <div class="content-bottom">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item53" value="아몬드">
-                    <label for="item53">아몬드</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item54" value="코코넛">
-                    <label for="item54">코코넛</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item55" value="참깨">
-                    <label for="item55">참깨</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item56" value="호두">
-                    <label for="item56">호두</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item57" value="캐슈넛">
-                    <label for="item57">캐슈넛</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item58" value="해바라기씨">
-                    <label for="item58">해바라기씨</label>
-                  </div>
-                </div>
-              </div>
-              <div class="content-bottom">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item59" value="무">
-                    <label for="item59">무</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item60" value="양배추">
-                    <label for="item60">양배추</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item61" value="당근">
-                    <label for="item61">당근</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item62" value="샐러리">
-                    <label for="item62">샐러리</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item63" value="오이">
-                    <label for="item63">오이</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item64" value="마늘">
-                    <label for="item64">마늘</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item65" value="버섯">
-                    <label for="item65">버섯</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item66" value="겨자">
-                    <label for="item66">겨자</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item67" value="올리브">
-                    <label for="item67">올리브</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item68" value="양파">
-                    <label for="item68">양파</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item69" value="피망">
-                    <label for="item69">피망</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item70" value="감자">
-                    <label for="item70">감자</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item71" value="시금치">
-                    <label for="item71">시금치</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item72" value="토마토">
-                    <label for="item72">토마토</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item73" value="브로콜리">
-                    <label for="item73">브로콜리</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item74" value="상추">
-                    <label for="item74">상추</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item75" value="고구마">
-                    <label for="item75">고구마</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item76" value="부추">
-                    <label for="item76">부추</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item77" value="토란">
-                    <label for="item77">토란</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item78" value="죽순">
-                    <label for="item78">죽순</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item79" value="가지">
-                    <label for="item79">가지</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item80" value="쑥">
-                    <label for="item80">쑥</label>
-                  </div>
-                </div>
-              </div>
-              <div class="content-bottom">
-                <div class="checkbox-wrap">
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item81" value="후추">
-                    <label for="item81">후추</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item82" value="커피">
-                    <label for="item82">커피</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item83" value="홍차">
-                    <label for="item83">홍차</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item84" value="빵효모">
-                    <label for="item84">빵효모</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item85" value="생강">
-                    <label for="item85">생강</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item86" value="맥주효모">
-                    <label for="item86">맥주효모</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item87" value="코코아">
-                    <label for="item87">코코아</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item88" value="꿀">
-                    <label for="item88">꿀</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item89" value="누룩곰팡이">
-                    <label for="item89">누룩곰팡이</label>
-                  </div>
-                  <div class="item-list">
-                    <input type="checkbox" name="allergy-item" id="item90" value="미역/다시마">
-                    <label for="item90">미역/다시마</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="user-add-item left-line">
-              <div class="">
-                <span class="txt space10">사용자 추가</span>
-              </div>
-              <div class="space20 add-input-wrap">
-                <input type="text" name="add-item-input" id="add-item-input">
-                <button type="button" class="btn-add space10">추가</button>
-              </div>
-            </div>
-            <input type="hidden" name="allergyList" id="allergyList">
-            <div class="selected-item left-line radius3">
-              <div class="result-item-box">
-                <div class="result" id="result"></div>
-              </div>
-              <div class="btn-setting-wrap">
-                <div>
-                  <button type="submit" class="btn-setting">저장</button>
-                </div>
-              </div>
-            </div>
+            <form th:action="@{/mypage/health_info/rate}" method="post">
           </div>
         </div>
       </div>

@@ -41,18 +41,16 @@
                   <span class="badge-default">
                     기본 배송지
                   </span>
-                  <p th:text="${address.address}">
-                    부산광역시 부산진구 중앙대로 668 (A1프라자6층)
-                  </p>
+                  <p th:text="${address.address}">주소</p>
                 </div>
                 <div class="name-cont">
-                  <span th:text="${address.receiver_name}">김곰돌</span>
+                  <span th:text="${address.receiver_name}">받는분</span>
                 </div>
                 <div class="mobile-cont">
-                  <span th:text="${address.mobile_num}">010-1234-5678</span>
+                  <span th:text="${address.mobile_num}">연락처</span>
                 </div>
                 <div class="modify-cont">
-                  <button type="button" class="btn-modify" onclick="showPopupMod();">수정하기</button>
+                  <button type="button" class="btn-modify" onclick="showPopupMod();">삭제하기</button>
                 </div>
               </li>
 
