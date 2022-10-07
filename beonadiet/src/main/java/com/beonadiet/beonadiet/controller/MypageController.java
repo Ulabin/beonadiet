@@ -9,6 +9,7 @@ import org.springframework.jdbc.support.CustomSQLExceptionTranslatorRegistrar;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.beonadiet.beonadiet.dto.UserDto;
+import com.beonadiet.beonadiet.dto.AdrDto;
 import com.beonadiet.beonadiet.entity.Address;
 import com.beonadiet.beonadiet.entity.Member;
 import com.beonadiet.beonadiet.repository.AddressRepository;
@@ -50,23 +52,23 @@ public class MypageController {
     return "mypage/active_page";
   }
 
-  @GetMapping("/userinfo")
-  public String userInfo(){
-    return "mypage/userinfo";
-  }
-
-  @GetMapping("/delete_account")
-  public String deleteAccount(){
-    return "mypage/delete_account";
-  }
-
-  // @GetMapping("/address")
-  // public String address(){
-  //   return "mypage/address";
+  // @GetMapping("/userinfo")
+  // public String userInfo(){
+  //   return "mypage/userinfo";
   // }
-  @Autowired
-  AdrService adrService;
 
+  // @GetMapping("/delete_account")
+  // public String deleteAccount(){
+    //   return "mypage/delete_account";
+    // }
+
+    // @GetMapping("/address")
+  // public String address(){
+    //   return "mypage/address";
+    // }
+    @Autowired
+    AdrService adrService;
+    
   @Autowired
   AddressRepository addressRepository;
   
@@ -80,10 +82,16 @@ public class MypageController {
     
     // model.addAttribute("list", addressRepository.findById(id));
     // List<Address> addressList = addressRepository.findById(id);
-      model.addAttribute("list", addressRepository.findByMember(memberTmp));
-      log.info(".................."+memberTmp);
-      log.info(".................");
-      return "mypage/address";
+    model.addAttribute("list", addressRepository.findByMember(memberTmp));
+    log.info(".................."+memberTmp);
+    log.info(".................");
+    return "mypage/address";
+    }
+
+    @PostMapping("/address/delete")
+    public String addressDelete(@RequestParam(value="addressNum") Long addressNum, @RequestParam("mid") String mid){
+      addressRepository.deleteById(addressNum);
+      return "redirect:/mypage/address?mid="+mid;
     }
     
     @GetMapping("/health_info")
@@ -96,16 +104,25 @@ public class MypageController {
       model.addAttribute("allergy", memberTmp.getAllergy());
       return "mypage/health_info";
     }
-    // @GetMapping("/health_info")
-    // public String healthInfo(){
-    //   return "mypage/health_info";
-    // }
-    // @GetMapping("/address")
-    // public String addressList(Model model){
-    //     //서비스에서 생성한 리스트를 list라는 이름으로 반환하겠다.
-    //     model.addAttribute("list", adrService.addressList());
-    //     return "mypage/address";
-    // }
+
+    @GetMapping("/userinfo")
+    public String userInfo(@RequestParam("mid") String mid, Model model){
+      Member memberTmp =userRepository.findByUsername(mid);
+      model.addAttribute("userid", memberTmp.getUsername());
+      model.addAttribute("username", memberTmp.getUser_name());
+      model.addAttribute("nickname", memberTmp.getNickname());
+      model.addAttribute("email", memberTmp.getEmail());
+      model.addAttribute("mobile", memberTmp.getMobile_num());
+      model.addAttribute("birthday", memberTmp.getBirthday());
+      return "mypage/userinfo";
+    }
+    
+    @GetMapping("/delete_account")
+    public String deleteAccount(@RequestParam("mid") String mid, Model model){
+      Member memberTmp =userRepository.findByUsername(mid);
+      model.addAttribute("userid", memberTmp.getUsername());
+      return "mypage/delete_account";
+    }
     
     @GetMapping("/adr_modify")
     public String adrModify(){
@@ -140,7 +157,7 @@ public class MypageController {
         log.info("................................"+memberTmp);
         userRepository.save(memberTmp);
         // return "mypage/health_info";
-        return "redirect:/mypage/health_info";
+        return "redirect:/mypage/health_info?mid="+user_id;
     }
 
   @PostMapping("/health_info/rate")
@@ -153,7 +170,7 @@ public class MypageController {
         log.info("................................"+memberTmp);
         userRepository.save(memberTmp);
         // return "mypage/health_info";
-        return "redirect:/mypage/health_info";
+        return "redirect:/mypage/health_info?mid="+user_id;
     }
 
   @PostMapping("/health_info/allergy")
@@ -163,7 +180,7 @@ public class MypageController {
         log.info("................................"+memberTmp);
         userRepository.save(memberTmp);
         // return "mypage/health_info";
-        return "redirect:/mypage/health_info";
+        return "redirect:/mypage/health_info?mid="+user_id;
     }
     
     // @PostMapping("/health_info/create")

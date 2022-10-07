@@ -11,7 +11,8 @@
   <a sec:authorize="hasRole('ADMIN')" href="admin/adminOnly">adminOnly Page</a>
   <a sec:authorize="!isAuthenticated()" href="login">Login</a>
   <a sec:authorize="!isAuthenticated()" href="join">Join</a>
-  <a sec:authorize="isAuthenticated()" href="mypage/userinfo">회원정보수정</a>
+  <a sec:authorize="isAuthenticated()" th:href="@{mypage/userinfo(mid=${#authentication.name})}">회원정보수정</a>
+  <!-- <a sec:authorize="isAuthenticated()" href="mypage/userinfo">회원정보수정</a> -->
   <a sec:authorize="isAuthenticated()" href="logout">Logout</a>
   <a sec:authorize="isAuthenticated()" th:href="@{/mypage/health_info(mid=${#authentication.name})}">칼로리/알러지설정</a>
   <a sec:authorize="isAuthenticated()" href="mypage/healthTest">알러지내역</a>

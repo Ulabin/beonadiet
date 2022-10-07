@@ -36,23 +36,29 @@
           </div>
           <main class="adr-main">
             <ul class="adr-list">
-              <li class="adr-items" th:each = "address:${list}">
-                <div class="adr-cont">
-                  <span class="badge-default">
-                    기본 배송지
-                  </span>
-                  <p th:text="${address.address}">주소</p>
-                </div>
-                <div class="name-cont">
-                  <span th:text="${address.receiver_name}">받는분</span>
-                </div>
-                <div class="mobile-cont">
-                  <span th:text="${address.mobile_num}">연락처</span>
-                </div>
-                <div class="modify-cont">
-                  <button type="button" class="btn-modify" onclick="showPopupMod();">삭제하기</button>
-                </div>
-              </li>
+              <!-- <form id="frm" method="post"> -->
+                <li class="adr-items" th:each = "address:${list}">
+                  <div class="adr-cont">
+                    <span class="badge-default" th:if="${address.default_address}!=null">
+                      기본 배송지
+                    </span>
+                    <p th:text="${address.address}">주소</p>
+                  </div>
+                  <div class="name-cont">
+                    <span th:text="${address.receiver_name}">받는분</span>
+                  </div>
+                  <div class="mobile-cont">
+                    <span th:text="${address.mobile_num}">연락처</span>
+                  </div>
+                  <div class="modify-cont">
+                    <form th:action="@{/mypage/address/delete}" method="post">
+                      <input type="hidden" name="addressNum" th:value="${address.num}">
+                      <input type="hidden" name="mid" th:value="${#authentication.name}">
+                      <button type="submit" class="btn-modify">삭제하기</button>
+                    </form>
+                  </div>
+                </li>
+              <!-- </form> -->
 
 
               <!-- <li class="adr-items">

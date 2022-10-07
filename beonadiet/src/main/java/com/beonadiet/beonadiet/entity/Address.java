@@ -49,8 +49,8 @@ public class Address extends BaseEntity {
   @Column
   private String mobile_num;
 
-  // @Column
-  // private Character default_address;
+  @Column
+  private Character default_address;
 
   @ManyToOne(fetch = FetchType.EAGER)    
   @JoinColumn(name = "member_id")

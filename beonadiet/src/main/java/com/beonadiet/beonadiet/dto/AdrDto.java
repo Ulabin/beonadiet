@@ -30,7 +30,7 @@ public class AdrDto {
 
   private String mobile_num;
 
-  // private Character default_address;
+  private Character default_address;
 
   private Long mid;
 }
