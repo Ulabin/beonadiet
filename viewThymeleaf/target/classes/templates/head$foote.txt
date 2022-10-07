@@ -1,4 +1,0 @@
- 헤더 부분
- <div class="home-container" th:replace="fragments/common :: nav"></div>
- 푸터
-  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
