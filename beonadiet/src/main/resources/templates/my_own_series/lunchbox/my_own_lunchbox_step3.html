@@ -11,8 +11,9 @@
     <script th:inline="javascript">
         window.onload=function(){
             var dtoList = [];
+            var num=0;
             /*[# th:each="dto : ${list}"]*/
-            dtoList.push({'id':[[${dto.id}]], 'category':[[${dto.category}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]], 'sales_count':[[${dto.sales_count}]]});
+            dtoList.push({'id':[[${dto.id}]],'category':[[${dto.category}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]], 'sales_count':[[${dto.sales_count}]]});
             /*[/]*/
             
             var popularitySortList = [...dtoList];
@@ -26,84 +27,35 @@
                 return b["sales_count"] - a["sales_count"];
             }); //인기순내림차순
 
-            var herbsSproutsPopularitySortList = popularitySortList.filter(element=>element.category=="herbs_sprouts");
-            var herbsSproutsCharacterSortList = characterSortList.filter(element=>element.category=="herbs_sprouts");
 
-            var popularitySortListHtml = ""
-            popularitySortList.forEach((element,index) => {
-                var className = ((index-1)%3==0)? 'even' : 'odd';
-                popularitySortListHtml += 
-                        `<input type="radio" name="my_own_lunchbox_sidedish" value="${element.name}" id="${element.name}">
-                            <div class="composition_element_box ${className}" data-value="${element.name}">
-                                <div class="composition_element">
-                                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.fileName}" data-listid="${index+1}" width="180" height="180" th:alt="${element.name}">
-                                    <h2>${element.name}</h2>
-                                </div>
-                                <div class="stepper" style="opacity:1">
-                                    <span>-</span>
-                                    <span>1.0</span>
-                                    <span>+</span>
-                                </div>
-                                <div class="add_btn">
-                                    <span>담기</span>
-                                </div>
-                            </div>
-                        `;
-            });
-            $('.composition_element_container').append(popularitySortListHtml);
+            function listCreate(menu, order){
+                if(order=='popularity'){
+                    var list = popularitySortList.filter(element=>element.category==menu);
+                }else{
+                    var list = characterSortList.filter(element=>element.category==menu);
+                }
 
-            var characterSortListHtml = ""
-            characterSortList.forEach((element,index) => {
-                var className = ((index-1)%3==0)? 'even' : 'odd';
-                characterSortListHtml += 
-                        `<input type="radio" name="my_own_lunchbox_sidedish" value="${element.name}" id="${element.name}">
-                            <div class="composition_element_box ${className}" data-value="${element.name}">
-                                <div class="composition_element">
-                                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.fileName}" data-listid="${index+1}" width="180" height="180" th:alt="${element.name}">
-                                    <h2>${element.name}</h2>
-                                </div>
-                                <div class="stepper" style="opacity:1">
-                                    <span>-</span>
-                                    <span>1.0</span>
-                                    <span>+</span>
-                                </div>
-                                <div class="add_btn">
-                                    <span>담기</span>
-                                </div>
-                            </div>
-                        `;
-            });
-            
-            var herbsSproutsPopularitySortListHtml = ""
-            herbsSproutsPopularitySortList.forEach((element,index) => {
-                var className = ((index-1)%3==0)? 'even' : 'odd';
-                herbsSproutsPopularitySortListHtml += 
-                        `<input type="radio" name="my_own_lunchbox_sidedish" value="${element.name}" id="${element.name}">
-                            <div class="composition_element_box ${className}" data-value="${element.name}">
-                                <div class="composition_element">
-                                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.fileName}" data-listid="${index+1}" width="180" height="180" th:alt="${element.name}">
-                                    <h2>${element.name}</h2>
-                                </div>
-                                <div class="stepper" style="opacity:1">
-                                    <span>-</span>
-                                    <span>1.0</span>
-                                    <span>+</span>
-                                </div>
-                                <div class="add_btn">
-                                    <span>담기</span>
-                                </div>
-                            </div>
-                        `;
-            });
+                return list;
+            }
 
-            var herbsSproutsCharacterSortListHtml = ""
-            herbsSproutsCharacterSortList.forEach((element,index) => {
+            var herbsSproutsPopularitySortList = listCreate('herbs_sprouts','popularity');
+            var herbsSproutsCharacterSortList = listCreate('herbs_sprouts','character');
+            var fryJorimJjimPopularitySortList = listCreate('fry_jorim_jjim','popularity');
+            var fryJorimJjimCharacterSortList = listCreate('fry_jorim_jjim','character');
+            var gimchiPicklesPopularitySortList = listCreate('gimchi_pickles','popularity');
+            var gimchiPicklesCharacterSortList = listCreate('gimchi_pickles','character');
+            var roastJunPopularitySortList = listCreate('roast_jun','popularity');
+            var roastJunCharacterSortList = listCreate('roast_jun','character');
+
+            function listHtmlCreate(list) {
+                var html =''; 
+                list.forEach((element,index) => {
                 var className = ((index-1)%3==0)? 'even' : 'odd';
-                herbsSproutsCharacterSortListHtml += 
+                html += 
                         `<input type="radio" name="my_own_lunchbox_sidedish" value="${element.name}" id="${element.name}">
                             <div class="composition_element_box ${className}" data-value="${element.name}">
                                 <div class="composition_element">
-                                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.fileName}" data-listid="${index+1}" width="180" height="180" th:alt="${element.name}">
+                                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.fileName}" data-listid="${element.id}" width="180" height="180" th:alt="${element.name}">
                                     <h2>${element.name}</h2>
                                 </div>
                                 <div class="stepper" style="opacity:1">
@@ -116,7 +68,11 @@
                                 </div>
                             </div>
                         `;
-            });
+                });
+                return html;
+            }
+
+            $('.composition_element_container').html(listHtmlCreate(popularitySortList));
 
             $('#sort_select').on('change',function() {
                 var menu = $("li[class=active_menu]").attr('id');
@@ -124,17 +80,31 @@
                 var sortOrder = $("option:selected",this).attr("value");
                 if(sortOrder=='popularity'){
                     if(menu=='all'){
-                    $('.composition_element_container').html(popularitySortListHtml);
+                    $('.composition_element_container').html(listHtmlCreate(popularitySortList));
                     }
                     else if(menu=='herbs_sprouts')
-                    $('.composition_element_container').html(herbsSproutsPopularitySortListHtml);
+                    $('.composition_element_container').html(listHtmlCreate(herbsSproutsPopularitySortList));
+                    else if(menu=='fry_jorim_jjim')
+                    $('.composition_element_container').html(listHtmlCreate(fryJorimJjimPopularitySortList));
+                    else if(menu=='gimchi_pickles')
+                    $('.composition_element_container').html(listHtmlCreate(gimchiPicklesPopularitySortList));
+                    else
+                    $('.composition_element_container').html(listHtmlCreate(roastJunPopularitySortList));
                 }
                 else{
                     if(menu=='all'){
-                    $('.composition_element_container').html(characterSortListHtml);
+                    $('.composition_element_container').html(listHtmlCreate(characterSortList));
                     }
                     else if(menu=='herbs_sprouts')
-                    $('.composition_element_container').html(herbsSproutsCharacterSortListHtml);                }
+                    $('.composition_element_container').html(listHtmlCreate(herbsSproutsCharacterSortList));        
+                    else if(menu=='gimchi_pickles')
+                    $('.composition_element_container').html(listHtmlCreate(gimchiPicklesCharacterSortList));        
+                    else if(menu=='fry_jorim_jjim')
+                    $('.composition_element_container').html(listHtmlCreate(fryJorimJjimCharacterSortList));
+                    else
+                    $('.composition_element_container').html(listHtmlCreate(roastJunCharacterSortList));
+
+                }
             })
 
             $('.nutrition_info_check_btn').click(function() {
@@ -165,25 +135,19 @@
                 $('#sort_select option[value=popularity]').prop('selected',true);
 
                 if(menu=='all'){
-                    $('.composition_element_container').html(popularitySortListHtml);
+                    $('.composition_element_container').html(listHtmlCreate(popularitySortList));
                 }
                 else if(menu=='herbs_sprouts'){
-                    $('.composition_element_container').html(herbsSproutsPopularitySortListHtml);
+                    $('.composition_element_container').html(listHtmlCreate(herbsSproutsPopularitySortList));
                 }
                 else if(menu=='fry_jorim_jjim'){
-                    $('.composition_element_list').html(
-                    `
-                    `);
+                    $('.composition_element_container').html(listHtmlCreate(fryJorimJjimPopularitySortList));
                 }
                 else if(menu=='gimchi_pickles'){
-                    $('.composition_element_list').html(
-                    `
-                    `);
+                    $('.composition_element_container').html(listHtmlCreate(gimchiPicklesPopularitySortList));        
                 }
                 else{
-                    $('.composition_element_list').html(
-                    `
-                    `);
+                    $('.composition_element_container').html(listHtmlCreate(roastJunPopularitySortList));    
                 }
             })
 
@@ -237,11 +201,18 @@
 
             $('.content').on('click','.composition_element_box img',function(e) {
                 var thisEle = $(e.target);
-                    var eleId = $(thisEle).attr('data-listid');
-                    $('.modal-header h2').text(dtoList[eleId-1].name);
-                    $('.elem_comment').text(dtoList[eleId-1].explanation);
-                    $('.one_serving').text('* '+dtoList[eleId-1].one_serving+' 기준');
-                    var nutrition_info = JSON.parse(dtoList[eleId-1].nutrition_info);
+                    var eleId;
+                    var listId = $(thisEle).attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    $('.modal-header.elementName h2').text(dtoList[eleId].name);
+                    $('.elem_comment').text(dtoList[eleId].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
                     $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
                     $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
                     $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
@@ -268,12 +239,19 @@
             })
 
             $('.content').on('click','.basket_element_box img',function(e) {
-                    var thisEle = $(e.target);
-                    var eleId = $(thisEle).attr('data-listid');
-                    $('.modal-header h2').text(dtoList[eleId-1].name);
-                    $('.elem_comment').text(dtoList[eleId-1].explanation);
-                    $('.one_serving').text('* '+dtoList[eleId-1].one_serving+' 기준');
-                    var nutrition_info = JSON.parse(dtoList[eleId-1].nutrition_info);
+                var thisEle = $(e.target);
+                    var eleId;
+                    var listId = $(thisEle).attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    $('.modal-header.elementName h2').text(dtoList[eleId].name);
+                    $('.elem_comment').text(dtoList[eleId].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
                     $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
                     $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
                     $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
@@ -298,7 +276,6 @@
                     $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
                     $('.modal').show();
             })
-
             $('.btn-close').click(function(){
                 $('.modal').hide();
                 $('.nutirition_info_modal').hide();
@@ -443,7 +420,7 @@
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
-            <form action="@{/my_own_series/lunchbox/step4}"method="post">
+            <form th:action="@{/my_own_series/lunchbox/step4}" method="post">
             <div class="basket">
                 <span>&nbsp;반찬 바구니&nbsp;</span>&nbsp;&nbsp;<span>(최대 3가지, 총량 3)</span>
                 <div class="basket_element_container"  style="height: 285px;">
@@ -475,23 +452,6 @@
             </div>
 
                 <div class="composition_element_container">
-                    <!-- <th:block th:each="dto, i:${list}">
-                            <input type="radio" name="my_own_lunchbox_sidedish" th:value="${dto.name}" th:id="${dto.name}">
-                            <div class="composition_element_box" th:data-value="${dto.name}" th:classappend="(${i.count}-2)%3==0 ? 'even' : 'odd' ">
-                                <div class="composition_element">
-                                    <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${i.count}" width="180" height="180" th:alt="${dto.name}">
-                                    <h2 th:text="${dto.name}"></h2>
-                                </div>
-                                <div class="stepper" style="opacity:1">
-                                    <span>-</span>
-                                    <span>1.0</span>
-                                    <span>+</span>
-                                </div>
-                                <div class="add_btn">
-                                    <span>담기</span>
-                                </div>
-                            </div>
-                    </th:block> -->
                 </div>
 
             <div class="btn_container">
@@ -500,17 +460,13 @@
                         <h1>Previous Step</h1>&nbsp;
                         <img th:src="@{/assets/previous_icon.png}">
                     </div>
-                    <div class="next_btn">
-                        <img th:src="@{/assets/next_icon.png}">
-                        <h1>Next Step</h1>
-                    </div>
                 </div>
             </div>
 
             <div class="modal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header elementName">
                             <h2 style="margin:5px 0px 5px 20px">허니오트</h2>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>

@@ -8,121 +8,89 @@
     <title>나만의도시락 Step4</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script>
+    <script th:inline="javascript">
+ 
         window.onload=function(){
+            var dtoList = [];
+            var num=0;
+            /*[# th:each="dto : ${list}"]*/
+            dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]], 'sales_count':[[${dto.sales_count}]]});
+            /*[/]*/
+
+            var popularitySortList = [...dtoList];
+            var characterSortList = [...dtoList];
+
+            characterSortList.sort(function(a,b) {
+                return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+            }) //이름오름차순
+
+            popularitySortList.sort(function(a, b) { 
+                return b["sales_count"] - a["sales_count"];
+            }); //인기순내림차순
+
+
+            var start = 0;
+
+            function listHtmlCreate(list) {
+                var endIndex=start+9;
+                if(start+9 >= list.length)
+                    endIndex = list.length;
+                var html='';
+                for (let index = start; index < endIndex; index++){
+                    var className = ((index-1)%3==0) ? 'even' : 'odd';
+                    html += 
+                        `<input type="radio" name="my_own_lunchbox_soup" value="${list[index].name}" id="${list[index].name}">
+                            <div class="composition_element_box ${className}" data-value="${list[index].name}">
+                                <div class="composition_element">
+                                    <img src="http://localhost:8081/beonadiet/display?fileName=${list[index].fileName}" data-listid="${list[index].id}" width="180" height="180" th:alt="${list[index].name}">
+                                    <h2>${list[index].name}</h2>
+                                </div>
+                                <label for="${list[index].name}">
+                                     <img src="http://localhost:8081/beonadiet/assets/unchecked_icon.png" class="check_icon" >
+                                </label>
+                            </div>
+                    `;
+                }
+
+                start+=9;
+
+                if(start>=list.length){
+                    start=list.length
+                    $('.view_more_btn_container').hide();
+                }
+
+                $('.composition_element_container').append(html);
+            }
+
+            listHtmlCreate(popularitySortList)
+
             $('#sort_select').on('change',function() {
                 var sortOrder = $("option:selected",this).attr("value");
                 if(sortOrder=='popularity'){
-                    alert("인기순")
+                    $('.composition_element_container').html(``);
+                    start=0;
+                    listHtmlCreate(popularitySortList);
+                    $('.view_more_btn_container').show();
                 }
                 else{
-                    alert("가나다순")
+                    $('.composition_element_container').html(``);
+                    start=0;
+                    listHtmlCreate(characterSortList);
+                    $('.view_more_btn_container').show();
                 }
             })
 
+
            $('.view_more_btn').click(function() {
-                $('.composition_element_list').append(
-                    `
-                    <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_soup" value="soup1" id="soup1">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국1">
-                        <h2>추가국1</h2>
-                    </div>
-                    <label for="soup1">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="soup2" id="soup2">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국2">
-                        <h2>추가국2</h2>
-                    </div>
-                    <label for="soup2">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="soup3" id="soup3">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국3">
-                        <h2>추가국3</h2>
-                    </div>
-                    <label for="soup3">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_soup" value="soup4" id="soup4">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국4">
-                        <h2>추가국4</h2>
-                    </div>
-                    <label for="soup4">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                </div>
-            <input type="radio" name="my_own_lunchbox_soup" value="soup5" id="soup5">
-            <div class="composition_element_box even">
-                <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="추가국5">
-                    <h2>추가국5</h2>
-                </div>
-                <label for="soup5">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="soup6" id="soup6">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국6">
-                        <h2>추가국6</h2>
-                    </div>
-                    <label for="soup6">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_soup" value="soup7" id="soup7">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국7">
-                        <h2>추가국7</h2>
-                    </div>
-                    <label for="soup7">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="soup8" id="soup8">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국8">
-                        <h2>추가국8</h2>
-                    </div>
-                    <label for="soup8">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="soup9" id="soup9">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="추가국9">
-                        <h2>추가국9</h2>
-                    </div>
-                    <label for="soup9">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-            </div>
-                    `
-                )
+                var sortOrder = $("option:selected").attr("value");
+                if(start!=dtoList.length){
+                if(sortOrder=='popularity'){
+                    listHtmlCreate(popularitySortList);
+                }
+                else{
+                    listHtmlCreate(characterSortList);
+                }
+            }
            })
 
            function checkSelectSoup(){
@@ -139,20 +107,14 @@
                         var checked=$(this).prop('checked');
         
                         if(checked){
-                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/checked_icon.png')
+                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/checked_icon.png')
                         }
 
                         else{
-                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/unchecked_icon.png')
+                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/unchecked_icon.png')
                         }
                     })
             }
-
-            $(window).bind("pageshow",function(event){
-                if(event.originalEvent.preventDefault){
-                    soupCheck();
-                }
-            })
 
             $(document.body).on('change','input[name=my_own_lunchbox_soup]', function(){
                     $('input[name=my_own_lunchbox_soup]').each(function() {
@@ -160,16 +122,18 @@
                         var checked=$(this).prop('checked');
         
                         if(checked){
-                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/checked_icon.png')
+                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/checked_icon.png')
                         }
 
                         else{
-                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/unchecked_icon.png')
+                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/unchecked_icon.png')
                         }
                     })
             });
 
            $('.nutrition_info_check_btn').click(function() {
+                    let warning_icon_link = /*[[@{/assets/warning_icon.png}]]*/
+                    let next_icon_link = /*[[@{/assets/next_icon.png}]]*/
                     if(checkSelectSoup()){
                         if(!$('.nutrition_info').length){
                         $('.nutrition_info_check_btn_container').after(
@@ -213,7 +177,7 @@
 
                             <div class="nutrition_info">
                             <h2>[맞춤형 영양정보]&nbsp;</h2>
-                            <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                            <img src=${warning_icon_link}>
                             <h3>&nbsp;step4 기준</h3>
                             <h3 class="folding_btn">접기▲</h3>
                             </div>
@@ -225,7 +189,7 @@
                                     <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
                                     <div class="setting_btn_container">
                                         <div>
-                                            <img src="../beonadiet/resources/static/assets/next_icon.png">
+                                            <img src=${next_icon_link}>
                                             <h2>설정</h2>
                                         </div>
                                     </div>
@@ -339,8 +303,8 @@
             })
 
             $('.previous_btn').click(function() {
-                //history.go(-1);
-                location.assign("my_own_lunchbox_step3(sidedish3).html")
+                let link = /*[[@{/my_own_series/lunchbox/step3}]]*/
+                location.assign(link)
             })
 
             $('.content').on('click','.folding_btn',function() {
@@ -354,9 +318,43 @@
                     }
             })
 
-            $('.content').on('click','.composition_element img', function() {
-                var thisEle = event.target;
-                $('.modal').show();
+            $('.content').on('click','.composition_element img',function(e) {
+                var thisEle = $(e.target);
+                    var eleId;
+                    var listId = $(thisEle).attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    $('.modal-header h2').text(dtoList[eleId].name);
+                    $('.elem_comment').text(dtoList[eleId].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
             })
 
             $('.btn-close').click(function(){
@@ -408,7 +406,7 @@
             
             <div class="step_name_container">
                 <h1 class="step">step4. 국 선택</h1>
-                <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                <img th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
@@ -421,108 +419,9 @@
                 </select>
             </div>
 
-            <form action="my_own_lunchbox_final(soup).html" method="post">
-            <div class="composition_element_list">
+            <form th:action="@{/my_own_series/lunchbox/final}"method="post">
             <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_soup" value="miyeog_oinaeng_gug" id="miyeog_oinaeng_gug">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="미역오이냉국">
-                        <h2>미역오이냉국</h2>
-                    </div>
-                    <label for="miyeog_oinaeng_gug">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="malgeun_dongtaegug" id="malgeun_dongtaegug">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="맑은동태국">
-                        <h2>맑은 동태국</h2>
-                    </div>
-                    <label for="malgeun_dongtaegug">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="handondwaejigogigimchijjigae" id="handondwaejigogigimchijjigae">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="한돈돼지고기김치찌개">
-                        <h2>한돈 돼지고기 김치찌개</h2>
-                    </div>
-                    <label for="handondwaejigogigimchijjigae">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
             </div>
-
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_soup" value="sogogimiyeoggug" id="sogogimiyeoggug">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="소고기미역국">
-                        <h2>소고기미역국</h2>
-                    </div>
-                    <label for="sogogimiyeoggug">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                </div>
-            <input type="radio" name="my_own_lunchbox_soup" value="ojingeo_mugug" id="ojingeo_mugug">
-            <div class="composition_element_box even">
-                <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="오징어무국">
-                    <h2>오징어 무국</h2>
-                </div>
-                <label for="ojingeo_mugug">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="doenjangjjigae" id="doenjangjjigae">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="된장찌개">
-                        <h2>된장찌개</h2>
-                    </div>
-                    <label for="doenjangjjigae">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_lunchbox_soup" value="kongnamulnaeng_gug" id="kongnamulnaeng_gug">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="콩나물냉국">
-                        <h2>콩나물냉국</h2>
-                    </div>
-                    <label for="kongnamulnaeng_gug">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="geundaedoenjang_gug" id="geundaedoenjang_gug">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="근대된장국">
-                        <h2>근대된장국</h2>
-                    </div>
-                    <label for="geundaedoenjang_gug">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    </div>
-                <input type="radio" name="my_own_lunchbox_soup" value="gamjagug" id="gamjagug">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="감자국">
-                        <h2>감자국</h2>
-                    </div>
-                    <label for="gamjagug">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-            </div>
-            </div>
-            </form>
 
             <div class="view_more_btn_container">
                 <div> 
@@ -531,7 +430,9 @@
                     </div>
                 </div>
             </div> 
-            </div>
+            </form>
+
+
 
             <div class="nutrition_info_check_btn_container">
                 <div> 
@@ -545,10 +446,10 @@
                 <div> 
                     <div class="previous_btn">
                         <h1>Previous Step</h1>&nbsp;
-                        <img src="../beonadiet/resources/static/assets/previous_icon.png">
+                        <img th:src="@{/assets/previous_icon.png}">
                     </div>
                     <div class="next_btn">
-                        <img src="../beonadiet/resources/static/assets/next_icon.png">
+                        <img th:src="@{/assets/next_icon.png}">
                         <h1>Next Step</h1>
                     </div>
                 </div>
@@ -564,7 +465,7 @@
                         <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
                             <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
                             <br>
-                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span>*15cm 기준</span>
+                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span class="one_serving">*15cm 기준</span>
                             <table>
                                 <tr>
                                     <th>중량</th>

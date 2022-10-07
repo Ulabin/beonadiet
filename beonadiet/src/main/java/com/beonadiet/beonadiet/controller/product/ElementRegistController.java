@@ -19,8 +19,11 @@ import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceImgDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishImgDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSoupDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSoupImgDTO;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxRiceService;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSidedishService;
+import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSoupService;
 import com.beonadiet.beonadiet.vo.NutritionInfoVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,6 +35,7 @@ import lombok.RequiredArgsConstructor;
 public class ElementRegistController {
     private final MyOwnLunchboxRiceService service;
     private final MyOwnLunchboxSidedishService sideDishService;
+    private final MyOwnLunchboxSoupService soupService;
 
     @Value("${com.beonadiet.upload.path}")
     private String uploadPath;
@@ -44,6 +48,11 @@ public class ElementRegistController {
     @GetMapping("/my_own_lunchbox/sidedish")
     public String sidedishRegister(){
         return "/element_regist/my_own_lunchbox_sidedish";
+    }
+
+    @GetMapping("/my_own_lunchbox/soup")
+    public String soupRegister(){
+        return "/element_regist/my_own_lunchbox_soup";
     }
 
     @PostMapping("/my_own_lunchbox/rice")
@@ -106,5 +115,36 @@ public class ElementRegistController {
         sideDishService.register(sidedishDTO);
 
         return "redirect:/element_regist/my_own_lunchbox/sidedish";
+    }
+
+    @PostMapping("/my_own_lunchbox/soup")
+    public String uploadFileAndRegister_soup(@RequestParam("image") MultipartFile img, MyOwnLunchboxSoupDTO soupDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnLunchboxSoupImgDTO riceImgDTO = MyOwnLunchboxSoupImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        soupDTO.setImageDTO(riceImgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            soupDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        soupService.register(soupDTO);
+
+        return "redirect:/element_regist/my_own_lunchbox/soup";
     }
 }

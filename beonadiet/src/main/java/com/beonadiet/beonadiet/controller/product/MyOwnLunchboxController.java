@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSoupDTO;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxRiceService;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSidedishService;
+import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSoupService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,6 +25,7 @@ import lombok.extern.log4j.Log4j2;
 public class MyOwnLunchboxController {
     private final MyOwnLunchboxRiceService service;
     private final MyOwnLunchboxSidedishService sidedishService;
+    private final MyOwnLunchboxSoupService soupService;
 
     @GetMapping("/lunchbox/step1")
     public String MyOwnLunchboxStep1(){
@@ -55,5 +58,29 @@ public class MyOwnLunchboxController {
         List<MyOwnLunchboxSidedishDTO> dtolist= sidedishService.findAllSidedish();
         model.addAttribute("list", dtolist);
         return "my_own_series/lunchbox/my_own_lunchbox_step3";
+    }
+
+    @PostMapping("/lunchbox/step4")
+    public String myOwnLunchboxStep4Post(Model model){
+        List<MyOwnLunchboxSoupDTO> dtolist= soupService.findAllSoup();
+        model.addAttribute("list", dtolist);
+        return "my_own_series/lunchbox/my_own_lunchbox_step4";
+    }
+
+    @GetMapping("/lunchbox/step4")
+    public String MyOwnLunchboxStep4Get(Model model){
+        List<MyOwnLunchboxSoupDTO> dtolist= soupService.findAllSoup();
+        model.addAttribute("list", dtolist);
+        return "my_own_series/lunchbox/my_own_lunchbox_step4";
+    }
+
+    @PostMapping("/lunchbox/final")
+    public String myOwnLunchboxFinalPost(Model model){
+        return "my_own_series/lunchbox/my_own_lunchbox_final";
+    }
+
+    @GetMapping("/lunchbox/final")
+    public String MyOwnLunchboxFinalGet(Model model){
+        return "my_own_series/lunchbox/my_own_lunchbox_final";
     }
 }
