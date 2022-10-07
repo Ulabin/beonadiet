@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('나만의 레시피 주문내역')">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}"> -->
+  <title>My Own Recipe OrderHistory</title>
+
+</head>
+
+<body>
+  <div class="home-container" th:replace="fragments/common :: nav"></div>
+
+  <div class="my-own-recipe-register-container">
+    <div class="my-own-recipe-register-title-container">
+      <div class="my-own-recipe-register-title">
+        <p>상품선택</p>
+      </div>
+    </div>
+    <div class="my-own-recipe-register-radiobox-container">
+
+      <div class="my-own-recipe-register-radiobox">
+        <button type="button"  class="my-own-recipe-register-radio-lunchbox" onclick="getMyOwnRecipeLunchBox()">나만의 도시락</button>
+        <button type="button" class="my-own-recipe-register-radio-snadwich" onclick="getMyOwnRecipeSnadwich()">나만의 샌드위치</button>
+        <button type="button"  class="my-own-recipe-register-radio-salad" onclick="getMyOwnRecipeSalad()">나만의 샐러드</button>
+      </div>
+    </div>
+
+    <div class="my-own-recipe-register-orderhistory-conatiner">
+
+      <p class="my-own-recipe-register-orderhistory-title">주문상품 이력</p>
+      <div class="uploadResultHistory"> 
+        <!-- 상품 -->             
+      </div>
+      
+
+    </div>
+  </div>
+  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+  <script th:src="@{/js/my_own_recipe_orderhistory.js}" th:inline="javascript"></script>
+  
+
+</body>
+
+</html>

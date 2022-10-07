@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('Main page')">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+
+  <!-- <link th:href="@{./stylekmj.css}" rel="stylesheet" /> -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <title th:text="">Main Page</title>
+  
+</head>
+
+<body >
+  <div class="home-container" th:replace="fragments/common :: nav">
+      
+  </div>
+
+  <div class="main-page-container" >
+    
+
+    <!-- ::::::::::  Banner  ::::::::::-->
+    <div class="main-page-banner">
+      <div class="main-page-banner-a">
+        <a href="https://www.naver.com" style="display:inline-block" >
+          <img src="./images/그림1.png" alt="그림1" class="main-page-banner-image" id="banner-image1" >
+        </a>
+        <a href="https://www.google.com" style="display:none" >
+          <img src="./images/img2.jpg" alt="그림1" class="main-page-banner-image" id="banner-image2" >
+        </a>
+        <a href="https://www.facebook.com"style="display:none">
+          <img src="./images/img3.jpg" alt="그림1" class="main-page-banner-image" id="banner-image3" >
+        </a>
+        <a href="https://www.daum.com" style="display:none">
+          <img src="./images/img4.jpg" alt="그림1"  class="main-page-banner-image"id="banner-image4" >
+        </a>
+        <a href="https://www.instagram.com" style="display:none" >
+          <img src="./images/img5.jpg" alt="그림1" class="main-page-banner-image"  id="banner-image5" >
+        </a>
+      </div>
+      <ul class="main-page-banner-hover">
+        <li class="main-page-banner-hover-list" id="main-page-banner-hover-list1"><a href="#"><img src="./images/bannerlistimg1.png" alt=""
+              class="main-page-banner-hover-list-img"></a></li>
+        <li class="main-page-banner-hover-list" id="banner-hover-list2"><a href="#"><img src="./images/bannerlistimg2.png" alt=""
+              class="main-page-banner-hover-list-img"></a></li>
+        <li class="main-page-banner-hover-list" id="banner-hover-list3"><a href="#"><img src="./images/bannerlistimg3.png" alt=""
+              class="main-page-banner-hover-list-img"></a></li>
+        <li class="main-page-banner-hover-list" id="banner-hover-list4" <a href="#"><img src="./images/bannerlistimg1.png" alt=""
+            class="main-page-banner-hover-list-img"></a></li>
+        <li class="main-page-banner-hover-list" id="banner-hover-list5"><a href="#"><img src="./images/bannerlistimg1.png" alt=""
+              class="main-page-banner-hover-list-img"></a></li>
+      </ul>
+    </div>
+    <!-- Clear Both -->
+    <div style="clear: both;"></div>
+
+    <content>
+      <div class="main-page-content">
+
+        <!-- :::::::: BEST 상품 :::::::: -->
+        <div class="main-page-best-item">
+          <p class="best-item-title" style="padding:10px; font-weight:bold">BEST 상품</p>
+
+          <div class="main-carousel">
+
+            <a href="http://www.naver.com">
+              <div class="carousel-cell">
+                <img src="./images/img1.jpg" alt="" class="carousel-cell-img">
+              </div>
+              <div class="main-page-best-item-rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-rate-count">4</div>
+              </div>
+              <div class="main-page-best-item-comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="http://www.naver.com">
+              <div class="carousel-cell"><img src="./images/img2.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="main-page-best-item-rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-rate-count">4</div>
+              </div>
+              <div class="main-page-best-item-comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img3.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="main-page-best-item-rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-rate-count">4</div>
+              </div>
+              <div class="main-page-best-item-comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img4.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="main-page-best-item-rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-rate-count">4</div>
+              </div>
+              <div class="main-page-best-item-comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-comment-count">19</div>
+              </div>
+            </a>
+
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img5.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="main-page-best-item-rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-rate-count">4</div>
+              </div>
+              <div class="main-page-best-item-comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-comment-count">19</div>
+              </div>
+            </a>
+            <a href="">
+              <div class="carousel-cell"><img src="./images/img6.jpg" alt="" class="carousel-cell-img"></div>
+              <div class="main-page-best-item-rate">
+                <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-rate-count">4</div>
+              </div>
+              <div class="main-page-best-item-comment">
+                <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
+                </iconify-icon>
+                <div class="main-page-best-item-comment-count">19</div>
+              </div>
+            </a>
+          </div>
+
+          <!--Clear Both    hr 태그-->
+          <div style="clear:both"></div>
+          <hr>
+
+
+          <!-- :::::::: BEST 상품 후기:::::::: -->
+          <div class="main-page-best-item-review">
+            <p class="main-page-best-item-review-title" style="padding:10px; font-weight:bold ">BEST 상품 후기</p>
+
+
+            <div class="main-page-best-item-review-item">
+              <img src="./images/img2.jpg" alt="img" class="main-page-best-item-review-item-img">
+              <iconify-icon icon="icon-park-outline:quote" style="color: #0fa958;" width="30" height="30">
+              </iconify-icon>
+              <div class="main-page-best-item-review-text">rorem Ipsum is simply dummy text of the
+                printing and typesetting industry.Lorem Ipsum has been the industry's standard
+                dummy text ever since Ipsum is simply dummy text of the
+                printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text e</div>
+              <hr style="width:270px; margin-left:3px;">
+              <div class="main-page-best-item-name"> [완제품] 비건도시락 4종
+                <a href="#" class="main-page-go-to-best-item">
+                  <iconify-icon icon="akar-icons:circle-chevron-right" style="color: #0fa958;" width="30" height="30">
+                  </iconify-icon>
+                </a>
+              </div>
+            </div>
+            <div class="main-page-best-item-review-item">
+              <img src="./images/img2.jpg" alt="img" class="main-page-best-item-review-item-img">
+              <iconify-icon icon="icon-park-outline:quote" style="color: #0fa958;" width="30" height="30">
+              </iconify-icon>
+              <div class="main-page-best-item-review-text">rorem Ipsum is simply dummy text of the
+                printing and typesetting industry.Lorem Ipsum has been the industry's standard
+                dummy text ever since Ipsum is simply dummy text of the
+                printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text e</div>
+              <hr style="width:270px; margin-left:3px;">
+              <div class="main-page-best-item-name"> [완제품] 비건도시락 4종
+                <a href="#" class="main-page-go-to-best-item">
+                  <iconify-icon icon="akar-icons:circle-chevron-right" style="color: #0fa958;" width="30" height="30">
+                  </iconify-icon>
+                </a>
+              </div>
+            </div>
+            <div class="main-page-best-item-review-item">
+              <img src="./images/img2.jpg" alt="img" class="main-page-best-item-review-item-img">
+              <iconify-icon icon="icon-park-outline:quote" style="color: #0fa958;" width="30" height="30">
+              </iconify-icon>
+              <div class="main-page-best-item-review-text">rorem Ipsum is simply dummy text of the
+                printing and typesetting industry.Lorem Ipsum has been the industry's standard
+                dummy text ever since Ipsum is simply dummy text of the
+                printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text e</div>
+              <hr style="width:270px; margin-left:3px;">
+              <div class="main-page-best-item-name"> [완제품] 비건도시락 4종
+                <a href="#" class="main-page-go-to-best-item">
+                  <iconify-icon icon="akar-icons:circle-chevron-right" style="color: #0fa958;" width="30" height="30">
+                  </iconify-icon>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!--  hr태그 -->
+          <hr>
+
+          <!--:::::::: INSTAGRAM 게시글 ::::::: -->
+          <div class="main-page-insta">
+            <div class="main-page-instatitle">
+              <span style="font-family: 'Ghanachocolate'; padding:10px">@ Be on a diet</span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span> 비온어 인스타그램에서 최신소식과 이벤트 확인 해보세요</span>
+              <span style="vertical-align: middle;">
+                <iconify-icon icon="uil:instagram-alt" style="color: #0fa958;" width="40" height="40"></iconify-icon>
+              </span>
+              <div class="intagram-item-wrapper" style="margin-left:50px;">
+                <div class="main-page-instagram-item" id="main-page-instagram-item1">
+                  <!-- JAVASCRIPT를 이용하여 총 4개를 만듬 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </content>
+ 
+    <hr>
+
+    <!--container div태그-->
+  </div>
+  <div class="home-footer-container" th:replace="fragments/common :: foot">
+
+  </div>
+  <script src="./js/mainpage.js"></script>
+</body>
+
+
+</html>
