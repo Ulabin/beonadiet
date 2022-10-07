@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +32,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @RequiredArgsConstructor
 public class UploadController {
   private final MyOwnRecipePostService service;
-  @Value("${com.ds.upload.path}")
-  private String uploadPath;
+  private String uploadPath= "C:\\upload";
 
   @PostMapping("removeFile")
   public ResponseEntity<Boolean> removeFile(String fileName, String uuid){
@@ -57,7 +55,7 @@ public class UploadController {
       return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
-  @GetMapping("display")
+  @GetMapping("display2")
   public ResponseEntity<byte[]> getFile(String fileName, String size){
     ResponseEntity<byte[]> result = null;
     try {

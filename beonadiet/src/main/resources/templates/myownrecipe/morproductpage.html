@@ -52,7 +52,7 @@
 
             <div th:each="morImage: ${dto.imageDTOList}" th:data-file="${morImage.getImageURL}"
               class="smallPicContainer">
-              <img th:if="${morImage.path != null}" th:src="|@{/display}?fileName=${morImage.getImageURL}|"
+              <img th:if="${morImage.path != null}" th:src="|@{/display2}?fileName=${morImage.getImageURL}|"
                 class="smallPic">
             </div>
           </div>

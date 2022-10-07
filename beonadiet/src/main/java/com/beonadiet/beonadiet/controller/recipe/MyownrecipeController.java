@@ -106,8 +106,7 @@ public class MyownrecipeController {
     
   }
 
-  @Value("${com.ds.upload.path}")
-  private String uploadPath;
+  private String uploadPath="C:\\upload";
  
   // 이미지들어가는 post return type Long
   @PostMapping("/moradddetail")
