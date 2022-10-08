@@ -31,35 +31,37 @@
         <div class="textBox">
           <p class="text">- 탈퇴 후 재가입 하셔도 할인쿠폰은 재발급되지 않습니다.</p>
         </div>
-        <form>
-          <div class="checkBox">
-            <label>
-              <input type="checkbox" name="check_agree" value="yes" id="check_agree" required>&nbsp;&nbsp;위 탈퇴 내용에 동의합니다.
-            </label>
-          </div>
-          <div>
-            <table>
-              <colgroup span="1" style="background-color: #eeeeee"></colgroup>
-              <tr>
-                <th>
-                  아이디
-                </th>
-                <td>
-                  <div class="textId" th:text="${userid}">
-                    
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  비밀번호
-                </th>
-                <td>
-                  <input type="password" name="password" required>
-                </td>
-              </tr>
-            </table>
-          </div>
+        <div class="checkBox">
+          <label>
+            <input type="checkbox" name="check_agree" value="yes" id="check_agree" required>&nbsp;&nbsp;위 탈퇴 내용에 동의합니다.
+          </label>
+        </div>
+        <div>
+          <table>
+            <colgroup span="1" style="background-color: #eeeeee"></colgroup>
+            <tr>
+              <th>
+                아이디
+              </th>
+              <td>
+                <div class="textId" th:text="${userid}">
+                  
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                비밀번호
+              </th>
+              <td>
+                <input type="password" name="password" required>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <form th:action="@{/mypage/userinfo/delete_account/delete}" th:method="post">
+          <input type="hidden" name="id" th:value="${id}">
+          <input type="hidden" name="mid" th:value="${#authentication.name}">
           <div class="btnBox">
             <button type="submit" class="btnDelete">회원탈퇴</button>
             <button type="button" class="btnCancel">탈퇴취소</button>

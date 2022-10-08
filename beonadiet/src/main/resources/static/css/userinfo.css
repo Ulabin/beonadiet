@@ -184,3 +184,8 @@ input:focus {
   height: 1px;
   border: 0;
 }
+
+.remove {
+  text-decoration: none;
+  color: #353535;
+}

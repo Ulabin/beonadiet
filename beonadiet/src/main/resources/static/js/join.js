@@ -8,7 +8,7 @@ $('#signup').on('submit',()=>{
   let mobileVal = $('#mobile').val();
   let mobileCheck = /^01([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
   let birthVal = $('#birth').val();
-  let birthCheck =  /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+  let birthCheck =  /^(19[0-9][0-9]|20\d{2})?(0[0-9]|1[0-2])?(0[1-9]|[1-2][0-9]|3[0-1])$/;
 
   // if(!idCheck.test(idVal)) {
   //   alert('아이디는 영어소문자, 숫자로 입력하세요.');
@@ -30,18 +30,18 @@ $('#signup').on('submit',()=>{
     return false;
   }
 
-  // if(!mobileCheck.test(mobileVal)){
-  //   alert('휴대폰번호 형식에 맞게 입력하세요.( - 제외)');
-  //   $('#mobile').val("");
-  //   $('#mobile').focus();
-  //   return false;
-  // }
+  if(!mobileCheck.test(mobileVal)){
+    alert('휴대폰번호 형식에 맞게 입력하세요.( - 제외)');
+    $('#mobile').val("");
+    $('#mobile').focus();
+    return false;
+  }
 
-  // if(!birthCheck.test(birthVal)){
-  //   alert('생년월일 형식에 맞게 입력하세요.');
-  //   $('#birth').val("");
-  //   $('#birth').focus();
-  //   return false;
-  // }
-  // $("#signup").submit();
+  if(!birthCheck.test(birthVal)){
+    alert('생년월일 형식에 맞게 입력하세요.');
+    $('#birth').val("");
+    $('#birth').focus();
+    return false;
+  }
+  $("#signup").submit();
 })

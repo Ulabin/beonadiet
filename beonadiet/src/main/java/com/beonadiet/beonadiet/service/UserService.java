@@ -1,10 +1,19 @@
 package com.beonadiet.beonadiet.service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.beonadiet.beonadiet.dto.UserDto;
 import com.beonadiet.beonadiet.entity.Member;
 import com.beonadiet.beonadiet.repository.UserRepository;
 
@@ -30,11 +39,14 @@ public class UserService {
     userRepository.save(member);
   }
 
-  //  public void UpdateHealthInfo(@RequestParam(value="daily-calorie-intake") Long dailyCalorieIntake,@RequestParam(value="user_id") String user_id) {
-  //     Member memberTmp =userRepository.findByUsername(user_id);
-  //     memberTmp.setDaily_calorie_intake(dailyCalorieIntake);
-  //     log.info("비테에스................................"+memberTmp);
-  //     userRepository.save(memberTmp);
-  //   }
+  public void modify(Member member) {
+    // member.setRole("ROLE_USER");
+    //패스워드는 bCryptPasswordEncoder를 통해서 암호화 해야 Security 로그인 가능
+    String EncPassword = bCryptPasswordEncoder.encode(member.getPassword());
+    member.setPassword(EncPassword);
+    userRepository.save(member);
+  }
 
+
+  
 }

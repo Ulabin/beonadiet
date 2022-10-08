@@ -17,7 +17,7 @@
       <div class="line1">
         <hr>
       </div>
-      <form id="signup" method="post">
+      <form id="signup" method="post" th:action="@{/mypage/userinfo/modify}">
         <input type="hidden" name="user_id" th:value="${#authentication.name}">
         <fieldset>
           <ul>
@@ -37,21 +37,21 @@
             <li>
               <div class="box">
                 <label for="userid">아이디</label>
-                <input type="text" id="userid" name="userid" th:value="${userid}" readonly>
+                <input type="text" id="userid" name="username" th:value="${userid}" readonly>
                 <div class="btn_hidden"></div>
               </div>
             </li>
             <li>
               <div class="box">
                 <label for="pwd0">현재 비밀번호</label>
-                <input type="password" name="pwd0" id="pwd0" placeholder="비밀번호를 입력해 주세요" required >
+                <input type="password" name="currentPwd" id="pwd0" placeholder="비밀번호를 입력해 주세요" required >
                 <div class="btn_hidden"></div>
               </div>
             </li>
             <li>
               <div class="box">
                 <label for="pwd1">새 비밀번호</label>
-                <input type="password" name="pwd1" id="pwd1" placeholder="새 비밀번호를 입력해 주세요" required >
+                <input type="password" name="password" id="pwd1" placeholder="새 비밀번호를 입력해 주세요" required >
                 <div class="btn_hidden"></div>
               </div>
             </li>
@@ -67,14 +67,14 @@
             <li>
               <div class="box">
                 <label for="pwd2">새 비밀번호 확인</label>
-                <input type="password" name="pwd2" id="pwd2" placeholder="새 비밀번호를 다시 입력해 주세요" required>
+                <input type="password" name="repassword" id="pwd2" placeholder="새 비밀번호를 다시 입력해 주세요" required>
                 <div class="btn_hidden"></div>
               </div>
             </li>
             <li>
               <div class="box">
                 <label for="username">이름</label>
-                <input type="text" name="username" id="username" th:value="${username}" required>
+                <input type="text" name="user_name" id="username" th:value="${username}" required>
                 <div class="btn_hidden"></div>
               </div>
             </li>
@@ -95,14 +95,14 @@
             <li>
               <div class="box">
                 <label for="mobile">휴대폰</label>
-                <input type="tel" name="mobile" id="mobile" th:value="${mobile}" required>
+                <input type="tel" name="mobile_num" id="mobile" th:value="${mobile}" required>
                 <input type="button" class="btncheck" value="중복 확인">
               </div>
             </li>
             <li>
               <div class="box">
                 <label for="birth">생년월일</label>
-                <input type="text" name="birth" id="birth" th:value="${birthday}" required>
+                <input type="text" name="birthday" id="birth" th:value="${birthday}" required>
                 <div class="btn_hidden"></div>
               </div>
             </li>
@@ -112,7 +112,7 @@
           </div>
           <div>
             <button type="submit" class="btnmodify">회원정보수정</button>
-            <button type="button" class="btnleave"><a sec:authorize="isAuthenticated()" th:href="@{/mypage/delete_account(mid=${#authentication.name})}">탈퇴하기</a></button>
+            <button type="button" class="btnleave"><a class="remove" th:href="@{/mypage/delete_account(mid=${#authentication.name})}">탈퇴하기</a></button>
           </div>
         </fieldset>
       </form>
