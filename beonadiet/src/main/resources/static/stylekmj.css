@@ -26,7 +26,7 @@ body {
   width: 100%;
   background: gray;
   margin-top: 10px;
-  /* display: none; */
+  display: none;
 }
 
 .uploadResult-adddetail ul {
@@ -1257,7 +1257,7 @@ body {
 
 
 /* 카테고리 선택 라디오박스  */
-.my-post-radiobox a {
+.my-post-radiobox button {
   display: inline-block;
   background-color: #C7DFAA;
   color: #353535;
@@ -1275,16 +1275,20 @@ body {
 .my-post-item {
   display: inline-block;
   margin-top: 10px;
-  margin-left: 45px;
+  margin-left: 80px;
   margin-bottom: 20px;
   width: 180px;
-  height: 230px;
+  /* height: 230px; */
   border: 1px solid lightgray;
   border-radius: 5px;
   box-shadow: 0 4px 4px -4px black;
   /* background: blanchedalmond; */
-  overflow: hidden;
+  /* overflow: hidden; */
 
+}
+.my-post-item img{
+  width:100px;
+  margin-left:40px;
 }
 
 /* 나만의 레시피 게시물 이미지 */
@@ -1437,9 +1441,7 @@ body {
   color: black;
 }
 
-.my-page-list ul {
-  /* list-style: none; */
-}
+
 
 /* 마이페이지 컨테이너 */
 .my-page-container {
@@ -1547,7 +1549,7 @@ body {
   float: left;
   margin: 10px;
   width: 150px;
-  height: 800px;
+  /* height: 800px; */
   /* background: rgba(237, 112, 112, 0.392) */
 }
 
@@ -1567,7 +1569,7 @@ body {
   float: left;
   margin: 10px;
   width: 890px;
-  height: 820px;
+  /* height: 820px; */
   /* background: rgba(232, 239, 130, 0.392) */
 
 }
@@ -1575,8 +1577,8 @@ body {
 .my-page-detail {
   margin: 10px;
   /* background:#4287f5;; */
-  width: 880;
-  height: 800px;
+  width: 880px;
+  /* height: 800px; */
 
 }
 

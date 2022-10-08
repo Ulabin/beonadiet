@@ -7,14 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <!-- <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}"> -->
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Mypage</title>
 
 </head>
 
 <body>
   <div class="home-container" th:replace="fragments/common :: nav"></div>
+
   <div class="my-page-container" th:fragment="mypage">
     <div class="my-page-card-container">
       <div class="my-page-card">
@@ -42,7 +44,8 @@
           <h3>&nbsp;</h3>
           <div
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color: #0FA958; ">
-            1 </div><p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;" >개</p>
+            1 </div>
+          <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">개</p>
           <a href="#" style="display: inline-block; float:right; margin-right:20px;">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
@@ -54,7 +57,8 @@
           <h3>&nbsp;</h3>
           <div
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
-            3 </div><p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;" >원</p>
+            3 </div>
+          <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">원</p>
           <a href="#" style="display: inline-block; float:right; margin-right:20px; ">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
@@ -64,17 +68,19 @@
           <h3>&nbsp;</h3>
           <div
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
-            3 </div><p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;" >개</p>
+            3 </div>
+          <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">개</p>
           <a href="#" style="display: inline-block; float:right; margin-right:20px; ">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
         </div>
-        
-        
+
+
 
 
       </div>
     </div>
+
     <div class="my-page-content">
       <div class="my-page-list-container">
         <div class="my-page-list">
@@ -99,7 +105,8 @@
             <li><button>나의상품문의</button></li>
             <li><button>나의상품후기</button></li>
             <!-- <li><a href="#" th:href="@{/mypage/mypost}" class="change">나의게시글</a></li> -->
-            <li><a th:href="@{/mypage/mypost}">나의게시글</a></li>
+            <li><button type="button" onclick="getMyPosts()">나의게시글</button></li>
+
           </ul>
         </div>
       </div>
@@ -107,7 +114,7 @@
 
       <div class="my-page-detail-container">
         <div class="my-page-detail" th:fragmet="mypagedetail">
-          
+
           <p>What is Lorem Ipsum?
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
@@ -137,14 +144,25 @@
 
             The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections
             1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact
-            original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+            original form, accompanied by English versions from the 1914 translation by H. RackhamWhat is Lorem Ipsum?
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+
+            .</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+<div style="clear:both"></div>
+
+
 <script th:src="@{/js/mypage.js} "></script>
 
+<div class="home-footer-container" th:replace="fragments/common :: foot"></div>
 </body>
 
 </html>

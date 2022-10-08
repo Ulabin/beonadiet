@@ -1,0 +1,29 @@
+<div class="my-post-item" id="my-post-item" th:each=" list : ${list}" th:if="${list.category == 0}">
+  <div class="my-post-item-name-container">
+    <div class="my-post-item-name" th:text="${list.title}">
+      맛있는 도시락
+    </div>
+  </div>
+
+  <a href="#">
+    <img src="./images/lunchboxkmj.png" alt="image" class="my-post-item-image">
+  </a>
+  <div class="my-post-mod-def-date-container">
+    
+    <div class="my-post-mod-date" th:text="${#temporals.format(list.modDate, '수정날짜 : yyyy-MM-dd HH:mm')}">수정날짜 : 2022.09.01
+    </div>
+
+   
+    <div class="my-post-def-date" th:text="${#temporals.format(list.regDate, '작성날짜 : yyyy-MM-dd HH:mm')}">작성날짜 : 2022.09.04
+    </div>
+  </div>
+  <div class="my-post-like">
+    <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="20" height="20">
+    </iconify-icon>
+    <span class="my-post-like-count"> 1</span>
+  </div>
+  <div class="my-post-mod-del-button-container">
+    <button class="my-post-modify-button" id="my-post-modify-button">수정</button>
+    <button class="my-post-delete-delete">삭제</button>
+  </div>
+</div>
