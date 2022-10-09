@@ -8,7 +8,285 @@
     <title>나만의샌드위치 Step1</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script src="resources/static/js/bootstrap.js"></script>
+    <script th:inline="javascript">
+        window.onload=function(){
+            var dtoList = [];
+            var num=0;
+            /*[# th:each="dto : ${list}"]*/
+            dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
+            /*[/]*/
+
+            function breadCheck() {
+                $('input[name=my_own_sandwich_bread]').each(function() {
+                    var eleVal=$(this).val();
+                    var checked=$(this).prop('checked');
+    
+                    if(checked){
+                        $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/checked_icon.png')
+                    }
+                    else{
+                        $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/unchecked_icon.png')
+                    }
+                })    
+            }
+
+            function breadLengthCheck() {
+                $('input[name=my_own_sandwich_bread_length]').each(function() {
+                    var val=$(this).val();
+                    var checked=$(this).prop('checked');
+    
+                    if(checked){
+                        $('label[for='+val+'] .length_element').get()[0].classList.add('main_color')
+                    }
+                    else{
+                        $('label[for='+val+'] .length_element').get()[0].classList.remove('main_color')
+                    }
+                })
+            }
+         
+            $('input[name=my_own_sandwich_bread]').change(function(){
+                breadCheck();
+            })
+
+            $('input[name=my_own_sandwich_bread_length]').change(function(){
+                breadLengthCheck();
+            })
+
+            function checkSelectBread() {
+                if(!$('input[name=my_own_sandwich_bread]').is(':checked')){
+                    alert("빵을 선택해주세요.")
+                    return false;
+                  }
+                  else{
+                    if(!$('input[name=my_own_sandwich_bread_length]').is(':checked')){
+                        alert("길이를 선택해주세요.")
+                        return false;
+                    }
+                    else{return true}
+                  }
+            }
+
+            $('.nutrition_info_check_btn').click(function() {
+                if(checkSelectBread()){
+                    if(!$('.nutrition_info').length){
+                        let warning_icon_link = /*[[@{/assets/warning_icon.png}]]*/
+                        let next_icon_link = /*[[@{/assets/next_icon.png}]]*/
+
+                    $('.nutrition_info_check_btn_container').after(
+                        `
+                        <style>                    
+                            @keyframes calorie_stack {
+                                0%{width: 0;}
+                                100%{width: 11.5%;}
+                            }
+
+                            @keyframes product_carbs_stack {
+                                0%{width: 0;}
+                                100%{width: 74%;}
+                            }
+
+                            @keyframes product_protein_stack {
+                                0%{width: 0;}
+                                100%{width: 15.75%;}
+                            }
+
+                            @keyframes product_fat_stack {
+                                0%{width: 0;}
+                                100%{width: 10.25%;}
+                            }
+
+                            @keyframes day_carbs_stack {
+                                0%{width: 0;}
+                                100%{width: 28%;}
+                            }
+
+                            @keyframes day_protein_stack {
+                                0%{width: 0;}
+                                100%{width: 4%;}
+                            }
+
+                            @keyframes day_fat_stack {
+                                0%{width: 0;}
+                                100%{width: 0.04%;}
+                            }
+                        </style>
+
+                        <div class="nutrition_info">
+                        <h2>[맞춤형 영양정보]&nbsp;</h2>
+                        <img src="${warning_icon_link}">
+                        <h3>&nbsp;step1 기준</h3>
+                        <h3 class="folding_btn">접기▲</h3>
+                        </div>
+
+                        <div class="nutrition_info_container">
+                            <div class="target_container">
+                                <h2><u>개인설정목표</u></h2>
+                                <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
+                                <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
+                                <div class="setting_btn_container">
+                                    <div>
+                                        <img src="${next_icon_link}">
+                                        <h2>설정</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="calorie_graph_container">
+                                <div class="graph_title_container">
+                                    <h2>일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3>(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
+                                </div>
+
+                                <div class="graph calorie_stack">
+                                    <span style="width:11.5%"></span>
+                                </div>
+
+                                <div class="rate_container">
+                                    <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
+                                    <div style="color:#006c04; left: calc(11.5% - 30px); width:66px;">11.5%<br>(230kcal)</div>
+                                    <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
+                                </div>
+                            </div>
+
+                            <div class="product_graph_container">
+                                <div class="graph_title_container">
+                                    <h2>탄</h2><span>수화물</span>
+                                    <h2>단</h2><span>백질</span>
+                                    <h2>지</h2><span>방</span>
+                                    <h2>비율</h2>
+                                    <div class="nutrition_mark_container">
+                                        <div>
+                                            <div class="mark carbs"></div>
+                                            &nbsp;<span>탄수화물</span>&nbsp;&nbsp;&nbsp;
+                                            <div class="mark protein"></div>
+                                            &nbsp;<span>단백질</span>&nbsp;&nbsp;&nbsp;
+                                            <div class="mark fat"></div>
+                                            &nbsp;<span>지방</span>&nbsp;&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph" style="position:relative"> 
+                                    <span class="product_carbs_stack" style="width:74%"></span>
+                                    <span class="product_protein_stack" style="width:15.75%;left:74%"></span>
+                                    <span class="product_fat_stack" style="width:10.25%; left:89.75%"></span>
+                                </div>
+
+                                <div class="rate_container">
+                                    <div style="width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
+                                    <div style="width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
+                                    <div style="width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
+                                </div>
+                            </div>
+
+                            <div class="day_nutrition_graph_container">
+                                <div class="wild_graph_title">
+                                    <h2>하루섭취 탄</h2><span>수화물</span> 
+                                    <h2>단</h2><span>백질</span>
+                                    <h2>지</h2><span>방</span>
+                                    <h2>비율</h2><br><!--
+                                    --><span>(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
+                                </div>
+
+                                <div class="day_carbs_graph_container">
+                                    <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
+                                    <div>
+                                        <div class="graph day_carbs_stack">
+                                            <span style="width:28%"></span>
+                                        </div>
+                                        <div class="rate_container">
+                                            <div>0%<br>(0g)</div>
+                                            <div style="color:#006c04; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
+                                            <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="day_protein_graph_container">
+                                    <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
+                                    <div>
+                                        <div class="graph day_protein_stack">
+                                            <span style="width:4%"></span>
+                                        </div>
+                                        <div class="rate_container">
+                                            <div>0%<br>(0g)</div>
+                                            <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
+                                            <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="day_fat_graph_container">
+                                    <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
+                                    <div class="graph day_fat_stack">
+                                        <span style="width:0.04%"></span>  
+                                    </div>
+                                    <div class="rate_container">
+                                        <div>0%<br>(0g)</div>
+                                        <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
+                                        <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `)}
+                    }
+                }
+            )
+
+            $('.content').on('click','.folding_btn',function() {
+                if($('.nutrition_info_container').is(":visible")){
+                    $('.nutrition_info_container').slideUp("slow");
+                    $('.folding_btn').text('펼치기▼');
+                }
+                else{
+                    $('.nutrition_info_container').slideDown("slow");
+                    $('.folding_btn').text('접기▲');
+                }
+            })
+
+
+            $('.next_btn').click(function() {
+                if(checkSelectBread()){
+                    $('form').submit();
+                }
+            })
+
+            $('.composition_element img').click(function(e) {
+                    var thisEle = $(e.target);
+                    var eleId = $(thisEle).attr('data-listid');
+                    $('.modal-header h2').text(dtoList[eleId-1].name);
+                    $('.elem_comment').text(dtoList[eleId-1].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId-1].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId-1].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
+            })
+
+            $('.btn-close').click(function(){
+                $('.modal').hide();
+            })
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -73,339 +351,34 @@
             
             <div class="step_name_container">
                 <h1 class="step">step1. 빵 선택</h1>
-                <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                <img  th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(영양정보)를 확인할 수 있습니다.</h3>    
             </div>   
 
 
-            <form action="my_own_sandwich_step2.html" method="post">
+            <form th:action="@{/my_own_series/sandwich/step2}" method="post">
                 <div>
                     <div class="composition_type">
                         <h2>[종류]&nbsp;</h2> 
                     </div>
                 </div>
-
-                <script>
-                    window.onload=function(){
-                        function breadCheck() {
-                            $('input[name=my_own_sandwich_bread]').each(function() {
-                                var val=$(this).val();
-                                var checked=$(this).prop('checked');
-                
-                                if(checked){
-                                    $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/checked_icon.png')
-                                }
-                                else{
-                                    $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/unchecked_icon.png')
-                                }
-                            })    
-                        }
-
-                        function breadLengthCheck() {
-                            $('input[name=my_own_sandwich_bread_length]').each(function() {
-                                var val=$(this).val();
-                                var checked=$(this).prop('checked');
-                
-                                if(checked){
-                                    $('label[for='+val+'] .length_element').get()[0].classList.add('main_color')
-                                }
-                                else{
-                                    $('label[for='+val+'] .length_element').get()[0].classList.remove('main_color')
-                                }
-                            })
-                        }
-
-                        $(window).bind("pageshow",function(event){
-                            if(event.originalEvent.preventDefault){
-                                breadCheck();
-                                breadLengthCheck();
-                            }
-                        })
-                     
-                        $('input[name=my_own_sandwich_bread]').change(function(){
-                            breadCheck();
-                        })
-
-                        $('input[name=my_own_sandwich_bread_length]').change(function(){
-                            breadLengthCheck();
-                        })
-
-                        function checkSelectBread() {
-                            if(!$('input[name=my_own_sandwich_bread]').is(':checked')){
-                                alert("빵을 선택해주세요.")
-                                return false;
-                              }
-                              else{
-                                if(!$('input[name=my_own_sandwich_bread_length]').is(':checked')){
-                                    alert("길이를 선택해주세요.")
-                                    return false;
-                                }
-                                else{return true}
-                              }
-                        }
-
-                        $('.nutrition_info_check_btn').click(function() {
-                            if(checkSelectBread()){
-                                if(!$('.nutrition_info').length){
-                                $('.nutrition_info_check_btn_container').after(
-                                    `
-                                    <style>                    
-                                        @keyframes calorie_stack {
-                                            0%{width: 0;}
-                                            100%{width: 11.5%;}
-                                        }
-
-                                        @keyframes product_carbs_stack {
-                                            0%{width: 0;}
-                                            100%{width: 74%;}
-                                        }
-
-                                        @keyframes product_protein_stack {
-                                            0%{width: 0;}
-                                            100%{width: 15.75%;}
-                                        }
-
-                                        @keyframes product_fat_stack {
-                                            0%{width: 0;}
-                                            100%{width: 10.25%;}
-                                        }
-
-                                        @keyframes day_carbs_stack {
-                                            0%{width: 0;}
-                                            100%{width: 28%;}
-                                        }
-
-                                        @keyframes day_protein_stack {
-                                            0%{width: 0;}
-                                            100%{width: 4%;}
-                                        }
-
-                                        @keyframes day_fat_stack {
-                                            0%{width: 0;}
-                                            100%{width: 0.04%;}
-                                        }
-                                    </style>
-
-                                    <div class="nutrition_info">
-                                    <h2>[맞춤형 영양정보]&nbsp;</h2>
-                                    <img src="../beonadiet/resources/static/assets/warning_icon.png">
-                                    <h3>&nbsp;step1 기준</h3>
-                                    <h3 class="folding_btn">접기▲</h3>
-                                    </div>
-
-                                    <div class="nutrition_info_container">
-                                        <div class="target_container">
-                                            <h2><u>개인설정목표</u></h2>
-                                            <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
-                                            <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
-                                            <div class="setting_btn_container">
-                                                <div>
-                                                    <img src="../beonadiet/resources/static/assets/next_icon.png">
-                                                    <h2>설정</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="calorie_graph_container">
-                                            <div class="graph_title_container">
-                                                <h2>일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3>(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
-                                            </div>
-
-                                            <div class="graph calorie_stack">
-                                                <span style="width:11.5%"></span>
-                                            </div>
-
-                                            <div class="rate_container">
-                                                <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
-                                                <div style="color:#006c04; left: calc(11.5% - 30px); width:66px;">11.5%<br>(230kcal)</div>
-                                                <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="product_graph_container">
-                                            <div class="graph_title_container">
-                                                <h2>탄</h2><span>수화물</span>
-                                                <h2>단</h2><span>백질</span>
-                                                <h2>지</h2><span>방</span>
-                                                <h2>비율</h2>
-                                                <div class="nutrition_mark_container">
-                                                    <div>
-                                                        <div class="mark carbs"></div>
-                                                        &nbsp;<span>탄수화물</span>&nbsp;&nbsp;&nbsp;
-                                                        <div class="mark protein"></div>
-                                                        &nbsp;<span>단백질</span>&nbsp;&nbsp;&nbsp;
-                                                        <div class="mark fat"></div>
-                                                        &nbsp;<span>지방</span>&nbsp;&nbsp;&nbsp;
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="graph" style="position:relative"> 
-                                                <span class="product_carbs_stack" style="width:74%"></span>
-                                                <span class="product_protein_stack" style="width:15.75%;left:74%"></span>
-                                                <span class="product_fat_stack" style="width:10.25%; left:89.75%"></span>
-                                            </div>
-
-                                            <div class="rate_container">
-                                                <div style="width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
-                                                <div style="width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
-                                                <div style="width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="day_nutrition_graph_container">
-                                            <div class="wild_graph_title">
-                                                <h2>하루섭취 탄</h2><span>수화물</span> 
-                                                <h2>단</h2><span>백질</span>
-                                                <h2>지</h2><span>방</span>
-                                                <h2>비율</h2><br><!--
-                                                --><span>(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
-                                            </div>
-
-                                            <div class="day_carbs_graph_container">
-                                                <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
-                                                <div>
-                                                    <div class="graph day_carbs_stack">
-                                                        <span style="width:28%"></span>
-                                                    </div>
-                                                    <div class="rate_container">
-                                                        <div>0%<br>(0g)</div>
-                                                        <div style="color:#006c04; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
-                                                        <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="day_protein_graph_container">
-                                                <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
-                                                <div>
-                                                    <div class="graph day_protein_stack">
-                                                        <span style="width:4%"></span>
-                                                    </div>
-                                                    <div class="rate_container">
-                                                        <div>0%<br>(0g)</div>
-                                                        <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
-                                                        <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="day_fat_graph_container">
-                                                <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
-                                                <div class="graph day_fat_stack">
-                                                    <span style="width:0.04%"></span>  
-                                                </div>
-                                                <div class="rate_container">
-                                                    <div>0%<br>(0g)</div>
-                                                    <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
-                                                    <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    `)}
-                                }
-                            }
-                        )
-
-                        $('.content').on('click','.folding_btn',function() {
-                            if($('.nutrition_info_container').is(":visible")){
-                                $('.nutrition_info_container').slideUp("slow");
-                                $('.folding_btn').text('펼치기▼');
-                            }
-                            else{
-                                $('.nutrition_info_container').slideDown("slow");
-                                $('.folding_btn').text('접기▲');
-                            }
-                        })
-
-
-                        $('.next_btn').click(function() {
-                            if(checkSelectBread()){
-                                $('form').submit();
-                            }
-                        })
-
-                        $('.composition_element img').click(function() {
-                            var thisEle = event.target;
-                            $('.modal').show();
-                        })
-
-                        $('.btn-close').click(function(){
-                            $('.modal').hide();
-                        })
-                    }
-                </script>
-
                 <div class="composition_element_container">
-                    <input type="radio" name="my_own_sandwich_bread" value="honey_oat" id="honey_oat">
-                    <div class="composition_element_box odd">
-                        <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="허니오트" data-value="honey_oat">
-                            <h2>허니오트</h2>
-                        </div>
-                        <label for="honey_oat">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    </div>
-                    <input type="radio" name="my_own_sandwich_bread" value="hearty_italian" id="hearty_italian">
-                    <div class="composition_element_box even">
-                        <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="하티"  data-value="hearty_italian">
-                            <h2>하티</h2>
-                        </div>
-                        <label for="hearty_italian">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    </div>
-                    <input type="radio" name="my_own_sandwich_bread" value="wheat" id="wheat">
-                    <div class="composition_element_box odd">
-                        <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="위트"  data-value="wheat" >
-                            <h2>위트</h2>
-                        </div>
-                        <label for="wheat">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                        </label>
-                    </div>
+                    <th:block th:each="dto, i:${list}">
+                            <input type="radio" name="my_own_sandwich_bread" th:value="${dto.name}" th:id="${dto.name}">
+                            <div class="composition_element_box" th:data-value="${dto.name}" th:classappend="(${i.count}-2)%3==0 ? 'even' : 'odd' ">
+                                <div class="composition_element">
+                                    <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${i.count}" width="180" height="180" th:alt="${dto.name}">
+                                    <h2 th:text="${dto.name}"></h2>
+                                </div>
+                                <label th:for="${dto.name}">
+                                    <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                                </label>
+                            </div>
+                    </th:block>
                 </div>
-
-                <div class="composition_element_container">
-                    <input type="radio" name="my_own_sandwich_bread" value="parmesan_oregano" id="parmesan_oregano">
-                    <div class="composition_element_box odd">
-                        <div class="composition_element">
-                            <img src="https://placehold.co/180x180" data-value="parmesan_oregano" alt="파마산 오레가노">
-                            <h2>파마산 오레가노</h2>
-                        </div>
-                        <label for="parmesan_oregano">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png"  class="check_icon">
-                        </label>
-                    </div>
-                    <input type="radio" name="my_own_sandwich_bread" value="white" id="white">
-                    <label for="white">
-                    <div class="composition_element_box even">
-                        <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="화이트" data-value="white">
-                        <h2>화이트</h2>
-                        </div>
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png"  class="check_icon">
-                    </div>
-                    </label>
-                    <input type="radio" name="my_own_sandwich_bread" value="flat_bread" id="flat_bread">
-                    <div class="composition_element_box odd">
-                        <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="플랫브레드" data-value="flat_bread">
-                            <h2>플랫브레드</h2>
-                        </div>
-                        <label for="flat_bread">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png"  class="check_icon">
-                    </label>
-                    </div>
-                </div>
-
                 <div class="composition_type">
                     <h2>[길이]</h2>
                 </div>
-
                 <div class="length_element_container">
                     <input type="radio" name="my_own_sandwich_bread_length" value="15cm" id="15cm">
                     <label for="15cm">
@@ -413,7 +386,6 @@
                         <h2>15cm</h2>
                     </div>
                     </label>
-
                     <input type="radio" name="my_own_sandwich_bread_length" value="30cm" id="30cm">
                     <label for="30cm">
                     <div class="length_element">
@@ -434,7 +406,7 @@
             <div class="btn_container">
                 <div> 
                     <div class="next_btn">
-                        <img src="../beonadiet/resources/static/assets/next_icon.png">
+                        <img th:src="@{/assets/next_icon.png}">
                         <h1>Next Step</h1>
                     </div>
                 </div>
@@ -450,7 +422,7 @@
                     <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
                         <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
                         <br>
-                        <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span>*15cm 기준</span>
+                        <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span class="one_serving">*15cm 기준</span>
                         <table>
                             <tr>
                                 <th>중량</th>

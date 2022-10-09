@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+</head>
+<h1>샌드위치 빵 등록 페이지</h1>
+    <form th:action="@{/element_regist/my_own_sandwich/bread}" enctype="multipart/form-data" method="post">
+        <label for="">이름</lael>
+        <input type="text" name="name"><br>
+        <label for="">Image File</label>
+        <input type="file" name="image"><br>
+        <label for="">설명</label>
+        <textarea name="explanation"></textarea><br>
+        <label for="">1인제공량</label>
+        <input type="text" name="one_serving"><br>
+        <label for="">중량</label>
+        <input type="number" step="0.001" name="weight"><br>
+        <label for="">kcal</label>
+        <input type="number" step="0.001" name="kcal"><br>
+        <label for="">탄수화물</label>
+        <input type="number" step="0.001" name="carbs"><br>
+        <label for="">단백질</label>
+        <input type="number" step="0.001" name="protein"><br>
+        <label for="">지방</label>
+        <input type="number" step="0.001" name="fat"><br>
+        <label for="">포화지방</label>
+        <input type="number" step="0.001" name="saturated_fat"><br>
+        <label for="">콜레스테롤</label>
+        <input type="number" step="0.001" name="cholesterol"><br>
+        <label for="">나트륨</label>
+        <input type="number" step="0.001" name="salt"><br>
+        <button type="submit">Submit</button>
+    </form>

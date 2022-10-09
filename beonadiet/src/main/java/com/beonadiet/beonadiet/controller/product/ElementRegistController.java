@@ -26,6 +26,12 @@ import com.beonadiet.beonadiet.dto.product.MyOwnSaladProteinDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnSaladSauceDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnSaladToppingDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnSaladVegetableDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnSandwichBreadDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnSandwichCheeseDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnSandwichMeatDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnSandwichSauceDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnSandwichToppingDTO;
+import com.beonadiet.beonadiet.dto.product.MyOwnSandwichVegetableDTO;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxMinisaladService;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxRiceService;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSidedishService;
@@ -35,6 +41,12 @@ import com.beonadiet.beonadiet.service.product.MyOwnSaladCarbsService;
 import com.beonadiet.beonadiet.service.product.MyOwnSaladSauceService;
 import com.beonadiet.beonadiet.service.product.MyOwnSaladToppingService;
 import com.beonadiet.beonadiet.service.product.MyOwnSaladVegetableService;
+import com.beonadiet.beonadiet.service.product.MyOwnSandwichBreadService;
+import com.beonadiet.beonadiet.service.product.MyOwnSandwichCheeseService;
+import com.beonadiet.beonadiet.service.product.MyOwnSandwichMeatService;
+import com.beonadiet.beonadiet.service.product.MyOwnSandwichSauceService;
+import com.beonadiet.beonadiet.service.product.MyOwnSandwichToppingService;
+import com.beonadiet.beonadiet.service.product.MyOwnSandwichVegetableService;
 import com.beonadiet.beonadiet.service.product.MyOwnSaladProteinService;
 import com.beonadiet.beonadiet.vo.NutritionInfoVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,6 +67,12 @@ public class ElementRegistController {
     private final MyOwnSaladSauceService sauceService;
     private final MyOwnSaladCarbsService carbsService;
     private final MyOwnSaladVegetableService vegetableService;
+    private final MyOwnSandwichVegetableService sandwichVegetableService;
+    private final MyOwnSandwichToppingService sandwichToppingService;
+    private final MyOwnSandwichCheeseService sandwichCheeseService;
+    private final MyOwnSandwichMeatService sandwichMeatService;
+    private final MyOwnSandwichBreadService sandwichBreadService;
+    private final MyOwnSandwichSauceService sandwichSauceService;
 
     @Value("${com.beonadiet.upload.path}")
     private String uploadPath;
@@ -108,6 +126,37 @@ public class ElementRegistController {
     public String sauceRegister(){
         return "/element_regist/my_own_salad_sauce";
     }
+
+    @GetMapping("/my_own_sandwich/sauce")
+    public String sandwichSauceRegister(){
+        return "/element_regist/my_own_sandwich_sauce";
+    }
+
+    @GetMapping("/my_own_sandwich/vegetable")
+    public String sandwichVegetableRegister(){
+        return "/element_regist/my_own_sandwich_vegetable";
+    }
+
+    @GetMapping("/my_own_sandwich/topping")
+    public String sandwichToppingRegister(){
+        return "/element_regist/my_own_sandwich_topping";
+    }
+
+    @GetMapping("/my_own_sandwich/cheese")
+    public String sandwichCheeseRegister(){
+        return "/element_regist/my_own_sandwich_cheese";
+    }
+
+    @GetMapping("/my_own_sandwich/meat")
+    public String sandwichMeatRegister(){
+        return "/element_regist/my_own_sandwich_meat";
+    }
+
+    @GetMapping("/my_own_sandwich/bread")
+    public String sandwichBreadRegister(){
+        return "/element_regist/my_own_sandwich_bread";
+    }
+    
 
     @PostMapping("/my_own_lunchbox/rice")
     public String uploadFileAndRegister_rice(@RequestParam("image") MultipartFile img, MyOwnLunchboxRiceDTO riceDTO, @ModelAttribute NutritionInfoVo niVo){
@@ -417,5 +466,191 @@ public class ElementRegistController {
         carbsService.register(carbsDTO);
 
         return "redirect:/element_regist/my_own_salad/carbs";
+    }
+
+    @PostMapping("/my_own_sandwich/bread")
+    public String uploadFileAndRegister_bread(@RequestParam("image") MultipartFile img, MyOwnSandwichBreadDTO breadDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnElementImgDTO imgDTO = MyOwnElementImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        breadDTO.setImageDTO(imgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            breadDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        sandwichBreadService.register(breadDTO);
+
+        return "redirect:/element_regist/my_own_sandwich/bread";
+    }
+
+    @PostMapping("/my_own_sandwich/cheese")
+    public String uploadFileAndRegister_cheese(@RequestParam("image") MultipartFile img, MyOwnSandwichCheeseDTO cheeseDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnElementImgDTO imgDTO = MyOwnElementImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        cheeseDTO.setImageDTO(imgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            cheeseDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        sandwichCheeseService.register(cheeseDTO);
+
+        return "redirect:/element_regist/my_own_sandwich/cheese";
+    }
+
+    @PostMapping("/my_own_sandwich/meat")
+    public String uploadFileAndRegister_meat(@RequestParam("image") MultipartFile img, MyOwnSandwichMeatDTO meatDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnElementImgDTO imgDTO = MyOwnElementImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        meatDTO.setImageDTO(imgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            meatDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        sandwichMeatService.register(meatDTO);
+
+        return "redirect:/element_regist/my_own_sandwich/meat";
+    }
+
+    @PostMapping("/my_own_sandwich/sauce")
+    public String uploadFileAndRegister_sauce(@RequestParam("image") MultipartFile img, MyOwnSandwichSauceDTO sauceDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnElementImgDTO imgDTO = MyOwnElementImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        sauceDTO.setImageDTO(imgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            sauceDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        sandwichSauceService.register(sauceDTO);
+
+        return "redirect:/element_regist/my_own_sandwich/sauce";
+    }
+
+    @PostMapping("/my_own_sandwich/topping")
+    public String uploadFileAndRegister_topping(@RequestParam("image") MultipartFile img, MyOwnSandwichToppingDTO toppingDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnElementImgDTO imgDTO = MyOwnElementImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        toppingDTO.setImageDTO(imgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            toppingDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        sandwichToppingService.register(toppingDTO);
+
+        return "redirect:/element_regist/my_own_sandwich/topping";
+    }
+
+    @PostMapping("/my_own_sandwich/vegetable")
+    public String uploadFileAndRegister_vegetable(@RequestParam("image") MultipartFile img, MyOwnSandwichVegetableDTO vegetableDTO, @ModelAttribute NutritionInfoVo niVo){
+        String fileName = img.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String saveName = uploadPath+File.separator+uuid+"_"+fileName;
+        
+        Path savePath = Paths.get(saveName);
+        try {
+            img.transferTo(savePath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MyOwnElementImgDTO imgDTO = MyOwnElementImgDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+
+        vegetableDTO.setImageDTO(imgDTO);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            vegetableDTO.setNutrition_info(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        sandwichVegetableService.register(vegetableDTO);
+
+        return "redirect:/element_regist/my_own_sandwich/vegetable";
     }
 }
