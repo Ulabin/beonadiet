@@ -13,9 +13,9 @@ public class BeonadietApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BeonadietApplication.class, args);
 	}
-	@Bean
-	public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
-		return new HiddenHttpMethodFilter();
-	}
+	// @Bean
+	// public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
+	// 	return new HiddenHttpMethodFilter();
+	// }
 
 }

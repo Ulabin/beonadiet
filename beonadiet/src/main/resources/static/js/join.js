@@ -45,3 +45,80 @@ $('#signup').on('submit',()=>{
   }
   $("#signup").submit();
 })
+
+
+$('.btncheck').click(function() {
+  $.ajax({
+    url: 'join/id/check',
+    // url: baseUrl + '/api/member/id/check',
+    type: 'GET',
+    contentType: 'application/json',
+    headers: {
+      // 스프링 시큐리티를 위한 헤더 설정
+      "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+    },
+    data: {
+      username: $('#username').val()
+    },
+    success: function (result) {
+      // 성공 시 실패 메시지 hide, 성공 메시지 show
+        $('#idNotAvailable').hide();
+        $('#idAvailable').show().text(result).append($('<br />'));
+    }, error: function(error) {
+      // 실패 시 실패 메시지 show, 성공 메시지 hide
+        $('#idAvailable').hide();
+        $('#idNotAvailable').show().text(error.responseJSON['message']).append($('<br />'));
+    }
+  });
+});
+
+$('.btncheck2').click(function() {
+  $.ajax({
+    url: 'join/nickname/check',
+    // url: baseUrl + '/api/member/id/check',
+    type: 'GET',
+    contentType: 'application/json',
+    headers: {
+      // 스프링 시큐리티를 위한 헤더 설정
+      "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+    },
+    data: {
+      nickname: $('#nickname').val()
+    },
+    success: function (result) {
+      // 성공 시 실패 메시지 hide, 성공 메시지 show
+        $('#idNotAvailable2').hide();
+        $('#idAvailable2').show().text(result).append($('<br />'));
+    }, error: function(error) {
+      // 실패 시 실패 메시지 show, 성공 메시지 hide
+        $('#idAvailable2').hide();
+        $('#idNotAvailable2').show().text(error.responseJSON['message']).append($('<br />'));
+    }
+  });
+});
+
+$('.btncheck3').click(function() {
+  $.ajax({
+    url: 'join/email/check',
+    // url: baseUrl + '/api/member/id/check',
+    type: 'GET',
+    contentType: 'application/json',
+    headers: {
+      // 스프링 시큐리티를 위한 헤더 설정
+      "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+    },
+    data: {
+      email: $('#email').val()
+    },
+    success: function (result) {
+      // 성공 시 실패 메시지 hide, 성공 메시지 show
+        $('#idNotAvailable3').hide();
+        $('#idAvailable3').show().text(result).append($('<br />'));
+    }, error: function(error) {
+      // 실패 시 실패 메시지 show, 성공 메시지 hide
+        $('#idAvailable3').hide();
+        $('#idNotAvailable3').show().text(error.responseJSON['message']).append($('<br />'));
+    }
+  });
+});
+

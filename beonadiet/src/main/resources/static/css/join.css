@@ -95,7 +95,7 @@ input:focus {
   outline: none;
 }
 
-.btncheck, .btnauth {
+.btncheck, .btnauth, .btncheck2, .btncheck3 {
   width: 120px;
   height: 45px;
   margin-left: 10px;
@@ -150,4 +150,18 @@ input:focus {
 .title_join img {
   display:inline-block; 
   vertical-align:middle;
+}
+
+.valid-feedback, .invalid-feedback {
+  margin-bottom: 10px;
+}
+
+.valid-feedback {
+  color: #0FA958;
+  font-weight: 600;
+}
+
+.invalid-feedback {
+  color: coral;
+  font-weight: 600;
 }

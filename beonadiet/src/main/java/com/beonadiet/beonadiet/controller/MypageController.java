@@ -39,11 +39,6 @@ public class MypageController {
   @Autowired //타입에 해당하는 빈을 주입
   BCryptPasswordEncoder bCryptPasswordEncoder;
   
-  @GetMapping("/healthTest")
-  public String healthTest(){
-    return "mypage/healthTest";
-  }
-
   @GetMapping("/active_page")
   public String activePage(){
     return "mypage/active_page";
@@ -64,26 +59,8 @@ public class MypageController {
     addressRepository.deleteById(addressNum);
     return "redirect:/mypage/address?mid="+mid;
   }
-
-  // @PostMapping("/userinfo/delete_account/delete")
-  // public String accountDelete(@RequestParam(value="id") Long id, @RequestParam("mid") String mid){
-  //   userRepository.deleteById(id);
-  //   SecurityContextHolder.clearContext();
-  //   // return "redirect:/home";
-  //   return "redirect:/mypage/address?mid="+mid;
-  // }
-
-  @GetMapping("/health_info")
-  public String healthInfo(@RequestParam("mid") String mid, Model model){
-    Member memberTmp =userRepository.findByUsername(mid);
-    model.addAttribute("calorie", memberTmp.getDaily_calorie_intake());
-    model.addAttribute("carb", memberTmp.getCarb_rate());
-    model.addAttribute("protein", memberTmp.getProtein_rate());
-    model.addAttribute("fat", memberTmp.getFat_rate());
-    model.addAttribute("allergy", memberTmp.getAllergy());
-    return "mypage/health_info";
-  }
-
+  
+  
   @GetMapping("/userinfo")
   public String userInfo(@RequestParam("mid") String mid, Model model){
     Member memberTmp =userRepository.findByUsername(mid);
@@ -94,6 +71,31 @@ public class MypageController {
     model.addAttribute("mobile", memberTmp.getMobile_num());
     model.addAttribute("birthday", memberTmp.getBirthday());
     return "mypage/userinfo";
+  }
+  
+  @GetMapping("/delete_account")
+  public String deleteAccount(){
+  // public String deleteAccount(@RequestParam("mid") String mid, Model model){
+    // Member memberTmp =userRepository.findByUsername(mid);
+    // model.addAttribute("userid", memberTmp.getUsername());
+    return "mypage/delete_account";
+  }
+
+  // @PostMapping("/delete_account/delete")
+  // public String accountDelete(@RequestParam(value="id") Long id, @RequestParam("mid") String mid){
+  //   userRepository.deleteById(123L);
+  //   // userService.deleteById(123L);
+  //   SecurityContextHolder.clearContext();
+  //   return "redirect:/home";
+  //   // return "redirect:/mypage/address?mid="+mid;
+  // }
+
+  @PostMapping("/delete_account/delete")
+  public String accountDelete(@RequestParam(value="id", required = false) Long id, @RequestParam("mid") String mid){
+    userRepository.deleteById(125L);
+    SecurityContextHolder.clearContext();
+    return "redirect:/home";
+    // return "redirect:/mypage/address?mid="+mid;
   }
 
   @PostMapping("/userinfo/modify")
@@ -112,20 +114,14 @@ public class MypageController {
     userRepository.save(memberTmp);
     return "redirect:/mypage/userinfo?mid="+user_id;
   }
-
-    
-  @GetMapping("/delete_account")
-  public String deleteAccount(@RequestParam("mid") String mid, Model model){
-    Member memberTmp =userRepository.findByUsername(mid);
-    model.addAttribute("userid", memberTmp.getUsername());
-    return "mypage/delete_account";
-  }
+  
+  
   
   @GetMapping("/adr_modify")
   public String adrModify(){
     return "mypage/adr_modify";
   }
-    
+  
   @GetMapping("/adr_popup")
   public String adrPopup(){
     return "mypage/adr_popup";
@@ -146,6 +142,17 @@ public class MypageController {
     return "mypage/pick_list";
   }
   
+  @GetMapping("/health_info")
+  public String healthInfo(@RequestParam("mid") String mid, Model model){
+    Member memberTmp =userRepository.findByUsername(mid);
+    model.addAttribute("calorie", memberTmp.getDaily_calorie_intake());
+    model.addAttribute("carb", memberTmp.getCarb_rate());
+    model.addAttribute("protein", memberTmp.getProtein_rate());
+    model.addAttribute("fat", memberTmp.getFat_rate());
+    model.addAttribute("allergy", memberTmp.getAllergy());
+    return "mypage/health_info";
+  }
+
   @PostMapping("/health_info/calorie")
   public String updateCalorie(@RequestParam(value="daily-calorie-intake") Long dailyCalorieIntake, @RequestParam(value="user_id") String user_id) {
     Member memberTmp =userRepository.findByUsername(user_id);
@@ -153,11 +160,11 @@ public class MypageController {
         log.info("................................"+memberTmp);
         userRepository.save(memberTmp);
         return "redirect:/mypage/health_info?mid="+user_id;
-  }
+      }
 
-  @PostMapping("/health_info/rate")
-  public String updateRate(@RequestParam(value="carb_rate") Long carb_rate, @RequestParam(value="protein_rate") Long protein_rate, 
-                          @RequestParam(value="fat_rate") Long fat_rate, @RequestParam(value="user_id") String user_id) {
+      @PostMapping("/health_info/rate")
+      public String updateRate(@RequestParam(value="carb_rate") Long carb_rate, @RequestParam(value="protein_rate") Long protein_rate, 
+      @RequestParam(value="fat_rate") Long fat_rate, @RequestParam(value="user_id") String user_id) {
                             Member memberTmp =userRepository.findByUsername(user_id);
                             memberTmp.setCarb_rate(carb_rate);
         memberTmp.setProtein_rate(protein_rate);

@@ -39,6 +39,7 @@ public class UserService {
     userRepository.save(member);
   }
 
+  //회원정보수정
   public void modify(Member member) {
     // member.setRole("ROLE_USER");
     //패스워드는 bCryptPasswordEncoder를 통해서 암호화 해야 Security 로그인 가능
@@ -47,6 +48,27 @@ public class UserService {
     userRepository.save(member);
   }
 
-
+  //회원삭제
+  public void deleteById(Long id){
+    userRepository.deleteById(id);
+  }
   
+  
+  //아이디 중복
+  @Transactional
+  public boolean existsByUsername(String username){
+    return userRepository.existsByUsername(username);
+  }
+
+  //닉네임 중복
+  @Transactional
+  public boolean existsByNickname(String nickname){
+    return userRepository.existsByNickname(nickname);
+  }
+
+  //이메일 중복
+  @Transactional
+  public boolean existsByEmail(String email){
+    return userRepository.existsByEmail(email);
+  }
 }

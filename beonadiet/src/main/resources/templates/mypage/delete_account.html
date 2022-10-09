@@ -36,7 +36,7 @@
             <input type="checkbox" name="check_agree" value="yes" id="check_agree" required>&nbsp;&nbsp;위 탈퇴 내용에 동의합니다.
           </label>
         </div>
-        <div>
+        <!-- <div>
           <table>
             <colgroup span="1" style="background-color: #eeeeee"></colgroup>
             <tr>
@@ -58,8 +58,8 @@
               </td>
             </tr>
           </table>
-        </div>
-        <form th:action="@{/mypage/userinfo/delete_account/delete}" th:method="post">
+        </div> -->
+        <form th:action="@{/mypage/delete_account/delete}" th:method="post">
           <input type="hidden" name="id" th:value="${id}">
           <input type="hidden" name="mid" th:value="${#authentication.name}">
           <div class="btnBox">

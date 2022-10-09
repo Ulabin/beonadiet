@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.beonadiet.beonadiet.BadRequestException;
 import com.beonadiet.beonadiet.entity.Member;
 import com.beonadiet.beonadiet.repository.UserRepository;
 import com.beonadiet.beonadiet.service.UserService;
@@ -57,5 +58,39 @@ public class UserController{
   public String joinProc(Member member){
     userService.Join(member);
     return "redirect:/join_complete";
+  }
+
+
+  @GetMapping("join/id/check")
+  public ResponseEntity<?> checkIdDuplication(@RequestParam(value = "username") String username) throws BadRequestException {
+      System.out.println(username);
+
+      if (userService.existsByUsername(username) == true) {
+        throw new BadRequestException("이미 사용중인 아이디 입니다.");
+      } else {
+          return ResponseEntity.ok("사용 가능한 아이디 입니다.");
+      }
+  }
+
+  @GetMapping("join/nickname/check")
+  public ResponseEntity<?> checkNicknameDuplication(@RequestParam(value = "nickname") String nickname) throws BadRequestException {
+      System.out.println(nickname);
+
+      if (userService.existsByNickname(nickname) == true) {
+        throw new BadRequestException("이미 사용중인 닉네임 입니다.");
+      } else {
+          return ResponseEntity.ok("사용 가능한 닉네임 입니다.");
+      }
+  }
+
+  @GetMapping("join/email/check")
+  public ResponseEntity<?> checkEmailDuplication(@RequestParam(value = "email") String email) throws BadRequestException {
+      System.out.println(email);
+
+      if (userService.existsByEmail(email) == true) {
+        throw new BadRequestException("이미 사용중인 이메일 입니다.");
+      } else {
+          return ResponseEntity.ok("사용 가능한 이메일 입니다.");
+      }
   }
 }
