@@ -48,6 +48,9 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="home-container" th:replace="fragments/common :: nav"></div>
+        <th:block th:replace="fragments/common :: head('Main page')">
+        </th:block>
         <div class="content">
             <div class="step_container">
                 <div class="step_circle">
@@ -67,7 +70,7 @@
                 </div>
             </div>
             
-            <h1 class="step" style="margin-bottom:10px;">step1. 구성 선택</h1>
+            <h1 class="step" style="margin:15px 0px 15px 15px;">step1. 구성 선택</h1>
 
             <form th:action="@{/my_own_series/lunchbox/step2}" method="post">
             <div class="composition_element_container" style="text-align:center">
@@ -129,6 +132,8 @@
                 </div>
             </div> 
         </div>
+    </div>
+    <div class="home-footer-container" th:replace="fragments/common :: foot">
     </div>
 </body>
 </html>

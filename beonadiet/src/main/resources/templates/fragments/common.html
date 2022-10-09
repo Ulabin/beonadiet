@@ -40,10 +40,10 @@
                   <option value="">나만의 도시락</option>
                   <option value="">나만의 샌드위치</option>
                   <option value="">나만의 샐러드</option>
-                  <option value="">완제품</option>
-                  <option value="">쉐이크·선식</option>
-                  <option value="">닭가슴살</option>
-                  <option value="">과일·견과류</option>
+                  <option value="">도시락</option>
+                  <option value="">샌드위치</option>
+                  <option value="">샐러드</option>
+                  <option value="">간식</option>
                   <option value="">나만의 레시피</option>
                 </select>
                 <label for="headerSearchKeyword">
@@ -87,30 +87,29 @@
           <li class="main-page-dropdown dropdown-2">
             카테고리
             <ul class="main-page-dropdown_menu dropdown_menu-2">
-              <label><li class="dropdown_item-1" ><a href="https://www.naver.com" id="dropdown_item-1" > 나만의 도시락</a></li></label>
-              <li class="dropdown_item-2"><a href="https://www.naver.com" id="dropdown_item-1">나만의 샌드위치</a></li>
-              <li class="dropdown_item-3"><a href="https://www.naver.com" id="dropdown_item-1">나만의 샐러드</a></li>
-              <li class="dropdown_item-4"><a href="https://www.naver.com" id="dropdown_item-1">완제품</a></li>
-              <li class="dropdown_item-5"><a href="https://www.naver.com" id="dropdown_item-1">쉐이크·선식</a></li>
-              <li class="dropdown_item-6"><a href="https://www.naver.com" id="dropdown_item-1">닭가슴살</a></li>
-              <li class="dropdown_item-7"><a href="https://www.naver.com" id="dropdown_item-1">과일·견과류</a></li>
+              <label><li class="dropdown_item-1" ><a th:href="@{/my_own_series/lunchbox/step1}" id="dropdown_item-1" > 나만의 도시락</a></li></label>
+              <li class="dropdown_item-2"><a th:href="@{/my_own_series/sandwich/step1}" id="dropdown_item-1">나만의 샌드위치</a></li>
+              <li class="dropdown_item-3"><a th:href="@{/my_own_series/salad/step1}" id="dropdown_item-1">나만의 샐러드</a></li>
+              <li class="dropdown_item-4"><a href="https://www.naver.com" id="dropdown_item-1">도시락</a></li>
+              <li class="dropdown_item-5"><a href="https://www.naver.com" id="dropdown_item-1">샌드위치</a></li>
+              <li class="dropdown_item-6"><a href="https://www.naver.com" id="dropdown_item-1">샐러드</a></li>
+              <li class="dropdown_item-6"><a href="https://www.naver.com" id="dropdown_item-1">간식</a></li>
               <li class="dropdown_item-8"><a href="#" id="dropdown_item-1" th:href="@{/myownrecipe/mor}">나만의 레시피</a></li>
             </ul>
           </li>
         </ul>
         <img th:src="@{/images/lunchboxkmj.png}" alt="lunchbox" class="main-page-category-img">
-        <a href="#" class="main-page-category-text">나만의 도시락</a>
+        <a th:href="@{/my_own_series/lunchbox/step1}" class="main-page-category-text">나만의 도시락</a>
 
         <img th:src="@{/images/sandwichkmj.png}" alt="sandwich" class="main-page-category-img">
-        <a href="#" class="main-page-category-text">나만의 샌드위치</a>
+        <a  th:href="@{/my_own_series/sandwich/step1}" class="main-page-category-text">나만의 샌드위치</a>
 
         <img th:src="@{/images/saladkmj.png}" alt="salad" class="main-page-category-img">
-        <a href="#" class="main-page-category-text">나만의 샐러드</a>
-
-        <a href="#" class="main-page-category-text">완제품</a>
-        <a href="#" class="main-page-category-text">쉐이크·선식</a>
-        <a href="#" class="main-page-category-text">닭가슴살</a>
-        <a href="#" class="main-page-category-text">과일·견과류</a>
+        <a  th:href="@{/my_own_series/salad/step1}" class="main-page-category-text">나만의 샐러드</a>
+        <a href="#" class="main-page-category-text">도시락</a>
+        <a href="#" class="main-page-category-text">샌드위치</a>
+        <a href="#" class="main-page-category-text">샐러드</a>
+        <a href="#" class="main-page-category-text">간식</a>
         <a href="#" th:href="@{/myownrecipe/mor}" class="main-page-category-text">나만의 레시피</a>
 
       </div>
@@ -123,9 +122,9 @@
     <!--:::::::: FOOTER :::::::: -->
     
       <div class="home-footer-container" th:fragment="foot">
-        
-        <hr>
+      
         <br>
+        <hr style="margin-bottom:10px;">
 
         <div class="main-page-company-title" >
           <iconify-icon icon="noto:avocado" width="25" height="25" class="main-page-logoimg"></iconify-icon>

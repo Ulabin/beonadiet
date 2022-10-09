@@ -375,6 +375,10 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="home-container" th:replace="fragments/common :: nav"></div>
+        <th:block th:replace="fragments/common :: head('Main page')">
+        </th:block>
+
         <div class="content">
             <div class="step_container">
                 <div class="next_step_circle">
@@ -415,7 +419,7 @@
             </div>
             
             <div class="step_name_container">
-                <h1 class="step">step3. 반찬 선택</h1>
+                <h1 class="step" style="margin:15px 0px 15px 15px;">step3. 반찬 선택</h1>
                 <img  th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
@@ -436,7 +440,7 @@
             </div>
             </form>
 
-            <ul class="sidedish_menu"> 
+            <ul class="sidedish_menu" style="margin:10px 0px;"> 
                 <li class="active_menu" id="all">전체</li><!--
                 --><li id="herbs_sprouts">나물/무침</li><!--
                 --><li id="fry_jorim_jjim">볶음/조림/찜</li><!--
@@ -445,7 +449,7 @@
             </ul>
 
             <div class="sort_select_container">
-                <select class="form-select" id="sort_select"style="position:absolute; right:0px;">
+                <select class="form-select my_own_series_element" id="sort_select"style="position:absolute; right:0px;">
                     <option value="popularity">인기순</option>
                     <option value="character">가나다순</option>
                 </select>
@@ -680,6 +684,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="home-footer-container" th:replace="fragments/common :: foot">
     </div>
 </body>
 </html>

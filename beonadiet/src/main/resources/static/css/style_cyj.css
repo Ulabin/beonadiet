@@ -524,7 +524,7 @@ html, body {
     margin : auto;
 }
 
-select {
+select.my_own_series_element {
     font-weight: 900;
     font-size: 20px;
     font-family: LGPC;
@@ -1256,7 +1256,7 @@ select {
     margin-left:30px;
 }
 
-hr{
+hr.cyj{
     width: 928px;
     margin-top:20px;
 }

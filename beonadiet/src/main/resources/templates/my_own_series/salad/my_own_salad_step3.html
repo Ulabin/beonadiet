@@ -324,6 +324,9 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="home-container" th:replace="fragments/common :: nav"></div>
+        <th:block th:replace="fragments/common :: head('Main page')">
+        </th:block>
         <div class="content">
             <div class="step_container">
                 <div class="next_step_circle">
@@ -374,7 +377,7 @@
             </div>
             
             <div class="step_name_container">
-                <h1 class="step">step3. 토핑 선택</h1>
+                <h1 class="step" style="margin:15px 0px 15px 15px;">step3. 토핑 선택</h1>
                 <img  th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
@@ -395,7 +398,7 @@
             </div>
             </form>
 
-            <ul class="topping_menu"> 
+            <ul class="topping_menu" style="margin:10px 0px;"> 
                 <li class="active_menu" id="oldYellowCrop">구황작물</li><!--
                 --><li id="vegetableAndFruit">과일및채소</li><!--
                 --><li id="nut">견과류</li><!--
@@ -633,6 +636,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="home-footer-container" th:replace="fragments/common :: foot">
     </div>
 </body>
 </html>
