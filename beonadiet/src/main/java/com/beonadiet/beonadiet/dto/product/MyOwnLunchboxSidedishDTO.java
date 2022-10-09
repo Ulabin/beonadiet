@@ -19,7 +19,7 @@ public class MyOwnLunchboxSidedishDTO {
     private String one_serving;
     private String category;
     private Long sales_count ;
-    private MyOwnLunchboxSidedishImgDTO imageDTO;
+    private MyOwnElementImgDTO imageDTO;
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 }

@@ -8,7 +8,330 @@
     <title>나만의샐러드 Step1</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script src="resources/static/js/bootstrap.js"></script>
+    <script th:inline="javascript">
+        window.onload=function(){
+                var dtoList = [];
+
+                /*[# th:each="dto : ${list}"]*/
+                dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
+                /*[/]*/
+
+            function vegetableCheck() {
+                    $('input[name=my_own_salad_vegetable]').each(function() {
+                        var eleVal=$(this).val();
+                        var checked=$(this).prop('checked');
+
+                        if(checked){
+                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/checked_icon.png')
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper').css('opacity',1); 
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.cursor='pointer'; 
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.cursor='pointer';
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.pointerEvents='auto'; 
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.pointerEvents='auto'; 
+                        }
+
+                        else{
+                            $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/unchecked_icon.png')
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[1].innerText='1.0'
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper').get()[0].style.opacity=0.3;
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.opacity=1; 
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.opacity=1; 
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.pointerEvents='none'; 
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[1].style.cursor='default';
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.pointerEvents='none';   
+                        }
+                    })
+            }
+
+            $('.content').on('change','input[name=my_own_salad_vegetable]', function() {
+               var checkNum = $('input[name=my_own_salad_vegetable]:checked').length;
+                if(checkNum==6){alert('최대 5개까지 선택이 가능합니다.'); $(this).prop('checked',false); return;}
+                vegetableCheck();
+            });
+
+            $('.content').on('click','.stepper span:first-child',function(e) {
+            var parentEle = e.target.parentElement.parentElement;
+            var eleVal = $(parentEle).attr('data-value');
+            var eleValAmount=Number($('.composition_element_box[data-value='+eleVal+'] .stepper span:nth-child(2)').text())
+
+            if(eleValAmount==2.0){
+                $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.opacity=1.0;
+                $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.pointerEvents='auto';
+            }
+
+            if(eleValAmount!=0.5){
+                eleValAmount = eleValAmount-0.5;
+                $('.composition_element_box[data-value='+eleVal+'] .stepper span:nth-child(2)').text(eleValAmount.toFixed(1));
+                if(eleValAmount==0.5){
+                    $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.opacity=0.3;
+                    $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.pointerEvents='none'; 
+                }
+            }
+            })
+
+
+            $('.content').on('click','.stepper span:last-child',function(e) {
+                        var parentEle = e.target.parentElement.parentElement;
+                        var eleVal = parentEle.getAttribute('data-value');
+                        var eleValAmount=Number($('.composition_element_box[data-value='+eleVal+'] .stepper span:nth-child(2)').text());
+                        
+                        if(eleValAmount==0.5){
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.opacity=1.0;
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[0].style.pointerEvents='auto';
+                        }
+
+                        if(eleValAmount!=2.0){
+                            eleValAmount = eleValAmount+0.5;
+                            $('.composition_element_box[data-value='+eleVal+'] .stepper span:nth-child(2)').text(eleValAmount.toFixed(1));
+                            if(eleValAmount==2.0){
+                                $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.opacity=0.3;
+                                $('.composition_element_box[data-value='+eleVal+'] .stepper span').get()[2].style.pointerEvents='none'; 
+                            }
+                        }
+            })
+
+            function checkSelectVegetable(){
+                if(!$('input[name=my_own_salad_vegetable]:checked').length){
+                    alert("채소룰 선택해주세요.")
+                    return false;
+                }
+                else{
+                    var sum=0;
+                    $('input[name=my_own_salad_vegetable]:checked').each(function() {
+                        var val=$(this).val();
+                        sum += Number($('.composition_element_box[data-value='+val+']  .stepper span:nth-child(2)').text());
+                    })
+                    
+                    if(sum>5){
+                        alert(`총량 5까지 설정 가능합니다. 현재 총량은 ${sum}입니다. 다시 선택해주세요.`);
+                        return false;
+                    }
+                    
+                    return true;
+                }
+            }
+
+            
+            $('.nutrition_info_check_btn').click(function() {
+                    if(checkSelectVegetable()){
+                        if(!$('.nutrition_info').length){
+                            let warning_icon_link = /*[[@{/assets/warning_icon.png}]]*/
+                            let next_icon_link = /*[[@{/assets/next_icon.png}]]*/
+                        $('.nutrition_info_check_btn_container').after(
+                            `
+                            <style>                    
+                                @keyframes calorie_stack {
+                                    0%{width: 0;}
+                                    100%{width: 11.5%;}
+                                }
+
+                                @keyframes product_carbs_stack {
+                                    0%{width: 0;}
+                                    100%{width: 74%;}
+                                }
+
+                                @keyframes product_protein_stack {
+                                    0%{width: 0;}
+                                    100%{width: 15.75%;}
+                                }
+
+                                @keyframes product_fat_stack {
+                                    0%{width: 0;}
+                                    100%{width: 10.25%;}
+                                }
+
+                                @keyframes day_carbs_stack {
+                                    0%{width: 0;}
+                                    100%{width: 28%;}
+                                }
+
+                                @keyframes day_protein_stack {
+                                    0%{width: 0;}
+                                    100%{width: 4%;}
+                                }
+
+                                @keyframes day_fat_stack {
+                                    0%{width: 0;}
+                                    100%{width: 0.04%;}
+                                }
+                            </style>
+
+                            <div class="nutrition_info">
+                            <h2>[맞춤형 영양정보]&nbsp;</h2>
+                            <img src="${warning_icon_link}">
+                            <h3>&nbsp;step1 기준</h3>
+                            <h3 class="folding_btn">접기▲</h3>
+                            </div>
+
+                            <div class="nutrition_info_container">
+                                <div class="target_container">
+                                    <h2><u>개인설정목표</u></h2>
+                                    <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
+                                    <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
+                                    <div class="setting_btn_container">
+                                        <div>
+                                            <img src="${next_icon_link}">
+                                            <h2>설정</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="calorie_graph_container">
+                                    <div class="graph_title_container">
+                                        <h2>일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3>(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
+                                    </div>
+
+                                    <div class="graph calorie_stack">
+                                        <span style="width:11.5%"></span>
+                                    </div>
+
+                                    <div class="rate_container">
+                                        <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
+                                        <div style="color:#006c04; left: calc(11.5% - 30px); width:66px;">11.5%<br>(230kcal)</div>
+                                        <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
+                                    </div>
+                                </div>
+
+                                <div class="product_graph_container">
+                                    <div class="graph_title_container">
+                                        <h2>탄</h2><span>수화물</span>
+                                        <h2>단</h2><span>백질</span>
+                                        <h2>지</h2><span>방</span>
+                                        <h2>비율</h2>
+                                        <div class="nutrition_mark_container">
+                                            <div>
+                                                <div class="mark carbs"></div>
+                                                &nbsp;<span>탄수화물</span>&nbsp;&nbsp;&nbsp;
+                                                <div class="mark protein"></div>
+                                                &nbsp;<span>단백질</span>&nbsp;&nbsp;&nbsp;
+                                                <div class="mark fat"></div>
+                                                &nbsp;<span>지방</span>&nbsp;&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="graph" style="position:relative"> 
+                                        <span class="product_carbs_stack" style="width:74%"></span>
+                                        <span class="product_protein_stack" style="width:15.75%;left:74%"></span>
+                                        <span class="product_fat_stack" style="width:10.25%; left:89.75%"></span>
+                                    </div>
+
+                                    <div class="rate_container">
+                                        <div style="width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
+                                        <div style="width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
+                                        <div style="width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
+                                    </div>
+                                </div>
+
+                                <div class="day_nutrition_graph_container">
+                                    <div class="wild_graph_title">
+                                        <h2>하루섭취 탄</h2><span>수화물</span> 
+                                        <h2>단</h2><span>백질</span>
+                                        <h2>지</h2><span>방</span>
+                                        <h2>비율</h2><br><!--
+                                        --><span>(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
+                                    </div>
+
+                                    <div class="day_carbs_graph_container">
+                                        <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
+                                        <div>
+                                            <div class="graph day_carbs_stack">
+                                                <span style="width:28%"></span>
+                                            </div>
+                                            <div class="rate_container">
+                                                <div>0%<br>(0g)</div>
+                                                <div style="color:#006c04; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
+                                                <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="day_protein_graph_container">
+                                        <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
+                                        <div>
+                                            <div class="graph day_protein_stack">
+                                                <span style="width:4%"></span>
+                                            </div>
+                                            <div class="rate_container">
+                                                <div>0%<br>(0g)</div>
+                                                <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
+                                                <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="day_fat_graph_container">
+                                        <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
+                                        <div class="graph day_fat_stack">
+                                            <span style="width:0.04%"></span>  
+                                        </div>
+                                        <div class="rate_container">
+                                            <div>0%<br>(0g)</div>
+                                            <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
+                                            <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `)}
+                        }
+                    }
+                )
+
+                $('.content').on('click','.folding_btn',function() {
+                    if($('.nutrition_info_container').is(":visible")){
+                        $('.nutrition_info_container').slideUp("slow");
+                        $('.folding_btn').text('펼치기▼');
+                    }
+                    else{
+                        $('.nutrition_info_container').slideDown("slow");
+                        $('.folding_btn').text('접기▲');
+                    }
+                })
+
+
+                $('.next_btn').click(function() {
+                    if(checkSelectVegetable()){
+                        $('form').submit();
+                    }
+                })
+                $('.composition_element img').click(function(e) {
+                    var thisEle = $(e.target);
+                    var eleId = $(thisEle).attr('data-listid');
+                    $('.modal-header h2').text(dtoList[eleId-1].name);
+                    $('.elem_comment').text(dtoList[eleId-1].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId-1].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId-1].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
+                })
+
+                $('.btn-close').click(function(){
+                    $('.modal').hide();
+                })
+
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -63,7 +386,7 @@
             
             <div class="step_name_container">
                 <h1 class="step">step1. 채소 선택</h1>
-                <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                <img th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
@@ -74,508 +397,27 @@
                 </div>
             </div>
 
-            <script>
-                window.onload=function(){
-                    $(window).bind("pageshow",function(event){
-                        vegetableCheck();
-                    });
-
-                    function vegetableCheck() {
-                            $('input[name=my_own_salad_vegetable]').each(function() {
-                                var val=$(this).val();
-                                var checked=$(this).prop('checked');
-                
-                                if(checked){
-                                    $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/checked_icon.png')
-                                    $('.stepper[data-value='+val+']').css('opacity',1); 
-                                    $('.stepper[data-value='+val+'] span').get()[0].style.cursor='pointer'; 
-                                    $('.stepper[data-value='+val+'] span').get()[2].style.cursor='default';
-                                    $('.stepper[data-value='+val+'] span').get()[0].style.pointerEvents='auto'; 
-                                    $('.stepper[data-value='+val+'] span').get()[2].style.pointerEvents='auto'; 
-                                    // console.log($('.stepper[data-value='+val+'] span:nth-child(2)').text());
-                                }
-
-                                else{
-                                    $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/unchecked_icon.png')
-                                    $('.stepper[data-value='+val+'] span').get()[1].innerText='1.0'
-                                    $('.stepper[data-value='+val+']').get()[0].style.opacity=0.3;
-                                    $('.stepper[data-value='+val+'] span').get()[0].style.opacity=1; 
-                                    $('.stepper[data-value='+val+'] span').get()[2].style.opacity=1; 
-                                    $('.stepper[data-value='+val+'] span').get()[0].style.pointerEvents='none'; 
-                                    $('.stepper[data-value='+val+'] span').get()[1].style.cursor='default';
-                                    $('.stepper[data-value='+val+'] span').get()[2].style.pointerEvents='none';   
-                                }
-                            })
-                    }
-
-                    $('input[name=my_own_salad_vegetable]').change(function(){
-                        var checkNum = $('input[name=my_own_salad_vegetable]:checked').length;
-                        if(checkNum==6){alert('최대 5개까지 선택이 가능합니다.'); $(this).prop('checked',false); return;}
-                        vegetableCheck();
-                    })
-
-                    $('.stepper span:first-child').on('click',function(e) {
-                        var parentEle = e.target.parentElement;
-                        var eleVal = parentEle.getAttribute('data-value');
-                        var eleValAmount=Number($('.stepper[data-value='+eleVal+'] span:nth-child(2)').text());
-
-                        if(eleValAmount!=0.5){
-                            eleValAmount = eleValAmount-0.5;
-                            $('.stepper[data-value='+eleVal+'] span:nth-child(2)').text(eleValAmount.toFixed(1));
-                            if(eleValAmount==0.5){
-                                $('.stepper[data-value='+eleVal+'] span').get()[0].style.opacity=0.3;
-                                $('.stepper[data-value='+eleVal+'] span').get()[0].style.pointerEvents='none'; 
-                                $('.stepper[data-value='+eleVal+'] span').get()[2].style.opacity=1.0;
-                                $('.stepper[data-value='+eleVal+'] span').get()[2].style.pointerEvents='auto'; 
-                            }
-                        }
-                    })
-
-                    $('.stepper span:last-child').on('click',function(e) {
-                        var parentEle = e.target.parentElement;
-                        var eleVal = parentEle.getAttribute('data-value');
-                        var eleValAmount=Number($('.stepper[data-value='+eleVal+'] span:nth-child(2)').text());
-                        
-                        if(eleValAmount!=2.0){
-                            if(eleValAmount==0.5){
-                                $('.stepper[data-value='+eleVal+'] span').get()[0].style.opacity=1.0;
-                                $('.stepper[data-value='+eleVal+'] span').get()[0].style.pointerEvents='auto'; 
-                            }
-
-                            eleValAmount = eleValAmount+0.5;
-                            $('.stepper[data-value='+eleVal+'] span:nth-child(2)').text(eleValAmount.toFixed(1));
-                            if(eleValAmount==2.0){
-                                $('.stepper[data-value='+eleVal+'] span').get()[2].style.opacity=0.3;
-                                $('.stepper[data-value='+eleVal+'] span').get()[2].style.pointerEvents='none';
-                                $('.stepper[data-value='+eleVal+'] span').get()[0].style.opacity=1;
-                                $('.stepper[data-value='+eleVal+'] span').get()[0].style.pointerEvents='auto';  
-                            }
-                        }
-                    })
-
-                    function checkVegetableCountAndAmount(){
-                        if(!$('input[name=my_own_salad_vegetable]:checked').length){
-                            alert("채소를 한 개 이상 선택해주세요.")
-                            return false; 
-                        }
-                        else{
-                            var sum=0;
-                            $('input[name=my_own_salad_vegetable]:checked').each(function() {
-                                var val=$(this).val();
-                                sum += Number($('.stepper[data-value='+val+'] span:nth-child(2)').text());
-                            })
-                            
-                            if(sum>5){
-                                alert(`총량 5까지 설정 가능합니다. 현재 총량은 ${sum}입니다. 다시 선택해주세요.`);
-                                return false;
-                            }
-                            
-                            return true;
-                        }
-                    }
-
-                    $('.nutrition_info_check_btn').click(function() {
-                            if(checkVegetableCountAndAmount()){
-                                if(!$('.nutrition_info').length){
-                                $('.nutrition_info_check_btn_container').after(
-                                    `
-                                    <style>                    
-                                        @keyframes calorie_stack {
-                                            0%{width: 0;}
-                                            100%{width: 11.5%;}
-                                        }
-
-                                        @keyframes product_carbs_stack {
-                                            0%{width: 0;}
-                                            100%{width: 74%;}
-                                        }
-
-                                        @keyframes product_protein_stack {
-                                            0%{width: 0;}
-                                            100%{width: 15.75%;}
-                                        }
-
-                                        @keyframes product_fat_stack {
-                                            0%{width: 0;}
-                                            100%{width: 10.25%;}
-                                        }
-
-                                        @keyframes day_carbs_stack {
-                                            0%{width: 0;}
-                                            100%{width: 28%;}
-                                        }
-
-                                        @keyframes day_protein_stack {
-                                            0%{width: 0;}
-                                            100%{width: 4%;}
-                                        }
-
-                                        @keyframes day_fat_stack {
-                                            0%{width: 0;}
-                                            100%{width: 0.04%;}
-                                        }
-                                    </style>
-
-                                    <div class="nutrition_info">
-                                    <h2>[맞춤형 영양정보]&nbsp;</h2>
-                                    <img src="../beonadiet/resources/static/assets/warning_icon.png">
-                                    <h3>&nbsp;step1 기준</h3>
-                                    <h3 class="folding_btn">접기▲</h3>
-                                    </div>
-
-                                    <div class="nutrition_info_container">
-                                        <div class="target_container">
-                                            <h2><u>개인설정목표</u></h2>
-                                            <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
-                                            <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
-                                            <div class="setting_btn_container">
-                                                <div>
-                                                    <img src="../beonadiet/resources/static/assets/next_icon.png">
-                                                    <h2>설정</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="calorie_graph_container">
-                                            <div class="graph_title_container">
-                                                <h2>일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3>(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
-                                            </div>
-
-                                            <div class="graph calorie_stack">
-                                                <span style="width:11.5%"></span>
-                                            </div>
-
-                                            <div class="rate_container">
-                                                <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
-                                                <div style="color:#006c04; left: calc(11.5% - 30px); width:66px;">11.5%<br>(230kcal)</div>
-                                                <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="product_graph_container">
-                                            <div class="graph_title_container">
-                                                <h2>탄</h2><span>수화물</span>
-                                                <h2>단</h2><span>백질</span>
-                                                <h2>지</h2><span>방</span>
-                                                <h2>비율</h2>
-                                                <div class="nutrition_mark_container">
-                                                    <div>
-                                                        <div class="mark carbs"></div>
-                                                        &nbsp;<span>탄수화물</span>&nbsp;&nbsp;&nbsp;
-                                                        <div class="mark protein"></div>
-                                                        &nbsp;<span>단백질</span>&nbsp;&nbsp;&nbsp;
-                                                        <div class="mark fat"></div>
-                                                        &nbsp;<span>지방</span>&nbsp;&nbsp;&nbsp;
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="graph" style="position:relative"> 
-                                                <span class="product_carbs_stack" style="width:74%"></span>
-                                                <span class="product_protein_stack" style="width:15.75%;left:74%"></span>
-                                                <span class="product_fat_stack" style="width:10.25%; left:89.75%"></span>
-                                            </div>
-
-                                            <div class="rate_container">
-                                                <div style="width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
-                                                <div style="width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
-                                                <div style="width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="day_nutrition_graph_container">
-                                            <div class="wild_graph_title">
-                                                <h2>하루섭취 탄</h2><span>수화물</span> 
-                                                <h2>단</h2><span>백질</span>
-                                                <h2>지</h2><span>방</span>
-                                                <h2>비율</h2><br><!--
-                                                --><span>(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
-                                            </div>
-
-                                            <div class="day_carbs_graph_container">
-                                                <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
-                                                <div>
-                                                    <div class="graph day_carbs_stack">
-                                                        <span style="width:28%"></span>
-                                                    </div>
-                                                    <div class="rate_container">
-                                                        <div>0%<br>(0g)</div>
-                                                        <div style="color:#006c04; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
-                                                        <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="day_protein_graph_container">
-                                                <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
-                                                <div>
-                                                    <div class="graph day_protein_stack">
-                                                        <span style="width:4%"></span>
-                                                    </div>
-                                                    <div class="rate_container">
-                                                        <div>0%<br>(0g)</div>
-                                                        <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
-                                                        <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="day_fat_graph_container">
-                                                <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
-                                                <div class="graph day_fat_stack">
-                                                    <span style="width:0.04%"></span>  
-                                                </div>
-                                                <div class="rate_container">
-                                                    <div>0%<br>(0g)</div>
-                                                    <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
-                                                    <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    `)}
-                                }
-                            }
-                        )
-
-                        $('.content').on('click','.folding_btn',function() {
-                            if($('.nutrition_info_container').is(":visible")){
-                                $('.nutrition_info_container').slideUp("slow");
-                                $('.folding_btn').text('펼치기▼');
-                            }
-                            else{
-                                $('.nutrition_info_container').slideDown("slow");
-                                $('.folding_btn').text('접기▲');
-                            }
-                        })
-
-
-                        $('.next_btn').click(function() {
-                            if(checkVegetableCountAndAmount()){
-                                $('form').submit();
-                            }
-                        })
-
-                        $('.composition_element img').click(function() {
-                            var thisEle = event.target;
-                            $('.modal').show();
-                        })
-
-                        $('.btn-close').click(function(){
-                            $('.modal').hide();
-                        })
-                }
-            </script>
-            
-            <form action="my_own_salad_step2.html" method="post">
+            <form th:action="@{/my_own_series/salad/step2}" method="post">
             <div class="composition_element_container">
-                <input type="checkbox" name="my_own_salad_vegetable" value="lettuce" id="lettuce">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="양상추" data-value="lettuce">
-                        <h2>양상추</h2>
-                    </div>
-                    <label for="lettuce">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                    <div class="stepper" data-value="lettuce">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="green_lettuce" id="green_lettuce">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="청상추" data-value="green_lettuce">
-                        <h2>청상추</h2>
-                    </div>
-                    <label for="green_lettuce">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    <div class="stepper" data-value="green_lettuce">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="cabbage" id="cabbage">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="양배추" data-value="cabbage">
-                        <h2>양배추</h2>
-                    </div>
-                    <label for="cabbage">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    <div class="stepper" data-value="cabbage">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
+                <th:block th:each="dto, i:${list}">
+                        <input type="checkbox" name="my_own_salad_vegetable" th:value="${dto.name}" th:id="${dto.name}">
+                        <div class="composition_element_box" th:data-value="${dto.name}" th:classappend="(${i.count}-2)%3==0 ? 'even' : 'odd' ">
+                            <div class="composition_element">
+                                <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${i.count}" width="180" height="180" th:alt="${dto.name}">
+                                <h2 th:text="${dto.name}"></h2>
+                            </div>
+                            <label th:for="${dto.name}">
+                                <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                            </label>
+                            <div class="stepper">
+                                <span>-</span>
+                                <span>1.0</span>
+                                <span>+</span>
+                            </div>
+                        </div>
+                </th:block>
             </div>
-
-            <div class="composition_element_container">
-                <input type="checkbox" name="my_own_salad_vegetable" value="red_cabbage" id="red_cabbage">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="적양배추" data-value="red_cabbage">
-                        <h2>적양배추</h2>
-                    </div>
-                    <label for="red_cabbage">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    <div class="stepper" data-value="red_cabbage">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="radicchio" id="radicchio">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="라디치오" data-value="radicchio">
-                        <h2>라디치오</h2>
-                    </div>
-                    <label for="radicchio">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    <div class="stepper" data-value="radicchio">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="red_beetle" id="red_beetle">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="적근대" data-value="red_beetle">
-                        <h2>적근대</h2>
-                    </div>
-                    <label for="red_beetle">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    <div class="stepper" data-value="red_beetle">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="checkbox" name="my_own_salad_vegetable" value="chicory" id="chicory">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="치커리" data-value="chicory">
-                        <h2>치커리</h2>
-                    </div>
-                    <label for="chicory">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                    <div class="stepper" data-value="chicory">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="romaine" id="romaine">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="로메인" data-value="romaine">
-                        <h2>로메인</h2>
-                    </div>
-                    <label for="romaine">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                    <div class="stepper" data-value="romaine">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="kale" id="kale">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="케일" data-value="kale">
-                        <h2>케일</h2>
-                    </div>
-                    <label for="kale">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                    <div class="stepper" data-value="kale">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="checkbox" name="my_own_salad_vegetable" value="arugula" id="arugula">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="루꼴라" data-value="arugula">
-                        <h2>루꼴라</h2>
-                    </div>
-                    <label for="arugula">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    <div class="stepper" data-value="arugula">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="baby_vegetable" id="baby_vegetable">
-                <div class="composition_element_box even">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="베이비채소" data-value="baby_vegetable">
-                        <h2>베이비채소</h2>
-                    </div>
-                    <label for="baby_vegetable">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                    <div class="stepper" data-value="baby_vegetable">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-                <input type="checkbox" name="my_own_salad_vegetable" value="salary" id="salary">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="샐러리" data-value="salary">
-                        <h2>샐러리</h2>
-                    </div>
-                    <label for="salary">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                    <div class="stepper" data-value="salary">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="checkbox" name="my_own_salad_vegetable" value="red_paprika" id="red_paprika">
-                <div class="composition_element_box odd">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="홍파프리카" data-value="red_paprika">
-                        <h2>홍파프리카</h2>
-                    </div>
-                    <label for="red_paprika">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                    <div class="stepper" data-value="red_paprika">
-                        <span>-</span>
-                        <span>1.0</span>
-                        <span>+</span>
-                    </div>
-                </div>
-            </div>
+            </form>
 
             <div class="nutrition_info_check_btn_container">
                 <div> 
@@ -588,61 +430,60 @@
             <div class="btn_container">
                 <div> 
                     <div class="next_btn">
-                        <img src="../beonadiet/resources/static/assets/next_icon.png">
+                        <img th:src="@{/assets/next_icon.png}">
                         <h1>Next Step</h1>
                     </div>
                 </div>
             </div>
-        </form>
 
-        <div class="modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 style="margin:5px 0px 5px 20px">허니오트</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
-                        <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
-                        <br>
-                        <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span>*15cm 기준</span>
-                        <table>
-                            <tr>
-                                <th>중량</th>
-                                <th>열량</th>
-                                <th>탄수화물</th>
-                                <th>단백질</th>
-                                <th>지방</th>
-                                <th>포화지방</th>
-                                <th>콜레스테롤</th>
-                                <th>나트륨</th>
-                            </tr>
-                            <tr>
-                                <td>82g</td>
-                                <td>230kcal</td>
-                                <td>43g</td>
-                                <td>8g</td>
-                                <td>3g</td>
-                                <td>0.5g</td>
-                                <td>0mg</td>
-                                <td>280mg</td>
-                            </tr>
-                            <tr>
-                                <td>-</td>
-                                <td>11.5%</td>
-                                <td>13%</td>
-                                <td>15%</td>
-                                <td>2%</td>
-                                <td>3%</td>
-                                <td>0%</td>
-                                <td>14%</td>
-                            </tr>
-                        </table>
-                        <span>※ 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.</span>
+            <div class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 style="margin:5px 0px 5px 20px">허니오트</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
+                            <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
+                            <br>
+                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span class="one_serving"></span>
+                            <table>
+                                <tr>
+                                    <th>중량</th>
+                                    <th>열량</th>
+                                    <th>탄수화물</th>
+                                    <th>단백질</th>
+                                    <th>지방</th>
+                                    <th>포화지방</th>
+                                    <th>콜레스테롤</th>
+                                    <th>나트륨</th>
+                                </tr>
+                                <tr>
+                                    <td>82g</td>
+                                    <td>230kcal</td>
+                                    <td>43g</td>
+                                    <td>8g</td>
+                                    <td>3g</td>
+                                    <td>0.5g</td>
+                                    <td>0mg</td>
+                                    <td>280mg</td>
+                                </tr>
+                                <tr>
+                                    <td>-</td>
+                                    <td>11.5%</td>
+                                    <td>13%</td>
+                                    <td>15%</td>
+                                    <td>2%</td>
+                                    <td>3%</td>
+                                    <td>0%</td>
+                                    <td>14%</td>
+                                </tr>
+                            </table>
+                            <span>※ 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </body>

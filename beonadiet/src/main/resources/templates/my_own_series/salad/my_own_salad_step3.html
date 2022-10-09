@@ -5,11 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <title>나만의샐러드 Step3</title>
+    <title>나만의샐러드 step3</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script>
+    <script th:inline="javascript">
         window.onload=function(){
+            var dtoList = [];
+            var num=0;
+            /*[# th:each="dto : ${list}"]*/
+            dtoList.push({'id':[[${dto.id}]],'category':[[${dto.category}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
+            /*[/]*/
+
+            function listCreate(menu){
+                var list = dtoList.filter(element=>element.category==menu);
+                return list;
+            }
+            
+            var oldYellowCropList = listCreate('oldYellowCrop');
+            var vegetableAndFruitList = listCreate('vegetableAndFruit');
+            var nutList = listCreate('nut');
+            var dryList = listCreate('dry');
+            var flakeList = listCreate('flake');
+            var cheeseList = listCreate('cheese');
+            
+            function listHtmlCreate(list) {
+                var html =''; 
+                list.forEach((element,index) => {
+                var className = ((index-1)%3==0)? 'even' : 'odd';
+                html += 
+                        `<input type="radio" name="my_own_salad_salad" value="${element.name}" id="${element.name}">
+                            <div class="composition_element_box ${className}" data-value="${element.name}">
+                                <div class="composition_element">
+                                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.fileName}" data-listid="${element.id}" width="180" height="180" th:alt="${element.name}">
+                                    <h2>${element.name}</h2>
+                                </div>
+                                <div class="stepper" style="opacity:1">
+                                    <span>-</span>
+                                    <span>1.0</span>
+                                    <span>+</span>
+                                </div>
+                                <div class="add_btn">
+                                    <span>담기</span>
+                                </div>
+                            </div>
+                        `;
+                });
+                return html;
+            }
+
+            $('.composition_element_container').html(listHtmlCreate(oldYellowCropList));
+
             $('.nutrition_info_check_btn').click(function() {
                 var sum=0;
                 $('.basket_element_box').each(function() {
@@ -21,7 +66,7 @@
                     alert('한 가지 이상은 선택하셔야 합니다.')
                     return;
                 }
-                else if(sum>3){
+                else if(sum>2.5){
                     alert('총량 3까지 설정 가능합니다. 다시 한 번 확인해주시길 바랍니다.')
                     return;
                 }
@@ -33,360 +78,25 @@
             $('.topping_menu li').click(function(){
                 $('.topping_menu .active_menu').removeClass('active_menu');
                 $(this).addClass('active_menu');
-
                 var menu = $(this).attr('id');
 
-                if(menu=='hardy_plants'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="sweet_potato_mousse">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="고구마무스">
-                            <h2>고구마무스</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="sweet_potato_cube">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="고구마큐브">
-                            <h2>고구마큐브</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="pumpkin_mousse">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="단호박무스">
-                            <h2>단호박무스</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="mashed_potato">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="매쉬드포테이토">
-                            <h2>매쉬드포테이토</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="corn">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="옥수수콘">
-                            <h2>옥수수콘</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="kidney_bean">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="강낭콩">
-                            <h2>강낭콩</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `)
+                if(menu=='oldYellowCrop'){
+                    $('.composition_element_container').html(listHtmlCreate(oldYellowCropList));
                 }
-                else if(menu=='fruit_and_vegetable'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="orange">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="오렌지">
-                            <h2>오렌지</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even"  data-value="grapefruit">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="자몽">
-                            <h2>자몽</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="green_grape">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="청포도">
-                            <h2>청포도</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="cherry_tomato">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="방울토마토">
-                            <h2>방울토마토</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="jalapeno">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="할라피뇨">
-                            <h2>할라피뇨</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="olive">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="올리브">
-                            <h2>올리브</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                else if(menu=='vegetableAndFruit'){
+                    $('.composition_element_container').html(listHtmlCreate(vegetableAndFruitList));
                 }
                 else if(menu=='nut'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd"  data-value="almond_slice">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="아몬드슬라이스">
-                            <h2>아몬드슬라이스</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="crushed_peanut">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="분쇄땅콩">
-                            <h2>분쇄땅콩</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                    $('.composition_element_container').html(listHtmlCreate(nutList));
                 }
                 else if(menu=='dry'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd"  data-value="raisin">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="건포도">
-                            <h2>건포도</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="dried_cranberries">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="건크랜베리">
-                            <h2>건크랜베리</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                    $('.composition_element_container').html(listHtmlCreate(dryList));
                 }
-                else if(menu=='flakes'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd"  data-value="garlic_flakes">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="마늘후레이크">
-                            <h2>마늘후레이크</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="brown_rice_flakes">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="현미후레이크">
-                            <h2>현미후레이크</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="granola">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="그래놀라">
-                            <h2>그래놀라</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                else if(menu=='flake'){
+                    $('.composition_element_container').html(listHtmlCreate(flakeList));        
                 }
-                else{
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="shredded_cheese">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="슈레드치즈">
-                            <h2>슈레드치즈</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="string_cheese">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="스트링치즈">
-                            <h2>스트링치즈</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="american_cheese">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="아메리칸치즈">
-                            <h2>아메리칸치즈</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                else if(menu=='cheese'){
+                    $('.composition_element_container').html(listHtmlCreate(cheeseList));        
                 }
             })
 
@@ -401,6 +111,7 @@
                 var span3Opacity = $(thisEle).find('.stepper span:last-child').css('opacity');
                 var span1pointerEvents = $(thisEle).find('.stepper span:first-child').css('pointerEvents');
                 var span3pointerEvents = $(thisEle).find('.stepper span:last-child').css('pointerEvents');
+                var listid= $(img).attr('data-listid');
 
                 if($(`.basket_element_box[data-value=${val}]`).length){
                     alert("이미 바구니에 추가되어 있습니다. 확인하시길 바랍니다.")
@@ -415,7 +126,7 @@
                 `
                 <div class="basket_element_box" data-value=${val}>
                         <div class="basket_element">
-                            <img src=${imgSrc} width="150" height="150" alt=${nameTag}>
+                            <img src=${imgSrc} width="150" height="150" alt=${nameTag} data-listid=${listid}>
                             <h2>${nameTag}</h2>
                         </div>
                         <div class="basket_stepper" style="opacity:1">
@@ -437,16 +148,83 @@
                 $(thisEle).detach();
             })
 
-            $('.content').on('click','.composition_element_box img',function() {
-                var thisEle = event.target;
-                $('.modal').show();
+            $('.content').on('click','.composition_element_box img',function(e) {
+                var thisEle = $(e.target);
+                    var eleId;
+                    var listId = $(thisEle).attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    $('.modal-header.elementName h2').text(dtoList[eleId].name);
+                    $('.elem_comment').text(dtoList[eleId].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
             })
 
-            $('.content').on('click','.basket_element_box img',function() {
-                var thisEle = event.target;
-                $('.modal').show();
+            $('.content').on('click','.basket_element_box img',function(e) {
+                var thisEle = $(e.target);
+                    var eleId;
+                    var listId = $(thisEle).attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    $('.modal-header.elementName h2').text(dtoList[eleId].name);
+                    $('.elem_comment').text(dtoList[eleId].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
             })
-
             $('.btn-close').click(function(){
                 $('.modal').hide();
                 $('.nutirition_info_modal').hide();
@@ -538,8 +316,8 @@
             })
 
             $('.previous_btn').click(function() {
-                    //history.go(-1);
-                    location.assign("my_own_salad_step2.html")
+                let link = /*[[@{/my_own_series/salad/step2}]]*/
+                location.assign(link)
             })
         }
     </script>
@@ -597,14 +375,14 @@
             
             <div class="step_name_container">
                 <h1 class="step">step3. 토핑 선택</h1>
-                <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                <img  th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
-            <form action="my_own_salad_step4.html" method="post">
+            <form th:action="@{/my_own_series/salad/step4}" method="post">
             <div class="basket">
                 <span>&nbsp;토핑 바구니&nbsp;</span>&nbsp;&nbsp;<span>(최대 4가지, 총량 3)</span>
-                <div class="basket_element_container" style="height: 285px;">
+                <div class="basket_element_container"  style="height: 285px;">
                 </div>
 
                 <div class="nutrition_info_check_btn_container" style="position:relative; height:40px; margin:0px;">
@@ -618,109 +396,22 @@
             </form>
 
             <ul class="topping_menu"> 
-                <li class="active_menu" id="hardy_plants">구황작물</li><!--
-                --><li id="fruit_and_vegetable">과일및채소</li><!--
+                <li class="active_menu" id="oldYellowCrop">구황작물</li><!--
+                --><li id="vegetableAndFruit">과일및채소</li><!--
                 --><li id="nut">견과류</li><!--
                 --><li id="dry">건조</li><!--
-                --><li id="flakes">후레이크</li><!--
+                --><li id="flake">후레이크</li><!--
                 --><li id="cheese">치즈</li>
             </ul>
 
-            <div class="composition_element_list">
             <div class="composition_element_container">
-                <div class="composition_element_box odd" data-value="sweet_potato_mousse">
-                    <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="고구마무스">
-                    <h2>고구마무스</h2>
-                    </div>
-                    <div class="stepper" style="opacity:1">
-                        <span>+</span>
-                        <span>1.0</span>
-                        <span>-</span>
-                    </div>
-                    <div class="add_btn">
-                        <span>담기</span>
-                    </div>
-                </div>
-                <div class="composition_element_box even" data-value="sweet_potato_cube">
-                    <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="고구마큐브">
-                    <h2>고구마큐브</h2>
-                    </div>
-                    <div class="stepper" style="opacity:1">
-                        <span>+</span>
-                        <span>1.0</span>
-                        <span>-</span>
-                    </div>
-                    <div class="add_btn">
-                        <span>담기</span>
-                    </div>
-                </div>
-                <div class="composition_element_box odd" data-value="pumpkin_mousse">
-                    <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="단호박무스">
-                    <h2>단호박무스</h2>
-                    </div>
-                    <div class="stepper" style="opacity:1">
-                        <span>+</span>
-                        <span>1.0</span>
-                        <span>-</span>
-                    </div>
-                    <div class="add_btn">
-                        <span>담기</span>
-                    </div>
-                </div>
             </div>
-            <div class="composition_element_container">
-                <div class="composition_element_box odd" data-value="mashed_potato">
-                    <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="매쉬드포테이토">
-                    <h2>매쉬드포테이토</h2>
-                    </div>
-                    <div class="stepper" style="opacity:1">
-                        <span>+</span>
-                        <span>1.0</span>
-                        <span>-</span>
-                    </div>
-                    <div class="add_btn">
-                        <span>담기</span>
-                    </div>
-                </div>
-                <div class="composition_element_box even" data-value="corn">
-                    <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="옥수수콘">
-                    <h2>옥수수콘</h2>
-                    </div>
-                    <div class="stepper" style="opacity:1">
-                        <span>+</span>
-                        <span>1.0</span>
-                        <span>-</span>
-                    </div>
-                    <div class="add_btn">
-                        <span>담기</span>
-                    </div>
-                </div>
-                <div class="composition_element_box odd" data-value="kidney_bean">
-                    <div class="composition_element">
-                    <img src="https://placehold.co/180x180" alt="강낭콩">
-                    <h2>강낭콩</h2>
-                    </div>
-                    <div class="stepper" style="opacity:1">
-                        <span>+</span>
-                        <span>1.0</span>
-                        <span>-</span>
-                    </div>
-                    <div class="add_btn">
-                        <span>담기</span>
-                    </div>
-                </div>
-            </div>
-            </div>
+
             <div class="btn_container">
                 <div> 
                     <div class="previous_btn">
                         <h1>Previous Step</h1>&nbsp;
-                        <img src="../beonadiet/resources/static/assets/previous_icon.png">
+                        <img th:src="@{/assets/previous_icon.png}">
                     </div>
                 </div>
             </div>
@@ -728,14 +419,14 @@
             <div class="modal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header elementName">
                             <h2 style="margin:5px 0px 5px 20px">허니오트</h2>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
                             <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
                             <br>
-                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span>*15cm 기준</span>
+                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span class="one_serving">*15cm 기준</span>
                             <table>
                                 <tr>
                                     <th>중량</th>
@@ -826,7 +517,7 @@
                                     <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
                                     <div class="setting_btn_container">
                                         <div>
-                                            <img src="../beonadiet/resources/static/assets/next_icon.png">
+                                            <img th:src="@{/assets/next_icon.png}">
                                             <h2>설정</h2>
                                         </div>
                                     </div>
@@ -932,7 +623,7 @@
                             <div class="btn_container" style="magin-bottom:0px">
                                 <div> 
                                     <div class="next_btn">
-                                        <img src="../beonadiet/resources/static/assets/next_icon.png">
+                                        <img th:src="@{/assets/next_icon.png}">
                                         <h1>Next Step</h1>
                                     </div>
                                 </div>

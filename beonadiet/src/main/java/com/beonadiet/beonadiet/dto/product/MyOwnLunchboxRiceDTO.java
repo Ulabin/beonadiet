@@ -17,7 +17,7 @@ public class MyOwnLunchboxRiceDTO {
     private String explanation;
     private String nutrition_info;
     private String one_serving;
-    private MyOwnLunchboxRiceImgDTO imageDTO;
+    private MyOwnElementImgDTO imageDTO;
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 }

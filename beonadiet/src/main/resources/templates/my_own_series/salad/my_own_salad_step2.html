@@ -8,9 +8,51 @@
     <title>나만의샐러드 Step2</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script src="resources/static/js/bootstrap.js"></script>
-    <script>
+    <script th:inline="javascript">
         window.onload=function(){
+            var dtoList = [];
+            var num=0;
+            /*[# th:each="dto : ${list}"]*/
+            dtoList.push({'id':[[${dto.id}]],'category':[[${dto.category}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
+            /*[/]*/
+
+            function listCreate(menu){
+                var list = dtoList.filter(element=>element.category==menu);
+                return list;
+            }
+            
+            var eggList = listCreate('egg');
+            var meatList = listCreate('meat');
+            var hamList = listCreate('ham');
+            var seafoodList = listCreate('seafood');
+            
+            function listHtmlCreate(list) {
+                var html =''; 
+                list.forEach((element,index) => {
+                var className = ((index-1)%3==0)? 'even' : 'odd';
+                html += 
+                        `<input type="radio" name="my_own_salad_salad" value="${element.name}" id="${element.name}">
+                            <div class="composition_element_box ${className}" data-value="${element.name}">
+                                <div class="composition_element">
+                                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.fileName}" data-listid="${element.id}" width="180" height="180" th:alt="${element.name}">
+                                    <h2>${element.name}</h2>
+                                </div>
+                                <div class="stepper" style="opacity:1">
+                                    <span>-</span>
+                                    <span>1.0</span>
+                                    <span>+</span>
+                                </div>
+                                <div class="add_btn">
+                                    <span>담기</span>
+                                </div>
+                            </div>
+                        `;
+                });
+                return html;
+            }
+
+            $('.composition_element_container').html(listHtmlCreate(eggList));
+
             $('.nutrition_info_check_btn').click(function() {
                 var sum=0;
                 $('.basket_element_box').each(function() {
@@ -34,220 +76,19 @@
             $('.protein_menu li').click(function(){
                 $('.protein_menu .active_menu').removeClass('active_menu');
                 $(this).addClass('active_menu');
-
                 var menu = $(this).attr('id');
 
                 if(menu=='egg'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="egg">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="계란">
-                            <h2>계란</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="quail_eggs">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="메추리알">
-                            <h2>메추리알</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `)
+                    $('.composition_element_container').html(listHtmlCreate(eggList));
                 }
                 else if(menu=='meat'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="BBQ_pulled_pork">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="바베큐풀드포크">
-                            <h2>바베큐풀드포크</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even"  data-value="chicken_breast">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="닭가슴살">
-                            <h2>닭가슴살</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="chicken_thigh_meat">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="닭다리살">
-                            <h2>닭다리살</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="smoked_duck">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="훈제오리">
-                            <h2>훈제오리</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="roast_beef">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="로스트비프">
-                            <h2>로스트비프</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                    $('.composition_element_container').html(listHtmlCreate(meatList));
                 }
-                else if(menu=='sausageAndHam'){
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd"  data-value="black_label_ham">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="블랙라벨햄">
-                            <h2>블랙라벨햄</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="chicken_breast_ham">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="치킨브레스트햄">
-                            <h2>치킨브레스트햄</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="chicken_breast_vienna_sausage">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="닭가슴살비엔나소시지">
-                            <h2>닭가슴살비엔나소시지</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                else if(menu=='ham'){
+                    $('.composition_element_container').html(listHtmlCreate(hamList));
                 }
-                else{
-                    $('.composition_element_list').html(
-                    `
-                    <div class="composition_element_container">
-                        <div class="composition_element_box odd" data-value="crammy">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="크래미">
-                            <h2>크래미</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box even" data-value="squid">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="오징어">
-                            <h2>오징어</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                        <div class="composition_element_box odd" data-value="grilled_shrimp">
-                            <div class="composition_element">
-                            <img src="https://placehold.co/180x180" alt="구운새우">
-                            <h2>구운새우</h2>
-                            </div>
-                            <div class="stepper" style="opacity:1">
-                                <span>-</span>
-                                <span>1.0</span>
-                                <span>+</span>
-                            </div>
-                            <div class="add_btn">
-                                <span>담기</span>
-                            </div>
-                        </div>
-                    </div>
-                    `);
+                else if(menu=='seafood'){
+                    $('.composition_element_container').html(listHtmlCreate(seafoodList));        
                 }
             })
 
@@ -262,6 +103,7 @@
                 var span3Opacity = $(thisEle).find('.stepper span:last-child').css('opacity');
                 var span1pointerEvents = $(thisEle).find('.stepper span:first-child').css('pointerEvents');
                 var span3pointerEvents = $(thisEle).find('.stepper span:last-child').css('pointerEvents');
+                var listid= $(img).attr('data-listid');
 
                 if($(`.basket_element_box[data-value=${val}]`).length){
                     alert("이미 바구니에 추가되어 있습니다. 확인하시길 바랍니다.")
@@ -276,7 +118,7 @@
                 `
                 <div class="basket_element_box" data-value=${val}>
                         <div class="basket_element">
-                            <img src=${imgSrc} width="150" height="150" alt=${nameTag}>
+                            <img src=${imgSrc} width="150" height="150" alt=${nameTag} data-listid=${listid}>
                             <h2>${nameTag}</h2>
                         </div>
                         <div class="basket_stepper" style="opacity:1">
@@ -298,16 +140,83 @@
                 $(thisEle).detach();
             })
 
-            $('.content').on('click','.composition_element_box img',function() {
-                var thisEle = event.target;
-                $('.modal').show();
+            $('.content').on('click','.composition_element_box img',function(e) {
+                var thisEle = $(e.target);
+                    var eleId;
+                    var listId = $(thisEle).attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    $('.modal-header.elementName h2').text(dtoList[eleId].name);
+                    $('.elem_comment').text(dtoList[eleId].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
             })
 
-            $('.content').on('click','.basket_element_box img',function() {
-                var thisEle = event.target;
-                $('.modal').show();
+            $('.content').on('click','.basket_element_box img',function(e) {
+                var thisEle = $(e.target);
+                    var eleId;
+                    var listId = $(thisEle).attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    $('.modal-header.elementName h2').text(dtoList[eleId].name);
+                    $('.elem_comment').text(dtoList[eleId].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
             })
-
             $('.btn-close').click(function(){
                 $('.modal').hide();
                 $('.nutirition_info_modal').hide();
@@ -399,8 +308,8 @@
             })
 
             $('.previous_btn').click(function() {
-                    //history.go(-1);
-                    location.assign("my_own_salad_step1.html")
+                let link = /*[[@{/my_own_series/salad/step1}]]*/
+                location.assign(link)
             })
         }
     </script>
@@ -458,71 +367,41 @@
             
             <div class="step_name_container">
                 <h1 class="step">step2. 단백질 선택</h1>
-                <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                <img  th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
-            <form action="my_own_salad_step3.html" method="post">
-                <div class="basket">
-                    <span>&nbsp;단백질 바구니&nbsp;</span>&nbsp;&nbsp;<span>(최대 3가지, 총량 2.5)</span>
-                    <div class="basket_element_container" style="height: 285px;">
-                    </div>
+            <form th:action="@{/my_own_series/salad/step3}" method="post">
+            <div class="basket">
+                <span>&nbsp;단백질 바구니&nbsp;</span>&nbsp;&nbsp;<span>(최대 3가지, 총량 2.5)</span>
+                <div class="basket_element_container"  style="height: 285px;">
+                </div>
 
-                    <div class="nutrition_info_check_btn_container" style="position:relative; height:40px; margin:0px;">
-                        <div style="height:40px;"> 
-                            <div class="nutrition_info_check_btn" style="position:absolute; vertical-align:top; right:0px; background-color:#FFFFFF; width:230px">
-                                <h2>맞춤형 영양정보 확인</h2>
-                            </div>
+                <div class="nutrition_info_check_btn_container" style="position:relative; height:40px; margin:0px;">
+                    <div style="height:40px;"> 
+                        <div class="nutrition_info_check_btn" style="position:absolute; vertical-align:top; right:0px; background-color:#FFFFFF; width:230px">
+                            <h2>맞춤형 영양정보 확인</h2>
                         </div>
                     </div>
                 </div>
+            </div>
             </form>
 
             <ul class="protein_menu"> 
                 <li class="active_menu" id="egg">계란/알류</li><!--
                 --><li id="meat">고기</li><!--
-                --><li id="sausageAndHam">소시지/햄</li><!--
+                --><li id="ham">소시지/햄</li><!--
                 --><li id="seafood">해산물</li>
             </ul>
 
-            <div class="composition_element_list">
-                <div class="composition_element_container">
-                    <div class="composition_element_box odd" data-value="egg">
-                        <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="계란">
-                        <h2>계란</h2>
-                        </div>
-                        <div class="stepper" style="opacity:1">
-                            <span>-</span>
-                            <span>1.0</span>
-                            <span>+</span>
-                        </div>
-                        <div class="add_btn">
-                            <span>담기</span>
-                        </div>
-                    </div>
-                    <div class="composition_element_box even" data-value="quail_eggs">
-                        <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="메추리알">
-                        <h2>메추리알</h2>
-                        </div>
-                        <div class="stepper" style="opacity:1">
-                            <span>-</span>
-                            <span>1.0</span>
-                            <span>+</span>
-                        </div>
-                        <div class="add_btn">
-                            <span>담기</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="composition_element_container">
             </div>
 
             <div class="btn_container">
                 <div> 
                     <div class="previous_btn">
                         <h1>Previous Step</h1>&nbsp;
-                        <img src="../beonadiet/resources/static/assets/previous_icon.png">
+                        <img th:src="@{/assets/previous_icon.png}">
                     </div>
                 </div>
             </div>
@@ -530,14 +409,14 @@
             <div class="modal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header elementName">
                             <h2 style="margin:5px 0px 5px 20px">허니오트</h2>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
                             <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
                             <br>
-                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span>*15cm 기준</span>
+                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span class="one_serving">*15cm 기준</span>
                             <table>
                                 <tr>
                                     <th>중량</th>
@@ -628,7 +507,7 @@
                                     <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
                                     <div class="setting_btn_container">
                                         <div>
-                                            <img src="../beonadiet/resources/static/assets/next_icon.png">
+                                            <img th:src="@{/assets/next_icon.png}">
                                             <h2>설정</h2>
                                         </div>
                                     </div>
@@ -734,7 +613,7 @@
                             <div class="btn_container" style="magin-bottom:0px">
                                 <div> 
                                     <div class="next_btn">
-                                        <img src="../beonadiet/resources/static/assets/next_icon.png">
+                                        <img th:src="@{/assets/next_icon.png}">
                                         <h1>Next Step</h1>
                                     </div>
                                 </div>

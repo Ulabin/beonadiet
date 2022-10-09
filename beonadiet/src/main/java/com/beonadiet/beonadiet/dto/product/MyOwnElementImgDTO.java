@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MyOwnLunchboxRiceImgDTO {
+public class MyOwnElementImgDTO{
     private String uuid;
     private String imgName;
     private String path;

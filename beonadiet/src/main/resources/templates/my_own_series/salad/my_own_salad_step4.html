@@ -8,27 +8,27 @@
     <title>나만의샐러드 Step4</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script>
+    <script th:inline="javascript">
         window.onload=function(){
+            var dtoList = [];
+            var num=0;
+            /*[# th:each="dto : ${list}"]*/
+            dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
+            /*[/]*/
+
             function carbsCheck() {
                 $('input[name=my_own_salad_carbs]').each(function() {
-                    var val=$(this).val();
+                    var eleVal=$(this).val();
                     var checked=$(this).prop('checked');
     
                     if(checked){
-                        $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/checked_icon.png')
+                        $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/checked_icon.png')
                     }
                     else{
-                        $('label[for='+val+'] .check_icon').get()[0].setAttribute('src','../beonadiet/resources/static/assets/unchecked_icon.png')
+                        $('label[for='+eleVal+'] .check_icon').get()[0].setAttribute('src','http://localhost:8081/beonadiet/assets/unchecked_icon.png')
                     }
                 })    
             }
-
-            $(window).bind("pageshow",function(event){
-                if(event.originalEvent.preventDefault){
-                    carbsCheck()
-                }
-            })
             
             $('input[name=my_own_salad_carbs]').change(function(){
                 carbsCheck()
@@ -36,6 +36,9 @@
 
             $('.nutrition_info_check_btn').click(function() {
                 if(!$('.nutrition_info').length){
+                let warning_icon_link = /*[[@{/assets/warning_icon.png}]]*/
+                let next_icon_link = /*[[@{/assets/next_icon.png}]]*/
+
                 $('.nutrition_info_check_btn_container').after(
                     `
                     <style>                    
@@ -77,7 +80,7 @@
 
                     <div class="nutrition_info">
                     <h2>[맞춤형 영양정보]&nbsp;</h2>
-                    <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                    <img src="${warning_icon_link}">
                     <h3>&nbsp;step4 기준</h3>
                     <h3 class="folding_btn">접기▲</h3>
                     </div>
@@ -89,7 +92,7 @@
                             <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
                             <div class="setting_btn_container">
                                 <div>
-                                    <img src="../beonadiet/resources/static/assets/next_icon.png">
+                                    <img src="${next_icon_link}">
                                     <h2>설정</h2>
                                 </div>
                             </div>
@@ -212,12 +215,40 @@
 
             $('.previous_btn').click(function() {
                 //history.go(-1);
-                location.assign("my_own_salad_step3.html")
+                let link = /*[[@{/my_own_series/salad/step3}]]*/
+                location.assign(link);
             })
 
-            $('.composition_element img').click(function() {
-                var thisEle = event.target;
-                $('.modal').show();
+            $('.composition_element img').click(function(e) {
+                var thisEle = $(e.target);
+                    var eleId = $(thisEle).attr('data-listid');
+                    $('.modal-header h2').text(dtoList[eleId-1].name);
+                    $('.elem_comment').text(dtoList[eleId-1].explanation);
+                    $('.one_serving').text('* '+dtoList[eleId-1].one_serving+' 기준');
+                    var nutrition_info = JSON.parse(dtoList[eleId-1].nutrition_info);
+                    $('.modal-body tr:nth-child(2) td:nth-child(1)').text(`${nutrition_info.weight}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(2)').text(`${nutrition_info.kcal}kcal`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(3)').text(`${nutrition_info.carbs}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(4)').text(`${nutrition_info.protein}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(5)').text(`${nutrition_info.fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(6)').text(`${nutrition_info.saturated_fat}g`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(7)').text(`${nutrition_info.cholesterol}mg`);
+                    $('.modal-body tr:nth-child(2) td:nth-child(8)').text(`${nutrition_info.salt}mg`);
+                    var kcalPercent = Number(nutrition_info.kcal)/2000*100;
+                    var carbsPercent = Number(nutrition_info.carbs)/324*100;
+                    var proteinPercent = Number(nutrition_info.protein)/55*100;
+                    var fatPercent = Number(nutrition_info.fat)/54*100;
+                    var saturatedFatPercent = Number(nutrition_info.saturated_fat)/15*100;
+                    var cholesterolPercent = Number(nutrition_info.cholesterol)/300*100;
+                    var saltPercent = Number(nutrition_info.salt)/2000*100;
+                    $('.modal-body tr:nth-child(3) td:nth-child(2)').text(`${kcalPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(3)').text(`${carbsPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(4)').text(`${proteinPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(5)').text(`${fatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(6)').text(`${saturatedFatPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(7)').text(`${cholesterolPercent.toFixed(2)}%`);
+                    $('.modal-body tr:nth-child(3) td:nth-child(8)').text(`${saltPercent.toFixed(2)}%`);
+                    $('.modal').show();
             })
 
             $('.btn-close').click(function(){
@@ -279,7 +310,7 @@
             
             <div class="step_name_container">
                 <h1 class="step">step4. 탄수화물 선택</h1>
-                <img src="../beonadiet/resources/static/assets/warning_icon.png">
+                <img  th:src="@{/assets/warning_icon.png}">
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
@@ -290,73 +321,22 @@
                 </div>
             </div>
             
-            <form action="my_own_salad_step5.html" method="post">
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_salad_carbs" value="tortilla" id="tortilla">
-                <div class="composition_element_box odd" data-value="tortilla">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="또띠아">
-                        <h2>또띠아</h2>
-                    </div>
-                    <label for="tortilla">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
+            <form th:action="@{/my_own_series/salad/step5}" method="post">
+                <div class="composition_element_container">
+                    <th:block th:each="dto, i:${list}">
+                            <input type="radio" name="my_own_salad_carbs" th:value="${dto.name}" th:id="${dto.name}">
+                            <div class="composition_element_box" th:data-value="${dto.name}" th:classappend="(${i.count}-2)%3==0 ? 'even' : 'odd' ">
+                                <div class="composition_element">
+                                    <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${i.count}" width="180" height="180" th:alt="${dto.name}">
+                                    <h2 th:text="${dto.name}"></h2>
+                                </div>
+                                <label th:for="${dto.name}">
+                                    <img th:src="@{/assets/unchecked_icon.png}" class="check_icon">
+                                </label>
+                            </div>
+                    </th:block>
                 </div>
-                <input type="radio" name="my_own_salad_carbs" value="macaroni" id="macaroni">
-                <div class="composition_element_box even" data-value="macaroni">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="마카로니">
-                        <h2>마카로니</h2>
-                    </div>
-                    <label for="macaroni">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-                <input type="radio" name="my_own_salad_carbs" value="baguette" id="baguette">
-                <div class="composition_element_box odd" data-value="baguette">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="바게트">
-                        <h2>바게트</h2>
-                    </div>
-                <label for="baguette">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                </label>
-                </div>
-            </div>
-
-            <div class="composition_element_container">
-                <input type="radio" name="my_own_salad_carbs" value="cracker" id="cracker">
-                <div class="composition_element_box odd" data-value="cracker">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="크래커">
-                        <h2>크래커</h2>
-                    </div>
-                    <label for="cracker">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon" >
-                    </label>
-                </div>
-                <input type="radio" name="my_own_salad_carbs" value="pasta" id="pasta">
-                <div class="composition_element_box even" data-value="pasta">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="파스타면">
-                        <h2>파스타면</h2>
-                    </div>
-                    <label for="pasta">
-                        <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-                <input type="radio" name="my_own_salad_carbs" value="rye_bread" id="rye_bread">
-                <div class="composition_element_box odd" data-value="rye_bread">
-                    <div class="composition_element">
-                        <img src="https://placehold.co/180x180" alt="호밀빵">
-                        <h2>호밀빵</h2>
-                    </div>
-                    <label for="rye_bread">
-                    <img src="../beonadiet/resources/static/assets/unchecked_icon.png" class="check_icon">
-                    </label>
-                </div>
-            </div>
-            </form>
+                </form>
 
             <div class="nutrition_info_check_btn_container">
                 <div> 
@@ -370,10 +350,10 @@
                 <div> 
                     <div class="previous_btn">
                         <h1>Previous Step</h1>&nbsp;
-                        <img src="../beonadiet/resources/static/assets/previous_icon.png">
+                        <img  th:src="@{/assets/previous_icon.png}">
                     </div>
                     <div class="next_btn">
-                        <img src="../beonadiet/resources/static/assets/next_icon.png">
+                        <img th:src="@{/assets/next_icon.png}">
                         <h1>Next Step</h1>
                     </div>
                 </div>
@@ -389,7 +369,7 @@
                         <div class="modal-body" style="padding-left:35px; padding-right:35px; padding-bottom:15px;">
                             <p class="elem_comment" style="margin:0;">고소한 위트빵에 오트밀 가루를 묻혀 고소함과 식감을 두배로 느낄 수 있습니다.</p>
                             <br>
-                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span>*15cm 기준</span>
+                            <h3 style="margin:0; display: inline-block;">[영양정보]</h3>&nbsp;&nbsp;<span class="one_serving">*15cm 기준</span>
                             <table>
                                 <tr>
                                     <th>중량</th>

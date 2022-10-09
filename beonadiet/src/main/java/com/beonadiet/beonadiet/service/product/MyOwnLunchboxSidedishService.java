@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.beonadiet.beonadiet.dto.product.MyOwnElementImgDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishDTO;
-import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSidedishImgDTO;
 import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSidedish;
 import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSidedishImage;
 
@@ -24,7 +24,7 @@ public interface MyOwnLunchboxSidedishService {
                                         .category(sidedish.getCategory())
                                         .regDate(sidedish.getRegDate())
                                         .modDate(sidedish.getModDate())
-                                        .imageDTO(MyOwnLunchboxSidedishImgDTO.builder()
+                                        .imageDTO(MyOwnElementImgDTO.builder()
                                             .imgName(sidedishImg.getImgName())
                                             .path(sidedishImg.getPath())
                                             .uuid(sidedishImg.getUuid()).build())
@@ -45,7 +45,7 @@ public interface MyOwnLunchboxSidedishService {
                                     .build();
         entityMap.put("sidedish", sidedish);
         
-        MyOwnLunchboxSidedishImgDTO imgDTO = dto.getImageDTO();
+        MyOwnElementImgDTO imgDTO = dto.getImageDTO();
         MyOwnLunchboxSidedishImage sidedishImg = MyOwnLunchboxSidedishImage.builder()
                                             .path(imgDTO.getPath())
                                             .imgName(imgDTO.getImgName())

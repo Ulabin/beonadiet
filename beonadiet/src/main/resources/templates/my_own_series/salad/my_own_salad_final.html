@@ -22,13 +22,17 @@
             })
 
             $('.dibs_frame').click(function() {
-                if($('.dibs_frame img').attr('src')=='../beonadiet/resources/static/assets/uncoloring_heart_icon.png'){
-                    $('.dibs_frame img').attr('src','../beonadiet/resources/static/assets/coloring_heart_icon.png')
+                if($('.dibs_frame img').attr('class')=='uncoloring_heart'){
+                    $('.dibs_frame img').removeClass('uncoloring_heart');
+                    $('.dibs_frame img').addClass('coloring_heart');
+                    $('.dibs_frame img').attr('src','http://localhost:8081/beonadiet/assets/coloring_heart_icon.png')
                 }
                 else{
-                    $('.dibs_frame img').attr('src','../beonadiet/resources/static/assets/uncoloring_heart_icon.png')
+                    $('.dibs_frame img').removeClass('coloring_heart');
+                    $('.dibs_frame img').addClass('uncoloring_heart');
+                    $('.dibs_frame img').attr('src','http://localhost:8081/beonadiet/assets/uncoloring_heart_icon.png')
                 }
-            }) 
+            })
         }
     </script>
 </head>
@@ -111,7 +115,7 @@
                     <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
                     <div class="setting_btn_container">
                         <div>
-                            <img src="../beonadiet/resources/static/assets/next_icon.png">
+                            <img th:src="@{/assets/next_icon.png}">
                             <h2>설정</h2>
                         </div>
                     </div>
@@ -260,7 +264,7 @@
                 </div>
                 <div style="display: inline-block;" class="dibs_frame">
                     <div>
-                        <img src="../beonadiet/resources/static/assets/uncoloring_heart_icon.png">
+                        <img th:src="@{/assets/uncoloring_heart_icon.png}" class="uncoloring_heart">
                     </div>
                 </div>
             </div>

@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.beonadiet.beonadiet.dto.product.MyOwnElementImgDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSoupDTO;
-import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSoupImgDTO;
 import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSoup;
 import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSoupImage;
 
@@ -23,7 +23,7 @@ public interface MyOwnLunchboxSoupService {
                                         .sales_count(soup.getSales_count())
                                         .regDate(soup.getRegDate())
                                         .modDate(soup.getModDate())
-                                        .imageDTO(MyOwnLunchboxSoupImgDTO.builder()
+                                        .imageDTO(MyOwnElementImgDTO.builder()
                                             .imgName(soupImg.getImgName())
                                             .path(soupImg.getPath())
                                             .uuid(soupImg.getUuid()).build())
@@ -43,7 +43,7 @@ public interface MyOwnLunchboxSoupService {
                                     .build();
         entityMap.put("soup", soup);
         
-        MyOwnLunchboxSoupImgDTO imgDTO = dto.getImageDTO();
+        MyOwnElementImgDTO imgDTO = dto.getImageDTO();
         MyOwnLunchboxSoupImage soupImg = MyOwnLunchboxSoupImage.builder()
                                             .path(imgDTO.getPath())
                                             .imgName(imgDTO.getImgName())

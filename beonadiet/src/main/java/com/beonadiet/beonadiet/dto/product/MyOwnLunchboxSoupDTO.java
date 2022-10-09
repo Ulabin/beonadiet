@@ -18,7 +18,7 @@ public class MyOwnLunchboxSoupDTO {
     private String nutrition_info;
     private String one_serving;
     private Long sales_count ;
-    private MyOwnLunchboxSoupImgDTO imageDTO;
+    private MyOwnElementImgDTO imageDTO;
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 }

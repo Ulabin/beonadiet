@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.beonadiet.beonadiet.dto.product.MyOwnElementImgDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceDTO;
-import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceImgDTO;
 import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxRice;
 import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxRiceImage;
 
@@ -22,7 +22,7 @@ public interface MyOwnLunchboxRiceService {
                                         .one_serving(rice.getOne_serving())
                                         .regDate(rice.getRegDate())
                                         .modDate(rice.getModDate())
-                                        .imageDTO(MyOwnLunchboxRiceImgDTO.builder()
+                                        .imageDTO(MyOwnElementImgDTO.builder()
                                             .imgName(riceImg.getImgName())
                                             .path(riceImg.getPath())
                                             .uuid(riceImg.getUuid()).build())
@@ -41,7 +41,7 @@ public interface MyOwnLunchboxRiceService {
                                     .build();
         entityMap.put("rice", rice);
         
-        MyOwnLunchboxRiceImgDTO imgDTO = dto.getImageDTO();
+        MyOwnElementImgDTO imgDTO = dto.getImageDTO();
         MyOwnLunchboxRiceImage riceImg = MyOwnLunchboxRiceImage.builder()
                                             .path(imgDTO.getPath())
                                             .imgName(imgDTO.getImgName())
