@@ -39,7 +39,9 @@ public class MyownrecipeController {
   private final MyOwnRecipePostService mpService;
 
   @GetMapping("/mor")
-  public String mor() {
+  public String mor(Model model) {
+    List<MyOwnRecipePost> list = mPostRepository.findAll();
+    model.addAttribute("list", list);
     return "myownrecipe/mor";
   }
 

@@ -26,7 +26,10 @@ public class MypageController {
   }
 
   @GetMapping("/mypost")
-  public String mypost(){
+  public String mypost(Model model){
+    List<MyOwnRecipePost> list = mPostRepository.findAll();
+    model.addAttribute("list", list);
+    log.info(list);
     return "mypage/mypost";
   }
 

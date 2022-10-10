@@ -8,9 +8,20 @@ $('.main-carousel').flickity({
 
 // 인스타그램 태그 생성 반복문
 var insta = document.querySelector('.intagram-item-wrapper');
-for (let i = 2; i < 5; i++) {
-  insta.innerHTML += `<div class="main-page-instagram-item" id="main-page-instainstagram-item${i}"></div>`;
-}
+
+  insta.innerHTML += `
+  <div class="main-page-instagram-item" id="main-page-instainstagram-item">
+  <img src="./images/instaimage2.png" alt="img" class="main-page-insta-image">
+  </div>
+  <div class="main-page-instagram-item" id="main-page-instainstagram-item">
+  <img src="./images/instaimage3.png" alt="img" class="main-page-insta-image">
+  </div>
+  <div class="main-page-instagram-item" id="main-page-instainstagram-item">
+  <img src="./images/instaimage4.png" alt="img" class="main-page-insta-image">
+  </div>
+  `;
+ 
+
 
 $(document).ready(function(){
   let i = 0;
@@ -26,7 +37,7 @@ $(document).ready(function(){
     if(i ==5){
       i = 0;  
     }
-   },1000);
+   },2000);
 
   for(let i = 0; i<5; i++){
     $(".main-page-banner-hover>li").eq(i).mouseenter(function(){

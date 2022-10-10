@@ -52,7 +52,7 @@
 
           <a href="http://www.naver.com">
             <div class="carousel-cell">
-              <img th:src="@{/images/img1.jpg}" alt="" class="carousel-cell-img">
+              <img th:src="@{/images/instatestimage1.png}" alt="" class="carousel-cell-img">
             </div>
             <div class="my-own-recipe-item-rate">
               <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
@@ -67,7 +67,7 @@
           </a>
 
           <a href="http://www.naver.com">
-            <div class="carousel-cell"><img th:src="@{/images/img2.jpg}" alt="" class="carousel-cell-img"></div>
+            <div class="carousel-cell"><img th:src="@{/images/morsaladimage.jpg}" alt="" class="carousel-cell-img"></div>
             <div class="my-own-recipe-item-rate">
               <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
               </iconify-icon>
@@ -81,7 +81,7 @@
           </a>
 
           <a href="">
-            <div class="carousel-cell"><img th:src="@{/images/img3.jpg}" alt="" class="carousel-cell-img"></div>
+            <div class="carousel-cell"><img th:src="@{/images/morlunchboximage.jpg}" alt="" class="carousel-cell-img"></div>
             <div class="my-own-recipe-item-rate">
               <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
               </iconify-icon>
@@ -95,7 +95,7 @@
           </a>
 
           <a href="">
-            <div class="carousel-cell"><img th:src="@{/images/img2.jpg}" alt="" class="carousel-cell-img"></div>
+            <div class="carousel-cell"><img th:src="@{/images/morsandwichimage3.png}" alt="" class="carousel-cell-img"></div>
             <div class="my-own-recipe-item-rate">
               <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
               </iconify-icon>
@@ -109,7 +109,7 @@
           </a>
 
           <a href="">
-            <div class="carousel-cell"><img th:src="@{/images/img5.jpg}" alt="" class="carousel-cell-img"></div>
+            <div class="carousel-cell"><img th:src="@{/images/morsandwichimage2.png}" alt="" class="carousel-cell-img"></div>
             <div class="my-own-recipe-item-rate">
               <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
               </iconify-icon>
@@ -121,19 +121,7 @@
               <div class="my-own-recipe-item-comment-count">19</div>
             </div>
           </a>
-          <a href="">
-            <div class="carousel-cell"><img th:src="@{/images/img6.jpg}" alt="" class="carousel-cell-img"></div>
-            <div class="my-own-recipe-item-rate">
-              <iconify-icon icon="fluent-emoji-flat:star" style="color: #4e4e4e;" width="30" height="30">
-              </iconify-icon>
-              <div class="my-own-recipe-item-rate-count">4</div>
-            </div>
-            <div class="my-own-recipe-item-comment">
-              <iconify-icon icon="mdi:comment-processing" style="color: #4e4e4e;" width="30" height="30">
-              </iconify-icon>
-              <div class="my-own-recipe-item-comment-count">19</div>
-            </div>
-          </a>
+          
         </div>
       </div>
     </div>
@@ -150,6 +138,27 @@
       <div class="my-own-recipe-board-list-container">
         <div class="my-own-recipe-board-list" id="my-own-recipe-board-list">
           <div class="my-own-recipe-board-item-container">
+            <div class="my-own-recipe-board-item"  th:each=" list : ${list}" th:if="${list.category == 0}"
+th:onclick="|location.href='@{/myownrecipe/morproductpage(id=${list.id})}'|">
+<!-- <a th:href="@{/category/edit/{id}(id=${category.idCategory})}">view</a> -->
+  <a href="#">
+    <img src="../images/lunchboxkmj.png" alt="image" class="my-own-recipe-board-item-image">
+    <!-- <img th:if="${morImage.path != null}" th:src="|@{/display2}?fileName=${morImage.getThumbnailURL}|" alt="image" class="my-own-recipe-board-item-image"> -->
+  </a>
+  
+  <div class="my-own-recipe-like">
+    <iconify-icon icon="ant-design:heart-filled" style="color: #0fa958;" width="25" height="25">
+    </iconify-icon>
+    <span class="my-own-recipe-like-count"> 1</span>
+  </div>
+  
+  <div class="my-own-recipe-board-item-name-container">
+    <div class="my-own-recipe-board-item-name" th:text="${list.title}">
+      맛있는 도시락
+    </div>
+  </div>
+
+</div>
             <!-- 나만의 레피시 게시물  -->
           </div>
           <br>

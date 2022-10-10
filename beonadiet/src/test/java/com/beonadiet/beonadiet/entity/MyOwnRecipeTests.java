@@ -40,7 +40,7 @@ public class MyOwnRecipeTests {
       MyOwnRecipe mor = MyOwnRecipe.builder()
                       .name("샐러드" + i)
                       .category(2)
-                      .detail("양상추:1 샐러리:1 계란:1 플레이크:1 렌치소스:1 콩:1 파프리카:1 양배추:1 방울토마토:2")
+                      .detail(" 닭다리살 : 1.5,  계란 : 1,  양상추 : 1,  올리브 : 1,  할라피뇨 : 1,  방울토마토 : 2,  양파 : 1,  루꼴라 : 1,  라디치오 : 1,  케일 : 1,  렌치소스")
                       .calorie((int)(Math.random()*10)*167)
                       .build();
       System.out.println(mRepository.save(mor));

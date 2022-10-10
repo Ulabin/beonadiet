@@ -564,6 +564,14 @@ body {
   border: 2px solid grey;
   display: inline-block;
   margin: 0 15px;
+  overflow: hidden;
+}
+.main-page-instagram-item img{
+  width: 101%;
+  height: 101%;
+  /* border: 2px solid grey;
+  display: inline-block;
+  margin: 0 15px; */
 }
 
 /* FOOTER */
@@ -1108,7 +1116,7 @@ body {
   overflow-y: scroll;
   font-family: 'lg';
   color: #353535;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   border: 0px;
   outline: none;
@@ -2469,7 +2477,7 @@ body {
   margin-left: 80px;
 
   overflow: hidden;
-  border-radius: 70%;
+  border-radius: 50%;
 
 
 }
