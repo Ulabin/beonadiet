@@ -3,13 +3,21 @@ package com.beonadiet.beonadiet.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping
 public class MainpageController {
   
-  @GetMapping({"","/"})
-  public String mainpage(){
-    return "mainpage";
+  // @GetMapping({"","/"})
+  // public String mainpage(){
+  //   return "mainpage";
+  // }
+
+  //수빈 메인페이지 연결
+  @RequestMapping("/main")
+  public String home(ModelAndView mav) {
+    return "mainpage";  
   }
+
 }

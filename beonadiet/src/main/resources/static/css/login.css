@@ -1,0 +1,119 @@
+@font-face {
+  font-family: 'lg-pc';
+  src: url(../font/LG\ PC.ttf);
+}
+
+* { 
+  font-family: "lg-pc";
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'lg-pc';
+  width: 1080px;
+  margin: 0 auto;
+}
+
+#container {
+   width: 100%;
+}
+
+.login-box {
+   margin: 90px auto; 
+   text-align: center;
+}
+
+.title_login {
+  font-size: 26px;
+  color: #353535;
+  margin-bottom: 20px;
+}
+
+form {
+  display: block;
+}
+
+input:focus {
+  border: 1.7px solid #0FA958;
+  outline: none;
+}
+
+.id_box {
+  margin-bottom: 10px;
+}
+
+.id_box, .pw_box {
+  border: 1px solid #dddddd;
+  font-size: 14px;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none; color: black;
+ }
+
+.find_id::after {
+  content: ' |';
+  color: #ccc;
+}
+
+.btn, .id_box, .pw_box { 
+  width: 340px; 
+  height: 54px;
+  border-radius: 3px;
+}
+
+.find_info {
+  padding-left: 180px;
+  margin-top: 10px;
+  margin-bottom: 28px;
+}
+
+button:last-of-type {
+  margin-top: 10px;
+}
+
+.find_id, .find_pw {
+  color: #353535;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.find_info a:hover {
+  color: #0FA958;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn_login {
+  border: 2px solid #C7DFAA;
+  background-color: #C7DFAA;
+  color: #353535;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.btn_join {
+  border: 2px solid #C7DFAA;
+  background-color: #fff;
+  color: #353535;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+img {
+  width: 250px;
+}
+
+.sns_login{
+  font-size: 13.2px;
+  font-weight: 600;
+  color: #353535;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+

@@ -1,0 +1,390 @@
+@font-face {
+  font-family: "lg-pc";
+  src: url(../font/LG\ PC.ttf);
+}
+
+/* * {
+}
+
+body {
+} */
+
+#container {
+  font-family: "lg-pc";
+  /* width: 1080px; */
+  /* font-family: "lg-pc"; */
+  /* margin: 0; */
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.health-info-wrap {
+  width: 750px;
+  /* padding: 30px 20px; */
+  margin: 0 auto;
+  /* margin: 90px auto; */
+  text-align: center;
+  /* border: 1px solid #353535; */
+}
+
+.calorie-info-wrap {
+  margin-bottom: 50px;
+}
+
+.calorie, .nutrient, .allergy {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #353535;
+}
+
+#daily-calorie-intake {
+  width: 95px;
+  height: 35px;
+  font-size: 24px;
+}
+
+.health-info-wrap input[type=text], .health-info-wrap input[type=number] {
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  margin-left: 10px;
+  font-size: 24px;
+}
+
+.health-info-wrap input[type=number] {
+  text-align: center;
+}
+
+.health-info-wrap input:focus {
+  border: 3px solid #0FA958;
+  outline: none;
+}
+
+.txt {
+  font-size: 24px;
+  color: #353535;
+} 
+
+.txt-sub {
+  margin-left: 20px;
+  font-size: 18px;
+  color: #696969;
+}
+
+.btn-save {
+  width: 75px;
+  height: 38px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #353535;
+  border-radius: 10px;
+  border: 1px solid #C7DFAA;
+  background-color: #C7DFAA;
+  margin-left: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+#height {
+  width: 80px;
+  height: 36px;
+}
+
+.space20 {
+  margin-left: 20px;
+}
+
+.space10 {
+  margin-left: 10px;
+}
+
+#activity {
+  width: 57px;
+  height: 36px;
+}
+
+input[type=radio] {
+  width: 20px;
+  height: 20px;
+  margin-left: 7px;
+  accent-color: #0FA958;
+}
+
+.calc {
+  width: 75px;
+  height: 38px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #353535;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
+  margin-left: 10px;
+}
+
+.detail-info {
+  text-decoration: none;
+  color: #353535;
+}
+
+.detail-info:hover {
+  color: #0FA958;
+}
+
+.grey-box {
+  width: 700px;
+  height: 58px;
+  border: 1px solid #b4b4b4;
+  background-color: #e8e8e8;
+  border-radius: 10px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#standard-weight {
+  width: 57px;
+  height: 36px;
+}
+
+#daily-calorie-require {
+  width: 96px;
+  height: 36px;
+}
+
+.nutrient-info-wrap {
+  margin-bottom: 50px;
+}
+
+.carb, .protein, .fat, #body-fat {
+  width: 57px;
+  height: 36px;
+}
+
+.txt-small {
+  font-size: 20px;
+}
+
+.allergy-check-boxes {
+  text-align: left;
+}
+
+.box-tit, .box-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-line {
+  border-left: 1px solid #ccc;
+}
+
+.tit-top {
+  width: 175px;
+  height: 50px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.content-top {
+  width: 175px;
+  height: 250px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.tit-bottom {
+  width: 175px;
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.content-bottom {
+  width: 175px;
+  height: 250px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.radius1 {
+  border-radius: 10px 0 0 0;
+}
+
+.radius2 {
+  border-radius: 0 10px 0 0 ;
+}
+
+.radius3 {
+  border-radius: 0 0 10px 10px;
+}
+
+.checkbox-wrap {
+  padding: 7px 7px;
+}
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  accent-color: #0FA958;
+  margin-right: 10px;
+}
+
+.item-list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-list label {
+  font-size: 22px;
+  color: #353535;
+}
+.content-top, .content-bottom {
+  overflow: auto;
+}
+
+.content-top::-webkit-scrollbar {
+  width: 13px; /*스크롤바의 너비*/
+}
+
+.content-top::-webkit-scrollbar-thumb {
+  background-color: #C7DFAA; /*스크롤바 트랙 색상*/
+}
+
+.content-top::-webkit-scrollbar-track {
+  background-color: #eee; /*스크롤바의 색상*/
+}
+
+.content-bottom::-webkit-scrollbar {
+  width: 13px; /*스크롤바의 너비*/
+}
+
+.content-bottom::-webkit-scrollbar-thumb {
+  background-color: #C7DFAA; /*스크롤바 트랙 색상*/
+}
+
+.content-bottom::-webkit-scrollbar-track {
+  background-color: #eee; /*스크롤바의 색상*/
+}
+
+.item-name {
+  font-size: 23px;
+}
+
+.tit-top, .tit-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-add-item {
+  width: 700px;
+  height: 60px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.add-input-wrap {
+  display: flex;
+  align-items: center;
+}
+
+#add-item-input {
+  width: 300px;
+  height: 30px;
+}
+
+.btn-add {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #C7DFAA;
+  color: #353535;
+  background-color: #C7DFAA;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.selected-item {
+  width: 700px;
+  height: 90px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+}
+
+.result-item-box {
+  width: 570px;
+  height: 100%;
+  overflow: auto;
+}
+
+.btn-setting-wrap {
+  width: 130px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-setting {
+  width: 70px;
+  height: 50px;
+  border: 1px solid #C7DFAA;
+  border-radius: 10px;
+  background-color: #C7DFAA;
+  color: #353535;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.result-item-box {
+  padding: 10px;
+}
+
+.result {
+  font-size: 20px;
+  color: #353535;
+}
+
+.btn-remove {
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

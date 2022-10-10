@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "lg-pc";
+  src: url(../font/LG\ PC.ttf);
+}
+
+* {
+  font-family: "lg-pc";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.input-form-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-form-box {
+  padding: 40px 30px;
+  min-height: 530px;
+  position: static;
+}
+
+.title-wrap {
+  margin-bottom: 30px;
+}
+
+.title-wrap h2 {
+  color: #353535;
+}
+
+.main-wrap p {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #696969;
+}

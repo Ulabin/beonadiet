@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주문결제페이지</title>
+  <link rel="stylesheet" th:href="@{css/order.css}">
+</head>
+<body>
+  <div id="container">
+    <div class="titleBox">
+      <h1 class="title-text">주문 / 결제</h1>
+    </div>
+    <div class="order-wrap">
+      <form>
+        <div class="delivery-wrap order-pay-item">
+          <div class="flex-title-wrap">
+            <div class="titWrap">
+              <h2 class="titSmall">배송정보</h2>
+            </div>
+          </div>
+          <div class="bar-info-list">
+            <ul>
+              <li>
+                <div class="bar-info-title">받는 분</div>
+                <div class="bar-info-cont">
+                  <span class="cont">김곰돌</span>
+                </div>
+              </li>
+              <li>
+                <div class="bar-info-title">
+                  배송지
+                </div>
+                <div class="bar-info-cont">
+                  <span class="cont">
+                    부산광역시 부산진구 중앙대로 668 (A1프라자6층)
+                  </span>
+                </div>
+                <!-- <div>
+                  <button type="button" class="btn-change">
+                    <span>
+                      수정
+                    </span>
+                  </button>
+                </div> -->
+              </li>
+              <li>
+                <div class="bar-info-title">휴대폰번호</div>
+                <div class="bar-info-cont">
+                  <span class="cont">010-1234-5678</span>
+                </div>
+              </li>
+              <li>
+                <div class="bar-info-title">배송요청사항</div>
+                <div class="bar-info-cont">
+                  <span class="cont">
+                    <input type="text" name="requests" id="requests" class="input-request" placeholder="예) 문 앞에 놓아주세요.">
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="order-pay-item">
+          <div class="flex-title-wrap">
+            <div class="titWrap">
+              <h2 class="titSmall">주문상품</h2>
+            </div>
+          </div>
+          <main class="cart-main">
+            <ul class="table-list">
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/790_20220607123105.jpg" alt="주문결제 이미지" class="table-item-img">
+                  </div>
+                  <div class="table-item-title">
+                    홀그레인 로스트비프 바게트 샌드
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="table-item-quantity">
+                    1개
+                  </div>
+                  <div class="item-total-price">
+                    7,500원
+                  </div>
+                </section>
+              </li>
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/495_20211214115950" alt="주문결제 이미지" class="table-item-img">
+                  </div>
+                  <div class="table-item-title">
+                    케이준 치킨 샐러드랩 / [샐랩 쿠키세트] 샐랩+오렌지 블랙티 쿠키+슈가로로
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="table-item-quantity">
+                    1개
+                  </div>
+                  <div class="item-total-price">
+                    10,200원
+                  </div>
+                </section>
+              </li>
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/17_20220530180436.jpg" alt="주문결제 이미지" class="table-item-img">
+                  </div>
+                  <div class="table-item-title">
+                    치킨 타코 샐러드
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="table-item-quantity">
+                    1개
+                  </div>
+                  <div class="item-total-price">
+                    8,900원
+                  </div>
+                </section>
+              </li>
+              <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/9_20220530175655.jpg" alt="주문결제 이미지" class="table-item-img">
+                  </div>
+                  <div class="table-item-title">
+                    닭가슴살 아몬드 샐러드
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="table-item-quantity">
+                    1개
+                  </div>
+                  <div class="item-total-price">
+                    7,900원
+                  </div>
+                </section>
+              </li>
+            </ul>
+          </main>
+          <section class="order-pay-both-wrap">
+            <div class="leftCont">
+              <div class="final-payment order-pay-item">
+                <div class="flex-title-wrap">
+                  <div class="titWrap">
+                    <h2 class="titSmall">적립금 사용</h2>
+                  </div>      
+                </div>
+                <div class="point-wrap bar-info-list">
+                  <ul>
+                    <li>
+                      <div class="bar-info-title">적립금</div>
+                      <div class="bar-info-cont point-input-box">
+                        <div class="cont">
+                          <input type="text" name="point-usage" class="point-input" placeholder="0" value="">
+                          <span class="rightText">원</span>
+                        </div>
+                        <button type="button" class="use-all">모두 사용</button>
+                      </div> 
+                    </li>
+                    <li>
+                      <div class="bar-info-title"></div>
+                      <div>
+                        사용가능 적립금 <strong>0</strong> 원
+                      </div>     
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="payment order-pay-item">
+                <div class="paymentInner">
+                  <div class="flex-title-wrap">
+                    <div class="titWrap">
+                      <h2 class="titSmall">결제수단</h2>
+                    </div>
+                  </div>
+                  <div class="tabWrap roundList">
+                    <div class="tabArea">
+                      <ul>
+                        <li>
+                          <button type="button" class="tab">
+                            <span>신용카드</span>
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" class="tab">
+                            <span>카카오페이</span>
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" class="tab">
+                            <span>휴대폰결제</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>      
+                </div>
+              </div>
+            </div>
+            <div class="rightCont">
+              <div class="fix-top">
+                <div class="right-total-area">
+                  <div class="total-price-wrap">
+                    <div class="priceTitle">
+                      <div class="flex-title-wrap">
+                        <div class="titWrap">
+                          <h2>총 결제금액</h2>
+                        </div>
+                      </div>
+                      <div class="couponWrap">
+                        <dl class="item">
+                          <dt class="tit">
+                            <span>총 상품금액</span>
+                          </dt>
+                          <dd class="price">
+                            <em>0</em>
+                            <span class="won">원</span>
+                          </dd>
+                        </dl>
+                        <dl class="item">
+                          <dt class="tit">
+                            <span>배송비</span>
+                          </dt>
+                          <dd class="price">
+                            <em>0</em>
+                            <span class="won">원</span>
+                          </dd>
+                        </dl>
+                        <dl class="item">
+                          <dt class="tit">
+                            <span>할인금액</span>
+                          </dt>
+                          <dd class="price">
+                            <em>- 0</em>
+                            <span class="won">원</span>
+                          </dd>
+                        </dl>
+                      </div>
+                      <div class="total-price-detail">
+                        <span class="total-count">
+                          총<em> 0 </em>건
+                        </span>
+                        <span class="total-price-num">
+                          <strong>0</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="btn-order-box">
+                    <button type="submit" class="btn-order">
+                      <span>
+                        결제하기
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <p style="clear:both;"></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -19,12 +19,17 @@
     <header class="home-header">
       <div class="main-page-header">
         <div class="main-page-account" style="display: block;" >
-          <a href="#">로그인</a>
-          <a href="#">회원가입</a>
+          <!-- 수빈 로그인 클릭시 로그인 화면 이동 -->
+          <a sec:authorize="!isAuthenticated()" href="login">로그인</a>
+          <!-- 수빈 로그아웃 버튼 추가 -->
+          <a sec:authorize="isAuthenticated()" href="logout">로그아웃</a>
+          <!-- 수빈 회원가입 버튼 수정 -->
+          <a sec:authorize="!isAuthenticated()" href="join">회원가입</a>
           <a href="#">고객센터</a>
         </div>
         <div class="main-page-logo">
-          <a href="#" th:href="@{/}" >
+          <!-- 수빈 로고 클릭시 메인페이지 이동 -->
+          <a href="#" th:href="@{/main}" >
             <iconify-icon icon="noto:avocado" width="50" height="50" class="main-page-logoimg"></iconify-icon>
             <p style="display:inline;  font-family: 'Ghanachocolate';
              font-size: 35px;" class="logofont" > Be on a diet</p>
@@ -66,9 +71,11 @@
         <a href="#" > <img th:src="@{/images/notice.png}" alt="notice" id="noticeimg" class="main-page-notice-img "></a>
         <a href="#"> <img th:src="@{/images/orderdelivery.png}" alt="orderdelivery" id="orderdeliveryimg" class="main-page-order-delivery-img "></a>
         <a href="#"> <img th:src="@{/images/mybucket.png}" alt="mybucket" id="mybucketimg" class="main-page-my-bucket-img"></a>
-        <a href="#" th:href="@{/mypage}"> <img th:src="@{/images/mypage.png}" alt="mypage" id="mypageimg" class="main-page-my-page-img"></a>
+        <!-- 수빈 수정 -->
+        <a th:href="@{/mypage}"> <img th:src="@{/images/mypage.png}" alt="mypage" id="mypageimg" class="main-page-my-page-img"></a>
         <div class="main-page-buttonText">
-          <a href="#" th:href="@{/mypage}">마이페이지</a>
+          <!-- 수빈 수정 -->
+          <a th:href="@{/mypage}" >마이페이지</a>
           <a href="#">장바구니</a>
           <a href="#">주문배송</a>
           <a href="#">알림</a>

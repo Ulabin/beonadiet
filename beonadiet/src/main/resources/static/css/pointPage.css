@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "lg-pc";
+  src: url(../font/LG\ PC.ttf);
+}
+
+/* * {
+}
+
+body {
+} */
+
+#container {
+  font-family: "lg-pc";
+  /* width: 1080px; */
+  /* margin: 0; */
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.point-list-wrap {
+  width: 750px;
+  /* padding: 30px 20px; */
+  margin: 0 auto;
+  /* margin: 90px auto; */
+  text-align: center;
+
+  /* border: 1px solid #353535; */
+}
+
+.titleBox {
+  text-align: left;
+  margin: 0px 0px 16px;
+}
+
+.titleText {
+  font-weight: bold;
+  font-size: 24px;
+  color: #353535;
+}
+
+.titleSub {
+  font-size: 14px;
+  color: #999;
+}
+
+ul, li {
+  list-style: none;
+}
+
+/* 적립금리스트 css */
+
+.current-point-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80px;
+  padding: 0 16px;
+  background-color: #fbfffd;
+  border-top: 1px solid #d5e0db;
+  border-bottom: 0px
+}
+
+.current-point-txt {
+  font-size: 16px;
+  font-weight: 600;
+  color: #353535;
+}
+
+.point {
+  margin-left: 50px;
+  font-size: 20px;
+  color: #0FA958;
+}
+
+.won {
+  font-size: 16px;
+  color: #353535;
+}
+
+
+.point-detail-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 45px;
+  border-top: 1px solid #d5e0db;
+  border-bottom: 1px solid #d5e0db;
+}
+
+.point-detail-title div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #353535;
+  font-weight: 600;
+}
+
+.point-date {
+  width: 150px;
+  height: 45px;
+  border-right: 1px dashed #ccc;
+}
+.point-content {
+  width: 408px;
+  height: 45px;
+  border-right: 1px dashed #ccc;
+}
+.point-price {
+  width: 150px;
+  height: 45px;
+}
+
+.point-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 45px;
+  border-bottom: 1px dashed #d5e0db;
+}
+
+.point-items div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.point-date-box {
+  width: 150px;
+  height: 45px;
+  border-right: 1px dashed #ccc;
+  /* padding: 10px; */
+}
+.point-content-box {
+  width: 408px;
+  height: 45px;
+  border-right: 1px dashed #ccc;
+}
+.point-price-box {
+  width: 150px;
+  height: 45px;
+}
+
+.point-txt {
+  font-size: 16px;
+  color: #353535;
+}
+
+.point-txt strong {
+  color: #0FA958;
+}
+
+.point-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.point-list {
+  width: 100%;
+}
+
+.point-list>li:last-child {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 50px;
+}

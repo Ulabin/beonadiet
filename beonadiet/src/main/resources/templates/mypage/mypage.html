@@ -86,21 +86,24 @@
         <div class="my-page-list">
           <p style="font-size: 30px; text-align:center; margin:10px; font-weight: bold;"> 마이페이지</p>
           <hr>
-          <ul class="my-page-ul">
+          <!-- 수빈 ul태그 list style none 했음 -->
+          <ul class="my-page-ul" style="list-style: none;">
             <p style="font-size:25px; font-weight:bold; margin:15px;">쇼핑</p>
 
-            <li><button>주문목록 / 배송조회</button></li>
-            <li><button>찜 목록</button></li>
-            <li><button>적립금</button></li>
-            <li><button>장바구니</button></li>
+            <!-- 수빈 누르면 해당 페이지 이동 (마이페이지들) -->
+            <li><button type="button" onclick="getMyShoppingList()">주문목록 / 배송조회</button></li>
+            <li><button type="button" onclick="getMyPick()">찜 목록</button></li>
+            <li><button type="button" onclick="getMyPoint()">적립금</button></li>
+            <!-- <li><button type="button" onclick="getMyCart()">장바구니</button></li> -->
           </ul>
 
-          <ul>
+          <!-- 수빈 ul태그 list style none 했음 -->
+          <ul style="list-style: none;">
             <p style="font-size:25px; font-weight:bold; margin:15px;">회원정보</p>
 
-            <li><button>회원정보변경</button></li>
-            <li><button>일일섬취 칼로리/<br>탄단지비율/<br>알러지정보 설정</button></li>
-            <li><button>배송지관리</button></li>
+            <li><button type="button" onclick="getMyInfo()">회원정보변경</button></li>
+            <li><button type="button" onclick="getMyHealth()">일일섭취 칼로리/<br>탄단지비율/<br>알러지정보 설정</button></li>
+            <li><button type="button" onclick="getMyAddress()">배송지관리</button></li>
             <li><button>1:1문의내역</button></li>
             <li><button>나의상품문의</button></li>
             <li><button>나의상품후기</button></li>
@@ -121,11 +124,85 @@
     </div>
   </div>
 <div style="clear:both"></div>
+<input type="hidden" name="user_id" th:value="${#authentication.name}">
 
 
 <script th:src="@{/js/mypage.js} "></script>
 
 <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+<script th:inline="javascript">
+  /* 수빈 회원정보변경 추가 */
+  function getMyInfo() {
+  console.log("클릭")
+  var link = /*[[@{mypage/userinfo(mid=${#authentication.name})}]]*/;
+  
+    /*<![CDATA[*/
+    $.ajax({
+      type: "GET",
+      url: `${link}`
+    })
+    .done(function (result) {
+      $('.my-page-detail').empty();
+      $('.my-page-detail').html(result)
+    })
+    .fail(function (jqXHR) {
+      console.log(jqXHR);
+      console.log("에러");
+    })
+    .always(function () {
+      console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
+    })
+    /*]]*/
+  }
+
+      /* 수빈 칼로리,알러지 추가 */
+  function getMyHealth() {
+    console.log("클릭")
+    var link = /*[[@{mypage/health_info(mid=${#authentication.name})}]]*/;
+      /*<![CDATA[*/
+      $.ajax({
+        type: "GET",
+        url: `${link}`,
+      })
+        .done(function (result) {
+          $('.my-page-detail').empty();
+          $('.my-page-detail').html(result)
+        })
+        .fail(function (jqXHR) {
+          console.log(jqXHR);
+          console.log("에러");
+        })
+        .always(function () {
+          console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
+        })
+      /*]]*/
+    }
+
+    /* 수빈 배송지 추가 */
+  function getMyAddress() {
+    console.log("클릭")
+    var link = /*[[@{mypage/address(mid=${#authentication.name})}]]*/;
+    
+      /*<![CDATA[*/
+      $.ajax({
+        type: "GET",
+        url: `${link}`,
+      })
+        .done(function (result) {
+          $('.my-page-detail').empty();
+          $('.my-page-detail').html(result)
+        })
+        .fail(function (jqXHR) {
+          console.log(jqXHR);
+          console.log("에러");
+        })
+        .always(function () {
+          console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
+        })
+      /*]]*/
+    }
+
+</script>
 </body>
 
 </html>
