@@ -10,6 +10,8 @@
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
     <script th:inline="javascript">
         window.onload=function(){
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
+
             var dtoList = [];
             var num=0;
             /*[# th:each="dto : ${list}"]*/
@@ -66,7 +68,7 @@
                     alert('한 가지 이상은 선택하셔야 합니다.')
                     return;
                 }
-                else if(sum>2.5){
+                else if(sum>3){
                     alert('총량 3까지 설정 가능합니다. 다시 한 번 확인해주시길 바랍니다.')
                     return;
                 }
@@ -124,7 +126,7 @@
                 else{                
                     $('.basket_element_container').append(
                 `
-                <div class="basket_element_box" data-value=${val}>
+                <div class="basket_element_box" data-value=${val} data-listid=${listid}>
                         <div class="basket_element">
                             <img src=${imgSrc} width="150" height="150" alt=${nameTag} data-listid=${listid}>
                             <h2>${nameTag}</h2>
@@ -312,6 +314,34 @@
             })
 
             $('.next_btn').click(function() {
+                var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/)
+                var toppingInfo = new Array();
+
+                $('.basket_element_box').each(function(index) {
+                    var val = $(this).attr('data-value');
+                    var listId = $(this).attr('data-listid');
+                    var amount = Number($('.basket_element_box[data-value='+val+'] .basket_stepper span:nth-child(2)').text()).toFixed(1);
+                    toppingInfo[index] = `${val}(${amount})`;
+
+                    var eleId;
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    jsonData.carbAmount += nutrition_info.carbs*amount;
+                    jsonData.proteinAmount += nutrition_info.protein*amount;
+                    jsonData.fatAmount += nutrition_info.fat*amount;
+                    jsonData.calorie += nutrition_info.kcal*amount;
+                })
+
+                jsonData.topping=toppingInfo;
+                var sendData = JSON.stringify(jsonData);
+                var input = `<input type='hidden' value=${sendData} name='my_own_series'>`
+                $('form').append(input);
                 $('form').submit();
             })
 

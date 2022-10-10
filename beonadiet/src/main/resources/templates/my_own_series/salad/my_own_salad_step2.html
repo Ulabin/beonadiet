@@ -10,6 +10,8 @@
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
     <script th:inline="javascript">
         window.onload=function(){
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
+
             var dtoList = [];
             var num=0;
             /*[# th:each="dto : ${list}"]*/
@@ -116,7 +118,7 @@
                 else{                
                     $('.basket_element_container').append(
                 `
-                <div class="basket_element_box" data-value=${val}>
+                <div class="basket_element_box" data-value=${val} data-listid=${listid}>
                         <div class="basket_element">
                             <img src=${imgSrc} width="150" height="150" alt=${nameTag} data-listid=${listid}>
                             <h2>${nameTag}</h2>
@@ -304,6 +306,34 @@
             })
 
             $('.next_btn').click(function() {
+                var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/)
+                var proteinInfo = new Array();
+
+                $('.basket_element_box').each(function(index) {
+                    var val = $(this).attr('data-value');
+                    var listId = $(this).attr('data-listid');
+                    var amount = Number($('.basket_element_box[data-value='+val+'] .basket_stepper span:nth-child(2)').text()).toFixed(1);
+                    proteinInfo[index] = `${val}(${amount})`;
+
+                    var eleId;
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    jsonData.carbAmount += nutrition_info.carbs*amount;
+                    jsonData.proteinAmount += nutrition_info.protein*amount;
+                    jsonData.fatAmount += nutrition_info.fat*amount;
+                    jsonData.calorie += nutrition_info.kcal*amount;
+                })
+
+                jsonData.protein=proteinInfo;
+                var sendData = JSON.stringify(jsonData);
+                var input = `<input type='hidden' value=${sendData} name='my_own_series'>`
+                $('form').append(input);
                 $('form').submit();
             })
 
@@ -390,7 +420,7 @@
             </div>
             </form>
 
-            <ul class="protein_menu"> 
+            <ul class="protein_menu" style="margin:10px 0px;"> 
                 <li class="active_menu" id="egg">계란/알류</li><!--
                 --><li id="meat">고기</li><!--
                 --><li id="ham">소시지/햄</li><!--

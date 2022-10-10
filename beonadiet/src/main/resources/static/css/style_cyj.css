@@ -670,12 +670,12 @@ select.my_own_series_element {
     margin : 30px 0px 30px;
 }
 
-.view_more_btn_container{
+.view_more_Btn_container{
     text-align: center;
     margin : 10px 0px;
 }
 
-.nutrition_info_check_btn_container *, .view_more_btn_container *{
+.nutrition_info_check_btn_container *, .view_more_Btn_container *{
     display: inline-block;
 }
 
@@ -688,7 +688,7 @@ select.my_own_series_element {
     display: flex; justify-content: center; align-items: center;
 }
 
-.view_more_btn{
+.view_more_Btn{
     display: flex; justify-content: center; align-items: center;
     width: 120px; 
     height: 40px; 
@@ -697,7 +697,7 @@ select.my_own_series_element {
     cursor: pointer;
 }
 
-.nutrition_info_check_btn > h2, .view_more_btn > h2{
+.nutrition_info_check_btn > h2, .view_more_Btn > h2{
     display: inline-block;
     vertical-align: top;
 }
@@ -1034,7 +1034,7 @@ select.my_own_series_element {
     margin: 20px 0px 0px 20px;
     vertical-align: top;
     font-weight: 900;
-    font-size:22px;
+    font-size:17px;
 }
 
 .condition_specification_box > span{
@@ -1199,13 +1199,13 @@ select.my_own_series_element {
     column-gap:10px;
 }
 
-.search_view_more_btn_container{
+.search_view_more_Btn_container{
     width: 928px;
     margin: 10px auto 0px auto;
     text-align: right;
 }
 
-.search_view_more_btn_container span{
+.search_view_more_Btn_container span{
     font-weight: 900;
     cursor: pointer;
     font-size: 20px;

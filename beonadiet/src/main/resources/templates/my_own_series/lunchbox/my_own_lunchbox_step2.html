@@ -10,11 +10,59 @@
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
     <script th:inline="javascript">
         window.onload=function(){
-                var dtoList = [];
+            var dtoList = [];
 
-                /*[# th:each="dto : ${list}"]*/
-                dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
-                /*[/]*/
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
+
+            var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/);
+            var circleElement = `<div class="next_step_circle">
+                                <div>
+                                    <h1>step<br>1</h1>
+                                </div>
+                                </div>
+                                <div class="step_connection">
+                                    <div>
+                                        <h1>···</h1> 
+                                    </div>
+                                </div>
+                                <div class="step_circle">
+                                    <div>
+                                        <h1>step<br>2</h1>
+                                    </div>
+                                </div>
+                                <div class="step_connection">
+                                    <div>
+                                        <h1>···</h1> 
+                                    </div>
+                                </div>
+                                <div class="next_step_circle">
+                                    <div>
+                                        <h1>step<br>3</h1>
+                                    </div>
+                                </div>
+                                `
+                                ;
+
+            if(jsonData.composition != 'only_sidedish'){
+                circleElement+=`
+                <div class="step_connection">
+                    <div>
+                        <h1>···</h1> 
+                    </div>
+                </div>
+                <div class="next_step_circle">
+                    <div>
+                        <h1>step<br>4</h1>
+                    </div>
+                </div>
+                `;
+            }
+
+            $(`.step_container`).append(circleElement);
+
+            /*[# th:each="dto : ${list}"]*/
+            dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]]});
+            /*[/]*/
 
             function riceCheck() {
                     $('input[name=my_own_lunchbox_rice]').each(function() {
@@ -276,6 +324,20 @@
 
                 $('.next_btn').click(function() {
                     if(checkSelectRice()){
+                        jsonData.rice = $('input[name=my_own_lunchbox_rice]:checked').val();
+                        var listid = $('input[name=my_own_lunchbox_rice]:checked').attr('data-listid');
+                        jsonData.riceAmount=Number($(`.composition_element_box[data-value=${jsonData.rice}] .stepper span:nth-child(2)`).text()).toFixed(1);
+                        
+
+                        var nutrition_info = JSON.parse(dtoList[listid-1].nutrition_info);
+                        jsonData.carbAmount = nutrition_info.carbs*jsonData.riceAmount;
+                        jsonData.proteinAmount = nutrition_info.protein*jsonData.riceAmount;
+                        jsonData.fatAmount = nutrition_info.fat*jsonData.riceAmount;
+                        jsonData.calorie = nutrition_info.kcal*jsonData.riceAmount;
+
+                        var sendData = JSON.stringify(jsonData);
+                        var input = `<input type='hidden' value=${sendData} name='my_own_series'>`
+                        $('form').append(input);
                         $('form').submit();
                     }
                 })
@@ -333,41 +395,6 @@
 
         <div class="content">
             <div class="step_container">
-                <div class="next_step_circle">
-                    <div>
-                        <h1>step<br>1</h1>
-                    </div>
-                </div>
-                <div class="step_connection">
-                    <div>
-                        <h1>···</h1> 
-                    </div>
-                </div>
-                <div class="step_circle">
-                    <div>
-                        <h1>step<br>2</h1>
-                    </div>
-                </div>
-                <div class="step_connection">
-                    <div>
-                        <h1>···</h1> 
-                    </div>
-                </div>
-                <div class="next_step_circle">
-                    <div>
-                        <h1>step<br>3</h1>
-                    </div>
-                </div>
-                <div class="step_connection">
-                    <div>
-                        <h1>···</h1> 
-                    </div>
-                </div>
-                <div class="next_step_circle">
-                    <div>
-                        <h1>step<br>4</h1>
-                    </div>
-                </div>
             </div>
             
             <div class="step_name_container">
@@ -386,10 +413,10 @@
             <form th:action="@{/my_own_series/lunchbox/step3}" method="post">
             <div class="composition_element_container">
                 <th:block th:each="dto, i:${list}">
-                        <input type="radio" name="my_own_lunchbox_rice" th:value="${dto.name}" th:id="${dto.name}">
+                        <input type="radio" name="my_own_lunchbox_rice" th:value="${dto.name}" th:id="${dto.name}" th:data-listid="${i.count}">
                         <div class="composition_element_box" th:data-value="${dto.name}" th:classappend="(${i.count}-2)%3==0 ? 'even' : 'odd' ">
                             <div class="composition_element">
-                                <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${dto.id}" width="180" height="180" th:alt="${dto.name}">
+                                <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${i.count}" width="180" height="180" th:alt="${dto.name}">
                                 <h2 th:text="${dto.name}"></h2>
                             </div>
                             <label th:for="${dto.name}">

@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.beonadiet.beonadiet.dto.product.MyOwnSandwichBreadDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnSandwichCheeseDTO;
@@ -43,83 +46,89 @@ public class MyOwnSandwichController {
         return "my_own_series/sandwich/my_own_sandwich_step1";
     }
 
-    @GetMapping("/sandwich/step2")
-    public String MyOwnSandwichStep2Get(Model model){
-        List<MyOwnSandwichVegetableDTO> dtolist= vegetableService.findAllVegetable();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/sandwich/my_own_sandwich_step2";
-    }
+    // @GetMapping("/sandwich/step2")
+    // public String MyOwnSandwichStep2Get(Model model){
+    //     List<MyOwnSandwichVegetableDTO> dtolist= vegetableService.findAllVegetable();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/sandwich/my_own_sandwich_step2";
+    // }
 
     @PostMapping("/sandwich/step2")
-    public String MyOwnSandwichStep2Post(Model model){
+    public String MyOwnSandwichStep2Post(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnSandwichVegetableDTO> dtolist= vegetableService.findAllVegetable();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
         return "my_own_series/sandwich/my_own_sandwich_step2";
     }
 
-    @GetMapping("/sandwich/step3")
-    public String MyOwnSandwichStep3Get(Model model){
-        List<MyOwnSandwichCheeseDTO> dtolist= cheeseService.findAllCheese();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/sandwich/my_own_sandwich_step3";
-    }
+    // @GetMapping("/sandwich/step3")
+    // public String MyOwnSandwichStep3Get(Model model){
+    //     List<MyOwnSandwichCheeseDTO> dtolist= cheeseService.findAllCheese();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/sandwich/my_own_sandwich_step3";
+    // }
 
     @PostMapping("/sandwich/step3")
-    public String MyOwnSandwichStep3Post(Model model){
+    public String MyOwnSandwichStep3Post(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnSandwichCheeseDTO> dtolist= cheeseService.findAllCheese();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
         return "my_own_series/sandwich/my_own_sandwich_step3";
     }
 
-    @GetMapping("/sandwich/step4")
-    public String MyOwnSandwichStep4Get(Model model){
-        List<MyOwnSandwichMeatDTO> dtolist= meatService.findAllMeat();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/sandwich/my_own_sandwich_step4";
-    }
+    // @GetMapping("/sandwich/step4")
+    // public String MyOwnSandwichStep4Get(Model model){
+    //     List<MyOwnSandwichMeatDTO> dtolist= meatService.findAllMeat();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/sandwich/my_own_sandwich_step4";
+    // }
 
     @PostMapping("/sandwich/step4")
-    public String MyOwnSandwichStep4Post(Model model){
+    public String MyOwnSandwichStep4Post(Model model,@RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnSandwichMeatDTO> dtolist= meatService.findAllMeat();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
         return "my_own_series/sandwich/my_own_sandwich_step4";
     }
 
-    @GetMapping("/sandwich/step5")
-    public String MyOwnSandwichStep5Get(Model model){
-        List<MyOwnSandwichSauceDTO> dtolist= sauceService.findAllSauce();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/sandwich/my_own_sandwich_step5";
-    }
+    // @GetMapping("/sandwich/step5")
+    // public String MyOwnSandwichStep5Get(Model model){
+    //     List<MyOwnSandwichSauceDTO> dtolist= sauceService.findAllSauce();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/sandwich/my_own_sandwich_step5";
+    // }
 
     @PostMapping("/sandwich/step5")
-    public String MyOwnSandwichStep5Post(Model model){
+    public String MyOwnSandwichStep5Post(Model model,@RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnSandwichSauceDTO> dtolist= sauceService.findAllSauce();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
         return "my_own_series/sandwich/my_own_sandwich_step5";
     }
 
-    @GetMapping("/sandwich/step6")
-    public String MyOwnSandwichStep6Get(Model model){
-        List<MyOwnSandwichToppingDTO> dtolist= toppingService.findAllTopping();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/sandwich/my_own_sandwich_step6";
-    }
+    // @GetMapping("/sandwich/step6")
+    // public String MyOwnSandwichStep6Get(Model model){
+    //     List<MyOwnSandwichToppingDTO> dtolist= toppingService.findAllTopping();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/sandwich/my_own_sandwich_step6";
+    // }
 
     @PostMapping("/sandwich/step6")
-    public String MyOwnSandwichStep6Post(Model model){
+    public String MyOwnSandwichStep6Post(Model model,@RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnSandwichToppingDTO> dtolist= toppingService.findAllTopping();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
         return "my_own_series/sandwich/my_own_sandwich_step6";
     }
 
-    @GetMapping("/sandwich/final")
-    public String MyOwnSandwichFinalGet(Model model){
-        return "my_own_series/sandwich/my_own_sandwich_final";
-    }
+    // @GetMapping("/sandwich/final")
+    // public String MyOwnSandwichFinalGet(Model model){
+    //     return "my_own_series/sandwich/my_own_sandwich_final";
+    // }
 
     @PostMapping("/sandwich/final")
-    public String MyOwnSandwichFinalPost(Model model){
+    public String MyOwnSandwichFinalPost(Model model,@RequestParam("my_own_series") String myOwnSeriesInfo){
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
         return "my_own_series/sandwich/my_own_sandwich_final";
     }
 }

@@ -20,7 +20,7 @@ public interface MyOwnLunchboxSnackService {
                                         .explanation(snack.getExplanation())
                                         .nutrition_info(snack.getNutrition_info())
                                         .one_serving(snack.getOne_serving())
-                                        .sales_count(snack.getSales_count())
+                                        .sales_count(snack.getSalescount())
                                         .regDate(snack.getRegDate())
                                         .modDate(snack.getModDate())
                                         .imageDTO(MyOwnElementImgDTO.builder()
@@ -39,7 +39,7 @@ public interface MyOwnLunchboxSnackService {
                                     .explanation(dto.getExplanation())
                                     .nutrition_info(dto.getNutrition_info())
                                     .one_serving(dto.getOne_serving())
-                                    .sales_count(dto.getSales_count())
+                                    .salescount(dto.getSales_count())
                                     .build();
         entityMap.put("snack", snack);
         

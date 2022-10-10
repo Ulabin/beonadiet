@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxMinisaladDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxRiceDTO;
@@ -39,82 +40,93 @@ public class MyOwnLunchboxController {
     } 
  
     @PostMapping("/lunchbox/step2")
-    public String MyOwnLunchboxStep2Post(Model model){
+    public String MyOwnLunchboxStep2Post(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnLunchboxRiceDTO> dtolist= service.findAllRice();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
+
         return "my_own_series/lunchbox/my_own_lunchbox_step2";
     }
 
-    @GetMapping("/lunchbox/step2")
-    public String MyOwnLunchboxStep2Get(Model model){
-        List<MyOwnLunchboxRiceDTO> dtolist= service.findAllRice();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/lunchbox/my_own_lunchbox_step2";
-    }
+    // @GetMapping("/lunchbox/step2")
+    // public String MyOwnLunchboxStep2Get(Model model){
+    //     List<MyOwnLunchboxRiceDTO> dtolist= service.findAllRice();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/lunchbox/my_own_lunchbox_step2";
+    // }
 
     @PostMapping("/lunchbox/step3")
-    public String myOwnLunchboxStep3Post(Model model){
+    public String myOwnLunchboxStep3Post(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnLunchboxSidedishDTO> dtolist= sidedishService.findAllSidedish();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
+
         return "my_own_series/lunchbox/my_own_lunchbox_step3";
     }
 
-    @GetMapping("/lunchbox/step3")
-    public String MyOwnLunchboxStep3Get(Model model){
-        List<MyOwnLunchboxSidedishDTO> dtolist= sidedishService.findAllSidedish();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/lunchbox/my_own_lunchbox_step3";
-    }
+    // @GetMapping("/lunchbox/step3")
+    // public String MyOwnLunchboxStep3Get(Model model){
+    //     List<MyOwnLunchboxSidedishDTO> dtolist= sidedishService.findAllSidedish();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/lunchbox/my_own_lunchbox_step3";
+    // }
 
     @PostMapping("/lunchbox/step4/soup")
-    public String myOwnLunchboxStep4SoupPost(Model model){
+    public String myOwnLunchboxStep4SoupPost(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnLunchboxSoupDTO> dtolist= soupService.findAllSoup();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
+
         return "my_own_series/lunchbox/my_own_lunchbox_step4/soup";
     }
 
-    @GetMapping("/lunchbox/step4/soup")
-    public String MyOwnLunchboxStep4SoupGet(Model model){
-        List<MyOwnLunchboxSoupDTO> dtolist= soupService.findAllSoup();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/lunchbox/my_own_lunchbox_step4/soup";
-    }
+    // @GetMapping("/lunchbox/step4/soup")
+    // public String MyOwnLunchboxStep4SoupGet(Model model){
+    //     List<MyOwnLunchboxSoupDTO> dtolist= soupService.findAllSoup();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/lunchbox/my_own_lunchbox_step4/soup";
+    // }
 
-    @GetMapping("/lunchbox/step4/minisalad")
-    public String MyOwnLunchboxStep4MinisaladGet(Model model){
-        List<MyOwnLunchboxMinisaladDTO> dtolist= minisaladService.findAllMinisalad();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/lunchbox/my_own_lunchbox_step4/minisalad";
-    }
+    // @GetMapping("/lunchbox/step4/minisalad")
+    // public String MyOwnLunchboxStep4MinisaladGet(Model model){
+    //     List<MyOwnLunchboxMinisaladDTO> dtolist= minisaladService.findAllMinisalad();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/lunchbox/my_own_lunchbox_step4/minisalad";
+    // }
 
     @PostMapping("/lunchbox/step4/minisalad")
-    public String MyOwnLunchboxStep4MinisaladPost(Model model){
+    public String MyOwnLunchboxStep4MinisaladPost(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnLunchboxMinisaladDTO> dtolist= minisaladService.findAllMinisalad();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
+
         return "my_own_series/lunchbox/my_own_lunchbox_step4/minisalad";
     }
 
-    @GetMapping("/lunchbox/step4/snack")
-    public String MyOwnLunchboxStep4SnackdGet(Model model){
-        List<MyOwnLunchboxSnackDTO> dtolist= snackService.findAllSnack();
-        model.addAttribute("list", dtolist);
-        return "my_own_series/lunchbox/my_own_lunchbox_step4/snack";
-    }
+    // @GetMapping("/lunchbox/step4/snack")
+    // public String MyOwnLunchboxStep4SnackdGet(Model model){
+    //     List<MyOwnLunchboxSnackDTO> dtolist= snackService.findAllSnack();
+    //     model.addAttribute("list", dtolist);
+    //     return "my_own_series/lunchbox/my_own_lunchbox_step4/snack";
+    // }
 
     @PostMapping("/lunchbox/step4/snack")
-    public String MyOwnLunchboxStep4SnackPost(Model model){
+    public String MyOwnLunchboxStep4SnackPost(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
         List<MyOwnLunchboxSnackDTO> dtolist= snackService.findAllSnack();
         model.addAttribute("list", dtolist);
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
+
         return "my_own_series/lunchbox/my_own_lunchbox_step4/snack";
     }
 
     @PostMapping("/lunchbox/final")
-    public String myOwnLunchboxFinalPost(Model model){
+    public String myOwnLunchboxFinalPost(Model model, @RequestParam("my_own_series") String myOwnSeriesInfo){
+        model.addAttribute("myOwnSeriesInfo", myOwnSeriesInfo);
         return "my_own_series/lunchbox/my_own_lunchbox_final";
     }
 
-    @GetMapping("/lunchbox/final")
-    public String MyOwnLunchboxFinalGet(Model model){
-        return "my_own_series/lunchbox/my_own_lunchbox_final";
-    }
+    // @GetMapping("/lunchbox/final")
+    // public String MyOwnLunchboxFinalGet(Model model){
+    //     return "my_own_series/lunchbox/my_own_lunchbox_final";
+    // }
 }

@@ -13,6 +13,8 @@
             // $(window).bind("pageshow",function(event){
             //     MeatCheck();
             // });
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
+
             var dtoList = [];
             var num=0;
             /*[# th:each="dto : ${list}"]*/
@@ -294,7 +296,30 @@
 
                 $('.next_btn').click(function() {
                     if(checkMeatCountAndAmount()){
-                        $('form').submit();
+                        var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/);
+                        var meatInfo = new Array();
+                        var length = jsonData.breadLength;
+                        var amount2 = length=='15cm'?1:2;
+
+                    $('input[name=my_own_sandwich_meat]:checked').each(function(index) {
+                        var listid = $(this).attr('data-listid');
+                        var val = $(this).val();
+                        var amount = Number($('.composition_element_box[data-value='+val+'] .stepper span:nth-child(2)').text()).toFixed(1);
+                        meatInfo[index] = `${val}(${amount})`;
+
+                        var nutrition_info = JSON.parse(dtoList[listid-1].nutrition_info);
+                        jsonData.carbAmount += nutrition_info.carbs*amount*amount2;
+                        jsonData.proteinAmount += nutrition_info.protein*amount*amount2;
+                        jsonData.fatAmount += nutrition_info.fat*amount*amount2;
+                        jsonData.calorie += nutrition_info.kcal*amount*amount2;
+                    })
+
+                    jsonData.meat = meatInfo;
+                    
+                    var sendData = JSON.stringify(jsonData);
+                    var input = `<input type='hidden' value=${sendData} name='my_own_series'>`
+                    $('form').append(input);
+                    $('form').submit();
                     }
                 })
 
@@ -420,7 +445,7 @@
                 </div>
                 <div class="composition_element_container">
                     <th:block th:each="dto, i:${list}">
-                            <input type="checkbox" name="my_own_sandwich_meat" th:value="${dto.name}" th:id="${dto.name}">
+                            <input type="checkbox" name="my_own_sandwich_meat" th:value="${dto.name}" th:id="${dto.name}" th:data-listid="${i.count}">
                             <div class="composition_element_box" th:data-value="${dto.name}" th:classappend="(${i.count}-2)%3==0 ? 'even' : 'odd' ">
                                 <div class="composition_element">
                                     <img th:src="|/beonadiet/display?fileName=${dto.imageDTO.getImageURL()}|" th:data-listid="${i.count}" width="180" height="180" th:alt="${dto.name}">

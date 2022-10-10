@@ -8,8 +8,26 @@
     <title>나만의샐러드 final</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script>
-        window.onload=function(){
+    <script th:inline="javascript">
+        window.onload=function(){            
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
+            var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/);
+            function createUnrollElement(arr){
+                var unrolledElement = ``;
+                $(arr).each(function(index,element) {
+                    if(arr.length!=index+1) unrolledElement += element+' / ';
+                    else unrolledElement += element;
+                })
+                return unrolledElement;
+            }
+
+            $('.my_own_salad_vegetable').append(createUnrollElement(jsonData.vegetable));
+            $('.my_own_salad_topping').append(createUnrollElement(jsonData.topping));
+            $('.my_own_salad_protein').append(createUnrollElement(jsonData.protein));
+            $('.my_own_salad_sauce').append(`${jsonData.sauce} ${jsonData.sauceAmount}`);
+            if(jsonData.carbs=='skip') $('.my_own_salad_carbs').append('생략');
+            else $('.my_own_salad_carbs').append(jsonData.carbs);
+
             $('.content').on('click','.folding_btn',function() {
                             if($('.nutrition_info_container').is(":visible")){
                                 $('.nutrition_info_container').slideUp("slow");
@@ -61,7 +79,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[채소] 양상추 2 / 청상추 1.5 / 치커리 0.5 / 라디치오 0.5 / 적근대 0.5</span>
+                        <span class="my_own_salad_vegetable">[채소] </span>
                     </div>
                 </div>
                 <div>
@@ -71,7 +89,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[단백질] 닭가슴살 1.5 / 메추리알 0.5 / 블랙라벨햄 0.5</span>
+                        <span class="my_own_salad_protein">[단백질] </span>
                     </div>
                 </div>
                 <div>
@@ -81,7 +99,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[토핑] 방울토마토 1.5 / 올리브 0.5 / 강낭콩 0.5 / 아몬드슬라이스 0.5</span>
+                        <span class="my_own_salad_topping">[토핑] </span>
                     </div>
                 </div>
                 <div>
@@ -91,7 +109,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[탄수화물] 마카로니</span>
+                        <span class="my_own_salad_carbs">[탄수화물] </span>
                     </div>
                 </div>
                 <div>
@@ -101,7 +119,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[소스] 랜치 1.0배</span>
+                        <span class="my_own_salad_sauce">[소스] </span>
                     </div>
                 </div>
             </div>

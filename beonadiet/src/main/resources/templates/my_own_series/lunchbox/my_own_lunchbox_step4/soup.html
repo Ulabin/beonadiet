@@ -9,40 +9,19 @@
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
     <script th:inline="javascript">
- 
         window.onload=function(){
-            var dtoList = [];
-            var num=0;
-            /*[# th:each="dto : ${list}"]*/
-            dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]], 'sales_count':[[${dto.sales_count}]]});
-            /*[/]*/
-
-            var popularitySortList = [...dtoList];
-            var characterSortList = [...dtoList];
-
-            characterSortList.sort(function(a,b) {
-                return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-            }) //이름오름차순
-
-            popularitySortList.sort(function(a, b) { 
-                return b["sales_count"] - a["sales_count"];
-            }); //인기순내림차순
-
-
-            var start = 0;
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
 
             function listHtmlCreate(list) {
-                var endIndex=start+9;
-                if(start+9 >= list.length)
-                    endIndex = list.length;
+                var endIndex= list.length;
                 var html='';
-                for (let index = start; index < endIndex; index++){
+                for (let index = 0; index < endIndex; index++){
                     var className = ((index-1)%3==0) ? 'even' : 'odd';
                     html += 
-                        `<input type="radio" name="my_own_lunchbox_soup" value="${list[index].name}" id="${list[index].name}">
+                        `<input type="radio" name="my_own_lunchbox_soup" value="${list[index].name}" id="${list[index].name}" data-listid="${list[index].id}">
                             <div class="composition_element_box ${className}" data-value="${list[index].name}">
                                 <div class="composition_element">
-                                    <img src="http://localhost:8081/beonadiet/display?fileName=${list[index].fileName}" data-listid="${list[index].id}" width="180" height="180" th:alt="${list[index].name}">
+                                    <img src="http://localhost:8081/beonadiet/display?fileName=${list[index].fileName}" data-listid="${list[index].id}" width="180" height="180" alt="${list[index].name}">
                                     <h2>${list[index].name}</h2>
                                 </div>
                                 <label for="${list[index].name}">
@@ -51,47 +30,48 @@
                             </div>
                     `;
                 }
-
-                start+=9;
-
-                if(start>=list.length){
-                    start=list.length
-                    $('.view_more_btn_container').hide();
-                }
-
                 $('.composition_element_container').append(html);
             }
 
-            listHtmlCreate(popularitySortList)
+            var dtoList=[];
+            var popularitySortList;
+            var characterSortList;
+
+            function DataSet(){
+                return new Promise(function(resolve) {
+                    /*[# th:each="dto : ${list}"]*/
+                    dtoList.push({'id':[[${dto.id}]], 'name':[[${dto.name}]], 'fileName':[[${dto.imageDTO.getImageURL()}]],'explanation':[[${dto.explanation}]], 'nutrition_info':[[${dto.nutrition_info}]],'one_serving':[[${dto.one_serving}]], 'sales_count':[[${dto.sales_count}]]});
+                    /*[/]*/
+                    resolve();
+                })
+            }
+
+            DataSet().then(function(){
+                popularitySortList = [...dtoList];  
+                characterSortList = [...dtoList];  
+            }).then(function() {
+                popularitySortList.sort(function(a, b) { 
+                    return b["sales_count"] - a["sales_count"];
+            }); //인기순내림차순
+
+                characterSortList.sort(function(a,b) {
+                    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+                }) //이름오름차순
+            }).then(function() {
+                listHtmlCreate(popularitySortList)
+            })
 
             $('#sort_select').on('change',function() {
                 var sortOrder = $("option:selected",this).attr("value");
                 if(sortOrder=='popularity'){
                     $('.composition_element_container').html(``);
-                    start=0;
                     listHtmlCreate(popularitySortList);
-                    $('.view_more_btn_container').show();
                 }
                 else{
                     $('.composition_element_container').html(``);
-                    start=0;
                     listHtmlCreate(characterSortList);
-                    $('.view_more_btn_container').show();
                 }
             })
-
-
-           $('.view_more_btn').click(function() {
-                var sortOrder = $("option:selected").attr("value");
-                if(start!=dtoList.length){
-                if(sortOrder=='popularity'){
-                    listHtmlCreate(popularitySortList);
-                }
-                else{
-                    listHtmlCreate(characterSortList);
-                }
-            }
-           })
 
            function checkSelectSoup(){
                 if(!$('input[name=my_own_lunchbox_soup]:checked').length){
@@ -296,12 +276,6 @@
                     }
                 )
 
-           $('.next_btn').click(function() {
-                    if(checkSelectSoup()){
-                        $('form').submit();
-                    }
-            })
-
             $('.previous_btn').click(function() {
                 let link = /*[[@{/my_own_series/lunchbox/step3}]]*/
                 location.assign(link)
@@ -318,8 +292,32 @@
                     }
             })
 
+            $('.next_btn').click(function() {
+                if(checkSelectSoup()){
+                    var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/);
+                    var eleId;
+                    var listId = $('input[name=my_own_lunchbox_soup]:checked').attr('data-listid');
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    jsonData.carbAmount += nutrition_info.carbs;
+                    jsonData.proteinAmount += nutrition_info.protein;
+                    jsonData.fatAmount += nutrition_info.fat;
+                    jsonData.calorie += nutrition_info.kcal;
+                    jsonData.soup=$('input[name=my_own_lunchbox_soup]:checked').val();
+                    var sendData = JSON.stringify(jsonData);
+                    var input = `<input type='hidden' value=${sendData} name='my_own_series'>`
+                    $('form').append(input);
+                    $('form').submit();
+                }
+            })
+
             $('.content').on('click','.composition_element img',function(e) {
-                var thisEle = $(e.target);
+                    var thisEle = $(e.target);
                     var eleId;
                     var listId = $(thisEle).attr('data-listid');
                     dtoList.find(function(element,index) {
@@ -426,14 +424,6 @@
             <form th:action="@{/my_own_series/lunchbox/final}"method="post">
             <div class="composition_element_container">
             </div>
-
-            <div class="view_more_btn_container">
-                <div> 
-                    <div class="view_more_btn">
-                        <h2>더보기</h2>
-                    </div>
-                </div>
-            </div> 
             </form>
 
 

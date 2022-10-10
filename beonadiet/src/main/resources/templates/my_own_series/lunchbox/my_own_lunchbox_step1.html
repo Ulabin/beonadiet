@@ -40,6 +40,12 @@
 
             $('.next_btn').click(function() {
                 if(checkSelectComposition()){
+                    var jsonData = new Object();
+                    jsonData.type = 'my_own_lunchbox'
+                    jsonData.composition = $('input[name=my_own_lunchbox_composition]:checked').val();
+                    var sendData = JSON.stringify(jsonData);
+                    var input = `<input type='hidden' value=${sendData} name='my_own_series'>`
+                    $('form').append(input);
                     $('form').submit();
                 }
             })

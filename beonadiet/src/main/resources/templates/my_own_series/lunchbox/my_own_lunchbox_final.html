@@ -8,8 +8,75 @@
     <title>나만의도시락 final</title>
     <link rel="stylesheet" th:href="@{/css/font_cyj.css}">
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
-    <script>
+    <script th:inline="javascript">
         window.onload=function(){
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
+
+            var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/);
+            function createUnrollElement(arr){
+                var unrolledElement = ``;
+                $(arr).each(function(index,element) {
+                    if(arr.length!=index+1) unrolledElement += element+' / ';
+                    else unrolledElement += element;
+                })
+                return unrolledElement;
+            }
+            
+            var compositionText;
+            if(jsonData.composition=='snack'){
+                compositionText = '밥 / 반찬3 / 저칼로리간식'
+                $(`.condition_checkbox`).append(`
+                <div>
+                    <div class="step_circle"  style="margin-bottom:20px;">
+                        <div>
+                            <span>step<br>4</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[저칼로리간식] ${jsonData.snack}</span>
+                    </div>
+                </div>
+                `);
+            }
+            else if(jsonData.composition=='only_sidedish'){
+                compositionText = '밥 / 반찬4'
+                $(`.condition_checkbox .step_circle`).css('marginBottom','20px')
+            }
+            else if(jsonData.composition=='soup'){
+                compositionText = '밥 / 반찬3 / 국'
+                $(`.condition_checkbox`).append(`
+                <div>
+                    <div class="step_circle"  style="margin-bottom:20px;">
+                        <div>
+                            <span>step<br>4</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[국] ${jsonData.soup}</span>
+                    </div>
+                </div>
+                `);
+            }
+            else{
+                compositionText = '밥 / 반찬3 / 미니샐러드'
+                $(`.condition_checkbox`).append(`
+                <div>
+                    <div class="step_circle"  style="margin-bottom:20px;">
+                        <div>
+                            <span>step<br>4</span>
+                        </div>
+                    </div>
+                    <div class="condition_specification_box">
+                        <span>[미니샐러드] ${jsonData.minisalad}</span>
+                    </div>
+                </div>
+                `);
+            }
+
+            $('.my_own_lunchbox_step1').append(compositionText);
+            $('.my_own_lunchbox_step2').append(`${jsonData.rice} ${jsonData.riceAmount}배`);
+            $('.my_own_lunchbox_step3').append(createUnrollElement(jsonData.sidedish));
+
             $('.content').on('click','.folding_btn',function() {
                             if($('.nutrition_info_container').is(":visible")){
                                 $('.nutrition_info_container').slideUp("slow");
@@ -60,7 +127,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[구성] 밥 / 반찬3 / 국</span>
+                        <span class='my_own_lunchbox_step1'>[구성] </span>
                     </div>
                 </div>
                 <div>
@@ -70,7 +137,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[밥] 잡곡밥 1.5</span>
+                        <span class='my_own_lunchbox_step2'>[밥] </span>
                     </div>
                 </div>
                 <div>
@@ -80,17 +147,7 @@
                         </div>
                     </div>
                     <div class="condition_specification_box">
-                        <span>[반찬] 채소계란찜 1.0 / 옛날 잡채 1.0 / 호두멸치볶음 1.0</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="step_circle"  style="margin-bottom:20px;">
-                        <div>
-                            <span>step<br>4</span>
-                        </div>
-                    </div>
-                    <div class="condition_specification_box">
-                        <span>[국] 맑은동태국</span>
+                        <span class='my_own_lunchbox_step3'>[반찬] </span>
                     </div>
                 </div>
             </div>

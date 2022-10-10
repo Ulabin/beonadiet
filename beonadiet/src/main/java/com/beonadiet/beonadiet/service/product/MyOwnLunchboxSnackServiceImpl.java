@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.beonadiet.beonadiet.dto.product.MyOwnLunchboxSnackDTO;
@@ -12,6 +13,7 @@ import com.beonadiet.beonadiet.entity.product.MyOwnLunchboxSnackImg;
 import com.beonadiet.beonadiet.repository.product.MyOwnLunchboxSnackImgRepository;
 import com.beonadiet.beonadiet.repository.product.MyOwnLunchboxSnackRepository;
 
+import javassist.runtime.Desc;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -32,7 +34,7 @@ public class MyOwnLunchboxSnackServiceImpl implements MyOwnLunchboxSnackService{
     @Override
     public List<MyOwnLunchboxSnackDTO> findAllSnack() {
         List<MyOwnLunchboxSnackDTO> snackDtoList = new ArrayList<>();
-        List<MyOwnLunchboxSnack> snackList = snackRepo.findAll();
+        List<MyOwnLunchboxSnack> snackList = snackRepo.findAll(Sort.by(Sort.Direction.DESC, "salescount"));
         snackList.forEach(new Consumer<MyOwnLunchboxSnack>() {
             @Override
             public void accept(MyOwnLunchboxSnack t) {

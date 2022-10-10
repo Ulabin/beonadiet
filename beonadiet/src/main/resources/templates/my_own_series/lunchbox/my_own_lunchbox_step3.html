@@ -10,6 +10,65 @@
     <link rel="stylesheet" th:href="@{/css/style_cyj.css}">
     <script th:inline="javascript">
         window.onload=function(){
+            console.log(/*[[${myOwnSeriesInfo}]]*/);
+
+            var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/);
+            var circleElement = `<div class="next_step_circle">
+                                <div>
+                                    <h1>step<br>1</h1>
+                                </div>
+                                </div>
+                                <div class="step_connection">
+                                    <div>
+                                        <h1>···</h1> 
+                                    </div>
+                                </div>
+                                <div class="next_step_circle">
+                                    <div>
+                                        <h1>step<br>2</h1>
+                                    </div>
+                                </div>
+                                <div class="step_connection">
+                                    <div>
+                                        <h1>···</h1> 
+                                    </div>
+                                </div>
+                                <div class="step_circle">
+                                    <div>
+                                        <h1>step<br>3</h1>
+                                    </div>
+                                </div>
+                                `
+                                ;
+
+            var count;
+            var allAmount;
+
+            if(jsonData.composition != 'only_sidedish'){
+                circleElement+=`
+                <div class="step_connection">
+                    <div>
+                        <h1>···</h1> 
+                    </div>
+                </div>
+                <div class="next_step_circle">
+                    <div>
+                        <h1>step<br>4</h1>
+                    </div>
+                </div>
+                `;
+                count = 3;
+                allAmount = 3;
+            }
+            else {
+                $('.sidedishAmount').html(`(최대 4가지, 총량 4)`)
+                count = 4;
+                allAmount = 4;
+            };
+
+            $(`.step_container`).append(circleElement);
+
+
             var dtoList = [];
             var num=0;
             /*[# th:each="dto : ${list}"]*/
@@ -74,6 +133,7 @@
 
             $('.composition_element_container').html(listHtmlCreate(popularitySortList));
 
+
             $('#sort_select').on('change',function() {
                 var menu = $("li[class=active_menu]").attr('id');
                 console.log(menu);
@@ -118,7 +178,7 @@
                     alert('한 가지 이상은 선택하셔야 합니다.')
                     return;
                 }
-                else if(sum>3){
+                else if(sum>allAmount){
                     alert('총량 3까지 설정 가능합니다. 다시 한 번 확인해주시길 바랍니다.')
                     return;
                 }
@@ -168,14 +228,14 @@
                     alert("이미 바구니에 추가되어 있습니다. 확인하시길 바랍니다.")
                     return;
                 }
-                else if($(`.basket_element_box`).length==3){
+                else if($(`.basket_element_box`).length==count){
                     alert("바구니가 가득 찼습니다. 확인하시길 바랍니다.")
                     return;
                 }
                 else{                
                     $('.basket_element_container').append(
                 `
-                <div class="basket_element_box" data-value=${val}>
+                <div class="basket_element_box" data-value=${val} data-listid=${listid}>
                         <div class="basket_element">
                             <img src=${imgSrc} width="150" height="150" alt=${nameTag} data-listid=${listid}>
                             <h2>${nameTag}</h2>
@@ -363,6 +423,40 @@
             })
 
             $('.next_btn').click(function() {
+                let link;
+                if(jsonData.composition=='soup') link=/*[[@{/my_own_series/lunchbox/step4/soup}]]*/
+                else if(jsonData.composition=='snack') link=/*[[@{/my_own_series/lunchbox/step4/snack}]]*/
+                else if(jsonData.composition=='minisalad') link=/*[[@{/my_own_series/lunchbox/step4/minisalad}]]*/
+                else link=/*[[@{/my_own_series/lunchbox/final}]]*/
+
+                var sidedishInfo = new Array();
+
+                $('.basket_element_box').each(function(index) {
+                    var val = $(this).attr('data-value');
+                    var listId = $(this).attr('data-listid');
+                    var amount = Number($('.basket_element_box[data-value='+val+'] .basket_stepper span:nth-child(2)').text()).toFixed(1);
+                    sidedishInfo[index] = `${val}(${amount})`;
+
+                    var eleId;
+                    dtoList.find(function(element,index) {
+                        if(element.id==listId){
+                            eleId=index;
+                        }
+                        return element.id==listId;
+                    })
+
+                    var nutrition_info = JSON.parse(dtoList[eleId].nutrition_info);
+                    jsonData.carbAmount += nutrition_info.carbs*amount;
+                    jsonData.proteinAmount += nutrition_info.protein*amount;
+                    jsonData.fatAmount += nutrition_info.fat*amount;
+                    jsonData.calorie += nutrition_info.kcal*amount;
+                })
+
+                jsonData.sidedish=sidedishInfo;
+                var sendData = JSON.stringify(jsonData);
+                var input = `<input type='hidden' value=${sendData} name='my_own_series'>`
+                $('form').append(input);
+                $('form').attr('action',link);
                 $('form').submit();
             })
 
@@ -381,41 +475,6 @@
 
         <div class="content">
             <div class="step_container">
-                <div class="next_step_circle">
-                    <div>
-                        <h1>step<br>1</h1>
-                    </div>
-                </div>
-                <div class="step_connection">
-                    <div>
-                        <h1>···</h1> 
-                    </div>
-                </div>
-                <div class="next_step_circle">
-                    <div>
-                        <h1>step<br>2</h1>
-                    </div>
-                </div>
-                <div class="step_connection">
-                    <div>
-                        <h1>···</h1> 
-                    </div>
-                </div>
-                <div class="step_circle">
-                    <div>
-                        <h1>step<br>3</h1>
-                    </div>
-                </div>
-                <div class="step_connection">
-                    <div>
-                        <h1>···</h1> 
-                    </div>
-                </div>
-                <div class="next_step_circle">
-                    <div>
-                        <h1>step<br>4</h1>
-                    </div>
-                </div>
             </div>
             
             <div class="step_name_container">
@@ -424,9 +483,9 @@
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
-            <form th:action="@{/my_own_series/lunchbox/step4/soup}" method="post">
+            <form method="post">
             <div class="basket">
-                <span>&nbsp;반찬 바구니&nbsp;</span>&nbsp;&nbsp;<span>(최대 3가지, 총량 3)</span>
+                <span>&nbsp;반찬 바구니&nbsp;</span>&nbsp;&nbsp;<span class='sidedishAmount'>(최대 3가지, 총량 3)</span>
                 <div class="basket_element_container"  style="height: 285px;">
                 </div>
 

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.beonadiet.beonadiet.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,5 +39,5 @@ public class MyOwnLunchboxSnack extends BaseEntity{
     private String one_serving;
 
     @Column(nullable = true)
-    private Long sales_count;
+    private Long salescount;
 }
