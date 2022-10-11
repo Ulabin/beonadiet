@@ -30,6 +30,7 @@ public class CartDto {
   private Long productCount;
   private Long pid;
   private String itemName;
+  private Long itemPrice;
   private ProductImageDTO image;
 
   private LocalDateTime regDate;

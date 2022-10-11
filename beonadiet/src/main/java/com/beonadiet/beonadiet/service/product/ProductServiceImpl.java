@@ -52,12 +52,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public String findById(Long id) {
+    public Product findById(Long id) {
         Optional<Product> product=productRepository.findById(id);
         if(product.isPresent()){
           return product.get();
         }
-
         return null;
     }
 }

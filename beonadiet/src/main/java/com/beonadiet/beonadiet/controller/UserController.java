@@ -11,23 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-=======
->>>>>>> 1b1a926fbfcbb3de1fdcf99731b1d50e990f217e
 
 import com.beonadiet.beonadiet.BadRequestException;
 import com.beonadiet.beonadiet.dto.CartDto;
 import com.beonadiet.beonadiet.dto.product.ProductDTO;
 import com.beonadiet.beonadiet.dto.product.ProductImageDTO;
 import com.beonadiet.beonadiet.entity.Member;
-import com.beonadiet.beonadiet.entity.Member.MemberBuilder;
 import com.beonadiet.beonadiet.entity.product.Product;
 import com.beonadiet.beonadiet.entity.product.ProductImage;
 import com.beonadiet.beonadiet.repository.UserRepository;
 import com.beonadiet.beonadiet.repository.product.ProductImageRepository;
-import com.beonadiet.beonadiet.repository.product.ProductRepository;
 import com.beonadiet.beonadiet.service.CartService;
 import com.beonadiet.beonadiet.service.UserService;
 import com.beonadiet.beonadiet.service.product.ProductService;
@@ -119,13 +113,13 @@ public class UserController{
     cartDtoList.forEach(new Consumer<CartDto>() {
       @Override
       public void accept(CartDto t) {
-        Product product =Product.builder().id(t.getPid()).build();
-        List<ProductImage> imgList=piRepository.findByProduct(product);
+        Product product = productService.findById(t.getPid());
+        List<ProductImage> imgList=piRepository.findByProduct(Product.builder().id(t.getPid()).build());
         ProductImage img= imgList.get(0);
-        ProductImageDTO imgDTO = ProductImageDTO.builder().path(img.getPath()).uuid(img.getUuid()).imgName(img.getImgName()).build();
+        ProductImageDTO imgDTO = ProductImageDTO.builder().folderPath(img.getFolderPath()).path(img.getPath()).uuid(img.getUuid()).imgName(img.getImgName()).build();
         t.setImage(imgDTO);
-        
-        t.setItemName();
+        t.setItemName(product.getName());
+        t.setItemPrice(product.getPrice());
       }
     });
 
@@ -150,11 +144,13 @@ public class UserController{
     cartDtoList.forEach(new Consumer<CartDto>() {
       @Override
       public void accept(CartDto t) {
-        Product product =Product.builder().id(t.getPid()).build();
-        List<ProductImage> imgList=piRepository.findByProduct(product);
+        Product product = productService.findById(t.getPid());
+        List<ProductImage> imgList=piRepository.findByProduct(Product.builder().id(t.getPid()).build());
         ProductImage img= imgList.get(0);
-        ProductImageDTO imgDTO = ProductImageDTO.builder().path(img.getPath()).uuid(img.getUuid()).imgName(img.getImgName()).build();
+        ProductImageDTO imgDTO = ProductImageDTO.builder().folderPath(img.getFolderPath()).path(img.getPath()).uuid(img.getUuid()).imgName(img.getImgName()).build();
         t.setImage(imgDTO);
+        t.setItemName(product.getName());
+        t.setItemPrice(product.getPrice());
       }
     });
 

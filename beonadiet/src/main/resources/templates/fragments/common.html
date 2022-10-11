@@ -67,14 +67,9 @@
 
         <a href="#"> <img th:src="@{/images/notice.png}" alt="notice" id="noticeimg" class="main-page-notice-img "></a>
         <a th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/orderdelivery.png}" alt="orderdelivery" id="orderdeliveryimg" class="main-page-order-delivery-img "></a>
-<<<<<<< HEAD
         <a th:href="@{/cart(user_id=${#authentication.name})}"> <img th:src="@{/images/mybucket.png}" alt="mybucket" id="mybucketimg" class="main-page-my-bucket-img"></a>
         <!-- 수빈 수정 -->
         <a id="cartlink" th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/mypage.png}" alt="mypage" id="mypageimg" class="main-page-my-page-img"></a>
-=======
-        <a th:href="@{/cart}"> <img th:src="@{/images/mybucket.png}" alt="mybucket" id="mybucketimg" class="main-page-my-bucket-img"></a>
-        <a th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/mypage.png}" alt="mypage" id="mypageimg" class="main-page-my-page-img"></a>
->>>>>>> 1b1a926fbfcbb3de1fdcf99731b1d50e990f217e
         <div class="main-page-buttonText">
           <a th:href="@{/mypage/shopping_list}" >마이페이지</a>
           <a th:href="@{/cart(user_id=${#authentication.name})}">장바구니</a>

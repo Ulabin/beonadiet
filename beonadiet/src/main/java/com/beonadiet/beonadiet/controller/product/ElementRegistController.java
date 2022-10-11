@@ -682,7 +682,7 @@ public class ElementRegistController {
 
             try {
                 img.transferTo(savePath);
-                ProductImageDTO imgDTO = ProductImageDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+                ProductImageDTO imgDTO = ProductImageDTO.builder().folderPath(folderPath).imgName(fileName).path(saveName).uuid(uuid).build();
                 imgList.add(imgDTO);
             } catch (IOException e) {
                 e.printStackTrace();

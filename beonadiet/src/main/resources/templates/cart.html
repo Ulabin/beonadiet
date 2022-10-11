@@ -25,7 +25,7 @@
           <header class="cart-header">
             <div class="header-left">
               <div class="check-all">
-                <input type="checkbox" id="header-check-all" class="check-all-1" name="check-all" value="check-all" checked>
+                <input type="checkbox" id="header-check-all" class="check-all-1" name="check-all" value="check-all">
                 <label for="header-check-all" class="check-all-label txt">전체 선택</label>
               </div>
               <div class="txt">상품 정보</div>
@@ -36,18 +36,18 @@
             </div>
           </header>
           <main class="cart-main">
-            <ul th:each="item:${list}" class="table-list">
-              <li class="table-item">
+            <ul class="table-list">
+              <li class="table-item" th:each="item:${list}" >
                 <section class="table-item-left">
                   <div>
                     <input type="checkbox" name="selected-item" id="table-item-checkbox-0" class="table-item-checkbox" value="0000">
                     <label for="table-item-checkbox-0" class="table-item-checkbox-label"></label>
                   </div>
                   <div class="table-item-img-wrap">
-                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/790_20220607123105.jpg" alt="장바구니 이미지" class="table-item-img"></a>
+                    <a href="#"><img th:src="|/beonadiet/display?fileName=${item.image.getImageURL()}|"></a>
                   </div>
                   <div class="table-item-title">
-                    <a href="#">홀그레인 로스트비프 바게트 샌드</a>
+                    <a href="#" th:text="${item.itemName}"></a>
                   </div>
                 </section>
                 <section class="table-item-right">
@@ -57,12 +57,11 @@
                   <div class="table-item-spinner-wrap">
                     <nav class="form-number">
                       <button type="button" id="down" class="down" title="감소"></button>
-                      <input type="text" name="num" id="num" class="number-text num" value="1">
+                      <input type="text" name="num" id="num" class="number-text num" th:value="${item.productCount}">
                       <button type="button" id="up" class="up" title="증가"></button>
                     </nav>
                   </div>
-                  <div class="item-total-price">
-                    7,500원
+                  <div class="item-total-price" th:text="${item.itemPrice}">
                   </div>
                 </section>
               </li>

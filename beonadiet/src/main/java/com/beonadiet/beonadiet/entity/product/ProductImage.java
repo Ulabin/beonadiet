@@ -27,6 +27,7 @@ public class ProductImage {
     private String uuid;
     private String imgName;
     private String path;
+    private String folderPath;
     
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;

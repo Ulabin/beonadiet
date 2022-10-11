@@ -16,7 +16,7 @@ public interface ProductService {
     //public List<ProductDTO> findAllProduct();
 
     public ProductDTO findByName(String name);
-    public String findById(Long id);
+    public Product findById(Long id);
 
     default ProductDTO entityToDTO(Product product, List<ProductImage> pi,double avg,int reviewCount){
         ProductDTO productDTO = ProductDTO.builder()
@@ -43,7 +43,7 @@ public interface ProductService {
             new Function<ProductImage, ProductImageDTO>(){
                 public ProductImageDTO apply(ProductImage p){
                     return ProductImageDTO.builder()
-                    .imgName(p.getImgName()).path(p.getPath()).uuid(p.getUuid()).build();
+                    .imgName(p.getImgName()).folderPath(p.getFolderPath()).path(p.getPath()).uuid(p.getUuid()).build();
                 };
             }).collect(Collectors.toList());
 
@@ -85,7 +85,7 @@ public interface ProductService {
             new Function<ProductImageDTO,ProductImage>() {
               @Override
               public ProductImage apply(ProductImageDTO t) {
-                ProductImage productImage = ProductImage.builder().path(t.getPath())
+                ProductImage productImage = ProductImage.builder().path(t.getPath()).folderPath(t.getFolderPath())
                                         .imgName(t.getImgName()).uuid(t.getUuid())
                                         .product(product).build();
                 return productImage;
