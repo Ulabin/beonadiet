@@ -25,6 +25,6 @@ public class ReviewImage {
     private String imgName;
     private String path;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Review review;
 }

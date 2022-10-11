@@ -1,14 +1,28 @@
 package com.beonadiet.beonadiet.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 
-public class Review {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString(exclude = {"member","purchase"})
+public class Review extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -19,10 +33,11 @@ public class Review {
     @Column(nullable = false)
     private Float score;
 
-    private Long like;
+    private Long likecount;
 
+    @PrePersist
     public void prePersist() {
-        this.like = this.like == null ? 0 : this.like;
+        this.likecount = this.likecount == null ? 0 : this.likecount;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)    
