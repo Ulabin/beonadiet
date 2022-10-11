@@ -6,7 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}"> -->
+  <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/userinfo.css}">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +16,7 @@
 </head>
 
 <body>
-  <div class="home-container" th:replace="fragments/common :: nav"></div>
+  <!-- <div class="home-container" th:replace="fragments/common :: nav"></div> -->
 
   <div class="my-page-container" th:fragment="mypageTop">
     <div class="my-page-card-container">
@@ -108,9 +109,10 @@
             <li><button type="button"><a th:href="@{/mypage/address(mid=${#authentication.name})}">배송지관리</a></button></li>
             <!-- <li><button>1:1문의내역</button></li>
             <li><button>나의상품문의</button></li> -->
-            <li><button>나의상품후기</button></li>
+            <li><button><a>나의상품후기</a></button></li>
             <!-- <li><a href="#" th:href="@{/mypage/mypost}" class="change">나의게시글</a></li> -->
-            <li><button type="button" onclick="getMyPosts()">나의게시글</button></li>
+            <!-- <li><button type="button" onclick="getMyPosts()"><a>나의게시글</a></button></li> -->
+            <li><button type="button" ><a th:href="@{/mypage/mypost(mid=${#authentication.name})}">나의게시글</a></button></li>
 
           </ul>
         </div>
@@ -130,7 +132,7 @@
 
 <script th:src="@{/js/mypage.js} "></script>
 
-<div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+<!-- <div class="home-footer-container" th:replace="fragments/common :: foot"></div> -->
 </body>
 
 </html>

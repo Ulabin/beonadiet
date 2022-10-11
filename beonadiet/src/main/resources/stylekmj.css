@@ -1278,6 +1278,10 @@ body {
   text-align: center;
   font-weight: bold;
 }
+.my-post-radio{
+  position:relative;
+  left:1000px;
+}
 
 /* 나의 게시물 아이템 */
 .my-post-item {

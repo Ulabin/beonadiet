@@ -4,27 +4,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/userinfo.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/stylekmj.css}">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <title>Document</title>
 </head>
 <body>
-  <div class="home-container" th:replace="fragments/common :: nav"></div>
-  <div class="home-container" th:replace="mypage/mypage :: mypageTop"></div>
-  <div class="home-container" th:replace="mypage/mypage :: sidebar"></div>
   <div class="my-post-item-container">
     <div class="my-post-radiobox">       
       <!-- <a href="#"  class="my-post-radio">나만의 도시락</a>
       <a href="#"  class="my-post-radio">나만의 샌드위치</a>
       <a href="#"  class="my-post-radio">나만의 샐러드</a> -->
-      <button type="button"  class="my-post-radio" style="position:relative; left:90px;" onclick="getmypostlunchbox()">나만의 도시락</button>
-      <button type="button"  class="my-post-radio" style="position:relative; left:110px;" onclick="getmypostsandwich()">나만의 샌드위치</button>
-      <button type="button"  class="my-post-radio" style="position:relative; left:130px;" onclick="getmypostsalad()">나만의 샐러드</button>
+      <button type="button"  class="my-post-radio" onclick="getmypostlunchbox()">나만의 도시락</button>
+      <button type="button"  class="my-post-radio" onclick="getmypostsandwich()">나만의 샌드위치</button>
+      <button type="button"  class="my-post-radio" onclick="getmypostsalad()">나만의 샐러드</button>
     </div>
     <div class="my-post-posts">
       <div class="my-post-item" id="my-post-item" th:each=" list : ${list}" th:if="${list.category == 0}">
@@ -35,7 +30,7 @@
         </div>
       
         <a href="#">
-          <img src="../images/lunchboxkmj.png" alt="image" class="my-post-item-image"
+          <img src="./images/lunchboxkmj.png" alt="image" class="my-post-item-image"
             th:onclick="|location.href='@{/myownrecipe/morproductpage(id=${list.id})}'|">
         </a>
         <div class="my-post-mod-def-date-container">
@@ -61,8 +56,7 @@
       </div>
     </div>
   </div>
-  
-  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
+
   <script th:src="@{/js/my_post.js}" th:inline="javascript"></script>
 </body>
 </html>
