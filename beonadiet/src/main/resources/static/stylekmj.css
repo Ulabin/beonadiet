@@ -1279,13 +1279,19 @@ body {
   font-weight: bold;
 }
 
+.my-post-posts{
+  min-height: 400px;
+}
+
 /* 나의 게시물 아이템 */
 .my-post-item {
+  position:relative;
+  left:75px;
   display: inline-block;
   margin-top: 10px;
-  margin-left: 80px;
+  margin-left: 50px;
   margin-bottom: 20px;
-  width: 180px;
+  width: 200px;
   /* height: 230px; */
   border: 1px solid lightgray;
   border-radius: 5px;
@@ -1296,7 +1302,7 @@ body {
 }
 .my-post-item img{
   width:100px;
-  margin-left:40px;
+  margin-left:50px;
 }
 
 /* 나만의 레시피 게시물 이미지 */

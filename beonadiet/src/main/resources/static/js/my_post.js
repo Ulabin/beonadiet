@@ -1,5 +1,3 @@
-
-    
     window.onload = function(){
 
       var btnTest = document.querySelector('#my-post-modify-button');
