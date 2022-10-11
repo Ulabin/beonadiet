@@ -120,9 +120,9 @@ public class MypagesController {
     memberTmp.setMobile_num(mobile_num);
     memberTmp.setBirthday(birthday);
     userRepository.save(memberTmp);
-    // return "redirect:/mypage/userinfo?mid="+user_id;
-    SecurityContextHolder.clearContext();
-    return "redirect:/login";
+    return "redirect:/mypage/userinfo?mid="+user_id;
+    // SecurityContextHolder.clearContext();
+    // return "redirect:/login";
   }
   
   

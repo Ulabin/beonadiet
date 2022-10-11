@@ -32,7 +32,7 @@
             </span>
             <h5 style="font-size: 5px;">&nbsp;</h5>
             <span>
-              <a href="#" class="my-page-profile-modify-button" onclick="getMyInfo()">정보수정</a>
+              <a th:href="@{/mypage/userinfo(mid=${#authentication.name})}" class="my-page-profile-modify-button">정보수정</a>
               <a th:href="@{/logout}" class="my-page-logout">로그아웃</a>
             </span>
           </div>

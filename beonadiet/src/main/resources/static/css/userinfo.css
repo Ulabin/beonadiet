@@ -66,6 +66,7 @@ fieldset {
 
 #signup label {
   width: 130px;
+  height: 45px;
   float: left;
   text-align: left;
   font-size: 16px;
@@ -115,7 +116,8 @@ fieldset {
   width: 334px;
   height: 45px;
   font-size: 14px;
-  padding: 10px;
+  /* padding: 10px; */
+  padding-left: 10px;
   border: 1px solid #dddddd;
   border-radius: 3px;
 }
@@ -155,7 +157,8 @@ fieldset {
 }
 
 .btnmodify {
-  width: 120px;
+  width: 334px;
+  /* width: 120px; */
   height: 45px;
   border: 2px solid #C7DFAA;
   background-color: #C7DFAA;
@@ -164,6 +167,7 @@ fieldset {
   font-weight: 600;
   border-radius: 3px;
   margin-top: 10px;
+  /* margin-right: 20px; */
   cursor: pointer;
 }
 
