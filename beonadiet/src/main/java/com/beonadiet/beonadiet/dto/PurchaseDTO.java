@@ -11,19 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WishListDto {
-
+public class PurchaseDTO{
   private Long id;
 
   private String combination_content;
-  
-  private Float carbs_amount;
-
-  private Float protein_amount;
-
-  private Float fat_amount;
-
-  private Float calorie;
+  private Long productCount;
 
   private Long pid;
  
