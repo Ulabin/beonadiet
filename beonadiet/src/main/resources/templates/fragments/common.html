@@ -19,16 +19,13 @@
     <header class="home-header">
       <div class="main-page-header">
         <div class="main-page-account" style="display: block;" >
-          <!-- 수빈 로그인 클릭시 로그인 화면 이동 -->
           <a sec:authorize="!isAuthenticated()" th:href="@{/login}">로그인</a>
-          <!-- 수빈 로그아웃 버튼 추가 -->
           <a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
-          <!-- 수빈 회원가입 버튼 수정 -->
           <a sec:authorize="!isAuthenticated()" th:href="@{/join}">회원가입</a>
           <a href="#">고객센터</a>
         </div>
         <div class="main-page-logo">
-          <!-- 수빈 로고 클릭시 메인페이지 이동 -->
+          <!-- 로고 클릭시 메인페이지 이동 -->
           <a href="#" th:href="@{/main}" >
             <iconify-icon icon="noto:avocado" width="50" height="50" class="main-page-logoimg"></iconify-icon>
             <p style="display:inline;  font-family: 'Ghanachocolate';
@@ -71,15 +68,12 @@
         <a href="#" > <img th:src="@{/images/notice.png}" alt="notice" id="noticeimg" class="main-page-notice-img "></a>
         <a th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/orderdelivery.png}" alt="orderdelivery" id="orderdeliveryimg" class="main-page-order-delivery-img "></a>
         <a th:href="@{/cart}"> <img th:src="@{/images/mybucket.png}" alt="mybucket" id="mybucketimg" class="main-page-my-bucket-img"></a>
-        <!-- 수빈 수정 -->
         <a th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/mypage.png}" alt="mypage" id="mypageimg" class="main-page-my-page-img"></a>
         <div class="main-page-buttonText">
-          <!-- 수빈 수정 -->
           <a th:href="@{/mypage/shopping_list}" >마이페이지</a>
           <a th:href="@{/cart}">장바구니</a>
           <a th:href="@{/mypage/shopping_list}">주문배송</a>
-          <!-- 수빈 테스트용 -->
-          <a th:href="@{/mypage/health_info(mid=${#authentication.name})}">알림</a>
+          <a href="#">알림</a>
         </div>
 
       </div>

@@ -3,11 +3,6 @@
   src: url(../font/LG\ PC.ttf);
 }
 
-/* * {
-}
-
-body {
-} */
 a {
   text-decoration: none;
 }
@@ -22,8 +17,6 @@ a:hover {
 
 #container {
   font-family: "lg-pc";
-  /* margin: 0; */
-  /* width: 1080px; */
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
@@ -32,11 +25,8 @@ a:hover {
 
 .pick-list-wrap {
   width: 750px;
-  /* padding: 30px 20px; */
   margin: 0 auto;
-  /* margin: 90px auto; */
   text-align: center;
-  /* border: 1px solid #353535; */
 }
 
 .titleBox {

@@ -50,7 +50,6 @@ $('#signup').on('submit',()=>{
 $('.btncheck').click(function() {
   $.ajax({
     url: 'join/id/check',
-    // url: baseUrl + '/api/member/id/check',
     type: 'GET',
     contentType: 'application/json',
     headers: {
@@ -75,7 +74,6 @@ $('.btncheck').click(function() {
 $('.btncheck2').click(function() {
   $.ajax({
     url: 'join/nickname/check',
-    // url: baseUrl + '/api/member/id/check',
     type: 'GET',
     contentType: 'application/json',
     headers: {
@@ -100,7 +98,6 @@ $('.btncheck2').click(function() {
 $('.btncheck3').click(function() {
   $.ajax({
     url: 'join/email/check',
-    // url: baseUrl + '/api/member/id/check',
     type: 'GET',
     contentType: 'application/json',
     headers: {

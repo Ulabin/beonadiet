@@ -8,10 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,12 +32,6 @@ public class Address extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long num;
 
-  // @Column(length = 20)
-  // private String address_name;
-
-  // @Column
-  // private Long zip_code;
-
   @Column
   private String address;
 
@@ -54,12 +46,6 @@ public class Address extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.EAGER)    
   @JoinColumn(name = "member_id")
-  // @JoinColumn(name = "member_id", unique = true)
   private Member member;
-
-  // @PrePersist
-  // public void prePersist() {
-  //     this.default_address = this.default_address == null ? 0 : this.default_address;
-  // }
 
 }

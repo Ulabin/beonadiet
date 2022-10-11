@@ -46,7 +46,6 @@
           </div>
           <main class="adr-main">
             <ul class="adr-list">
-              <!-- <form id="frm" method="post"> -->
                 <li class="adr-items" th:each = "address:${list}">
                   <div class="adr-cont">
                     <span class="badge-default" th:if="${address.default_address}!=null">
@@ -68,69 +67,6 @@
                     </form>
                   </div>
                 </li>
-              <!-- </form> -->
-
-
-              <!-- <li class="adr-items">
-                <div class="adr-cont">
-                  <span class="badge-default">
-                    기본 배송지
-                  </span>
-                  <p>
-                    부산광역시 부산진구 중앙대로 668 (A1프라자6층)
-                  </p>
-                </div>
-                <div class="name-cont">
-                  <span>김곰돌</span>
-                </div>
-                <div class="mobile-cont">
-                  <span>010-1234-5678</span>
-                </div>
-                <div class="modify-cont">
-                  <button type="button" class="btn-modify" onclick="showPopupMod();">수정하기</button>
-                </div>
-              </li> -->
-
-
-
-              <!-- <li class="adr-items">
-                <div class="adr-cont">
-                  <span class="badge-default badge-hidden">
-                    기본 배송지
-                    </span>
-                    <p>
-                      부산광역시 부산진구 중앙대로 668 (A1프라자6층)
-                    </p>
-                  </div>
-                  <div class="name-cont">
-                    <span>김곰돌</span>
-                  </div>
-                  <div class="mobile-cont">
-                    <span>010-1234-5678</span>
-                  </div>
-                  <div class="modify-cont">
-                    <button type="button" class="btn-modify" onclick="showPopupMod();">수정하기</button>
-                  </div>
-                </li>
-                <li class="adr-items">
-                <div class="adr-cont">
-                  <span class="badge-default badge-hidden">
-                    기본 배송지
-                  </span>
-                  <p>
-                    부산광역시 부산진구 중앙대로 668 (A1프라자6층)
-                  </p>
-                </div>
-                <div class="name-cont">
-                  <span>김곰돌</span>
-                </div>
-                <div class="mobile-cont">
-                  <span>010-1234-5678</span>
-                </div>
-                <div class="modify-cont">
-                  <button type="button" class="btn-modify" onclick="showPopupMod();">수정하기</button>
-                </div>
-              </li> -->
             </ul>
           </main>
         </div>

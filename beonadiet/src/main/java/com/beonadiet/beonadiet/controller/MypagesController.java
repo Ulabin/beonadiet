@@ -73,30 +73,7 @@ public class MypagesController {
     return "mypage/userinfo";
   }
   
-  @GetMapping("/delete_account")
-  public String deleteAccount(){
-  // public String deleteAccount(@RequestParam("mid") String mid, Model model){
-    // Member memberTmp =userRepository.findByUsername(mid);
-    // model.addAttribute("userid", memberTmp.getUsername());
-    return "mypage/delete_account";
-  }
 
-  // @PostMapping("/delete_account/delete")
-  // public String accountDelete(@RequestParam(value="id") Long id, @RequestParam("mid") String mid){
-  //   userRepository.deleteById(123L);
-  //   // userService.deleteById(123L);
-  //   SecurityContextHolder.clearContext();
-  //   return "redirect:/home";
-  //   // return "redirect:/mypage/address?mid="+mid;
-  // }
-
-  // @PostMapping("/delete_account/delete")
-  // public String accountDelete(@RequestParam(value="id", required = false) Long id, @RequestParam("mid") String mid){
-  //   userRepository.deleteById(125L);
-  //   SecurityContextHolder.clearContext();
-  //   return "redirect:/home";
-  //   // return "redirect:/mypage/address?mid="+mid;
-  // }
   @PostMapping("/delete_account/delete")
   public String accountDelete(Long id){
     // userRepository.deleteById(125L);

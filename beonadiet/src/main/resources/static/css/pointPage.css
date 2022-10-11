@@ -3,12 +3,6 @@
   src: url(../font/LG\ PC.ttf);
 }
 
-/* * {
-}
-
-body {
-} */
-
 a {
   text-decoration: none;
 }
@@ -23,8 +17,6 @@ a:hover {
 
 #container {
   font-family: "lg-pc";
-  /* width: 1080px; */
-  /* margin: 0; */
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
@@ -33,12 +25,8 @@ a:hover {
 
 .point-list-wrap {
   width: 750px;
-  /* padding: 30px 20px; */
   margin: 0 auto;
-  /* margin: 90px auto; */
   text-align: center;
-
-  /* border: 1px solid #353535; */
 }
 
 .titleBox {
@@ -142,7 +130,6 @@ ul, li {
   width: 150px;
   height: 45px;
   border-right: 1px dashed #ccc;
-  /* padding: 10px; */
 }
 .point-content-box {
   width: 408px;

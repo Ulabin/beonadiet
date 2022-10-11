@@ -3,11 +3,6 @@
   src: url(../font/LG\ PC.ttf);
 }
 
-/* * {
-}
-
-body {
-} */
 a {
   text-decoration: none;
 }
@@ -23,9 +18,6 @@ a:hover {
 
 #container {
   font-family: "lg-pc";
-  /* width: 1080px; */
-  /* font-family: "lg-pc"; */
-  /* margin: 0; */
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
@@ -34,11 +26,8 @@ a:hover {
 
 .health-info-wrap {
   width: 750px;
-  /* padding: 30px 20px; */
   margin: 0 auto;
-  /* margin: 90px auto; */
   text-align: center;
-  /* border: 1px solid #353535; */
 }
 
 .calorie-info-wrap {
