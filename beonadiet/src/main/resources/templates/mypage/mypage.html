@@ -17,7 +17,7 @@
 <body>
   <div class="home-container" th:replace="fragments/common :: nav"></div>
 
-  <div class="my-page-container" th:fragment="mypage">
+  <div class="my-page-container" th:fragment="mypageTop">
     <div class="my-page-card-container">
       <div class="my-page-card">
         <div class="my-page-profile">
@@ -32,8 +32,8 @@
             </span>
             <h5 style="font-size: 5px;">&nbsp;</h5>
             <span>
-              <a href="#" class="my-page-profile-modify-button">정보수정</a>
-              <a href="#" class="my-page-logout">로그아웃</a>
+              <a href="#" class="my-page-profile-modify-button" onclick="getMyInfo()">정보수정</a>
+              <a th:href="@{/logout}" class="my-page-logout">로그아웃</a>
             </span>
           </div>
         </div>
@@ -46,7 +46,7 @@
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color: #0FA958; ">
             1 </div>
           <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">개</p>
-          <a href="#" style="display: inline-block; float:right; margin-right:20px;">
+          <a th:href="@{/mypage/shopping_list}" style="display: inline-block; float:right; margin-right:20px;">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
         </div>
@@ -59,7 +59,7 @@
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
             3 </div>
           <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">원</p>
-          <a href="#" style="display: inline-block; float:right; margin-right:20px; ">
+          <a th:href="@{/mypage/pointPage}" style="display: inline-block; float:right; margin-right:20px; ">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
         </div>
@@ -70,19 +70,21 @@
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
             3 </div>
           <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">개</p>
-          <a href="#" style="display: inline-block; float:right; margin-right:20px; ">
+          <a th:href="@{/mypage/pick_list}" style="display: inline-block; float:right; margin-right:20px; ">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
         </div>
-
-
-
-
+        
+        
+        
+        
       </div>
     </div>
+  </div>
 
-    <div class="my-page-content">
-      <div class="my-page-list-container">
+    <div class="my-page-content" th:fragment="sidebar">
+      <!-- 수빈 sidabar fragment 추가 -->
+      <div class="my-page-list-container" >
         <div class="my-page-list">
           <p style="font-size: 30px; text-align:center; margin:10px; font-weight: bold;"> 마이페이지</p>
           <hr>
@@ -91,9 +93,9 @@
             <p style="font-size:25px; font-weight:bold; margin:15px;">쇼핑</p>
 
             <!-- 수빈 누르면 해당 페이지 이동 (마이페이지들) -->
-            <li><button type="button" onclick="getMyShoppingList()">주문목록 / 배송조회</button></li>
-            <li><button type="button" onclick="getMyPick()">찜 목록</button></li>
-            <li><button type="button" onclick="getMyPoint()">적립금</button></li>
+            <li><button type="button"><a th:href="@{/mypage/shopping_list}">주문목록 / 배송조회</a></button></li>
+            <li><button type="button"><a th:href="@{/mypage/pick_list}">찜 목록</a></button></li>
+            <li><button type="button"><a th:href="@{/mypage/pointPage}">적립금</a></button></li>
             <!-- <li><button type="button" onclick="getMyCart()">장바구니</button></li> -->
           </ul>
 
@@ -101,11 +103,11 @@
           <ul style="list-style: none;">
             <p style="font-size:25px; font-weight:bold; margin:15px;">회원정보</p>
 
-            <li><button type="button" onclick="getMyInfo()">회원정보변경</button></li>
-            <li><button type="button" onclick="getMyHealth()">일일섭취 칼로리/<br>탄단지비율/<br>알러지정보 설정</button></li>
-            <li><button type="button" onclick="getMyAddress()">배송지관리</button></li>
-            <li><button>1:1문의내역</button></li>
-            <li><button>나의상품문의</button></li>
+            <li><button type="button"><a th:href="@{/mypage/userinfo(mid=${#authentication.name})}">회원정보변경</a></button></li>
+            <li><button type="button"><a th:href="@{/mypage/health_info(mid=${#authentication.name})}">일일섭취 칼로리/<br>탄단지비율/<br>알러지정보 설정</a></button></li>
+            <li><button type="button"><a th:href="@{/mypage/address(mid=${#authentication.name})}">배송지관리</a></button></li>
+            <!-- <li><button>1:1문의내역</button></li>
+            <li><button>나의상품문의</button></li> -->
             <li><button>나의상품후기</button></li>
             <!-- <li><a href="#" th:href="@{/mypage/mypost}" class="change">나의게시글</a></li> -->
             <li><button type="button" onclick="getMyPosts()">나의게시글</button></li>
@@ -114,6 +116,7 @@
         </div>
       </div>
 
+    </div>
 
       <div class="my-page-detail-container">
         <div class="my-page-detail" th:fragmet="mypagedetail">
@@ -121,8 +124,6 @@
           
         </div>
       </div>
-    </div>
-  </div>
 <div style="clear:both"></div>
 <input type="hidden" name="user_id" th:value="${#authentication.name}">
 
@@ -130,79 +131,6 @@
 <script th:src="@{/js/mypage.js} "></script>
 
 <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
-<script th:inline="javascript">
-  /* 수빈 회원정보변경 추가 */
-  function getMyInfo() {
-  console.log("클릭")
-  var link = /*[[@{mypage/userinfo(mid=${#authentication.name})}]]*/;
-  
-    /*<![CDATA[*/
-    $.ajax({
-      type: "GET",
-      url: `${link}`
-    })
-    .done(function (result) {
-      $('.my-page-detail').empty();
-      $('.my-page-detail').html(result)
-    })
-    .fail(function (jqXHR) {
-      console.log(jqXHR);
-      console.log("에러");
-    })
-    .always(function () {
-      console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
-    })
-    /*]]*/
-  }
-
-      /* 수빈 칼로리,알러지 추가 */
-  function getMyHealth() {
-    console.log("클릭")
-    var link = /*[[@{mypage/health_info(mid=${#authentication.name})}]]*/;
-      /*<![CDATA[*/
-      $.ajax({
-        type: "GET",
-        url: `${link}`,
-      })
-        .done(function (result) {
-          $('.my-page-detail').empty();
-          $('.my-page-detail').html(result)
-        })
-        .fail(function (jqXHR) {
-          console.log(jqXHR);
-          console.log("에러");
-        })
-        .always(function () {
-          console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
-        })
-      /*]]*/
-    }
-
-    /* 수빈 배송지 추가 */
-  function getMyAddress() {
-    console.log("클릭")
-    var link = /*[[@{mypage/address(mid=${#authentication.name})}]]*/;
-    
-      /*<![CDATA[*/
-      $.ajax({
-        type: "GET",
-        url: `${link}`,
-      })
-        .done(function (result) {
-          $('.my-page-detail').empty();
-          $('.my-page-detail').html(result)
-        })
-        .fail(function (jqXHR) {
-          console.log(jqXHR);
-          console.log("에러");
-        })
-        .always(function () {
-          console.log("요청, 응답 결과에 상관없이, 이건 항상 실행됩니다.");
-        })
-      /*]]*/
-    }
-
-</script>
 </body>
 
 </html>

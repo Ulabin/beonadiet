@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <link rel="stylesheet" type="text/css" th:href="@{/css/shopping_list.css}">
-  <!-- <link rel="stylesheet" th:href="@{../css/shopping_list.css}"> -->
+  <link th:href="@{/stylekmj.css}" rel="stylesheet" />
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -13,7 +14,12 @@
   <title>주문목록/배송조회페이지</title>
 </head>
 <body>
-  <div id="container_shop">
+  <!-- fragment 추가 -->
+  <div class="home-container" th:replace="fragments/common :: nav"></div>
+  <div class="home-container" th:replace="mypage/mypage :: mypageTop"></div>
+  <div class="home-container" th:replace="mypage/mypage :: sidebar"></div>
+  
+  <div id="container_shop" style="margin: 20px 0 20px 130px;">
     <div class="shopping-list-wrap">
       <div class="shopping-list-box">
         <!-- 타이틀 -->
@@ -1049,6 +1055,9 @@
       </div>
     </div>
   </div>
+  <div style="clear:both"></div>
+  <!-- fragment 추가 -->
+  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
   <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
   <script th:src="@{/js/shopping_list.js}"></script>
 </body>

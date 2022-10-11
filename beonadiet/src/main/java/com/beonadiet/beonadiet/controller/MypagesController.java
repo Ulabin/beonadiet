@@ -165,23 +165,23 @@ public class MypagesController {
 
   @PostMapping("/health_info/calorie")
   public String updateCalorie(@RequestParam(value="daily-calorie-intake") Long dailyCalorieIntake, @RequestParam(value="user_id") String user_id) {
-    Member memberTmp =userRepository.findByUsername(user_id);
-    memberTmp.setDaily_calorie_intake(dailyCalorieIntake);
-        log.info("................................"+memberTmp);
-        userRepository.save(memberTmp);
-        return "redirect:/mypage/health_info?mid="+user_id;
-      }
+  Member memberTmp =userRepository.findByUsername(user_id);
+  memberTmp.setDaily_calorie_intake(dailyCalorieIntake);
+      log.info("................................"+memberTmp);
+      userRepository.save(memberTmp);
+      return "redirect:/mypage/health_info?mid="+user_id;
+    }
 
-      @PostMapping("/health_info/rate")
-      public String updateRate(@RequestParam(value="carb_rate") Long carb_rate, @RequestParam(value="protein_rate") Long protein_rate, 
-      @RequestParam(value="fat_rate") Long fat_rate, @RequestParam(value="user_id") String user_id) {
-                            Member memberTmp =userRepository.findByUsername(user_id);
-                            memberTmp.setCarb_rate(carb_rate);
-        memberTmp.setProtein_rate(protein_rate);
-        memberTmp.setFat_rate(fat_rate);
-        log.info("................................"+memberTmp);
-        userRepository.save(memberTmp);
-        return "redirect:/mypage/health_info?mid="+user_id;
+  @PostMapping("/health_info/rate")
+  public String updateRate(@RequestParam(value="carb_rate") Long carb_rate, @RequestParam(value="protein_rate") Long protein_rate, 
+  @RequestParam(value="fat_rate") Long fat_rate, @RequestParam(value="user_id") String user_id) {
+                        Member memberTmp =userRepository.findByUsername(user_id);
+                        memberTmp.setCarb_rate(carb_rate);
+    memberTmp.setProtein_rate(protein_rate);
+    memberTmp.setFat_rate(fat_rate);
+    log.info("................................"+memberTmp);
+    userRepository.save(memberTmp);
+    return "redirect:/mypage/health_info?mid="+user_id;
   }
 
   @PostMapping("/health_info/allergy")

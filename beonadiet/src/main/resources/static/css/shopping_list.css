@@ -11,6 +11,19 @@
 body {
 } */
 
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: #353535;
+}
+
+a:hover {
+  color: #0FA958;
+}
+
+
 #container_shop {
   font-family: "lg-pc";
   /* width: 1080px; */

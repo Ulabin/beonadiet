@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
   <link rel="stylesheet" type="text/css" th:href="@{/css/health_info.css}">
+  <link th:href="@{/stylekmj.css}" rel="stylesheet" />
   <title>칼로리,탄단지,알러지설정</title>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -13,7 +14,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-  <div id="container">
+  <!-- fragment 추가 -->
+  <div class="home-container" th:replace="fragments/common :: nav"></div>
+  <div class="home-container" th:replace="mypage/mypage :: mypageTop"></div>
+  <div class="home-container" th:replace="mypage/mypage :: sidebar"></div>
+  <div id="container" style="margin: 20px 0 20px 130px;">
     <div class="health-info-wrap">
       <div class="health-info-box">
         <!-- 일일섭취칼로리 -->
@@ -563,6 +568,9 @@
       </div>
     </div>
   </div>
+  <div style="clear:both"></div>
+  <!-- fragment 추가 -->
+  <div class="home-footer-container" th:replace="fragments/common :: foot"></div>
   <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
   <script th:src="@{/js/health_info.js}"></script>
 </body>
