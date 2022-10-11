@@ -192,5 +192,5 @@ public class MypagesController {
         userRepository.save(memberTmp);
         return "redirect:/mypage/health_info?mid="+user_id;
   }
-    
+     
 }
