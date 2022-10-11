@@ -3,11 +3,6 @@
   src: url(../font/LG\ PC.ttf);
 }
 
-/* * {
-}
-
-body {
-} */
 a {
   text-decoration: none;
 }
@@ -22,8 +17,6 @@ a:hover {
 
 #container {
   font-family: "lg-pc";
-  /* width: 1080px; */
-  /* margin: 0; */
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
@@ -33,8 +26,6 @@ a:hover {
 .join-box {
   width: 750px;
   margin: 0 auto;
-  /* margin: 90px auto; */
-  /* padding: 20px 0; */
   text-align: center;
 }
 
@@ -75,48 +66,10 @@ fieldset {
   color: #353535;
 }
 
-/* .avatar {
-  border: none;
-  cursor: pointer;
-  background:white ;
-
-} */
-
-/* .btnchange {
-  width: 50px;
-  height: 30px;
-  border: 1px solid #0FA958;
-  background-color: #0FA958;
-  color: white;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 3px;
-  margin-top: 10px;
-  cursor: pointer;
-} */
-
-/* .btndelete {
-  width: 50px;
-  height: 30px;
-  border: 1px solid #0FA958;
-  background-color: white;
-  color: #0FA958;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 3px;
-  margin-top: 10px;
-  cursor: pointer;
-} */
-
-/* .btn_avatar {
-  margin-bottom: 60px;
-} */
-
 .join-box input {
   width: 334px;
   height: 45px;
   font-size: 14px;
-  /* padding: 10px; */
   padding-left: 10px;
   border: 1px solid #dddddd;
   border-radius: 3px;
@@ -158,7 +111,6 @@ fieldset {
 
 .btnmodify {
   width: 334px;
-  /* width: 120px; */
   height: 45px;
   border: 2px solid #C7DFAA;
   background-color: #C7DFAA;
@@ -167,7 +119,6 @@ fieldset {
   font-weight: 600;
   border-radius: 3px;
   margin-top: 10px;
-  /* margin-right: 20px; */
   cursor: pointer;
 }
 

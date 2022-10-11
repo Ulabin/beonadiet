@@ -156,8 +156,6 @@ input[type=checkbox] {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-left: 129px; */
-  /* margin-left: px; */
 }
 
 .down {
@@ -333,13 +331,11 @@ input[type=checkbox] {
 
 .my-list-wrap {
   width: 130px;
-  /* width: 150px; */
   height: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* margin-left: 50px; */
 }
 
 .my-list-wrap button {

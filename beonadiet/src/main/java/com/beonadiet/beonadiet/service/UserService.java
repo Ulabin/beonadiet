@@ -1,7 +1,5 @@
 package com.beonadiet.beonadiet.service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -9,17 +7,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.beonadiet.beonadiet.dto.UserDto;
 import com.beonadiet.beonadiet.entity.Member;
 import com.beonadiet.beonadiet.repository.UserRepository;
 
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @Service
 public class UserService {
 

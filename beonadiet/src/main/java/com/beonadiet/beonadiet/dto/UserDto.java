@@ -1,8 +1,6 @@
 package com.beonadiet.beonadiet.dto;
 
-
 import com.beonadiet.beonadiet.entity.Member;
-// import com.beonadiet.beonadiet.entity.Role;
 
 import java.time.LocalDateTime;
 

@@ -1,15 +1,7 @@
-/* 수빈 전체 복붙 추천 */
-
 @font-face {
   font-family: "lg-pc";
   src: url(../font/LG\ PC.ttf);
 }
-
-/* * {
-}
-
-body {
-} */
 
 a {
   text-decoration: none;
@@ -26,9 +18,7 @@ a:hover {
 
 #container_shop {
   font-family: "lg-pc";
-  /* width: 1080px; */
   margin: 0 auto;
-  /* margin: 0; */
   padding: 0;
   box-sizing: border-box;
   width: 100%;
@@ -36,12 +26,8 @@ a:hover {
 
 .shopping-list-wrap {
   width: 750px;
-  /* padding: 10px 20px; */
   margin: 0 auto;
-  /* margin: 90px auto; */
   text-align: center;
-
-  /* border: 1px solid #353535; */
 }
 
 .titleBox {
@@ -70,7 +56,6 @@ a:hover {
   font-size: 16px;
   width: 290px;
   height: 10px;
-  /* height: 30px; */
   padding: 10px;
   border: 0px;
   outline: none;
@@ -323,7 +308,13 @@ ul, li {
 .item-price-quantity {
   display: block;
 }
+
 .item-price::after {
+  content: ' |';
+  color: #ccc;
+}
+
+.myCombo::before {
   content: ' |';
   color: #ccc;
 }

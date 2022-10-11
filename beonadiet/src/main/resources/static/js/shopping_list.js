@@ -1,4 +1,3 @@
-/* 수빈 전체 복붙 추천 */
 $(document).ready(function () {
 
 var $btn = $('.search-time');

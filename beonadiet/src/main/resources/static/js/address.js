@@ -8,8 +8,3 @@ function showPopupAdd() {
   'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 }
 
-// function showPopupMod() {
-//   window.open('adr_modify', '배송지 수정', 
-//   'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
-// }
-

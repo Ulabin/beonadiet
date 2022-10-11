@@ -83,24 +83,21 @@
     </div>
   </div>
 
+  <!-- sidabar fragment 추가 -->
     <div class="my-page-content" th:fragment="sidebar">
-      <!-- 수빈 sidabar fragment 추가 -->
       <div class="my-page-list-container" >
         <div class="my-page-list">
           <p style="font-size: 30px; text-align:center; margin:10px; font-weight: bold;"> 마이페이지</p>
           <hr>
-          <!-- 수빈 ul태그 list style none 했음 -->
           <ul class="my-page-ul" style="list-style: none;">
             <p style="font-size:25px; font-weight:bold; margin:15px;">쇼핑</p>
 
-            <!-- 수빈 누르면 해당 페이지 이동 (마이페이지들) -->
+            <!-- 누르면 해당 페이지 이동 (마이페이지들) -->
             <li><button type="button"><a th:href="@{/mypage/shopping_list}">주문목록 / 배송조회</a></button></li>
             <li><button type="button"><a th:href="@{/mypage/pick_list}">찜 목록</a></button></li>
             <li><button type="button"><a th:href="@{/mypage/pointPage}">적립금</a></button></li>
-            <!-- <li><button type="button" onclick="getMyCart()">장바구니</button></li> -->
           </ul>
 
-          <!-- 수빈 ul태그 list style none 했음 -->
           <ul style="list-style: none;">
             <p style="font-size:25px; font-weight:bold; margin:15px;">회원정보</p>
 
