@@ -51,6 +51,17 @@
                     $('.dibs_frame img').attr('src','http://localhost:8081/beonadiet/assets/uncoloring_heart_icon.png')
                 }
             })
+
+            var sendData = /*[[${myOwnSeriesInfo}]]*/ 'nutritionInfo';
+
+            var input = `
+            <input type='hidden' value=${sendData} name='my_own_series'>
+            `
+
+            $('#gocart_btn').click(function() {
+                $('#gocart').append(input);
+                $('#gocart').submit();
+            })
         }
     </script>
 </head>
@@ -277,11 +288,16 @@
                 </div>
             </div>
 
+            <form id='gocart' th:action="@{/gocart/my_own_series}" method="post">
+                <input type='hidden' value='나만의샐러드' name='type'>
+                <input type='hidden' th:value=${#authentication.name} name='user_id'>
+            </form>
+
             <div class="btn_container" style="margin-top:25px">
-                <div style="display: inline-block;" class="puchase_btn gray_btn_color">
+                <div id='purchase_btn' style="display: inline-block;" class="puchase_btn gray_btn_color">
                     <h2>구매하기</h2>
                 </div>
-                <div style="display: inline-block;" class="go_shopping_basket_btn btn_color">
+                <div id="gocart_btn" style="display: inline-block;" class="go_shopping_basket_btn btn_color">
                     <h2>장바구니 담기</h2>
                 </div>
                 <div style="display: inline-block;" class="dibs_frame">

@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.UUID;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -32,6 +36,9 @@ import com.beonadiet.beonadiet.dto.product.MyOwnSandwichMeatDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnSandwichSauceDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnSandwichToppingDTO;
 import com.beonadiet.beonadiet.dto.product.MyOwnSandwichVegetableDTO;
+import com.beonadiet.beonadiet.dto.product.ProductDTO;
+import com.beonadiet.beonadiet.dto.product.ProductImageDTO;
+import com.beonadiet.beonadiet.entity.product.ProductImage;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxMinisaladService;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxRiceService;
 import com.beonadiet.beonadiet.service.product.MyOwnLunchboxSidedishService;
@@ -47,6 +54,7 @@ import com.beonadiet.beonadiet.service.product.MyOwnSandwichMeatService;
 import com.beonadiet.beonadiet.service.product.MyOwnSandwichSauceService;
 import com.beonadiet.beonadiet.service.product.MyOwnSandwichToppingService;
 import com.beonadiet.beonadiet.service.product.MyOwnSandwichVegetableService;
+import com.beonadiet.beonadiet.service.product.ProductService;
 import com.beonadiet.beonadiet.service.product.MyOwnSaladProteinService;
 import com.beonadiet.beonadiet.vo.NutritionInfoVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,6 +81,7 @@ public class ElementRegistController {
     private final MyOwnSandwichMeatService sandwichMeatService;
     private final MyOwnSandwichBreadService sandwichBreadService;
     private final MyOwnSandwichSauceService sandwichSauceService;
+    private final ProductService productService;
 
     @Value("${com.beonadiet.upload.path}")
     private String uploadPath;
@@ -156,7 +165,11 @@ public class ElementRegistController {
     public String sandwichBreadRegister(){
         return "/element_regist/my_own_sandwich_bread";
     }
-    
+
+    @GetMapping("/product")
+    public String productRegister(){
+        return "/element_regist/product";
+    }
 
     @PostMapping("/my_own_lunchbox/rice")
     public String uploadFileAndRegister_rice(@RequestParam("image") MultipartFile img, MyOwnLunchboxRiceDTO riceDTO, @ModelAttribute NutritionInfoVo niVo){
@@ -652,5 +665,52 @@ public class ElementRegistController {
         sandwichVegetableService.register(vegetableDTO);
 
         return "redirect:/element_regist/my_own_sandwich/vegetable";
+    }
+
+    @PostMapping("/product")
+    public String uploadFileAndRegister_product(@RequestParam("image") MultipartFile[] imgFiles, ProductDTO productDTO, @ModelAttribute NutritionInfoVo niVo){
+        List<ProductImageDTO> imgList = new ArrayList<>();
+
+        for (MultipartFile img : imgFiles) {
+            String fileName = img.getOriginalFilename();
+            String uuid = UUID.randomUUID().toString();
+            String folderPath = makeFolder();
+
+            String saveName = uploadPath+File.separator+folderPath+File.separator+uuid+"_"+fileName;
+
+            Path savePath = Paths.get(saveName);
+
+            try {
+                img.transferTo(savePath);
+                ProductImageDTO imgDTO = ProductImageDTO.builder().imgName(fileName).path(saveName).uuid(uuid).build();
+                imgList.add(imgDTO);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        productDTO.setImageDTOList(imgList);
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonString = mapper.writeValueAsString(niVo);
+            productDTO.setNutritionInfo(jsonString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        productService.register(productDTO);
+
+        return "redirect:/element_regist/product";
+    }
+
+    private String makeFolder() {
+        String str = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        String folderPath = str.replace("/", File.separator);
+        File uploadPathFolder = new File(uploadPath, folderPath);
+        if(uploadPathFolder.exists() == false){
+          uploadPathFolder.mkdirs();
+        }
+        return folderPath;
     }
 }

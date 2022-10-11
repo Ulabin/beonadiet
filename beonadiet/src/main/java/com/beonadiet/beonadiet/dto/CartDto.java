@@ -2,6 +2,8 @@ package com.beonadiet.beonadiet.dto;
 
 import java.time.LocalDateTime;
 
+import com.beonadiet.beonadiet.dto.product.ProductImageDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,10 +27,10 @@ public class CartDto {
   private Float calorie;
 
   private Long mid;
-
   private Long productCount;
-
   private Long pid;
+  private String itemName;
+  private ProductImageDTO image;
 
   private LocalDateTime regDate;
   private LocalDateTime modDate;

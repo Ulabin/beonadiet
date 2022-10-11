@@ -8,6 +8,11 @@
   <link rel="stylesheet" th:href="@{css/cart.css}">
   <style>
   </style>
+  <script th:inline="javascript">
+    window.onload=function() {
+      console.log(/*[[${list}]]*/);
+    }
+  </script>
 </head>
 <body>
   <div id="container">
@@ -31,11 +36,11 @@
             </div>
           </header>
           <main class="cart-main">
-            <ul class="table-list">
+            <ul th:each="item:${list}" class="table-list">
               <li class="table-item">
                 <section class="table-item-left">
                   <div>
-                    <input type="checkbox" name="selected-item" id="table-item-checkbox-0" class="table-item-checkbox" value="0000" checked >
+                    <input type="checkbox" name="selected-item" id="table-item-checkbox-0" class="table-item-checkbox" value="0000">
                     <label for="table-item-checkbox-0" class="table-item-checkbox-label"></label>
                   </div>
                   <div class="table-item-img-wrap">
@@ -61,84 +66,6 @@
                   </div>
                 </section>
               </li>
-              <!-- <li class="table-item">
-                <section class="table-item-left">
-                  <div>
-                    <input type="checkbox" name="selected-item" id="table-item-checkbox-1" class="table-item-checkbox" value="1111" checked >
-                    <label for="table-item-checkbox-1" class="table-item-checkbox-label"></label>
-                  </div>
-                  <div class="table-item-img-wrap">
-                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/495_20211214115950" alt="장바구니 이미지" class="table-item-img"></a>
-                  </div>
-                  <div class="table-item-title">
-                    <a href="#">케이준 치킨 샐러드랩 / [샐랩 쿠키세트] 샐랩+오렌지 블랙티 쿠키+슈가로로</a> 
-                  </div>
-                </section>
-                <section class="table-item-right">
-                  <div class="table-item-spinner-wrap">
-                    <nav class="form-number">
-                      <button type="button" class="down" title="감소"></button>
-                      <input type="text" name class="number-text num" value="1">
-                      <button type="button" class="up" title="증가"></button>
-                    </nav>
-                  </div>
-                  <div class="item-total-price">
-                    10,200원
-                  </div>
-                </section>
-              </li>
-              <li class="table-item">
-                <section class="table-item-left">
-                  <div>
-                    <input type="checkbox" name="selected-item" id="table-item-checkbox-2" class="table-item-checkbox" value="2222" checked >
-                    <label for="table-item-checkbox-2" class="table-item-checkbox-label"></label>
-                  </div>
-                  <div class="table-item-img-wrap">
-                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/17_20220530180436.jpg" alt="장바구니 이미지" class="table-item-img"></a>
-                  </div>
-                  <div class="table-item-title">
-                  <a href="#">치킨 타코 샐러드</a> 
-                  </div>
-                </section>
-                <section class="table-item-right">
-                  <div class="table-item-spinner-wrap">
-                    <nav class="form-number">
-                      <button type="button" class="down" title="감소"></button>
-                      <input type="text" name class="number-text num" value="1">
-                      <button type="button" class="up" title="증가"></button>
-                    </nav>
-                  </div>
-                  <div class="item-total-price">
-                    8,900원
-                  </div>
-                </section>
-              </li>
-              <li class="table-item">
-                <section class="table-item-left">
-                  <div>
-                    <input type="checkbox" name="selected-item" id="table-item-checkbox-3" class="table-item-checkbox" value="3333" checked >
-                    <label for="table-item-checkbox-3" class="table-item-checkbox-label"></label>
-                  </div>
-                  <div class="table-item-img-wrap">
-                    <a href="#"><img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/9_20220530175655.jpg" alt="장바구니 이미지" class="table-item-img"></a>
-                  </div>
-                  <div class="table-item-title">
-                  <a href="#">닭가슴살 아몬드 샐러드</a> 
-                  </div>
-                </section>
-                <section class="table-item-right">
-                  <div class="table-item-spinner-wrap">
-                    <nav class="form-number">
-                      <button type="button" class="down" title="감소"></button>
-                      <input type="text" name class="number-text num" value="1">
-                      <button type="button" class="up" title="증가"></button>
-                    </nav>
-                  </div>
-                  <div class="item-total-price">
-                    7,900원
-                  </div>
-                </section>
-              </li> -->
             </ul>
           </main>
           <footer class="table-footer">

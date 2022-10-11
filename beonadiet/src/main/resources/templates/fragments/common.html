@@ -68,22 +68,22 @@
           </div>
         </div>
 
-        <a href="#" > <img th:src="@{/images/notice.png}" alt="notice" id="noticeimg" class="main-page-notice-img "></a>
+        <a href="#"> <img th:src="@{/images/notice.png}" alt="notice" id="noticeimg" class="main-page-notice-img "></a>
         <a th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/orderdelivery.png}" alt="orderdelivery" id="orderdeliveryimg" class="main-page-order-delivery-img "></a>
-        <a th:href="@{/cart}"> <img th:src="@{/images/mybucket.png}" alt="mybucket" id="mybucketimg" class="main-page-my-bucket-img"></a>
+        <a th:href="@{/cart(user_id=${#authentication.name})}"> <img th:src="@{/images/mybucket.png}" alt="mybucket" id="mybucketimg" class="main-page-my-bucket-img"></a>
         <!-- 수빈 수정 -->
-        <a th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/mypage.png}" alt="mypage" id="mypageimg" class="main-page-my-page-img"></a>
+        <a id="cartlink" th:href="@{/mypage/shopping_list}"> <img th:src="@{/images/mypage.png}" alt="mypage" id="mypageimg" class="main-page-my-page-img"></a>
         <div class="main-page-buttonText">
           <!-- 수빈 수정 -->
           <a th:href="@{/mypage/shopping_list}" >마이페이지</a>
-          <a th:href="@{/cart}">장바구니</a>
+          <a th:href="@{/cart(user_id=${#authentication.name})}">장바구니</a>
           <a th:href="@{/mypage/shopping_list}">주문배송</a>
           <!-- 수빈 테스트용 -->
           <a th:href="@{/mypage/health_info(mid=${#authentication.name})}">알림</a>
         </div>
 
       </div>
-    
+  
 
     <!-- :::::::: Navigation :::::::: -->
     
