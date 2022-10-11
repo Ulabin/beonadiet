@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     .and()
       .exceptionHandling().accessDeniedPage("/403");
       //.exceptionHandling() 만약 권한이 없는 사용자가 있다면 /403 으로 리턴
-    
+      http.csrf().disable(); 
   }
   
   @Override

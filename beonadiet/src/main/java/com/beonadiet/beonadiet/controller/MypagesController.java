@@ -170,7 +170,7 @@ public class MypagesController {
         log.info("................................"+memberTmp);
         userRepository.save(memberTmp);
         return "redirect:/mypage/health_info?mid="+user_id;
-      }
+    }
 
       @PostMapping("/health_info/rate")
       public String updateRate(@RequestParam(value="carb_rate") Long carb_rate, @RequestParam(value="protein_rate") Long protein_rate, 
