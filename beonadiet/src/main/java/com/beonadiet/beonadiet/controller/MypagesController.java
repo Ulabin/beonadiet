@@ -65,7 +65,12 @@ public class MypagesController {
   @GetMapping("/userinfo")
   public String userInfo(@RequestParam("mid") String mid, Model model){
     Member memberTmp =userRepository.findByUsername(mid); 
-    model.addAttribute("username", memberTmp.getUser_name()); 
+    model.addAttribute("userid", memberTmp.getUsername());
+    model.addAttribute("username", memberTmp.getUser_name());
+    model.addAttribute("nickname", memberTmp.getNickname());
+    model.addAttribute("email", memberTmp.getEmail());
+    model.addAttribute("mobile", memberTmp.getMobile_num());
+    model.addAttribute("birthday", memberTmp.getBirthday());
     return "mypage/userinfo";
   }
   

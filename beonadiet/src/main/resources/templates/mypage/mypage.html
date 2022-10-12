@@ -47,7 +47,7 @@
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color: #0FA958; ">
             1 </div>
           <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">개</p>
-          <a th:href="@{/mypage/shopping_list}" style="display: inline-block; float:right; margin-right:20px;">
+          <a th:href="@{/mypage/shopping_list(mid=${#authentication.name})}" style="display: inline-block; float:right; margin-right:20px;">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
         </div>
@@ -60,7 +60,7 @@
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
             3 </div>
           <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">원</p>
-          <a th:href="@{/mypage/pointPage}" style="display: inline-block; float:right; margin-right:20px; ">
+          <a th:href="@{/mypage/pointPage(mid=${#authentication.name})}" style="display: inline-block; float:right; margin-right:20px; ">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
         </div>
@@ -71,7 +71,7 @@
             style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold; color:#0FA958">
             3 </div>
           <p style="display: inline-block; font-size: 30px; float:left; margin-left:40px;font-weight: bold;">개</p>
-          <a th:href="@{/mypage/pick_list}" style="display: inline-block; float:right; margin-right:20px; ">
+          <a th:href="@{/mypage/pick_list(mid=${#authentication.name})}" style="display: inline-block; float:right; margin-right:20px; ">
             <iconify-icon icon="bi:chevron-right" width="35" height="35"></iconify-icon>
           </a>
         </div>
