@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>장바구니페이지</title>
   <link rel="stylesheet" th:href="@{css/cart.css}">
   <style>
@@ -11,12 +12,28 @@
   <script th:inline="javascript">
     window.onload=function() {
       console.log(/*[[${list}]]*/);
+      var list = /*[[${list}]]*/ '' 
+      var arr = [...list];
+      
+      $('#submitBtn').click(function() {
+        var submitArr=[];
+        
+        $('input[name=selected-item]:checked').each(function() {
+          submitArr.push(list[$(this).val()]);
+        })
+        
+        var submitData = JSON.stringify(submitArr);
+        var input = `<input type='hidden' name='submitArr' value=${submitData}>`;
+        $('form').append(input);
+        $('form').submit();
+      })
+
     }
   </script>
 </head>
 <body>
   <div id="container">
-    <form>
+    <form method="post" th:action="@{/order}">
       <div class="titleBox">
         <h1 class="title-text">장바구니</h1>
       </div>
@@ -37,14 +54,14 @@
           </header>
           <main class="cart-main">
             <ul class="table-list">
-              <li class="table-item" th:each="item:${list}" >
+              <li class="table-item" th:each="item,i:${list}" >
                 <section class="table-item-left">
                   <div>
-                    <input type="checkbox" name="selected-item" id="table-item-checkbox-0" class="table-item-checkbox" value="0000">
+                    <input type="checkbox" name="selected-item" id="table-item-checkbox-0" class="table-item-checkbox" th:value="${i.index}">
                     <label for="table-item-checkbox-0" class="table-item-checkbox-label"></label>
                   </div>
                   <div class="table-item-img-wrap">
-                    <a href="#"><img th:src="|/beonadiet/display?fileName=${item.image.getImageURL()}|"></a>
+                    <a href="#"><img width="80" th:src="|/beonadiet/display?fileName=${item.image.getImageURL()}|"></a>
                   </div>
                   <div class="table-item-title">
                     <a href="#" th:text="${item.itemName}"></a>
@@ -113,7 +130,7 @@
           </div>
         </section>
         <section class="footer-btn-wrap">
-          <button type="button" class="footer-btn">
+          <button id="submitBtn" type="button" class="footer-btn">
             <span class="btn-order">주문하기</span>
           </button>
         </section>

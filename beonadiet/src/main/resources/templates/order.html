@@ -4,8 +4,45 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
   <title>주문결제페이지</title>
   <link rel="stylesheet" th:href="@{css/order.css}">
+  <script th:inline="javascript">
+    window.onload=function(){
+    var list = JSON.parse(/*[[${list}]]*/);
+    console.log(list);
+    var input ='';
+    var sum =0;
+    list.forEach(element => {
+      sum+=element.itemPrice
+      input+=  ` <li class="table-item">
+                <section class="table-item-left">
+                  <div class="table-item-img-wrap">
+                    <img src="http://localhost:8081/beonadiet/display?fileName=${element.image.imageURL}" alt="주문결제 이미지" class="table-item-img">
+                  </div>
+                  <div class="table-item-title">
+                    ${element.itemName}
+                  </div>
+                </section>
+                <section class="table-item-right">
+                  <div class="table-item-quantity">
+                    ${element.productCount}개
+                  </div>
+                  <div class="item-total-price">
+                    ${element.itemPrice}원
+                  </div>
+                </section>
+              </li>`
+    });
+    console.log(input);
+
+    $('#priceSum').text(sum);
+    $('.table-list').append(input);
+    $('#productCount').text(" "+list.length+" ");
+
+    $('.total-price-num strong').text(sum+2500); 
+  }
+  </script>
 </head>
 <body>
   <div id="container">
@@ -13,7 +50,9 @@
       <h1 class="title-text">주문 / 결제</h1>
     </div>
     <div class="order-wrap">
-      <form>
+      <form th:action="@{/mypage/shopping_list}" method="post">
+        <input type="hidden" name="mid" th:value="${#authentication.name}">
+        <input type="hidden" name="list" th:value="${list}">
         <div class="delivery-wrap order-pay-item">
           <div class="flex-title-wrap">
             <div class="titWrap">
@@ -70,78 +109,6 @@
           </div>
           <main class="cart-main">
             <ul class="table-list">
-              <li class="table-item">
-                <section class="table-item-left">
-                  <div class="table-item-img-wrap">
-                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/790_20220607123105.jpg" alt="주문결제 이미지" class="table-item-img">
-                  </div>
-                  <div class="table-item-title">
-                    홀그레인 로스트비프 바게트 샌드
-                  </div>
-                </section>
-                <section class="table-item-right">
-                  <div class="table-item-quantity">
-                    1개
-                  </div>
-                  <div class="item-total-price">
-                    7,500원
-                  </div>
-                </section>
-              </li>
-              <li class="table-item">
-                <section class="table-item-left">
-                  <div class="table-item-img-wrap">
-                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/495_20211214115950" alt="주문결제 이미지" class="table-item-img">
-                  </div>
-                  <div class="table-item-title">
-                    케이준 치킨 샐러드랩 / [샐랩 쿠키세트] 샐랩+오렌지 블랙티 쿠키+슈가로로
-                  </div>
-                </section>
-                <section class="table-item-right">
-                  <div class="table-item-quantity">
-                    1개
-                  </div>
-                  <div class="item-total-price">
-                    10,200원
-                  </div>
-                </section>
-              </li>
-              <li class="table-item">
-                <section class="table-item-left">
-                  <div class="table-item-img-wrap">
-                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/17_20220530180436.jpg" alt="주문결제 이미지" class="table-item-img">
-                  </div>
-                  <div class="table-item-title">
-                    치킨 타코 샐러드
-                  </div>
-                </section>
-                <section class="table-item-right">
-                  <div class="table-item-quantity">
-                    1개
-                  </div>
-                  <div class="item-total-price">
-                    8,900원
-                  </div>
-                </section>
-              </li>
-              <li class="table-item">
-                <section class="table-item-left">
-                  <div class="table-item-img-wrap">
-                    <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/9_20220530175655.jpg" alt="주문결제 이미지" class="table-item-img">
-                  </div>
-                  <div class="table-item-title">
-                    닭가슴살 아몬드 샐러드
-                  </div>
-                </section>
-                <section class="table-item-right">
-                  <div class="table-item-quantity">
-                    1개
-                  </div>
-                  <div class="item-total-price">
-                    7,900원
-                  </div>
-                </section>
-              </li>
             </ul>
           </main>
           <section class="order-pay-both-wrap">
@@ -220,7 +187,7 @@
                             <span>총 상품금액</span>
                           </dt>
                           <dd class="price">
-                            <em>0</em>
+                            <em id="priceSum">0</em>
                             <span class="won">원</span>
                           </dd>
                         </dl>
@@ -229,7 +196,7 @@
                             <span>배송비</span>
                           </dt>
                           <dd class="price">
-                            <em>0</em>
+                            <em>2500</em>
                             <span class="won">원</span>
                           </dd>
                         </dl>
@@ -245,7 +212,7 @@
                       </div>
                       <div class="total-price-detail">
                         <span class="total-count">
-                          총<em> 0 </em>건
+                          총<em id="productCount"> 0 </em>건
                         </span>
                         <span class="total-price-num">
                           <strong>0</strong>

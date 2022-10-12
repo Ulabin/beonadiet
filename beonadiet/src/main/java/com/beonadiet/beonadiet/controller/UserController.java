@@ -55,12 +55,6 @@ public class UserController{
     return "join_complete";
   }
 
-
-  @GetMapping("/order")
-  public String order(){
-    return "order";
-  }
-
   @PostMapping("/joinProc")
   public String joinProc(Member member){
     userService.Join(member);
@@ -157,5 +151,11 @@ public class UserController{
     ra.addFlashAttribute("list", cartDtoList);
 
     return "redirect:/cart?user_id="+user_id;
+  }
+
+  @PostMapping("/order")
+  public String order(@RequestParam("submitArr") String itemList, Model model){
+    model.addAttribute("list",itemList);
+    return "order";
   }
 }

@@ -1,6 +1,14 @@
 package com.beonadiet.beonadiet.controller;
 
 
+import java.util.List;
+import java.util.function.Consumer;
+
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,11 +19,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.beonadiet.beonadiet.dto.PurchaseDTO;
+import com.beonadiet.beonadiet.dto.product.ProductImageDTO;
 import com.beonadiet.beonadiet.entity.Member;
+import com.beonadiet.beonadiet.entity.product.Product;
+import com.beonadiet.beonadiet.entity.product.ProductImage;
 import com.beonadiet.beonadiet.repository.AddressRepository;
 import com.beonadiet.beonadiet.repository.UserRepository;
+import com.beonadiet.beonadiet.repository.product.ProductImageRepository;
 import com.beonadiet.beonadiet.service.AdrService;
+import com.beonadiet.beonadiet.service.PurchaseService;
 import com.beonadiet.beonadiet.service.UserService;
+import com.beonadiet.beonadiet.service.product.ProductService;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -23,6 +39,13 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @Log4j2
 public class MypagesController {
+  @Autowired
+  PurchaseService purchaseService;
+  @Autowired
+  ProductImageRepository piRepository;
+  @Autowired
+  ProductService productService;
+
   
   @Autowired
   UserRepository userRepository;
@@ -121,6 +144,7 @@ public class MypagesController {
     model.addAttribute("username", memberTmp.getUser_name());
     return "mypage/pointPage";
   }
+
   
   @GetMapping("/shopping_list")
   public String shoppingList(@RequestParam("mid") String mid, Model model){
@@ -131,6 +155,78 @@ public class MypagesController {
     model.addAttribute("email", memberTmp.getEmail());
     model.addAttribute("mobile", memberTmp.getMobile_num());
     model.addAttribute("birthday", memberTmp.getBirthday());
+    List<PurchaseDTO> purchaseDtoList = purchaseService.findByMember(memberTmp);
+    purchaseDtoList.forEach(new Consumer<PurchaseDTO>() {
+      @Override
+      public void accept(PurchaseDTO t) {
+        Product product = productService.findById(t.getPid());
+        List<ProductImage> imgList=piRepository.findByProduct(Product.builder().id(t.getPid()).build());
+        ProductImage img= imgList.get(0);
+        ProductImageDTO imgDTO = ProductImageDTO.builder().folderPath(img.getFolderPath()).path(img.getPath()).uuid(img.getUuid()).imgName(img.getImgName()).build();
+        t.setProductImg(imgDTO);
+        t.setProductName(product.getName());
+      }
+    });
+    model.addAttribute("list",purchaseDtoList);
+    return "mypage/shopping_list";
+  }
+
+
+  @PostMapping("/shopping_list")
+  public String shoppingList2(@RequestParam("mid") String mid, Model model, @RequestParam("list") String list){
+    Member memberTmp =userRepository.findByUsername(mid);
+    log.info("............................."+list);
+
+    try {
+      JSONParser parser = new JSONParser();
+      Object obj = parser.parse(list);
+      JSONArray jsonArr = (JSONArray)obj;
+  
+      if (jsonArr.size() > 0){
+          for(int i=0; i<jsonArr.size(); i++){
+              JSONObject jsonObj = (JSONObject)jsonArr.get(i);
+              
+              PurchaseDTO purchaseDTO = PurchaseDTO.builder()
+              .id((Long)jsonObj.get("id"))
+              .combination_content(jsonObj.get("combination_content").toString())
+              .productCount((Long)jsonObj.get("productCount"))
+              .mid((Long)jsonObj.get("mid"))
+              .pid((Long)jsonObj.get("pid"))
+              .productPrice((Long)jsonObj.get("itemPrice"))
+              .build();
+
+              purchaseService.register(purchaseDTO);
+
+              log.info(purchaseDTO);
+
+
+          }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+ 
+    model.addAttribute("userid", memberTmp.getUsername());
+    model.addAttribute("username", memberTmp.getUser_name());
+    model.addAttribute("nickname", memberTmp.getNickname());
+    model.addAttribute("email", memberTmp.getEmail());
+    model.addAttribute("mobile", memberTmp.getMobile_num());
+    model.addAttribute("birthday", memberTmp.getBirthday());
+
+    List<PurchaseDTO> purchaseDtoList = purchaseService.findByMember(memberTmp);
+    purchaseDtoList.forEach(new Consumer<PurchaseDTO>() {
+      @Override
+      public void accept(PurchaseDTO t) {
+        Product product = productService.findById(t.getPid());
+        List<ProductImage> imgList=piRepository.findByProduct(Product.builder().id(t.getPid()).build());
+        ProductImage img= imgList.get(0);
+        ProductImageDTO imgDTO = ProductImageDTO.builder().folderPath(img.getFolderPath()).path(img.getPath()).uuid(img.getUuid()).imgName(img.getImgName()).build();
+        t.setProductImg(imgDTO);
+        t.setProductName(product.getName());
+      }
+    });
+    model.addAttribute("list",purchaseDtoList);
+
     return "mypage/shopping_list";
   }
   
