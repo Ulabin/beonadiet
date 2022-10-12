@@ -116,48 +116,88 @@
                     let next_icon_link = /*[[@{/assets/next_icon.png}]]*/
                     if(checkSelectSoup()){
                         if(!$('.nutrition_info').length){
+                            let warning_icon_link = /*[[@{/assets/warning_icon.png}]]*/ 'warning_icon_link'
+                            let next_icon_link = /*[[@{/assets/next_icon.png}]]*/ 'next_icon_link'
+                            
+                            var jsonData = JSON.parse(/*[[${myOwnSeriesInfo}]]*/);
+
+                            var carbAmount = jsonData.carbAmount;
+                            var proteinAmount = jsonData.proteinAmount;
+                            var fatAmount = jsonData.fatAmount;
+                            var calorie =  jsonData.calorie;
+
+                            var soup = $('input[name=my_own_lunchbox_soup]:checked').val();
+                            var listId = $('input[name=my_own_lunchbox_soup]:checked').attr('data-listid');
+                            var eleId;
+                            dtoList.find(function(element,index) {
+                                if(element.id==listId){
+                                    eleId=index;
+                                }
+                                return element.id==listId;
+                            })
+                            var nutrition_info = JSON.parse(dtoList[eleId-1].nutrition_info);
+
+                            carbAmount += nutrition_info.carbs
+                            proteinAmount += nutrition_info.protein
+                            fatAmount += nutrition_info.fat
+                            calorie += nutrition_info.kcal
+
+                            var elementSum = carbAmount+proteinAmount+fatAmount;
+                            var productCarbsPercent = (carbAmount/elementSum)*100;
+                            var productProteinPercent = (proteinAmount/elementSum)*100;
+                            var productFatPercent = (fatAmount/elementSum)*100;
+
+                            var carbsStandard = (2000)*(0.3)/4
+                            var proteinStandard = (2000)*(0.4)/4
+                            var fatStandard = (2000)*(0.3)/9
+
+                            var carbsPercent = (carbAmount / carbsStandard * 100).toFixed(2);
+                            var proteinPercent = (proteinAmount / proteinStandard * 100).toFixed(2);
+                            var fatPercent = (fatAmount / fatStandard * 100).toFixed(2);
+                            var caloriePercent = (calorie / 2000 * 100).toFixed(2);
+
                         $('.nutrition_info_check_btn_container').after(
                             `
                             <style>                    
                                 @keyframes calorie_stack {
                                     0%{width: 0;}
-                                    100%{width: 11.5%;}
+                                    100%{width: ${caloriePercent}%;}
                                 }
 
                                 @keyframes product_carbs_stack {
                                     0%{width: 0;}
-                                    100%{width: 74%;}
+                                    100%{width: ${productCarbsPercent}%;}
                                 }
 
                                 @keyframes product_protein_stack {
                                     0%{width: 0;}
-                                    100%{width: 15.75%;}
+                                    100%{width: ${productProteinPercent}%;}
                                 }
 
                                 @keyframes product_fat_stack {
                                     0%{width: 0;}
-                                    100%{width: 10.25%;}
+                                    100%{width: ${productFatPercent}%;}
                                 }
 
                                 @keyframes day_carbs_stack {
                                     0%{width: 0;}
-                                    100%{width: 28%;}
+                                    100%{width: ${carbsPercent}%;}
                                 }
 
                                 @keyframes day_protein_stack {
                                     0%{width: 0;}
-                                    100%{width: 4%;}
+                                    100%{width: ${proteinPercent}%;}
                                 }
 
                                 @keyframes day_fat_stack {
                                     0%{width: 0;}
-                                    100%{width: 0.04%;}
+                                    100%{width:${fatPercent}%;}
                                 }
                             </style>
 
                             <div class="nutrition_info">
                             <h2>[맞춤형 영양정보]&nbsp;</h2>
-                            <img src=${warning_icon_link}>
+                            <img src="${warning_icon_link}">
                             <h3>&nbsp;step4 기준</h3>
                             <h3 class="folding_btn">접기▲</h3>
                             </div>
@@ -169,7 +209,7 @@
                                     <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
                                     <div class="setting_btn_container">
                                         <div>
-                                            <img src=${next_icon_link}>
+                                            <img src="${next_icon_link}">
                                             <h2>설정</h2>
                                         </div>
                                     </div>
@@ -181,12 +221,12 @@
                                     </div>
 
                                     <div class="graph calorie_stack">
-                                        <span style="width:11.5%"></span>
+                                        <span style="width:${caloriePercent}%"></span>
                                     </div>
 
                                     <div class="rate_container">
                                         <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
-                                        <div style="color:#006c04; left: calc(11.5% - 30px); width:66px;">11.5%<br>(230kcal)</div>
+                                        <div style="color:#006c04; left: calc(${caloriePercent}% - 30px); width:66px;">${caloriePercent}%<br>(${calorie}kcal)</div>
                                         <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
                                     </div>
                                 </div>
@@ -209,15 +249,15 @@
                                         </div>
                                     </div>
                                     <div class="graph" style="position:relative"> 
-                                        <span class="product_carbs_stack" style="width:74%"></span>
-                                        <span class="product_protein_stack" style="width:15.75%;left:74%"></span>
-                                        <span class="product_fat_stack" style="width:10.25%; left:89.75%"></span>
+                                        <span class="product_carbs_stack" style="width:${productCarbsPercent}%"></span>
+                                        <span class="product_protein_stack" style="width:${productProteinPercent}%;left:${productCarbsPercent}%"></span>
+                                        <span class="product_fat_stack" style="width:${productFatPercent}%; left:${productCarbsPercent+productProteinPercent}%"></span>
                                     </div>
 
                                     <div class="rate_container">
-                                        <div style="width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
-                                        <div style="width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
-                                        <div style="width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
+                                        <div style="width: 60px; left:calc(${productCarbsPercent}% - 30px)">${productCarbsPercent.toFixed(2)}%<br>(탄수화물)</div>
+                                        <div style="width: 47.5px; left:calc(${productCarbsPercent+productProteinPercent}% - 23.75px)">${productProteinPercent.toFixed(2)}%<br>(단백질)</div>
+                                        <div style="width: 47px; left:calc(100% - 23.5px)">${productFatPercent.toFixed(2)}%<br>(지방)</div>
                                     </div>
                                 </div>
 
@@ -234,11 +274,11 @@
                                         <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
                                         <div>
                                             <div class="graph day_carbs_stack">
-                                                <span style="width:28%"></span>
+                                                <span style="width:${carbsPercent}%"></span>
                                             </div>
                                             <div class="rate_container">
                                                 <div>0%<br>(0g)</div>
-                                                <div style="color:#006c04; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
+                                                <div style="color:#006c04; width: 47.5px; left:calc(${carbsPercent}% - 23.75px)">${carbsPercent}%<br>(${carbAmount.toFixed(0)}g)</div>
                                                 <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
                                             </div>
                                         </div>
@@ -248,11 +288,11 @@
                                         <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
                                         <div>
                                             <div class="graph day_protein_stack">
-                                                <span style="width:4%"></span>
+                                                <span style="width:${proteinPercent}%"></span>
                                             </div>
                                             <div class="rate_container">
                                                 <div>0%<br>(0g)</div>
-                                                <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
+                                                <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(${proteinPercent}% - 23.75px)">${proteinPercent}%<br>(${proteinAmount.toFixed(0)}g)</div>
                                                 <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
                                             </div>
                                         </div>
@@ -261,11 +301,11 @@
                                     <div class="day_fat_graph_container">
                                         <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
                                         <div class="graph day_fat_stack">
-                                            <span style="width:0.04%"></span>  
+                                            <span style="width:${fatPercent}%"></span>  
                                         </div>
                                         <div class="rate_container">
                                             <div>0%<br>(0g)</div>
-                                            <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
+                                            <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(${fatPercent}% - 23.75px)">${fatPercent}%<br>(${proteinAmount.toFixed(0)}g)</div>
                                             <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
                                         </div>
                                     </div>
@@ -412,7 +452,6 @@
                 <h3>이미지 클릭 시 상세정보(1회제공량, 영양정보)를 확인할 수 있습니다.</h3>     
             </div>
 
-            <div style="width:950px; border:1px solid #b9b9b9; padding:20px; margin:auto">
             <div class="composition_type">
                 <h2>[종류]&nbsp;</h2>
                 <select class="form-select my_own_series_element" id='sort_select' style="position:absolute; right:0px;">
@@ -496,7 +535,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class="home-footer-container" th:replace="fragments/common :: foot">

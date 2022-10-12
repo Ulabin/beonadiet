@@ -72,165 +72,193 @@
                         let warning_icon_link = /*[[@{/assets/warning_icon.png}]]*/
                         let next_icon_link = /*[[@{/assets/next_icon.png}]]*/
 
-                    $('.nutrition_info_check_btn_container').after(
-                        `
-                        <style>                    
-                            @keyframes calorie_stack {
-                                0%{width: 0;}
-                                100%{width: 11.5%;}
-                            }
-
-                            @keyframes product_carbs_stack {
-                                0%{width: 0;}
-                                100%{width: 74%;}
-                            }
-
-                            @keyframes product_protein_stack {
-                                0%{width: 0;}
-                                100%{width: 15.75%;}
-                            }
-
-                            @keyframes product_fat_stack {
-                                0%{width: 0;}
-                                100%{width: 10.25%;}
-                            }
-
-                            @keyframes day_carbs_stack {
-                                0%{width: 0;}
-                                100%{width: 28%;}
-                            }
-
-                            @keyframes day_protein_stack {
-                                0%{width: 0;}
-                                100%{width: 4%;}
-                            }
-
-                            @keyframes day_fat_stack {
-                                0%{width: 0;}
-                                100%{width: 0.04%;}
-                            }
-                        </style>
-
-                        <div class="nutrition_info">
-                        <h2>[맞춤형 영양정보]&nbsp;</h2>
-                        <img src="${warning_icon_link}">
-                        <h3>&nbsp;step1 기준</h3>
-                        <h3 class="folding_btn">접기▲</h3>
-                        </div>
-
-                        <div class="nutrition_info_container">
-                            <div class="target_container">
-                                <h2><u>개인설정목표</u></h2>
-                                <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
-                                <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
-                                <div class="setting_btn_container">
-                                    <div>
-                                        <img src="${next_icon_link}">
-                                        <h2>설정</h2>
-                                    </div>
-                                </div>
-                            </div>
+                        var bread = $('input[name=my_own_sandwich_bread]:checked').val();
+                        var breadLength = ($('input[name=my_own_sandwich_bread_length]:checked').val()=='30cm') ? 2 : 1;
                             
-                            <div class="calorie_graph_container">
-                                <div class="graph_title_container">
-                                    <h2>일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3>(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
-                                </div>
+                        var listid = $('input[name=my_own_sandwich_bread]:checked').attr('data-listid');
+                            var nutrition_info = JSON.parse(dtoList[listid-1].nutrition_info);
 
-                                <div class="graph calorie_stack">
-                                    <span style="width:11.5%"></span>
-                                </div>
+                            var carbAmount = nutrition_info.carbs*breadLength;
+                            var proteinAmount = nutrition_info.protein*breadLength;
+                            var fatAmount = nutrition_info.fat*breadLength;
+                            var calorie = nutrition_info.kcal*breadLength;
 
-                                <div class="rate_container">
-                                    <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
-                                    <div style="color:#006c04; left: calc(11.5% - 30px); width:66px;">11.5%<br>(230kcal)</div>
-                                    <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
-                                </div>
+                            var elementSum = carbAmount+proteinAmount+fatAmount;
+                            var productCarbsPercent = (carbAmount/elementSum)*100;
+                            var productProteinPercent = (proteinAmount/elementSum)*100;
+                            var productFatPercent = (fatAmount/elementSum)*100;
+
+                            var carbsStandard = (2000)*(0.3)/4
+                            var proteinStandard = (2000)*(0.4)/4
+                            var fatStandard = (2000)*(0.3)/9
+
+                            var carbsPercent = (carbAmount / carbsStandard * 100).toFixed(2);
+                            var proteinPercent = (proteinAmount / proteinStandard * 100).toFixed(2);
+                            var fatPercent = (fatAmount / fatStandard * 100).toFixed(2);
+                            var caloriePercent = (calorie / 2000 * 100).toFixed(2);
+
+                        $('.nutrition_info_check_btn_container').after(
+                            `
+                            <style>                    
+                                @keyframes calorie_stack {
+                                    0%{width: 0;}
+                                    100%{width: ${caloriePercent}%;}
+                                }
+
+                                @keyframes product_carbs_stack {
+                                    0%{width: 0;}
+                                    100%{width: ${productCarbsPercent}%;}
+                                }
+
+                                @keyframes product_protein_stack {
+                                    0%{width: 0;}
+                                    100%{width: ${productProteinPercent}%;}
+                                }
+
+                                @keyframes product_fat_stack {
+                                    0%{width: 0;}
+                                    100%{width: ${productFatPercent}%;}
+                                }
+
+                                @keyframes day_carbs_stack {
+                                    0%{width: 0;}
+                                    100%{width: ${carbsPercent}%;}
+                                }
+
+                                @keyframes day_protein_stack {
+                                    0%{width: 0;}
+                                    100%{width: ${proteinPercent}%;}
+                                }
+
+                                @keyframes day_fat_stack {
+                                    0%{width: 0;}
+                                    100%{width:${fatPercent}%;}
+                                }
+                            </style>
+
+                            <div class="nutrition_info">
+                            <h2>[맞춤형 영양정보]&nbsp;</h2>
+                            <img src="${warning_icon_link}">
+                            <h3>&nbsp;step1 기준</h3>
+                            <h3 class="folding_btn">접기▲</h3>
                             </div>
 
-                            <div class="product_graph_container">
-                                <div class="graph_title_container">
-                                    <h2>탄</h2><span>수화물</span>
-                                    <h2>단</h2><span>백질</span>
-                                    <h2>지</h2><span>방</span>
-                                    <h2>비율</h2>
-                                    <div class="nutrition_mark_container">
+                            <div class="nutrition_info_container">
+                                <div class="target_container">
+                                    <h2><u>개인설정목표</u></h2>
+                                    <h2>일일 섭취 칼로리 <span>2000</span>kcal</h2>
+                                    <h2>탄수화물 <span>30</span>% 단백질 <span>40</span>% 지방 <span>30</span>%</h2>
+                                    <div class="setting_btn_container">
                                         <div>
-                                            <div class="mark carbs"></div>
-                                            &nbsp;<span>탄수화물</span>&nbsp;&nbsp;&nbsp;
-                                            <div class="mark protein"></div>
-                                            &nbsp;<span>단백질</span>&nbsp;&nbsp;&nbsp;
-                                            <div class="mark fat"></div>
-                                            &nbsp;<span>지방</span>&nbsp;&nbsp;&nbsp;
+                                            <img src="${next_icon_link}">
+                                            <h2>설정</h2>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="graph" style="position:relative"> 
-                                    <span class="product_carbs_stack" style="width:74%"></span>
-                                    <span class="product_protein_stack" style="width:15.75%;left:74%"></span>
-                                    <span class="product_fat_stack" style="width:10.25%; left:89.75%"></span>
-                                </div>
-
-                                <div class="rate_container">
-                                    <div style="width: 60px; left:calc(74% - 30px)">74%<br>(탄수화물)</div>
-                                    <div style="width: 47.5px; left:calc(89.75% - 23.75px)">15.75%<br>(단백질)</div>
-                                    <div style="width: 47px; left:calc(100% - 23.5px)">10.25%<br>(지방)</div>
-                                </div>
-                            </div>
-
-                            <div class="day_nutrition_graph_container">
-                                <div class="wild_graph_title">
-                                    <h2>하루섭취 탄</h2><span>수화물</span> 
-                                    <h2>단</h2><span>백질</span>
-                                    <h2>지</h2><span>방</span>
-                                    <h2>비율</h2><br><!--
-                                    --><span>(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
-                                </div>
-
-                                <div class="day_carbs_graph_container">
-                                    <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
-                                    <div>
-                                        <div class="graph day_carbs_stack">
-                                            <span style="width:28%"></span>
-                                        </div>
-                                        <div class="rate_container">
-                                            <div>0%<br>(0g)</div>
-                                            <div style="color:#006c04; width: 47.5px; left:calc(28% - 23.75px)">28%<br>(43g)</div>
-                                            <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
-                                        </div>
+                                
+                                <div class="calorie_graph_container">
+                                    <div class="graph_title_container">
+                                        <h2>일일 섭취 칼로리 대비 비율</h2><span>&nbsp;&nbsp;</span><h3>(일일 섭취 칼로리 <u>2000kcal</u> 기준)</h3>
                                     </div>
-                                </div>
 
-                                <div class="day_protein_graph_container">
-                                    <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
-                                    <div>
-                                        <div class="graph day_protein_stack">
-                                            <span style="width:4%"></span>
-                                        </div>
-                                        <div class="rate_container">
-                                            <div>0%<br>(0g)</div>
-                                            <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">4%<br>(8g)</div>
-                                            <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
-                                        </div>
+                                    <div class="graph calorie_stack">
+                                        <span style="width:${caloriePercent}%"></span>
                                     </div>
-                                </div>
 
-                                <div class="day_fat_graph_container">
-                                    <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
-                                    <div class="graph day_fat_stack">
-                                        <span style="width:0.04%"></span>  
-                                    </div>
                                     <div class="rate_container">
-                                        <div>0%<br>(0g)</div>
-                                        <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(4% - 23.75px)">0.04%<br>(3g)</div>
-                                        <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
+                                        <div style="left: -30px; width:66px;">0%<br>(0kcal)</div>
+                                        <div style="color:#006c04; left: calc(${caloriePercent}% - 30px); width:66px;">${caloriePercent}%<br>(${calorie}kcal)</div>
+                                        <div style="left: calc(100% - 30px); text-align: center; width:66px;">100%<br>(2000kcal)</div>
+                                    </div>
+                                </div>
+
+                                <div class="product_graph_container">
+                                    <div class="graph_title_container">
+                                        <h2>탄</h2><span>수화물</span>
+                                        <h2>단</h2><span>백질</span>
+                                        <h2>지</h2><span>방</span>
+                                        <h2>비율</h2>
+                                        <div class="nutrition_mark_container">
+                                            <div>
+                                                <div class="mark carbs"></div>
+                                                &nbsp;<span>탄수화물</span>&nbsp;&nbsp;&nbsp;
+                                                <div class="mark protein"></div>
+                                                &nbsp;<span>단백질</span>&nbsp;&nbsp;&nbsp;
+                                                <div class="mark fat"></div>
+                                                &nbsp;<span>지방</span>&nbsp;&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="graph" style="position:relative"> 
+                                        <span class="product_carbs_stack" style="width:${productCarbsPercent}%"></span>
+                                        <span class="product_protein_stack" style="width:${productProteinPercent}%;left:${productCarbsPercent}%"></span>
+                                        <span class="product_fat_stack" style="width:${productFatPercent}%; left:${productCarbsPercent+productProteinPercent}%"></span>
+                                    </div>
+
+                                    <div class="rate_container">
+                                        <div style="width: 60px; left:calc(${productCarbsPercent}% - 30px)">${productCarbsPercent.toFixed(2)}%<br>(탄수화물)</div>
+                                        <div style="width: 47.5px; left:calc(${productCarbsPercent+productProteinPercent}% - 23.75px)">${productProteinPercent.toFixed(2)}%<br>(단백질)</div>
+                                        <div style="width: 47px; left:calc(100% - 23.5px)">${productFatPercent.toFixed(2)}%<br>(지방)</div>
+                                    </div>
+                                </div>
+
+                                <div class="day_nutrition_graph_container">
+                                    <div class="wild_graph_title">
+                                        <h2>하루섭취 탄</h2><span>수화물</span> 
+                                        <h2>단</h2><span>백질</span>
+                                        <h2>지</h2><span>방</span>
+                                        <h2>비율</h2><br><!--
+                                        --><span>(일일 섭취 칼로리 <u>2000kcal</u>)</span><br>
+                                    </div>
+
+                                    <div class="day_carbs_graph_container">
+                                        <h2>탄</h2><span>수화물(하루 <u>30%</u> 기준)</span>
+                                        <div>
+                                            <div class="graph day_carbs_stack">
+                                                <span style="width:${carbsPercent}%"></span>
+                                            </div>
+                                            <div class="rate_container">
+                                                <div>0%<br>(0g)</div>
+                                                <div style="color:#006c04; width: 47.5px; left:calc(${carbsPercent}% - 23.75px)">${carbsPercent}%<br>(${carbAmount.toFixed(0)}g)</div>
+                                                <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(150g)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="day_protein_graph_container">
+                                        <h2>단</h2><span>백질(하루 <u>40%</u> 기준)</span>
+                                        <div>
+                                            <div class="graph day_protein_stack">
+                                                <span style="width:${proteinPercent}%"></span>
+                                            </div>
+                                            <div class="rate_container">
+                                                <div>0%<br>(0g)</div>
+                                                <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(${proteinPercent}% - 23.75px)">${proteinPercent}%<br>(${proteinAmount.toFixed(0)}g)</div>
+                                                <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(200g)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="day_fat_graph_container">
+                                        <h2>지</h2><span>방(하루 <u>30%</u> 기준)</span>
+                                        <div class="graph day_fat_stack">
+                                            <span style="width:${fatPercent}%"></span>  
+                                        </div>
+                                        <div class="rate_container">
+                                            <div>0%<br>(0g)</div>
+                                            <div style="color:#006c04; width: 47.5px; margin-left:10px; left:calc(${fatPercent}% - 23.75px)">${fatPercent}%<br>(${proteinAmount.toFixed(0)}g)</div>
+                                            <div style="width: 40.5px; left:calc(100% - 20.25px)">100%<br>(75g)</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        `)}
+                            `)}
+                        }
                     }
-                }
-            )
+                )
+                        
+
+
 
             $('.content').on('click','.folding_btn',function() {
                 if($('.nutrition_info_container').is(":visible")){
