@@ -15,6 +15,10 @@ a:hover {
   color: #0FA958;
 }
 
+a:link {
+  color: #353535;
+}
+
 
 #container_shop {
   font-family: "lg-pc";
