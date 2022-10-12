@@ -35,10 +35,12 @@ public class MypageController {
   }
 
   @GetMapping("/mypost")
-  public String mypost(Model model){
+  public String mypost(@RequestParam("mid") String mid,Model model){
     List<MyOwnRecipePost> list = mPostRepository.findAll();
     model.addAttribute("list", list);
     log.info(list);
+    Member memberTmp =userRepository.findByUsername(mid); 
+    model.addAttribute("username", memberTmp.getUser_name());
     return "mypage/mypost";
   }
 

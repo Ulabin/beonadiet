@@ -29,7 +29,7 @@
 
           <div clas="my-page-profile-bottom">
             <span>
-              <p style="font-size: 25px; font-weight: bold;">김민재님</p>
+              <p style="font-size: 25px; font-weight: bold;" th:text="${username}+ 님">김민재님</p>
             </span>
             <h5 style="font-size: 5px;">&nbsp;</h5>
             <span>
@@ -93,9 +93,9 @@
             <p style="font-size:25px; font-weight:bold; margin:15px;">쇼핑</p>
 
             <!-- 누르면 해당 페이지 이동 (마이페이지들) -->
-            <li><button type="button"><a th:href="@{/mypage/shopping_list}">주문목록 / 배송조회</a></button></li>
-            <li><button type="button"><a th:href="@{/mypage/pick_list}">찜 목록</a></button></li>
-            <li><button type="button"><a th:href="@{/mypage/pointPage}">적립금</a></button></li>
+            <li><button type="button"><a th:href="@{/mypage/shopping_list(mid=${#authentication.name})}">주문목록 / 배송조회</a></button></li>
+            <li><button type="button"><a th:href="@{/mypage/pick_list(mid=${#authentication.name})}">찜 목록</a></button></li>
+            <li><button type="button"><a th:href="@{/mypage/pointPage(mid=${#authentication.name})}">적립금</a></button></li>
           </ul>
 
           <ul style="list-style: none;">
@@ -109,7 +109,7 @@
             <li><button><a>나의상품후기</a></button></li>
             <!-- <li><a href="#" th:href="@{/mypage/mypost}" class="change">나의게시글</a></li> -->
             <!-- <li><button type="button" onclick="getMyPosts()"><a>나의게시글</a></button></li> -->
-            <li><button type="button" ><a th:href="@{/mypage/mypost(mid=${#authentication.name})}">나의게시글</a></button></li>
+            <li><button type="button" ><a th:href="@{/mypage/mypost(mid=${#authentication.name})}" >나의게시글</a></button></li>
 
           </ul>
         </div>

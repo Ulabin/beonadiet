@@ -49,6 +49,7 @@ public class MypagesController {
     //서비스에서 생성한 리스트를 list라는 이름으로 반환.
     Member memberTmp = userRepository.findByUsername(mid);
     model.addAttribute("list", addressRepository.findByMember(memberTmp));
+    model.addAttribute("username", memberTmp.getUser_name());
     log.info(".................."+memberTmp);
     log.info(".................");
     return "mypage/address";
@@ -63,13 +64,8 @@ public class MypagesController {
   
   @GetMapping("/userinfo")
   public String userInfo(@RequestParam("mid") String mid, Model model){
-    Member memberTmp =userRepository.findByUsername(mid);
-    model.addAttribute("userid", memberTmp.getUsername());
-    model.addAttribute("username", memberTmp.getUser_name());
-    model.addAttribute("nickname", memberTmp.getNickname());
-    model.addAttribute("email", memberTmp.getEmail());
-    model.addAttribute("mobile", memberTmp.getMobile_num());
-    model.addAttribute("birthday", memberTmp.getBirthday());
+    Member memberTmp =userRepository.findByUsername(mid); 
+    model.addAttribute("username", memberTmp.getUser_name()); 
     return "mypage/userinfo";
   }
   
@@ -115,17 +111,28 @@ public class MypagesController {
   }
   
   @GetMapping("/pointPage")
-  public String pointPage(){
+  public String pointPage(@RequestParam("mid") String mid, Model model){
+    Member memberTmp =userRepository.findByUsername(mid);
+    model.addAttribute("username", memberTmp.getUser_name());
     return "mypage/pointPage";
   }
   
   @GetMapping("/shopping_list")
-  public String shoppingList(){
+  public String shoppingList(@RequestParam("mid") String mid, Model model){
+    Member memberTmp =userRepository.findByUsername(mid);
+    model.addAttribute("userid", memberTmp.getUsername());
+    model.addAttribute("username", memberTmp.getUser_name());
+    model.addAttribute("nickname", memberTmp.getNickname());
+    model.addAttribute("email", memberTmp.getEmail());
+    model.addAttribute("mobile", memberTmp.getMobile_num());
+    model.addAttribute("birthday", memberTmp.getBirthday());
     return "mypage/shopping_list";
   }
   
   @GetMapping("/pick_list")
-  public String pickList(){
+  public String pickList(@RequestParam("mid") String mid, Model model){
+    Member memberTmp =userRepository.findByUsername(mid);
+    model.addAttribute("username", memberTmp.getUser_name());
     return "mypage/pick_list";
   }
   
@@ -137,6 +144,7 @@ public class MypagesController {
     model.addAttribute("protein", memberTmp.getProtein_rate());
     model.addAttribute("fat", memberTmp.getFat_rate());
     model.addAttribute("allergy", memberTmp.getAllergy());
+    model.addAttribute("username", memberTmp.getUser_name());
     return "mypage/health_info";
   }
 
